@@ -5,8 +5,8 @@ main:
   id: 1
   content: |
     La Bàn Cảm Xúc là bộ thẻ giúp người dùng gọi tên cảm xúc, quan sát tín hiệu bên trong và mở ra những cuộc trò chuyện an toàn hơn trong đội nhóm, lớp học, coaching hoặc tự phản tư.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-compass-cover.png'
+  imgMain: '@/images/emotion-compass-cover.png'
   imgAlt: 'Bộ thẻ La Bàn Cảm Xúc trên bàn gỗ'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -48,6 +48,6 @@ specificationsRight:
   - title: 'Tư duy'
     subTitle: 'Không tìm câu trả lời đúng, mà giúp người dùng quan sát rõ hơn.'
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/folks-brand-mark.jpg'
+  first: '@/images/emotion-compass-cover.png'
+  second: '@/images/emotion-compass-wheel.png'
 ---

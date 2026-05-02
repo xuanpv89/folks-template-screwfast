@@ -5,8 +5,8 @@ main:
   id: 2
   content: |
     Bộ Workshop Cảm Xúc giúp facilitator thiết kế buổi check-in, chia sẻ và phản tư bằng La Bàn Cảm Xúc một cách có cấu trúc.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-card-trust.png'
+  imgMain: '@/images/emotion-card-trust.png'
   imgAlt: 'La Bàn Cảm Xúc dùng trong workshop'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -39,6 +39,6 @@ specificationsLeft:
   - title: 'Vai trò'
     subTitle: 'Dành cho facilitator, coach, giáo viên và team lead.'
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/growth-workshop.jpg'
+  first: '@/images/emotion-card-trust.png'
+  second: '@/images/emotion-compass-cover.png'
 ---

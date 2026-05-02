@@ -5,8 +5,8 @@ main:
   id: 4
   content: |
     Growth System Kit là bộ template và workflow giúp đội ngũ vận hành content, community và tối ưu tăng trưởng một cách nhất quán.
-  imgCard: '@/images/growth-analytics.jpg'
-  imgMain: '@/images/growth-analytics.jpg'
+  imgCard: '@/images/emotion-card-anger.png'
+  imgMain: '@/images/emotion-card-anger.png'
   imgAlt: 'Dashboard hệ thống tăng trưởng'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -39,6 +39,6 @@ specificationsLeft:
   - title: 'Mục tiêu'
     subTitle: 'Giảm lãng phí và tăng khả năng lặp lại.'
 blueprints:
-  first: '@/images/growth-analytics.jpg'
-  second: '@/images/folks-brand-logo.png'
+  first: '@/images/emotion-card-anger.png'
+  second: '@/images/emotion-card-trust.png'
 ---

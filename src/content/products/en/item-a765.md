@@ -5,8 +5,8 @@ main:
   id: 2
   content: |
     The Emotion Check-in Kit brings Emotional Compass into opening circles, closing reflections, team sessions, and group work. It helps people talk about emotions in a safe, concise, and structured way.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-card-trust.png'
+  imgMain: '@/images/emotion-card-trust.png'
   imgAlt: 'Emotional Compass used for a group check-in activity'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -48,6 +48,6 @@ tableData:
       - ['Purpose', 'Check-in, reflection, and conversation opening']
       - ['Language', 'Vietnamese']
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/emotion-compass.jpg'
+  first: '@/images/emotion-card-trust.png'
+  second: '@/images/emotion-compass-cover.png'
 ---

@@ -5,8 +5,8 @@ main:
   id: 3
   content: |
     The Facilitator Emotion Deck helps guides open sessions around emotions, needs, reactions, and next actions. It keeps the conversation structured while leaving enough room for honesty to emerge.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-compass-wheel.png'
+  imgMain: '@/images/emotion-compass-wheel.png'
   imgAlt: 'Emotional Compass card deck for facilitators'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,6 +50,6 @@ specificationsRight:
   - title: 'Note'
     subTitle: 'This is a tool for emotional awareness, not a replacement for clinical therapy.'
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/emotion-compass.jpg'
+  first: '@/images/emotion-compass-wheel.png'
+  second: '@/images/emotion-card-anger.png'
 ---

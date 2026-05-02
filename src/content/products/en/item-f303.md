@@ -5,8 +5,8 @@ main:
   id: 4
   content: |
     Creative Reflection Set combines Emotional Compass with writing, drawing, color, and gentle prompts. It turns emotions into creative material and helps people see what is moving inside them.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-card-anger.png'
+  imgMain: '@/images/emotion-card-anger.png'
   imgAlt: 'Emotional Compass with colored pencils and a creative notebook'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,6 +50,6 @@ specificationsRight:
   - title: 'Archive'
     subTitle: 'Reflection notes can become a personal growth journal over time.'
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/emotion-compass.jpg'
+  first: '@/images/emotion-card-anger.png'
+  second: '@/images/emotion-card-trust.png'
 ---

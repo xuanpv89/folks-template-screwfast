@@ -5,8 +5,8 @@ main:
   id: 3
   content: |
     C.H.E.S.S Growth Blueprint giúp đội ngũ kết nối Content, Hub, Ecosystem, System và Scale thành một mô hình tăng trưởng rõ ràng.
-  imgCard: '@/images/growth-brainstorm.jpg'
-  imgMain: '@/images/growth-brainstorm.jpg'
+  imgCard: '@/images/emotion-compass-wheel.png'
+  imgMain: '@/images/emotion-compass-wheel.png'
   imgAlt: 'Đội nhóm xây blueprint tăng trưởng'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -39,6 +39,6 @@ specificationsLeft:
   - title: 'Phù hợp'
     subTitle: 'Startup, operator, cộng đồng và đội marketing.'
 blueprints:
-  first: '@/images/growth-brainstorm.jpg'
-  second: '@/images/growth-analytics.jpg'
+  first: '@/images/emotion-compass-wheel.png'
+  second: '@/images/emotion-card-anger.png'
 ---

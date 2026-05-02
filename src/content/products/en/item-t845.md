@@ -5,8 +5,8 @@ main:
   id: 1
   content: |
     Emotional Compass is a reflective card deck that helps people recognize, name, and observe their emotions with more clarity. It is designed for personal practice, learning groups, workshops, and guided inner-work sessions.
-  imgCard: '@/images/emotion-compass.jpg'
-  imgMain: '@/images/emotion-compass.jpg'
+  imgCard: '@/images/emotion-compass-cover.png'
+  imgMain: '@/images/emotion-compass-cover.png'
   imgAlt: 'Emotional Compass card deck on a wooden table with colored pencils and a notebook'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,6 +50,6 @@ specificationsRight:
   - title: 'Core value'
     subTitle: 'Turns emotions into useful signals for self-understanding instead of something to avoid.'
 blueprints:
-  first: '@/images/emotion-compass.jpg'
-  second: '@/images/emotion-compass.jpg'
+  first: '@/images/emotion-compass-cover.png'
+  second: '@/images/emotion-compass-wheel.png'
 ---
