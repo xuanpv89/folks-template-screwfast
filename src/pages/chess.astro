@@ -1,0 +1,395 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import Icon from '@components/ui/icons/Icon.astro';
+import heroImage from '@images/growth-brainstorm.jpg';
+import workshopImage from '@images/growth-workshop.jpg';
+import analyticsImage from '@images/growth-analytics.jpg';
+import brandLogo from '@images/folks-brand-logo.png';
+import { SITE } from '@data/constants';
+
+const components = [
+  {
+    letter: 'C',
+    name: 'Content',
+    role: 'The Entry Point',
+    icon: 'books',
+    summary:
+      'Content is how people first discover you and why they decide to stay.',
+    details:
+      'Blog posts, videos, podcasts, social updates and infographics all serve the same purpose: deliver meaningful value, earn attention and build trust.',
+    link: '/blog',
+    linkText: 'Explore content',
+  },
+  {
+    letter: 'H',
+    name: 'Hub',
+    role: 'The Relationship Center',
+    icon: 'groups',
+    summary:
+      'The Hub is where an audience becomes a community through repeated interaction.',
+    details:
+      'A Hub can be a group, forum, Discord server or owned community space where people ask questions, share ideas and build relationships.',
+    link: '/services',
+    linkText: 'Design a hub',
+  },
+  {
+    letter: 'E',
+    name: 'Event',
+    role: 'The Engagement Catalyst',
+    icon: 'verified',
+    summary:
+      'Events create moments of intensity, urgency and real-time connection.',
+    details:
+      'Livestreams, webinars, workshops and meetups often turn passive followers into active participants.',
+    link: '/services',
+    linkText: 'Plan events',
+  },
+  {
+    letter: 'S',
+    name: 'Store',
+    role: 'The Monetization Layer',
+    icon: 'dashboard',
+    summary:
+      'The Store turns trust and value into revenue without forcing the sale.',
+    details:
+      'Products, services, courses and memberships work best when they feel like a natural continuation of the value already provided.',
+    link: '/products',
+    linkText: 'View products',
+  },
+  {
+    letter: 'S',
+    name: 'Session',
+    role: 'The Premium Experience',
+    icon: 'frame',
+    summary:
+      'Sessions create personalized, high-value experiences for the most engaged audience members.',
+    details:
+      'Coaching, consulting and small group mentoring deepen loyalty and can command premium pricing because they are tailored to individual needs.',
+    link: '/contact',
+    linkText: 'Book a session',
+  },
+];
+
+const flow = [
+  ['Content attracts attention', 'Discovery starts with useful, inspiring or educational value.'],
+  ['Hub builds relationships', 'People return because they feel connected and involved.'],
+  ['Event drives engagement', 'Real-time moments turn interest into participation.'],
+  ['Store generates revenue', 'Trusted value becomes products, services and memberships.'],
+  ['Session maximizes value', 'Personalized work creates deeper outcomes and loyalty.'],
+];
+
+const comparisons = [
+  {
+    model: 'AIDA',
+    contrast:
+      'AIDA guides users toward a purchase in a linear campaign. C.H.E.S.S is relationship-driven and designed for long-term community building.',
+  },
+  {
+    model: 'Marketing Funnel',
+    contrast:
+      'Funnels often end at conversion. C.H.E.S.S keeps people inside the ecosystem after purchase through Hub, Event and Session loops.',
+  },
+  {
+    model: 'Flywheel',
+    contrast:
+      'The Flywheel explains how momentum grows. C.H.E.S.S defines what to build so that momentum has somewhere to happen.',
+  },
+  {
+    model: 'Content Marketing',
+    contrast:
+      'Content marketing attracts and nurtures. C.H.E.S.S expands the system into community, engagement and monetization.',
+  },
+];
+
+const strengths = [
+  'Builds a complete audience ecosystem instead of isolated campaigns.',
+  'Prioritizes relationships over short-term transactions.',
+  'Creates multiple engagement touchpoints through Hub, Event and Session.',
+  'Supports diversified revenue through scalable offers and premium services.',
+  'Works especially well for personal brands and community-driven businesses.',
+];
+
+const challenges = [
+  'Requires consistent content, community management and operational effort.',
+  'Can be complex to connect all components at the right time.',
+  'Needs patience because trust-building is slower than direct-response selling.',
+  'May depend too heavily on personal branding at the Session level.',
+  'A Hub must be actively facilitated to stay valuable.',
+];
+
+const useCases = [
+  'Building a personal brand',
+  'Growing an online community',
+  'Selling knowledge-based products or services',
+  'Designing long-term engagement instead of quick sales',
+];
+
+const pageTitle = `CHESS Model | ${SITE.title}`;
+const metaDescription =
+  'A complete C.H.E.S.S framework page for modern marketing and community building: Content, Hub, Event, Store and Session.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle="The C.H.E.S.S Model | Folks Team"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://folks-team.com/chess',
+    url: 'https://folks-team.com/chess',
+    name: 'The C.H.E.S.S Model',
+    description: metaDescription,
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://folks-team.com',
+      name: 'Folks Team',
+    },
+    inLanguage: 'en-US',
+  }}
+>
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-20 2xl:max-w-full">
+    <div class="flex flex-col justify-center">
+      <p class="mb-4 text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        Complete Growth Framework
+      </p>
+      <h1 class="text-4xl font-black tracking-tight text-balance text-neutral-900 md:text-6xl dark:text-neutral-100">
+        The C.H.E.S.S Model for Modern Marketing and Community Building
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="#components"
+          class="inline-flex items-center rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Explore the model
+        </a>
+        <a
+          href="/services"
+          class="inline-flex items-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Build with Folks Team
+        </a>
+      </div>
+    </div>
+
+    <div class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 p-3 shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+      <Image
+        src={heroImage}
+        alt="Team planning a C.H.E.S.S growth ecosystem"
+        class="h-full min-h-[420px] w-full rounded-xl object-cover"
+        loading="eager"
+        format="webp"
+      />
+      <div class="absolute bottom-6 left-6 right-6 rounded-xl bg-white/90 p-5 shadow-lg backdrop-blur dark:bg-neutral-950/85">
+        <p class="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+          Content + Hub + Event + Store + Session
+        </p>
+        <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+          Five connected components that move people from discovery to deep engagement and monetization.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="components" class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          Understanding the Five Components
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          C.H.E.S.S stands for Content, Hub, Event, Store and Session. Each component plays a distinct role, but the power comes from how they reinforce one another.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        {
+          components.map(component => (
+            <article class="flex min-h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-950">
+              <div class="flex items-center justify-between gap-4">
+                <span class="flex size-12 items-center justify-center rounded-lg bg-yellow-100 text-2xl font-black text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300">
+                  {component.letter}
+                </span>
+                <Icon name={component.icon} />
+              </div>
+              <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">
+                {component.name}
+              </h3>
+              <p class="mt-1 text-sm font-bold text-yellow-600 dark:text-yellow-400">
+                {component.role}
+              </p>
+              <p class="mt-4 text-sm text-neutral-700 dark:text-neutral-300">
+                {component.summary}
+              </p>
+              <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                {component.details}
+              </p>
+              <a
+                href={component.link}
+                class="mt-auto pt-5 text-sm font-bold text-yellow-600 hover:text-yellow-700 dark:text-yellow-400"
+              >
+                {component.linkText}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-8 2xl:max-w-full">
+    <div>
+      <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        How the Model Works Together
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Unlike traditional linear funnels, C.H.E.S.S behaves like an ecosystem. Users can move back and forth between components while trust and value continue to compound.
+      </p>
+      <div class="mt-8 space-y-4">
+        {
+          flow.map(([title, description], index) => (
+            <div class="flex gap-4 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-sm font-bold text-white dark:bg-neutral-100 dark:text-neutral-900">
+                {index + 1}
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900 dark:text-neutral-100">{title}</h3>
+                <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid gap-5">
+      <Image
+        src={workshopImage}
+        alt="Community workshop and engagement session"
+        class="h-72 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+      <div class="grid gap-5 sm:grid-cols-2">
+        <Image
+          src={analyticsImage}
+          alt="Growth analytics dashboard"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+        <Image
+          src={brandLogo}
+          alt="Folks Team branding"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          C.H.E.S.S vs. Other Marketing Models
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          C.H.E.S.S is useful because it does not replace existing models. It clarifies what to build when you want long-term relationships, community and monetization in one system.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          comparisons.map(item => (
+            <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+              <h3 class="text-xl font-black text-neutral-900 dark:text-neutral-100">
+                C.H.E.S.S vs. {item.model}
+              </h3>
+              <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+                {item.contrast}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800">
+      <h2 class="text-2xl font-black text-neutral-900 dark:text-neutral-100">
+        Strengths of C.H.E.S.S
+      </h2>
+      <div class="mt-6 space-y-4">
+        {
+          strengths.map(item => (
+            <div class="flex gap-3">
+              <span class="mt-1 text-yellow-600 dark:text-yellow-400">
+                <Icon name="checkCircle" />
+              </span>
+              <p class="text-neutral-700 dark:text-neutral-300">{item}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800">
+      <h2 class="text-2xl font-black text-neutral-900 dark:text-neutral-100">
+        Weaknesses and Challenges
+      </h2>
+      <div class="mt-6 space-y-4">
+        {
+          challenges.map(item => (
+            <div class="flex gap-3">
+              <span class="mt-1 text-yellow-600 dark:text-yellow-400">
+                <Icon name="checkCircle" />
+              </span>
+              <p class="text-neutral-700 dark:text-neutral-300">{item}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 pb-16 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl bg-neutral-900 p-8 text-white lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+        <div>
+          <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+            When should you use C.H.E.S.S?
+          </h2>
+          <p class="mt-4 text-neutral-300">
+            Use it when your goal is not just a quick sale, but a durable ecosystem where people stay, engage and grow with you over time.
+          </p>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {
+            useCases.map(item => (
+              <div class="rounded-xl bg-white/10 p-4 font-bold text-white">
+                {item}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="/services"
+          class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Build your CHESS system
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex rounded-lg border border-white/30 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+        >
+          Talk to Folks Team
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

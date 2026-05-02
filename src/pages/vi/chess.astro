@@ -1,0 +1,395 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import Icon from '@components/ui/icons/Icon.astro';
+import heroImage from '@images/growth-brainstorm.jpg';
+import workshopImage from '@images/growth-workshop.jpg';
+import analyticsImage from '@images/growth-analytics.jpg';
+import brandLogo from '@images/folks-brand-logo.png';
+import { SITE } from '@data/constants';
+
+const components = [
+  {
+    letter: 'C',
+    name: 'Content',
+    role: 'Điểm chạm đầu tiên',
+    icon: 'books',
+    summary:
+      'Content là cách mọi người lần đầu biết đến bạn và lý do họ quyết định ở lại.',
+    details:
+      'Bài viết, video, podcast, social post và infographic đều có cùng mục tiêu: tạo giá trị có ý nghĩa, thu hút sự chú ý và xây dựng niềm tin.',
+    link: '/vi/blog',
+    linkText: 'Xem nội dung',
+  },
+  {
+    letter: 'H',
+    name: 'Hub',
+    role: 'Trung tâm quan hệ',
+    icon: 'groups',
+    summary:
+      'Hub là nơi audience trở thành community thông qua tương tác lặp lại.',
+    details:
+      'Hub có thể là group, forum, Discord server hoặc cộng đồng trên nền tảng riêng, nơi mọi người đặt câu hỏi, chia sẻ ý tưởng và kết nối với nhau.',
+    link: '/vi/services',
+    linkText: 'Thiết kế hub',
+  },
+  {
+    letter: 'E',
+    name: 'Event',
+    role: 'Chất xúc tác tương tác',
+    icon: 'verified',
+    summary:
+      'Event tạo ra những khoảnh khắc tập trung, cấp thiết và kết nối theo thời gian thực.',
+    details:
+      'Livestream, webinar, workshop và meetup thường là điểm chuyển từ người theo dõi thụ động thành người tham gia chủ động.',
+    link: '/vi/services',
+    linkText: 'Lên kế hoạch event',
+  },
+  {
+    letter: 'S',
+    name: 'Store',
+    role: 'Lớp doanh thu',
+    icon: 'dashboard',
+    summary:
+      'Store biến niềm tin và giá trị đã tạo thành doanh thu một cách tự nhiên.',
+    details:
+      'Sản phẩm, dịch vụ, khóa học và membership hiệu quả nhất khi chúng là phần tiếp nối hợp lý của giá trị bạn đã trao trước đó.',
+    link: '/vi/products',
+    linkText: 'Xem sản phẩm',
+  },
+  {
+    letter: 'S',
+    name: 'Session',
+    role: 'Trải nghiệm cao cấp',
+    icon: 'frame',
+    summary:
+      'Session tạo ra trải nghiệm cá nhân hóa có giá trị cao cho nhóm audience gắn bó nhất.',
+    details:
+      'Coaching, consulting và mentoring nhóm nhỏ giúp đào sâu lòng trung thành, vì chúng được thiết kế theo nhu cầu cụ thể của từng người.',
+    link: '/vi/contact',
+    linkText: 'Đặt lịch session',
+  },
+];
+
+const flow = [
+  ['Content thu hút sự chú ý', 'Khám phá bắt đầu từ giá trị hữu ích, truyền cảm hứng hoặc có tính giáo dục.'],
+  ['Hub xây dựng quan hệ', 'Mọi người quay lại vì họ cảm thấy được kết nối và được tham gia.'],
+  ['Event thúc đẩy tương tác', 'Khoảnh khắc thời gian thực biến sự quan tâm thành hành động tham gia.'],
+  ['Store tạo doanh thu', 'Giá trị đã được tin tưởng trở thành sản phẩm, dịch vụ và membership.'],
+  ['Session tối đa hóa giá trị', 'Tương tác cá nhân hóa tạo kết quả sâu hơn và lòng trung thành mạnh hơn.'],
+];
+
+const comparisons = [
+  {
+    model: 'AIDA',
+    contrast:
+      'AIDA dẫn người dùng đến hành động mua theo một chiến dịch tuyến tính. C.H.E.S.S tập trung vào quan hệ và xây dựng cộng đồng dài hạn.',
+  },
+  {
+    model: 'Marketing Funnel',
+    contrast:
+      'Funnel thường kết thúc ở chuyển đổi. C.H.E.S.S giữ người dùng trong hệ sinh thái sau khi mua thông qua Hub, Event và Session.',
+  },
+  {
+    model: 'Flywheel',
+    contrast:
+      'Flywheel giải thích động lực tăng trưởng. C.H.E.S.S định nghĩa những thứ cần xây để động lực đó có nơi vận hành.',
+  },
+  {
+    model: 'Content Marketing',
+    contrast:
+      'Content marketing thu hút và nuôi dưỡng audience. C.H.E.S.S mở rộng hệ thống sang cộng đồng, tương tác và kiếm tiền.',
+  },
+];
+
+const strengths = [
+  'Xây dựng một hệ sinh thái audience hoàn chỉnh thay vì các chiến dịch rời rạc.',
+  'Ưu tiên quan hệ dài hạn hơn giao dịch ngắn hạn.',
+  'Tạo nhiều điểm chạm tương tác thông qua Hub, Event và Session.',
+  'Hỗ trợ nhiều dòng doanh thu từ offer có thể scale đến dịch vụ cao cấp.',
+  'Rất phù hợp với personal brand và mô hình kinh doanh dựa trên community.',
+];
+
+const challenges = [
+  'Cần duy trì đều đặn content, quản lý community và vận hành hệ thống.',
+  'Có thể phức tạp khi phải kết nối các thành phần đúng thời điểm.',
+  'Cần kiên nhẫn vì xây dựng niềm tin thường chậm hơn bán hàng trực tiếp.',
+  'Có thể phụ thuộc quá nhiều vào personal brand ở tầng Session.',
+  'Hub cần được dẫn dắt liên tục để luôn sống và có giá trị.',
+];
+
+const useCases = [
+  'Xây dựng personal brand',
+  'Phát triển cộng đồng online',
+  'Bán sản phẩm hoặc dịch vụ dựa trên tri thức',
+  'Thiết kế tương tác dài hạn thay vì bán nhanh',
+];
+
+const pageTitle = `Mô hình CHESS | ${SITE.title}`;
+const metaDescription =
+  'Trang giải thích framework C.H.E.S.S cho marketing hiện đại và xây dựng cộng đồng: Content, Hub, Event, Store và Session.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle="Mô hình C.H.E.S.S | Folks Team"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://folks-team.com/vi/chess',
+    url: 'https://folks-team.com/vi/chess',
+    name: 'Mô hình C.H.E.S.S',
+    description: metaDescription,
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://folks-team.com',
+      name: 'Folks Team',
+    },
+    inLanguage: 'vi-VN',
+  }}
+>
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-20 2xl:max-w-full">
+    <div class="flex flex-col justify-center">
+      <p class="mb-4 text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        Complete Growth Framework
+      </p>
+      <h1 class="text-4xl font-black tracking-tight text-balance text-neutral-900 md:text-6xl dark:text-neutral-100">
+        Mô hình C.H.E.S.S cho marketing hiện đại và xây dựng cộng đồng
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Marketing ngày nay không chỉ là thu hút sự chú ý hay chốt một giao dịch. Thử thách thật sự là xây một hệ thống bền vững: đưa mọi người vào, giữ họ tương tác, nuôi dưỡng quan hệ và tạo giá trị dài hạn.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="#components"
+          class="inline-flex items-center rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Khám phá mô hình
+        </a>
+        <a
+          href="/vi/services"
+          class="inline-flex items-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Xây cùng Folks Team
+        </a>
+      </div>
+    </div>
+
+    <div class="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 p-3 shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+      <Image
+        src={heroImage}
+        alt="Đội nhóm lên kế hoạch cho hệ sinh thái tăng trưởng C.H.E.S.S"
+        class="h-full min-h-[420px] w-full rounded-xl object-cover"
+        loading="eager"
+        format="webp"
+      />
+      <div class="absolute bottom-6 left-6 right-6 rounded-xl bg-white/90 p-5 shadow-lg backdrop-blur dark:bg-neutral-950/85">
+        <p class="text-sm font-bold text-neutral-900 dark:text-neutral-100">
+          Content + Hub + Event + Store + Session
+        </p>
+        <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+          Năm thành phần kết nối hành trình từ khám phá đến tương tác sâu và kiếm tiền.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="components" class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          Hiểu 5 thành phần của C.H.E.S.S
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          C.H.E.S.S là Content, Hub, Event, Store và Session. Mỗi thành phần có vai trò riêng, nhưng sức mạnh thật sự nằm ở cách chúng bổ trợ nhau.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        {
+          components.map(component => (
+            <article class="flex min-h-full flex-col rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-950">
+              <div class="flex items-center justify-between gap-4">
+                <span class="flex size-12 items-center justify-center rounded-lg bg-yellow-100 text-2xl font-black text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300">
+                  {component.letter}
+                </span>
+                <Icon name={component.icon} />
+              </div>
+              <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">
+                {component.name}
+              </h3>
+              <p class="mt-1 text-sm font-bold text-yellow-600 dark:text-yellow-400">
+                {component.role}
+              </p>
+              <p class="mt-4 text-sm text-neutral-700 dark:text-neutral-300">
+                {component.summary}
+              </p>
+              <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                {component.details}
+              </p>
+              <a
+                href={component.link}
+                class="mt-auto pt-5 text-sm font-bold text-yellow-600 hover:text-yellow-700 dark:text-yellow-400"
+              >
+                {component.linkText}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-8 2xl:max-w-full">
+    <div>
+      <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        Mô hình vận hành cùng nhau như thế nào?
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Khác với funnel tuyến tính, C.H.E.S.S hoạt động như một hệ sinh thái. Người dùng có thể di chuyển qua lại giữa các thành phần, trong khi niềm tin và giá trị tiếp tục tích lũy.
+      </p>
+      <div class="mt-8 space-y-4">
+        {
+          flow.map(([title, description], index) => (
+            <div class="flex gap-4 rounded-xl border border-neutral-200 p-5 dark:border-neutral-800">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-sm font-bold text-white dark:bg-neutral-100 dark:text-neutral-900">
+                {index + 1}
+              </span>
+              <div>
+                <h3 class="font-bold text-neutral-900 dark:text-neutral-100">{title}</h3>
+                <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid gap-5">
+      <Image
+        src={workshopImage}
+        alt="Workshop cộng đồng và phiên tương tác"
+        class="h-72 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+      <div class="grid gap-5 sm:grid-cols-2">
+        <Image
+          src={analyticsImage}
+          alt="Dashboard phân tích tăng trưởng"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+        <Image
+          src={brandLogo}
+          alt="Branding Folks Team"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          C.H.E.S.S so với các mô hình marketing khác
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          C.H.E.S.S không thay thế các mô hình cũ. Nó làm rõ bạn cần xây gì khi muốn có quan hệ dài hạn, community và monetization trong một hệ thống.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
+        {
+          comparisons.map(item => (
+            <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+              <h3 class="text-xl font-black text-neutral-900 dark:text-neutral-100">
+                C.H.E.S.S vs. {item.model}
+              </h3>
+              <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+                {item.contrast}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800">
+      <h2 class="text-2xl font-black text-neutral-900 dark:text-neutral-100">
+        Điểm mạnh của C.H.E.S.S
+      </h2>
+      <div class="mt-6 space-y-4">
+        {
+          strengths.map(item => (
+            <div class="flex gap-3">
+              <span class="mt-1 text-yellow-600 dark:text-yellow-400">
+                <Icon name="checkCircle" />
+              </span>
+              <p class="text-neutral-700 dark:text-neutral-300">{item}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800">
+      <h2 class="text-2xl font-black text-neutral-900 dark:text-neutral-100">
+        Thách thức khi triển khai
+      </h2>
+      <div class="mt-6 space-y-4">
+        {
+          challenges.map(item => (
+            <div class="flex gap-3">
+              <span class="mt-1 text-yellow-600 dark:text-yellow-400">
+                <Icon name="checkCircle" />
+              </span>
+              <p class="text-neutral-700 dark:text-neutral-300">{item}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 pb-16 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl bg-neutral-900 p-8 text-white lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+        <div>
+          <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+            Khi nào nên dùng C.H.E.S.S?
+          </h2>
+          <p class="mt-4 text-neutral-300">
+            Dùng mô hình này khi mục tiêu của bạn không chỉ là bán nhanh, mà là xây một hệ sinh thái bền vững nơi mọi người ở lại, tương tác và phát triển cùng bạn theo thời gian.
+          </p>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {
+            useCases.map(item => (
+              <div class="rounded-xl bg-white/10 p-4 font-bold text-white">
+                {item}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="/vi/services"
+          class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Xây hệ thống CHESS
+        </a>
+        <a
+          href="/vi/contact"
+          class="inline-flex rounded-lg border border-white/30 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+        >
+          Nói chuyện với Folks Team
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
