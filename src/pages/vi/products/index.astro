@@ -1,4 +1,4 @@
----
+﻿---
 // Importing necessary components
 import MainLayout from '@/layouts/MainLayout.astro';
 import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
@@ -14,7 +14,7 @@ import type { CollectionEntry } from 'astro:content';
 // Fetching all the product related content and sorting it by main.id
 const product: CollectionEntry<'products'>[] = (
   await getCollection('products', ({ id }) => {
-    return id.startsWith('fr/');
+    return id.startsWith('vi/');
   })
 ).sort(
   (a: CollectionEntry<'products'>, b: CollectionEntry<'products'>) =>
@@ -24,15 +24,15 @@ const product: CollectionEntry<'products'>[] = (
 // Define variables for page content
 const title: string = 'Produits';
 const subTitle: string =
-  'Explorez la durabilité et la précision des outils ScrewFast, conçus aussi bien pour les professionnels que pour les amateurs. Chacun de nos produits est fabriqué avec précision et conçu pour durer, garantissant que vous disposez du bon outil pour chaque tâche.';
+  'Explorez la durabilitÃ© et la prÃ©cision des outils ScrewFast, conÃ§us aussi bien pour les professionnels que pour les amateurs. Chacun de nos produits est fabriquÃ© avec prÃ©cision et conÃ§u pour durer, garantissant que vous disposez du bon outil pour chaque tÃ¢che.';
 
 // Testimonial data that will be rendered in the component
 const testimonials = [
   {
     content:
-      "Depuis que nous avons adopté les outils matériels de ScrewFast, l'efficacité sur nos chantiers de construction a explosé. La durabilité des boulons hexagonaux et la précision des vis machine sont tout simplement inégalées. C'est rafraîchissant de travailler avec une entreprise qui comprend vraiment les exigences quotidiennes de l'industrie.",
+      "Depuis que nous avons adoptÃ© les outils matÃ©riels de ScrewFast, l'efficacitÃ© sur nos chantiers de construction a explosÃ©. La durabilitÃ© des boulons hexagonaux et la prÃ©cision des vis machine sont tout simplement inÃ©galÃ©es. C'est rafraÃ®chissant de travailler avec une entreprise qui comprend vraiment les exigences quotidiennes de l'industrie.",
     author: 'Jason Clark',
-    role: 'Contremaître de chantier | TopBuild',
+    role: 'ContremaÃ®tre de chantier | TopBuild',
     avatarSrc:
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
     avatarAlt: "Description de l'image",
@@ -40,9 +40,9 @@ const testimonials = [
 
   {
     content:
-      "En tant que designer d'intérieur, je suis toujours à la recherche de matériaux et d'outils de haute qualité qui m'aident à donner vie à mes visions. L'assortiment de vis mixtes de ScrewFast a révolutionné mes projets, offrant le mélange parfait de qualité et de variété. Le support client exceptionnel était la cerise sur le gâteau !",
+      "En tant que designer d'intÃ©rieur, je suis toujours Ã  la recherche de matÃ©riaux et d'outils de haute qualitÃ© qui m'aident Ã  donner vie Ã  mes visions. L'assortiment de vis mixtes de ScrewFast a rÃ©volutionnÃ© mes projets, offrant le mÃ©lange parfait de qualitÃ© et de variÃ©tÃ©. Le support client exceptionnel Ã©tait la cerise sur le gÃ¢teau !",
     author: 'Maria Gonzalez',
-    role: "Designer d'intérieur | Creative Spaces",
+    role: "Designer d'intÃ©rieur | Creative Spaces",
     avatarSrc:
       'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
     avatarAlt: "Description de l'image",
@@ -50,9 +50,9 @@ const testimonials = [
 
   {
     content:
-      "Je suis menuisier professionnel depuis plus de 15 ans, et je peux sincèrement dire que les boulons et écrous à tarauder de ScrewFast sont parmi les meilleurs que j'ai utilisés. Ils adhèrent comme aucun autre, et j'ai une confiance totale dans chaque joint et élément. De plus, le service est impeccable - ils se soucient vraiment du succès de mon projet.",
+      "Je suis menuisier professionnel depuis plus de 15 ans, et je peux sincÃ¨rement dire que les boulons et Ã©crous Ã  tarauder de ScrewFast sont parmi les meilleurs que j'ai utilisÃ©s. Ils adhÃ¨rent comme aucun autre, et j'ai une confiance totale dans chaque joint et Ã©lÃ©ment. De plus, le service est impeccable - ils se soucient vraiment du succÃ¨s de mon projet.",
     author: 'Richard Kim',
-    role: 'Menuisier-Maître | WoodWright',
+    role: 'Menuisier-MaÃ®tre | WoodWright',
     avatarSrc:
       'https://images.unsplash.com/photo-1474176857210-7287d38d27c6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
     avatarAlt: "Description de l'image",
@@ -61,31 +61,31 @@ const testimonials = [
 
 const pageTitle = 'Produits | ScrewFast';
 const metaDescription =
-  'Explorez la durabilité et la précision des outils ScrewFast, conçus aussi bien pour les professionnels que pour les passionnés.';
-const ogTitle = 'Outils Matériels | ScrewFast';
+  'Explorez la durabilitÃ© et la prÃ©cision des outils ScrewFast, conÃ§us aussi bien pour les professionnels que pour les passionnÃ©s.';
+const ogTitle = 'Outils MatÃ©riels | ScrewFast';
 ---
 
 <MainLayout
   title={pageTitle}
-  lang="fr"
+  lang="vi"
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://screwfast.uk/fr/products',
-    url: 'https://screwfast.uk/fr/products',
-    name: 'Outils Matériels | ScrewFast',
+    '@id': 'https://folks-team.com/vi/products',
+    url: 'https://folks-team.com/vi/products',
+    name: 'Outils MatÃ©riels | ScrewFast',
     description:
-      'Explorez la durabilité et la précision des outils ScrewFast, conçus aussi bien pour les professionnels que pour les passionnés.',
+      'Explorez la durabilitÃ© et la prÃ©cision des outils ScrewFast, conÃ§us aussi bien pour les professionnels que pour les passionnÃ©s.',
     isPartOf: {
       '@type': 'WebSite',
-      url: 'https://screwfast.uk/fr',
+      url: 'https://folks-team.com/vi',
       name: 'ScrewFast',
       description:
-        'ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet.',
+        'ScrewFast propose des outils matÃ©riels de premier ordre et des services de construction experts pour rÃ©pondre Ã  tous vos besoins de projet.',
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <div
@@ -123,9 +123,9 @@ const ogTitle = 'Outils Matériels | ScrewFast';
         product.map((product, index) => {
           const position = index % 4;
           if (position === 0 || position === 3) {
-            return <CardSmall product={product} productLocale="fr" />;
+            return <CardSmall product={product} productLocale="vi" />;
           } else {
-            return <CardWide product={product} productLocale="fr" />;
+            return <CardWide product={product} productLocale="vi" />;
           }
         })
       }
@@ -134,11 +134,11 @@ const ogTitle = 'Outils Matériels | ScrewFast';
   {/* Features statistics section */}
   <FeaturesStatsAlt
     title="Pourquoi choisir ScrewFast ?"
-    subTitle="Transformez vos idées en résultats tangibles avec les outils ScrewFast. Que vous commenciez par un croquis sur un coin de table ou plongiez dans un projet de construction complet, nos outils sont conçus pour vous aider à construire en toute confiance."
+    subTitle="Transformez vos idÃ©es en rÃ©sultats tangibles avec les outils ScrewFast. Que vous commenciez par un croquis sur un coin de table ou plongiez dans un projet de construction complet, nos outils sont conÃ§us pour vous aider Ã  construire en toute confiance."
     benefits={[
       'Outils robustes et fiables pour des performances durables.',
-      'Solutions innovantes adaptées aux besoins de construction modernes.',
-      'Support client dédié au succès de votre projet.',
+      'Solutions innovantes adaptÃ©es aux besoins de construction modernes.',
+      'Support client dÃ©diÃ© au succÃ¨s de votre projet.',
     ]}
   />
   {/* Testimonials section */}
@@ -147,3 +147,4 @@ const ogTitle = 'Outils Matériels | ScrewFast';
     testimonials={testimonials}
   />
 </MainLayout>
+

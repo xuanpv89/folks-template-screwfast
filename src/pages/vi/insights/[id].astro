@@ -1,4 +1,4 @@
----
+﻿---
 // Import section components
 import { SITE } from '@data/constants';
 import MainLayout from '@/layouts/MainLayout.astro';
@@ -8,10 +8,10 @@ import { getCollection, render } from 'astro:content';
 // Use `getStaticPaths` to generate static routes for generated pages on build
 export async function getStaticPaths() {
   const insightPosts = await getCollection('insights', ({ id }) =>
-    id.startsWith('fr/')
+    id.startsWith('vi/')
   );
   return insightPosts.map(post => {
-    const idWithoutLang = post.id.replace(/^fr\//, ''); // Remove the "fr/" prefix
+    const idWithoutLang = post.id.replace(/^vi\//, ''); // Remove the "vi/" prefix
     return {
       params: { lang: 'fr', id: idWithoutLang },
       props: { post },
@@ -31,7 +31,7 @@ const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
 
 <MainLayout
   title={pageTitle}
-  lang="fr"
+  lang="vi"
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
@@ -49,14 +49,14 @@ const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
       name: SITE.title,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://screwfast.uk/favicon.ico',
+        url: 'https://folks-team.com/favicon.ico',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://screwfast.uk/fr/insights/${post.id.replace(/^fr\//, '')}`,
+      '@id': `https://folks-team.com/vi/insights/${post.id.replace(/^vi\//, '')}`,
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <section class="py-6 sm:py-8 lg:py-12">
@@ -297,3 +297,5 @@ const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
     });
   });
 </script>
+
+

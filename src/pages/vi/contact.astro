@@ -1,37 +1,38 @@
----
+﻿---
 // Import the necessary components
 import MainLayout from '@/layouts/MainLayout.astro';
-import ContactSection from '@components/sections/fr/ContactSection_fr.astro';
+import ContactSection from '@components/sections/vi/ContactSection_vi.astro';
 import { SITE } from '@data/constants';
 
 const pageTitle: string = `Nous Contacter | ${SITE.title}`;
 const metaDescription =
-  "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et élaborons ensemble la solution parfaite avec nos outils et services.";
+  "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et Ã©laborons ensemble la solution parfaite avec nos outils et services.";
 const ogTitle = 'Nous Contacter | ScrewFast';
 ---
 
 <MainLayout
   title={pageTitle}
-  lang="fr"
+  lang="vi"
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://screwfast.uk/fr/contact',
-    url: 'https://screwfast.uk/fr/contact',
+    '@id': 'https://folks-team.com/vi/contact',
+    url: 'https://folks-team.com/vi/contact',
     name: 'Nous Contacter | ScrewFast',
     description:
-      "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et élaborons ensemble la solution parfaite avec nos outils et services.",
+      "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et Ã©laborons ensemble la solution parfaite avec nos outils et services.",
     isPartOf: {
       '@type': 'WebSite',
-      url: 'https://screwfast.uk/fr/',
+      url: 'https://folks-team.com/vi/',
       name: 'ScrewFast',
       description:
-        'ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet.',
+        'ScrewFast propose des outils matÃ©riels de premier ordre et des services de construction experts pour rÃ©pondre Ã  tous vos besoins de projet.',
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <ContactSection />
 </MainLayout>
+

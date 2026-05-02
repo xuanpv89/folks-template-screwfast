@@ -1,4 +1,4 @@
----
+﻿---
 // Import section components
 import MainLayout from '@/layouts/MainLayout.astro';
 import ProductTabBtn from '@components/ui/buttons/ProductTabBtn.astro';
@@ -17,10 +17,10 @@ declare global {
 
 export async function getStaticPaths() {
   const productEntries = await getCollection('products', ({ id }) =>
-    id.startsWith('fr/')
+    id.startsWith('vi/')
   );
   return productEntries.map(product => {
-    const idWithoutLang = product.id.replace(/^fr\//, ''); // Remove the "fr/" prefix
+    const idWithoutLang = product.id.replace(/^vi\//, ''); // Remove the "vi/" prefix
     return {
       params: { lang: 'fr', id: idWithoutLang },
       props: { product },
@@ -32,25 +32,25 @@ const { product } = Astro.props;
 
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 const metaDescription = product.data.description;
-const ogTitle = `${product.data.title} | Outils Matériels | ScrewFast`;
+const ogTitle = `${product.data.title} | La Bàn Cảm Xúc | Folks Team`;
 ---
 
 <MainLayout
   title={pageTitle}
-  lang="fr"
+  lang="vi"
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'Product',
-    '@id': `https://screwfast.uk/fr/products/${product.data.title.toLowerCase().replace(/\s+/g, '-')}`,
+    '@id': `https://folks-team.com/vi/products/${product.data.title.toLowerCase().replace(/\s+/g, '-')}`,
     name: product.data.title,
     description: product.data.description,
     brand: {
       '@type': 'Brand',
-      name: 'ScrewFast',
+      name: 'Folks Team',
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <div id="overlay" class="fixed inset-0 bg-neutral-200 dark:bg-neutral-800">
@@ -408,3 +408,5 @@ const ogTitle = `${product.data.title} | Outils Matériels | ScrewFast`;
     });
   });
 </script>
+
+

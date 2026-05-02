@@ -1,4 +1,4 @@
----
+﻿---
 // Import necessary components, modules and types
 import MainLayout from '@/layouts/MainLayout.astro';
 import CardBlog from '@components/ui/cards/CardBlog.astro';
@@ -11,11 +11,11 @@ import { SITE } from '@data/constants';
 // Get all blogs post in French and sort them based on publish date
 
 const frenchBlogEntries = await getCollection('blog', ({ id }) => {
-  return id.startsWith('fr/');
+  return id.startsWith('vi/');
 });
 
 const frenchInsightsEntries = await getCollection('insights', ({ id }) => {
-  return id.startsWith('fr/');
+  return id.startsWith('vi/');
 });
 
 const blogPosts: CollectionEntry<'blog'>[] = frenchBlogEntries.sort(
@@ -32,38 +32,38 @@ const otherPosts: CollectionEntry<'blog'>[] = blogPosts.slice(1);
 // Define variables for page content
 const title: string = "Votre Passerelle vers l'Excellence en Construction";
 const subTitle: string =
-  'Explorez les dernières actualités, astuces et analyses de ScrewFast pour améliorer vos projets de construction. Des mises en avant de produits aux stratégies de gestion de projet, notre blog est votre ressource incontournable pour tout ce qui concerne les outils et la construction.';
+  'Explorez les derniÃ¨res actualitÃ©s, astuces et analyses de ScrewFast pour amÃ©liorer vos projets de construction. Des mises en avant de produits aux stratÃ©gies de gestion de projet, notre blog est votre ressource incontournable pour tout ce qui concerne les outils et la construction.';
 const secondTitle: string = 'Perspectives';
 const secondSubTitle: string =
-  "Restez à jour avec les dernières tendances et évolutions de l'industrie de la construction grâce aux analyses de l'équipe d'experts de ScrewFast.";
+  "Restez Ã  jour avec les derniÃ¨res tendances et Ã©volutions de l'industrie de la construction grÃ¢ce aux analyses de l'Ã©quipe d'experts de ScrewFast.";
 
 const pageTitle: string = `Blog | ${SITE.title}`;
 const metaDescription =
-  "Restez informé des dernières tendances et évolutions dans le secteur de la construction avec les analyses de l'équipe d'experts de ScrewFast.";
+  "Restez informÃ© des derniÃ¨res tendances et Ã©volutions dans le secteur de la construction avec les analyses de l'Ã©quipe d'experts de ScrewFast.";
 const ogTitle = "Blog de l'Industrie de la Construction | ScrewFast";
 ---
 
 <MainLayout
-  lang="fr"
+  lang="vi"
   title={pageTitle}
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://screwfast.uk/fr/blog',
-    url: 'https://screwfast.uk/fr/blog',
+    '@id': 'https://folks-team.com/vi/blog',
+    url: 'https://folks-team.com/vi/blog',
     name: 'Blog | ScrewFast',
     description:
-      "Restez informé des dernières tendances et évolutions dans le secteur de la construction avec les analyses de l'équipe d'experts de ScrewFast.",
+      "Restez informÃ© des derniÃ¨res tendances et Ã©volutions dans le secteur de la construction avec les analyses de l'Ã©quipe d'experts de ScrewFast.",
     isPartOf: {
       '@type': 'WebSite',
-      url: 'https://screwfast.uk/fr',
+      url: 'https://folks-team.com/vi',
       name: 'ScrewFast',
       description:
-        'ScrewFast propose des outils matériels de premier ordre et des services de construction experts pour répondre à tous vos besoins de projet.',
+        'ScrewFast propose des outils matÃ©riels de premier ordre et des services de construction experts pour rÃ©pondre Ã  tous vos besoins de projet.',
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <section
@@ -92,7 +92,7 @@ const ogTitle = "Blog de l'Industrie de la Construction | ScrewFast";
     <div class="grid gap-6 lg:grid-cols-2">
       {
         otherPosts.map(blogEntry => (
-          <CardBlog blogEntry={blogEntry} blogLocale="fr" />
+          <CardBlog blogEntry={blogEntry} blogLocale="vi" />
         ))
       }
     </div>
@@ -101,7 +101,7 @@ const ogTitle = "Blog de l'Industrie de la Construction | ScrewFast";
   <section
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
   >
-    <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="fr" />
+    <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="vi" />
   </section>
   {/* Insights section */}
   <section
@@ -120,9 +120,10 @@ const ogTitle = "Blog de l'Industrie de la Construction | ScrewFast";
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         insightPosts.map(insightEntry => (
-          <CardInsight insightEntry={insightEntry} insightLocale="fr" />
+          <CardInsight insightEntry={insightEntry} insightLocale="vi" />
         ))
       }
     </div>
   </section>
 </MainLayout>
+

@@ -1,4 +1,4 @@
----
+﻿---
 // Import necessary components and utilities
 import MainLayout from '@/layouts/MainLayout.astro';
 import AvatarBlogLarge from '@components/ui/avatars/AvatarBlogLarge.astro';
@@ -15,10 +15,10 @@ import { SITE } from '@data/constants';
 // Update getStaticPaths for French posts
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog', ({ id }) =>
-    id.startsWith('fr/')
+    id.startsWith('vi/')
   );
   return blogPosts.map(post => {
-    const idWithoutLang = post.id.replace(/^fr\//, ''); // Remove the "fr/" prefix
+    const idWithoutLang = post.id.replace(/^vi\//, ''); // Remove the "vi/" prefix
     return {
       params: { lang: 'fr', id: idWithoutLang },
       props: { post },
@@ -31,7 +31,7 @@ const { post } = Astro.props;
 // Fetch related posts
 const blogPosts: CollectionEntry<'blog'>[] = await getCollection(
   'blog',
-  ({ id }) => id.startsWith('fr/')
+  ({ id }) => id.startsWith('vi/')
 );
 const relatedPosts: CollectionEntry<'blog'>[] = blogPosts.filter(
   blogEntry => blogEntry.id !== post.id
@@ -40,13 +40,13 @@ const relatedPosts: CollectionEntry<'blog'>[] = blogPosts.filter(
 const pageTitle: string = `${post.data.title} | ${SITE.title}`;
 // For the meta description, use the first paragraph of content if available
 const metaDescription =
-  post.data.contents[0] || `Lisez ${post.data.title} sur le blog de ScrewFast`;
+  post.data.contents[0] || `Lisez ${post.data.title} trên blog Folks Team`;
 const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
 ---
 
 <MainLayout
   title={pageTitle}
-  lang="fr"
+  lang="vi"
   customDescription={metaDescription}
   customOgTitle={ogTitle}
   structuredData={{
@@ -64,14 +64,14 @@ const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
       name: SITE.title,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://screwfast.uk/favicon.ico',
+        url: 'https://folks-team.com/favicon.ico',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://screwfast.uk/fr/blog/${post.id.replace(/^fr\//, '')}`,
+      '@id': `https://folks-team.com/vi/blog/${post.id.replace(/^vi\//, '')}`,
     },
-    inLanguage: 'fr',
+    inLanguage: 'vi',
   }}
 >
   <section class="mx-auto max-w-3xl px-4 pt-6 pb-12 sm:px-6 lg:px-8 lg:pt-10">
@@ -169,7 +169,7 @@ const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
       </div>
     </div>
     <PostFeedback
-      title="Cet article était-il utile?"
+      title="Cet article Ã©tait-il utile?"
       firstChoice="Oui"
       secondChoice="Non"
     />
@@ -188,9 +188,11 @@ const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
     <div class="grid grid-cols-2 gap-6">
       {
         relatedPosts.map(entry => (
-          <CardRelated blogEntry={entry} recentBlogLocale="fr" />
+          <CardRelated blogEntry={entry} recentBlogLocale="vi" />
         ))
       }
     </div>
   </section>
 </MainLayout>
+
+
