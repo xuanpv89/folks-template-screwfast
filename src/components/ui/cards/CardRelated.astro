@@ -5,6 +5,7 @@ import { formatDate } from '@utils/utils';
 import type { CollectionEntry } from 'astro:content';
 
 const { blogEntry, recentBlogLocale = '' } = Astro.props;
+const blogSlug = blogEntry.id.replace(/^(en|vi|fr)\//, '');
 
 interface Props {
   blogEntry: CollectionEntry<'blog'>;
@@ -15,8 +16,8 @@ interface Props {
 <a
   class="group block rounded-xl ring-zinc-500 outline-hidden transition duration-300 focus-visible:ring-3 dark:ring-zinc-200 dark:focus:outline-hidden"
   href={recentBlogLocale && recentBlogLocale !== 'en'
-    ? `/${recentBlogLocale}/blog/${blogEntry.id.replace(/^fr\//, '')}/`
-    : `/blog/${blogEntry.id.replace(/^en\//, '')}/`}
+    ? `/${recentBlogLocale}/blog/${blogSlug}/`
+    : `/blog/${blogSlug}/`}
   data-astro-prefetch
 >
   <div>
