@@ -33,7 +33,7 @@ const { product } = Astro.props;
 
 const pageTitle: string = `${product.data.title} | ${SITE.title}`;
 const metaDescription = product.data.description;
-const ogTitle = `${product.data.title} | Hardware Tools | ScrewFast`;
+const ogTitle = `${product.data.title} | La Bàn Cảm Xúc | Folks Team`;
 ---
 
 <MainLayout
@@ -43,12 +43,12 @@ const ogTitle = `${product.data.title} | Hardware Tools | ScrewFast`;
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'Product',
-    '@id': `https://screwfast.uk/products/${product.data.title.toLowerCase().replace(/\s+/g, '-')}`,
+    '@id': `https://folksteam.com/products/${product.data.title.toLowerCase().replace(/\s+/g, '-')}`,
     name: product.data.title,
     description: product.data.description,
     brand: {
       '@type': 'Brand',
-      name: 'ScrewFast',
+      name: 'FOLKS TEAM',
     },
   }}
 >

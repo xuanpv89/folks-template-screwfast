@@ -1,13 +1,13 @@
 ---
-title: 'SF-FN F303'
-description: 'Hex Bolts'
+title: 'Creative Reflection Set'
+description: 'Bộ thẻ và gợi ý viết để phản chiếu cảm xúc'
 main:
   id: 4
   content: |
-    Introducing the SF-FN F303 Hex Bolts – the perfect choice for heavy-duty fastening applications. Crafted with precision and durability in mind, these hex bolts provide the strength and reliability you need for your toughest projects.
-  imgCard: '@/images/product-image-4.avif'
-  imgMain: '@/images/product-image-main-4.avif'
-  imgAlt: 'Mockup boxes of hex bolts'
+    Creative Reflection Set kết hợp La Bàn Cảm Xúc với viết, vẽ, màu sắc và các câu hỏi nhẹ nhàng. Đây là cách biến cảm xúc thành chất liệu sáng tạo, giúp người dùng nhìn thấy những điều đang chuyển động bên trong mình.
+  imgCard: '@/images/emotion-compass.jpg'
+  imgMain: '@/images/emotion-compass.jpg'
+  imgAlt: 'La Bàn Cảm Xúc với bút màu và sổ tay sáng tạo'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
@@ -19,37 +19,37 @@ tabs:
     dataTab: '#tabs-with-card-3'
     title: 'Blueprints'
 longDescription:
-  title: 'Heavy-Duty Fastening Solutions'
+  title: 'Bien cam xuc thanh chat lieu sang tao'
   subTitle: |
-    The SF-FN F303 Hex Bolts are designed to handle the toughest fastening challenges with ease. Whether you're working on construction projects or heavy machinery, these hex bolts deliver the strength and reliability you need.
-  btnTitle: 'Contact sales to learn more'
-  btnURL: '#'
+    Khi cam xuc duoc nhin thay, no co the tro thanh ngon ngu, hinh anh, mau sac va hanh dong. Bo reflection nay phu hop cho journaling, art reflection va cac buoi sang tao co chieu sau.
+  btnTitle: 'Lien he de tim hieu them'
+  btnURL: '/contact'
 descriptionList:
-  - title: 'Strength and Durability'
-    subTitle: 'Constructed from high-quality materials, these hex bolts are built to withstand heavy loads and tough conditions.'
-  - title: 'Precision Engineering'
-    subTitle: 'Engineered with precision-cut threads and exact specifications, ensuring a tight and secure fit every time.'
-  - title: 'Versatility'
-    subTitle: 'Suitable for a wide range of applications, from construction to machinery, providing versatile fastening solutions.'
+  - title: 'Viet de hieu minh'
+    subTitle: 'Dung the nhu mot loi moi de viet xuong dieu dang dien ra.'
+  - title: 'Ve de quan sat'
+    subTitle: 'Ket hop mau sac va hinh anh de dien ta trang thai noi tam.'
+  - title: 'Chon hanh dong'
+    subTitle: 'Sau khi nhan dien cam xuc, nguoi dung chon mot buoc nho de cham soc minh.'
 specificationsLeft:
-  - title: 'Material'
-    subTitle: 'Made from premium-grade steel or alloy, offering exceptional strength and corrosion resistance.'
-  - title: 'Thread Design'
-    subTitle: 'Precision-cut threads ensure optimal grip and reliability, even in high-stress environments.'
-  - title: 'Quantity'
-    subTitle: 'Each set includes a sufficient quantity of hex bolts to tackle various projects and applications.'
-  - title: 'Sizes'
-    subTitle: 'Available in a range of sizes to accommodate different project requirements, ensuring versatility and compatibility.'
+  - title: 'Phu hop'
+    subTitle: 'Journaling, creative workshop, lop hoc nghe thuat va phien tu phan chieu.'
+  - title: 'Vat dung ket hop'
+    subTitle: 'So tay, but mau, giay ghi chu, bang moodboard hoac khong gian chia se.'
+  - title: 'Nhip do'
+    subTitle: 'Cham, mo, khuyen khich quan sat thay vi phan xet.'
+  - title: 'Gia tri'
+    subTitle: 'Giup nguoi dung nhan ra cam xuc, thong diep va phan ung di kem.'
 specificationsRight:
-  - title: 'Finish'
-    subTitle: 'Finished with a protective coating to enhance corrosion resistance and extend service life.'
-  - title: 'Load Capacity'
-    subTitle: 'Designed to meet or exceed industry standards for load-bearing capacity, ensuring reliable performance under heavy loads.'
-  - title: 'Certifications'
-    subTitle: 'Compliant with relevant industry standards and certifications, guaranteeing quality and reliability.'
-  - title: 'Applications'
-    subTitle: 'Ideal for use in construction, machinery, automotive, and other heavy-duty applications that demand strong and reliable fastening.'
+  - title: 'Hinh thuc'
+    subTitle: 'Rut the, viet phan hoi, ve bieu tuong va chia se tuy chon.'
+  - title: 'Do sau'
+    subTitle: 'Co the dung nhu bai tap nhanh hoac mot phien reflection day du.'
+  - title: 'Ket noi'
+    subTitle: 'Giup nguoi dung ket noi voi minh va voi nguoi khac thong qua ngon ngu cam xuc.'
+  - title: 'Luu tru'
+    subTitle: 'Cac ghi chu reflection co the tro thanh nhat ky phat trien ca nhan theo thoi gian.'
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/emotion-compass.jpg'
+  second: '@/images/emotion-compass.jpg'
 ---

@@ -1,16 +1,17 @@
 const navBarLinks = [
   { name: 'Homes', url: '/' },
-  { name: 'Pages', url: '/services' },
+  { name: 'Pages', url: '/products' },
   { name: 'Landing', url: '/' },
   { name: 'Blog', url: '/blog' },
   { name: 'Systems', url: '#features' },
+  { name: 'Contact', url: '/contact' },
 ];
 
 const footerLinks = [
   {
     section: 'Product',
     links: [
-      { name: 'Framework', url: '#' },
+      { name: 'Framework', url: '/products' },
       { name: 'Systems', url: '#features' },
       { name: 'Security', url: '#' },
       { name: 'Team', url: '#' },
@@ -37,6 +38,7 @@ const footerLinks = [
       { name: 'Professional Services', url: '/services' },
       { name: 'Workflows', url: '#' },
       { name: 'Status', url: '#' },
+      { name: 'Contact', url: '/contact' },
     ],
   },
   {

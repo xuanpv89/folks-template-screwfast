@@ -1,13 +1,13 @@
 ---
-title: 'SF-AB A765'
-description: 'Assorted Screw Set'
+title: 'Emotion Check-in Kit'
+description: 'Bộ công cụ check-in cảm xúc cho cá nhân và nhóm'
 main:
   id: 2
   content: |
-    Introducing the SF-AB A765 Assorted Screw Set – the ultimate solution for your screw fastening needs. This comprehensive set includes a wide variety of screws meticulously curated to tackle various projects with ease and precision.
-  imgCard: '@/images/product-image-2.avif'
-  imgMain: '@/images/product-image-main-2.avif'
-  imgAlt: 'Mockup boxes of assorted screw set'
+    Emotion Check-in Kit đưa La Bàn Cảm Xúc vào các buổi mở đầu, tổng kết, reflection hoặc làm việc nhóm. Bộ công cụ giúp mọi người nói về cảm xúc một cách an toàn, ngắn gọn và có cấu trúc.
+  imgCard: '@/images/emotion-compass.jpg'
+  imgMain: '@/images/emotion-compass.jpg'
+  imgAlt: 'La Bàn Cảm Xúc dùng trong hoạt động check-in nhóm'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
@@ -19,36 +19,35 @@ tabs:
     dataTab: '#tabs-with-card-3'
     title: 'Blueprints'
 longDescription:
-  title: 'Versatile Screw Fastening Solutions'
+  title: 'Bat dau cuoc tro chuyen bang su that ben trong'
   subTitle: |
-    The SF-AB A765 Assorted Screw Set offers unmatched versatility and convenience, making it the perfect choice for DIY enthusiasts and professionals alike. With a comprehensive selection of screws, you'll always have the right fastener for the job.
-  btnTitle: 'Contact sales to learn more'
-  btnURL: '#'
+    Check-in cam xuc giup nhom hieu trang thai hien tai cua nhau truoc khi di vao cong viec. Khi moi nguoi duoc goi ten cam xuc, su hien dien va ket noi tang len ro ret.
+  btnTitle: 'Lien he de tim hieu them'
+  btnURL: '/contact'
 descriptionList:
-  - title: 'Wide Variety'
-    subTitle: 'Includes a diverse range of screw types and sizes to accommodate various applications and materials.'
-  - title: 'Ease of Use'
-    subTitle: 'Each screw is designed for effortless installation, ensuring hassle-free fastening every time.'
-  - title: 'Convenience'
-    subTitle: 'Eliminates the need for multiple trips to the hardware store, saving time and effort on your projects.'
+  - title: 'Nhan dien nhanh'
+    subTitle: 'Dung the de chon cam xuc gan nhat voi trang thai hien tai.'
+  - title: 'Chia se co gioi han'
+    subTitle: 'Nguoi dung co the noi nhieu hay it tuy muc do an toan cua minh.'
+  - title: 'Ket noi nhom'
+    subTitle: 'Tao nen mot khong gian lang nghe truoc khi bat dau lam viec.'
 specificationsLeft:
-  - title: 'Material'
-    subTitle: 'Constructed from high-quality materials such as stainless steel, ensuring durability and corrosion resistance.'
-  - title: 'Assortment'
-    subTitle: 'Contains a generous assortment of screws, including wood screws, machine screws, and sheet metal screws.'
-  - title: 'Quantity'
-    subTitle: 'Each set includes a sufficient quantity of screws to handle a wide range of projects and tasks.'
-  - title: 'Sizes'
-    subTitle: 'Available in various sizes to suit different project requirements, ensuring compatibility and versatility.'
+  - title: 'Phu hop'
+    subTitle: 'Team meeting, lop hoc, workshop, retreat va nhom cong dong.'
+  - title: 'Thoi luong goi y'
+    subTitle: '5 den 20 phut tuy quy mo nhom.'
+  - title: 'Hinh thuc'
+    subTitle: 'Check-in theo vong, rut the ngau nhien hoac chon the chu dong.'
+  - title: 'Muc tieu'
+    subTitle: 'Tao su hien dien, giam mo ho va tang chat luong giao tiep.'
 tableData:
-  - feature: ['Specification', 'Value']
+  - feature: ['Thanh phan', 'Gia tri']
     description:
-      - ['Length (mm)', 'Various']
-      - ['Weight (g)', 'N/A']
-      - ['Material', 'Stainless Steel']
-      - ['Finish', 'Assorted']
-      - ['Package Contents', 'Various screws in a set']
+      - ['Sản phẩm', 'Bộ thẻ La Bàn Cảm Xúc']
+      - ['Cach dung', 'Ca nhan hoac nhom']
+      - ['Muc dich', 'Check-in, reflection, khai mo doi thoai']
+      - ['Ngon ngu', 'Tieng Viet']
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '@/images/emotion-compass.jpg'
+  second: '@/images/emotion-compass.jpg'
 ---
