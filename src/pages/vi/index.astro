@@ -1,0 +1,272 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import HeroSection from '@components/sections/landing/HeroSection.astro';
+import HeroSectionAlt from '@components/sections/landing/HeroSectionAlt.astro';
+import FeaturesGeneral from '@components/sections/features/FeaturesGeneral.astro';
+import FeaturesNavs from '@components/sections/features/FeaturesNavs.astro';
+import TestimonialsSection from '@components/sections/testimonials/TestimonialsSection.astro';
+import FAQ from '@components/sections/misc/FAQ.astro';
+import AnnouncementBanner from '@components/ui/banners/AnnouncementBanner.astro';
+import heroImage from '@images/hero-image.avif';
+import faqs from '@data/fr/faqs.json';
+import features from '@data/fr/features.json';
+import featureImage from '@images/features-image.avif';
+import construction from '@images/construction-image.avif';
+import tools from '@images/automated-tools.avif';
+import dashboard from '@images/dashboard-image.avif';
+
+const avatarSrcs: Array<string> = [
+  'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?auto=format&fit=facearea&facepad=3&w=300&h=300&q=80',
+  'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+];
+
+const steps = [
+  {
+    title: 'Bước 1: Bắt đầu với chiến lược',
+    description: 'Xác định positioning, audience và hướng tăng trưởng cốt lõi. Xây nền tảng bằng sự rõ ràng.',
+  },
+  {
+    title: 'Bước 2: Xây hệ thống',
+    description: 'Tạo các lớp Content, Hub và Ecosystem. Biến ý tưởng thành thực thi có cấu trúc.',
+  },
+  {
+    title: 'Bước 3: Mở rộng tự tin',
+    description: 'Tối ưu, mở rộng và scale hệ thống bền vững bằng dữ liệu và phản hồi.',
+  },
+];
+
+const coreComponents = [
+  ['Strategy Layer', 'Không có định hướng, thực thi chỉ là tiếng ồn. Strategy tạo sự rõ ràng và mục đích.'],
+  ['Content Engine', 'Nội dung là nhiên liệu tăng trưởng: thu hút, giáo dục và xây dựng niềm tin theo thời gian.'],
+  ['Growth Systems', 'Nơi cấu trúc gặp thực thi. Systems biến nỗ lực thành kết quả có thể dự đoán.'],
+  ['Execution Layer', 'Nơi ý tưởng trở thành hiện thực: nhất quán, tập trung và đo lường được.'],
+  ['Call-to-Action Layer', 'Mọi hệ thống đều cần chuyển động. Hành động rõ ràng biến sự chú ý thành kết quả.'],
+  ['Monetization Models', 'Biến giá trị thành doanh thu thông qua offer có cấu trúc và positioning phù hợp.'],
+  ['Proof & Trust', 'Kết quả thật và phản hồi thật giúp uy tín tăng trưởng theo thời gian.'],
+  ['Connection Layer', 'Cộng đồng, quan hệ và tương tác là lõi của tăng trưởng bền vững.'],
+  ['Foundation Layer', 'Mọi thứ dựa trên nền tảng vững: positioning, clarity và systems.'],
+];
+
+const blogPosts = [
+  ['The C.H.E.S.S Model: A Complete Growth Framework', 'Tăng trưởng hôm nay không nằm ở hack, mà ở hệ thống. C.H.E.S.S giúp bạn thu hút, gắn kết và scale bền vững.'],
+  ['How to Build a Growth System from Scratch', 'Học cách biến chiến lược thành thực thi bằng các framework có cấu trúc.'],
+  ['Tools & Systems for Modern Growth', 'Khám phá công cụ và workflow cần thiết để xây hệ thống có thể mở rộng.'],
+  ['Culture, Creativity & Growth', 'Tăng trưởng không chỉ là hệ thống, mà còn là bản sắc, sáng tạo và tầm nhìn dài hạn.'],
+];
+---
+
+<MainLayout lang="fr">
+  <AnnouncementBanner
+    title="MỚI"
+    btnId="dismiss-button"
+    btnTitle="Folks Team đã ra mắt"
+    url="https://github.com/xuanpv89/folks-template-screwfast"
+  />
+
+  <HeroSection
+    title=`Một hệ thống tăng trưởng hiện đại xây trên <span class="text-yellow-500 dark:text-yellow-400">C.H.E.S.S</span>`
+    subTitle="Một framework chiến lược để xây dựng marketing, cộng đồng và hệ thống tăng trưởng có thể mở rộng. Folks Team là hệ thống hoàn chỉnh, tùy biến và sẵn sàng thực thi cho startup, operator và doanh nghiệp hiện đại."
+    primaryBtn="Bắt đầu"
+    primaryBtnURL="#features"
+    secondaryBtn="Tìm hiểu thêm"
+    secondaryBtnURL="#blueprint"
+    withReview={true}
+    avatars={avatarSrcs}
+    rating=`<span class="font-bold">132K</span>`
+    starCount={5}
+    reviews="builder đang áp dụng tăng trưởng có cấu trúc"
+    src={heroImage}
+    alt="Bảng điều khiển hệ thống tăng trưởng Folks Team"
+  />
+
+  <section class="bg-neutral-100 px-4 py-6 text-center dark:bg-neutral-900">
+    <p class="mx-auto max-w-4xl text-lg font-medium text-neutral-700 dark:text-neutral-300">
+      <span class="font-bold text-neutral-900 dark:text-neutral-100">Triết lý:</span>
+      Clarity, Systems, and Sustainable Growth
+    </p>
+  </section>
+
+  <FeaturesGeneral
+    title="Bạn nhận được gì với Folks Team"
+    subTitle="Một trong những hệ thống tăng trưởng có cấu trúc và thực tế nhất cho marketing hiện đại và xây dựng cộng đồng."
+    src={featureImage}
+    alt="Blueprint hệ thống Folks Team"
+    features={features}
+  />
+
+  <FeaturesNavs
+    title=`<span id="blueprint">Folks Team Blueprint:</span> Chiến lược gặp thực thi`
+    tabs={[
+      {
+        heading: 'Xây trên nền tảng C.H.E.S.S',
+        content: 'Tận dụng một hệ thống được thiết kế để căn chỉnh chiến lược, thực thi và tăng trưởng thành một mô hình thống nhất.',
+        svg: 'tools',
+        src: tools,
+        alt: 'Không gian làm việc chiến lược tăng trưởng',
+        first: true,
+      },
+      {
+        heading: 'Thực thi bằng hệ thống',
+        content: 'Vượt khỏi các chiến thuật rời rạc bằng workflow có cấu trúc và có thể scale.',
+        svg: 'dashboard',
+        src: dashboard,
+        alt: 'Dashboard tăng trưởng có cấu trúc',
+        second: true,
+      },
+      {
+        heading: 'Tích hợp đa kênh',
+        content: 'Đảm bảo content, community và operations vận hành liền mạch với nhau.',
+        svg: 'house',
+        src: construction,
+        alt: 'Vận hành tăng trưởng kết nối',
+      },
+    ]}
+  />
+
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+        Biến hệ thống tăng trưởng thành của riêng bạn
+      </h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+        Điều chỉnh hệ thống theo mô hình kinh doanh, audience và giai đoạn tăng trưởng của bạn.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {
+        [
+          ['Tùy biến cao', 'Điều chỉnh hệ thống theo mô hình kinh doanh, audience và giai đoạn tăng trưởng.'],
+          ['Đường tăng trưởng linh hoạt', 'Chọn các hướng thực thi khác nhau tùy theo mục tiêu và nguồn lực.'],
+          ['Thiết kế có thể scale', 'Từ early-stage đến scale, hệ thống tiến hóa cùng bạn.'],
+          ['Tích hợp nội dung đa định dạng', 'Kết hợp content, media và community thành một growth loop thống nhất.'],
+        ].map(([title, description]) => (
+          <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-700">
+            <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-12 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-3">
+        <div>
+          <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+            Thiết kế cho tăng trưởng dài hạn
+          </h2>
+          <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+            Xây quan hệ thật, cải thiện liên tục và tập trung nỗ lực vào điều thật sự tạo tăng trưởng.
+          </p>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 lg:col-span-2">
+          {
+            [
+              ['Gắn kết audience sâu hơn', 'Xây quan hệ thật thông qua content, community và giá trị nhất quán.'],
+              ['Tối ưu liên tục', 'Lặp lại, cải thiện và tinh chỉnh hệ thống bằng dữ liệu và phản hồi.'],
+              ['Hiệu quả thời gian & nguồn lực', 'Ngừng lãng phí vào chiến thuật rời rạc, tập trung vào điều tạo tăng trưởng.'],
+              ['Hỗ trợ từ cộng đồng', 'Học, thích nghi và phát triển trong mạng lưới builder và operator.'],
+            ].map(([title, description]) => (
+              <article class="rounded-xl bg-white p-6 dark:bg-neutral-800">
+                <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{title}</h3>
+                <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+        Khởi chạy hệ thống tăng trưởng trong 3 bước
+      </h2>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        steps.map(step => (
+          <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-700">
+            <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{step.title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{step.description}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mt-8 text-center text-lg font-bold text-yellow-600 dark:text-yellow-400">Sẵn sàng!</p>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-12 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+          Thành phần cốt lõi của hệ thống
+        </h2>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          coreComponents.map(([title, description]) => (
+            <article class="rounded-xl bg-white p-6 dark:bg-neutral-800">
+              <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{title}</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+    <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+          Khám phá thêm trong Blog
+        </h2>
+        <a class="mt-3 inline-block font-semibold text-yellow-600 dark:text-yellow-400" href="/fr/blog">Xem tất cả bài viết</a>
+      </div>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {
+        blogPosts.map(([title, description]) => (
+          <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-700">
+            <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{title}</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <FAQ title="FAQs" faqs={faqs} />
+
+  <TestimonialsSection
+    title="Impact Metrics"
+    subTitle="Bằng chứng cho thấy tăng trưởng có cấu trúc tạo hiệu ứng tích lũy qua builder, operator và community."
+    testimonials={[
+      {
+        content:
+          'Folks Team mang lại sự rõ ràng, cấu trúc và khả năng thực thi lặp lại cho công việc tăng trưởng hiện đại.',
+        author: 'Folks Team',
+        role: 'Built on C.H.E.S.S',
+        avatarSrc:
+          'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
+      },
+    ]}
+    statistics={[
+      { count: '132K', description: 'builder áp dụng tăng trưởng có cấu trúc' },
+      { count: '24.8K', description: 'hệ thống đã được tạo' },
+      { count: '10.3K', description: 'operator đang hoạt động' },
+      { count: '48.4K', description: 'thành viên cộng đồng' },
+    ]}
+  />
+
+  <HeroSectionAlt
+    title="Ngừng đoán mò. Bắt đầu xây hệ thống."
+    subTitle="Built on C.H.E.S.S. Bạn sẽ bất ngờ với sức mạnh của tăng trưởng có cấu trúc."
+    url="https://github.com/xuanpv89/folks-template-screwfast"
+  />
+</MainLayout>

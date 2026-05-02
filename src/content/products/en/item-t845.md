@@ -1,13 +1,13 @@
 ---
-title: 'La Bàn Cảm Xúc'
-description: 'Bộ thẻ giúp gọi tên và điều hướng cảm xúc'
+title: 'Emotional Compass'
+description: 'A card deck for naming and navigating emotions'
 main:
   id: 1
   content: |
-    La Bàn Cảm Xúc là bộ thẻ thực hành giúp người dùng nhận diện, gọi tên và quan sát cảm xúc của mình một cách rõ ràng hơn. Sản phẩm phù hợp cho cá nhân, nhóm học tập, workshop và các buổi khai vấn về nội tâm.
+    Emotional Compass is a reflective card deck that helps people recognize, name, and observe their emotions with more clarity. It is designed for personal practice, learning groups, workshops, and guided inner-work sessions.
   imgCard: '@/images/emotion-compass.jpg'
   imgMain: '@/images/emotion-compass.jpg'
-  imgAlt: 'Bộ thẻ La Bàn Cảm Xúc trên bàn gỗ cùng bút màu và sổ tay'
+  imgAlt: 'Emotional Compass card deck on a wooden table with colored pencils and a notebook'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
@@ -19,36 +19,36 @@ tabs:
     dataTab: '#tabs-with-card-3'
     title: 'Blueprints'
 longDescription:
-  title: 'Một công cụ nhỏ để hiểu mình hơn'
+  title: 'A small tool for understanding yourself better'
   subTitle: |
-    Mỗi lá thẻ là một điểm neo giúp bạn dừng lại, nhìn vào điều đang diễn ra bên trong, và chọn cách phản ứng tinh tế hơn. Thay vì bị cảm xúc kéo đi, La Bàn Cảm Xúc giúp bạn nhận ra mình đang ở đâu và cần gì tiếp theo.
-  btnTitle: 'Lien he de tim hieu them'
+    Each card acts as an anchor: a way to pause, notice what is happening inside, and choose a more thoughtful response. Instead of being pulled around by emotions, Emotional Compass helps you see where you are and what you may need next.
+  btnTitle: 'Contact us to learn more'
   btnURL: '/contact'
 descriptionList:
-  - title: 'Goi ten cam xuc'
-    subTitle: 'Giup nguoi dung tim duoc ngon ngu ro rang cho nhung trang thai kho dien ta.'
-  - title: 'Mo cuoc tro chuyen'
-    subTitle: 'Phu hop cho nhom, lop hoc, gia dinh, workshop va cac buoi reflection.'
-  - title: 'Thuc hanh nhe nhang'
-    subTitle: 'Khong can kien thuc phuc tap, chi can mot cau hoi dung luc va mot khoang lang de quan sat.'
+  - title: 'Name emotions'
+    subTitle: 'Helps people find clear language for inner states that are often hard to describe.'
+  - title: 'Open conversations'
+    subTitle: 'Useful for groups, classrooms, families, workshops, and reflection sessions.'
+  - title: 'Practice gently'
+    subTitle: 'No complex knowledge required, just a timely question and a little space to observe.'
 specificationsLeft:
-  - title: 'Dinh dang'
-    subTitle: 'Bo the cam xuc in, de dung trong cac hoat dong ca nhan hoac nhom.'
-  - title: 'Muc dich'
-    subTitle: 'Nhan dien cam xuc, phan biet tin hieu noi tam va chon hanh dong phu hop.'
-  - title: 'Nguoi dung phu hop'
-    subTitle: 'Nguoi lam sang tao, giao vien, coach, facilitator, nhom cong dong va bat ky ai muon hieu minh hon.'
-  - title: 'Cach dung'
-    subTitle: 'Rut the, doc goi y, ghi lai dieu nhan ra, va chia se neu cam thay san sang.'
+  - title: 'Format'
+    subTitle: 'A printed emotion card deck for personal or group practice.'
+  - title: 'Purpose'
+    subTitle: 'Recognize emotions, notice inner signals, and choose an aligned next action.'
+  - title: 'Best for'
+    subTitle: 'Creatives, teachers, coaches, facilitators, community groups, and anyone who wants to understand themselves better.'
+  - title: 'How to use'
+    subTitle: 'Draw a card, read the prompt, write what you notice, and share if you feel ready.'
 specificationsRight:
-  - title: 'Trai nghiem'
-    subTitle: 'Cham, truc quan, nhieu hinh anh va de tao ket noi.'
-  - title: 'Bo tro'
-    subTitle: 'Co the dung cung so tay, but mau, vong check-in hoac workshop ve cam xuc.'
-  - title: 'Tinh linh hoat'
-    subTitle: 'Dung duoc cho ca thuc hanh ca nhan lan lam viec nhom.'
-  - title: 'Gia tri cot loi'
-    subTitle: 'Giup cam xuc tro thanh du lieu de hieu minh, thay vi la thu can tranh ne.'
+  - title: 'Experience'
+    subTitle: 'Slow, visual, intuitive, and easy to connect through.'
+  - title: 'Pairs with'
+    subTitle: 'Journals, colored pencils, check-in circles, or emotion-focused workshops.'
+  - title: 'Flexible use'
+    subTitle: 'Works for both personal reflection and group facilitation.'
+  - title: 'Core value'
+    subTitle: 'Turns emotions into useful signals for self-understanding instead of something to avoid.'
 blueprints:
   first: '@/images/emotion-compass.jpg'
   second: '@/images/emotion-compass.jpg'

@@ -1,13 +1,13 @@
 ---
 title: 'Facilitator Emotion Deck'
-description: 'Bộ thẻ hỗ trợ facilitator dẫn dắt cảm xúc'
+description: 'A deck for facilitators guiding emotional reflection'
 main:
   id: 3
   content: |
-    Facilitator Emotion Deck giúp người dẫn dắt mở ra các phiên làm việc về cảm xúc, nhu cầu, phản ứng và hành động đi kèm. Sản phẩm giữ cho cuộc trò chuyện có cấu trúc mà vẫn đủ không gian cho sự thật xuất hiện.
+    The Facilitator Emotion Deck helps guides open sessions around emotions, needs, reactions, and next actions. It keeps the conversation structured while leaving enough room for honesty to emerge.
   imgCard: '@/images/emotion-compass.jpg'
   imgMain: '@/images/emotion-compass.jpg'
-  imgAlt: 'Bộ thẻ La Bàn Cảm Xúc cho facilitator'
+  imgAlt: 'Emotional Compass card deck for facilitators'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
@@ -19,36 +19,36 @@ tabs:
     dataTab: '#tabs-with-card-3'
     title: 'Blueprints'
 longDescription:
-  title: 'Dan dat cam xuc ma khong ap dat'
+  title: 'Guide emotions without forcing answers'
   subTitle: |
-    Bo the ho tro facilitator dat cau hoi dung luc, giup nguoi tham gia tu quan sat va tu goi ten dieu dang dien ra. No khong dua ra cau tra loi thay nguoi dung, ma tao duong dan de ho tim thay cau tra loi cua minh.
-  btnTitle: 'Lien he de tim hieu them'
+    The deck helps facilitators ask timely questions so participants can observe and name what is happening inside. It does not answer for people; it creates a path for them to find their own answers.
+  btnTitle: 'Contact us to learn more'
   btnURL: '/contact'
 descriptionList:
-  - title: 'Khung dan dat'
-    subTitle: 'Ho tro cac buoc: nhan dien, dat ten, lang nghe tin hieu va chon hanh dong.'
-  - title: 'An toan tam ly'
-    subTitle: 'Giup buoi chia se co gioi han, tranh ep buoc va ton trong toc do cua moi nguoi.'
-  - title: 'De ket hop'
-    subTitle: 'Co the dung chung voi journaling, coaching, retrospective hoac community circle.'
+  - title: 'Guided structure'
+    subTitle: 'Supports the steps of noticing, naming, listening to signals, and choosing action.'
+  - title: 'Psychological safety'
+    subTitle: 'Keeps sharing bounded, non-forcing, and respectful of each person’s pace.'
+  - title: 'Easy to combine'
+    subTitle: 'Works with journaling, coaching, retrospectives, or community circles.'
 specificationsLeft:
-  - title: 'Nguoi dung chinh'
-    subTitle: 'Facilitator, coach, giao vien, leader nhom va nguoi lam cong dong.'
-  - title: 'Boi canh'
-    subTitle: 'Workshop cam xuc, team reflection, check-out, healing circle va lop hoc ky nang.'
-  - title: 'Ket qua mong doi'
-    subTitle: 'Nguoi tham gia ro hon ve cam xuc, nhu cau va buoc tiep theo.'
-  - title: 'Phong cach'
-    subTitle: 'Truc quan, am ap, co cau truc va de tiep can.'
+  - title: 'Primary users'
+    subTitle: 'Facilitators, coaches, teachers, team leaders, and community builders.'
+  - title: 'Context'
+    subTitle: 'Emotion workshops, team reflection, check-outs, healing circles, and skills classes.'
+  - title: 'Expected outcome'
+    subTitle: 'Participants become clearer about their emotions, needs, and next steps.'
+  - title: 'Style'
+    subTitle: 'Visual, warm, structured, and accessible.'
 specificationsRight:
-  - title: 'Muc do'
-    subTitle: 'Phu hop cho nguoi moi bat dau lan nguoi da co kinh nghiem thuc hanh noi tam.'
-  - title: 'Quy mo nhom'
-    subTitle: 'Dung linh hoat cho ca 1-1, nhom nho hoac workshop dong nguoi.'
-  - title: 'Thoi luong'
-    subTitle: 'Tu 10 phut check-in den phien sau 90 phut.'
-  - title: 'Luu y'
-    subTitle: 'Day la cong cu ho tro nhan dien cam xuc, khong thay the tri lieu chuyen sau.'
+  - title: 'Level'
+    subTitle: 'Suitable for beginners and people already experienced in inner-work practice.'
+  - title: 'Group size'
+    subTitle: 'Flexible for 1:1 sessions, small groups, or larger workshops.'
+  - title: 'Duration'
+    subTitle: 'From a 10-minute check-in to a deeper 90-minute session.'
+  - title: 'Note'
+    subTitle: 'This is a tool for emotional awareness, not a replacement for clinical therapy.'
 blueprints:
   first: '@/images/emotion-compass.jpg'
   second: '@/images/emotion-compass.jpg'

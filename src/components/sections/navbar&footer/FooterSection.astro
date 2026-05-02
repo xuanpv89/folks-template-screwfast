@@ -1,12 +1,12 @@
----
+﻿---
 import FooterSocialLink from '@components/ui/links/FooterSocialLink.astro';
 import enStrings from '@utils/navigation.ts';
-import frStrings from '@utils/fr/navigation.ts';
+import viStrings from '@utils/vi/navigation.ts';
 import Icon from '@components/ui/icons/Icon.astro';
 import BrandLogo from '@components/BrandLogo.astro';
 import { SITE } from '@data/constants';
 
-const strings = Astro.currentLocale === 'fr' ? frStrings : enStrings;
+const strings = Astro.currentLocale === 'vi' ? viStrings : enStrings;
 ---
 
 <footer class="w-full bg-neutral-300 dark:bg-neutral-900">
@@ -86,3 +86,4 @@ const strings = Astro.currentLocale === 'fr' ? frStrings : enStrings;
     </script>
   </div>
 </footer>
+

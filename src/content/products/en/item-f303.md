@@ -1,13 +1,13 @@
 ---
 title: 'Creative Reflection Set'
-description: 'Bộ thẻ và gợi ý viết để phản chiếu cảm xúc'
+description: 'A card and writing prompt set for emotional reflection'
 main:
   id: 4
   content: |
-    Creative Reflection Set kết hợp La Bàn Cảm Xúc với viết, vẽ, màu sắc và các câu hỏi nhẹ nhàng. Đây là cách biến cảm xúc thành chất liệu sáng tạo, giúp người dùng nhìn thấy những điều đang chuyển động bên trong mình.
+    Creative Reflection Set combines Emotional Compass with writing, drawing, color, and gentle prompts. It turns emotions into creative material and helps people see what is moving inside them.
   imgCard: '@/images/emotion-compass.jpg'
   imgMain: '@/images/emotion-compass.jpg'
-  imgAlt: 'La Bàn Cảm Xúc với bút màu và sổ tay sáng tạo'
+  imgAlt: 'Emotional Compass with colored pencils and a creative notebook'
 tabs:
   - id: 'tabs-with-card-item-1'
     dataTab: '#tabs-with-card-1'
@@ -19,36 +19,36 @@ tabs:
     dataTab: '#tabs-with-card-3'
     title: 'Blueprints'
 longDescription:
-  title: 'Bien cam xuc thanh chat lieu sang tao'
+  title: 'Turn emotions into creative material'
   subTitle: |
-    Khi cam xuc duoc nhin thay, no co the tro thanh ngon ngu, hinh anh, mau sac va hanh dong. Bo reflection nay phu hop cho journaling, art reflection va cac buoi sang tao co chieu sau.
-  btnTitle: 'Lien he de tim hieu them'
+    When emotions are seen clearly, they can become language, images, colors, and action. This reflection set is designed for journaling, art reflection, and deeper creative sessions.
+  btnTitle: 'Contact us to learn more'
   btnURL: '/contact'
 descriptionList:
-  - title: 'Viet de hieu minh'
-    subTitle: 'Dung the nhu mot loi moi de viet xuong dieu dang dien ra.'
-  - title: 'Ve de quan sat'
-    subTitle: 'Ket hop mau sac va hinh anh de dien ta trang thai noi tam.'
-  - title: 'Chon hanh dong'
-    subTitle: 'Sau khi nhan dien cam xuc, nguoi dung chon mot buoc nho de cham soc minh.'
+  - title: 'Write to understand'
+    subTitle: 'Use each card as an invitation to write down what is happening.'
+  - title: 'Draw to observe'
+    subTitle: 'Use color and imagery to express inner states.'
+  - title: 'Choose an action'
+    subTitle: 'After naming the emotion, choose one small step of self-care.'
 specificationsLeft:
-  - title: 'Phu hop'
-    subTitle: 'Journaling, creative workshop, lop hoc nghe thuat va phien tu phan chieu.'
-  - title: 'Vat dung ket hop'
-    subTitle: 'So tay, but mau, giay ghi chu, bang moodboard hoac khong gian chia se.'
-  - title: 'Nhip do'
-    subTitle: 'Cham, mo, khuyen khich quan sat thay vi phan xet.'
-  - title: 'Gia tri'
-    subTitle: 'Giup nguoi dung nhan ra cam xuc, thong diep va phan ung di kem.'
+  - title: 'Best for'
+    subTitle: 'Journaling, creative workshops, art classes, and self-reflection sessions.'
+  - title: 'Pairs with'
+    subTitle: 'Notebooks, colored pencils, sticky notes, moodboards, or sharing circles.'
+  - title: 'Pace'
+    subTitle: 'Slow, open, and focused on observation rather than judgment.'
+  - title: 'Value'
+    subTitle: 'Helps people notice emotions, messages, and reactions that come with them.'
 specificationsRight:
-  - title: 'Hinh thuc'
-    subTitle: 'Rut the, viet phan hoi, ve bieu tuong va chia se tuy chon.'
-  - title: 'Do sau'
-    subTitle: 'Co the dung nhu bai tap nhanh hoac mot phien reflection day du.'
-  - title: 'Ket noi'
-    subTitle: 'Giup nguoi dung ket noi voi minh va voi nguoi khac thong qua ngon ngu cam xuc.'
-  - title: 'Luu tru'
-    subTitle: 'Cac ghi chu reflection co the tro thanh nhat ky phat trien ca nhan theo thoi gian.'
+  - title: 'Format'
+    subTitle: 'Draw a card, write a response, sketch a symbol, and share if desired.'
+  - title: 'Depth'
+    subTitle: 'Can be used as a quick exercise or a complete reflection session.'
+  - title: 'Connection'
+    subTitle: 'Helps people connect with themselves and others through emotional language.'
+  - title: 'Archive'
+    subTitle: 'Reflection notes can become a personal growth journal over time.'
 blueprints:
   first: '@/images/emotion-compass.jpg'
   second: '@/images/emotion-compass.jpg'

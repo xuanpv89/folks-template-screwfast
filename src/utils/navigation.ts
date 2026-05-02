@@ -1,6 +1,6 @@
 const navBarLinks = [
   { name: 'Homes', url: '/' },
-  { name: 'Pages', url: '/products' },
+  { name: 'Product', url: '/products' },
   { name: 'Landing', url: '/' },
   { name: 'Blog', url: '/blog' },
   { name: 'Systems', url: '#features' },

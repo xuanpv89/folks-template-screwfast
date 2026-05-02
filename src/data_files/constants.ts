@@ -1,4 +1,4 @@
-import ogImageSrc from '@images/social.png';
+﻿import ogImageSrc from '@images/folks-brand-logo.png';
 
 export const SITE = {
   title: 'FOLKS TEAM',
@@ -163,3 +163,4 @@ export const partnersData = [
     href: '#',
   },
 ];
+

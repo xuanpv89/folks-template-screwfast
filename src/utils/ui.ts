@@ -1,4 +1,5 @@
-export const languages = {
+﻿export const languages = {
   en: 'English',
-  fr: 'Français',
+  fr: 'FranÃ§ais',
 };
+

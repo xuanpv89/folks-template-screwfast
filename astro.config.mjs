@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+﻿import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
@@ -8,7 +8,7 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: 'https://screwfast.uk',
+  site: 'https://folks-team.com',
   image: {
     domains: ['images.unsplash.com'],
   },
@@ -29,12 +29,12 @@ export default defineConfig({
         defaultLocale: 'en', // All urls that don't contain language prefix will be treated as default locale
         locales: {
           en: 'en', // The `defaultLocale` value must present in `locales` keys
-          fr: 'fr',
+          vi: 'vi',
         },
       },
     }),
     starlight({
-      title: 'ScrewFast Docs',
+      title: 'Folks Team Docs',
       // https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md
       // If no Astro and Starlight i18n configurations are provided, the built-in default locale is used in Starlight and a matching Astro i18n configuration is generated/used.
       // If only a Starlight i18n configuration is provided, an equivalent Astro i18n configuration is generated/used.
@@ -46,11 +46,11 @@ export default defineConfig({
           lang: 'en',
         },
         de: { label: 'Deutsch', lang: 'de' },
-        es: { label: 'Español', lang: 'es' },
+        es: { label: 'EspaÃ±ol', lang: 'es' },
         fa: { label: 'Persian', lang: 'fa', dir: 'rtl' },
-        fr: { label: 'Français', lang: 'fr' },
-        ja: { label: '日本語', lang: 'ja' },
-        'zh-cn': { label: '简体中文', lang: 'zh-CN' },
+        vi: { label: 'Tiếng Việt', lang: 'vi' },
+        ja: { label: 'æ—¥æœ¬èªž', lang: 'ja' },
+        'zh-cn': { label: 'ç®€ä½“ä¸­æ–‡', lang: 'zh-CN' },
       },
       // https://starlight.astro.build/guides/sidebar/
       sidebar: [
@@ -58,11 +58,11 @@ export default defineConfig({
           label: 'Quick Start Guides',
           translations: {
             de: 'Schnellstartanleitungen',
-            es: 'Guías de Inicio Rápido',
-            fa: 'راهنمای شروع سریع',
-            fr: 'Guides de Démarrage Rapide',
-            ja: 'クイックスタートガイド',
-            'zh-cn': '快速入门指南',
+            es: 'GuÃ­as de Inicio RÃ¡pido',
+            fa: 'Ø±Ø§Ù‡Ù†Ù…Ø§ÛŒ Ø´Ø±ÙˆØ¹ Ø³Ø±ÛŒØ¹',
+            vi: 'Hướng dẫn bắt đầu nhanh',
+            ja: 'ã‚¯ã‚¤ãƒƒã‚¯ã‚¹ã‚¿ãƒ¼ãƒˆã‚¬ã‚¤ãƒ‰',
+            'zh-cn': 'å¿«é€Ÿå…¥é—¨æŒ‡å—',
           },
           autogenerate: { directory: 'guides' },
         },
@@ -86,7 +86,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/mearashadowfax/ScrewFast',
+          href: 'https://github.com/xuanpv89/folks-template-screwfast',
         },
       ],
       disable404Route: true,
@@ -104,14 +104,14 @@ export default defineConfig({
           tag: 'meta',
           attrs: {
             property: 'og:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://folks-team.com' + '/social.webp',
           },
         },
         {
           tag: 'meta',
           attrs: {
             property: 'twitter:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://folks-team.com' + '/social.webp',
           },
         },
       ],
@@ -125,3 +125,4 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
+
