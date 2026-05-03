@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Folks Team CMS</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
 
@@ -68,14 +69,10 @@
       }
 
       .mark {
-        display: grid;
         width: 52px;
         height: 52px;
-        place-items: center;
         border-radius: 8px;
-        background: var(--brand);
-        color: #fff;
-        font-weight: 900;
+        object-fit: cover;
         box-shadow: 0 14px 25px rgb(79 177 111 / 25%);
       }
 
@@ -233,7 +230,7 @@
     <main class="shell">
       <header class="topbar">
         <div class="brand">
-          <div class="mark">FT</div>
+          <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team CMS</p>
             <h1>Admin Hub</h1>
