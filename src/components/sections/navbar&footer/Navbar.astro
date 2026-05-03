@@ -91,7 +91,7 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
           strings.navBarLinks.map((link: NavBarLink) => {
             if ('children' in link && link.children?.length) {
               return (
-                <div class="hs-dropdown relative py-3 [--adaptive:none] md:py-4 md:[--trigger:hover]">
+                <div class="group relative py-3 md:py-4">
                   <button
                     type="button"
                     class="flex w-full items-center gap-x-1 text-base font-medium text-neutral-600 hover:text-neutral-500 md:text-sm 2xl:text-base dark:text-neutral-400 dark:hover:text-neutral-500"
@@ -114,7 +114,7 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
                       />
                     </svg>
                   </button>
-                  <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 top-full left-0 z-10 hidden min-w-48 rounded-xl bg-neutral-50 p-2 opacity-0 shadow-xl transition-[opacity,margin] duration-[150ms] before:absolute before:-top-3 before:left-0 before:h-3 before:w-full before:content-[''] md:absolute dark:bg-neutral-800">
+                  <div class="mt-2 min-w-48 rounded-xl bg-neutral-50 p-2 shadow-xl transition-[opacity,visibility] duration-[150ms] md:invisible md:absolute md:top-full md:left-0 md:z-10 md:mt-0 md:opacity-0 md:before:absolute md:before:-top-3 md:before:left-0 md:before:h-3 md:before:w-full md:before:content-[''] md:group-focus-within:visible md:group-focus-within:opacity-100 md:group-hover:visible md:group-hover:opacity-100 dark:bg-neutral-800">
                     <a
                       class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
                       href={link.url}

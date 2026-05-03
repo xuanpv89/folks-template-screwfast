@@ -6,7 +6,7 @@ const navBarLinks = [
     children: [{ name: 'Compassio', url: '/compassio' }],
   },
   { name: 'Services', url: '/services' },
-  { name: 'Product', url: '/products' },
+  { name: 'Products', url: '/products' },
   { name: 'Blog', url: '/blog' },
   { name: 'Help', url: 'https://www.folksteam.com/guides/getting-started' },
   { name: 'Contact', url: '/contact' },
