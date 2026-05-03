@@ -11,6 +11,14 @@ cardImageAlt: 'Dashboard đo lường tăng trưởng'
 readTime: 3
 category: 'Operations'
 tags: ['tools', 'operations', 'systems']
+videos:
+  [
+    {
+      title: 'Brené Brown: The power of vulnerability',
+      embed: 'https://www.youtube-nocookie.com/embed/iCvmsMzlF7o',
+      caption: 'Bổ sung góc nhìn con người cho workflow: hệ thống vận hành tốt vẫn cần niềm tin, sự cởi mở và khả năng kết nối.',
+    },
+  ]
 contents:
   [
     'Công cụ tốt không thay thế tư duy hệ thống, nhưng nó giúp hệ thống vận hành nhẹ hơn.',

@@ -10,6 +10,14 @@ cardImageAlt: 'Workshop xây dựng hệ thống'
 readTime: 5
 category: 'Growth Systems'
 tags: ['strategy', 'workflow', 'growth']
+videos:
+  [
+    {
+      title: 'Derek Sivers: How to start a movement',
+      embed: 'https://www.youtube-nocookie.com/embed/V74AxCqOTvg',
+      caption: 'Một video ngắn và đúng ý cho chủ đề community: movement bắt đầu từ vài người đầu tiên và một lời mời dễ tham gia.',
+    },
+  ]
 contents:
   [
     'Một growth system tốt bắt đầu bằng sự rõ ràng: bạn phục vụ ai, họ cần gì, và vì sao họ nên tin bạn.',

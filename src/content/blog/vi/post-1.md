@@ -10,6 +10,14 @@ cardImageAlt: 'Đội nhóm xây chiến lược tăng trưởng'
 readTime: 4
 category: 'C.H.E.S.S'
 tags: ['C.H.E.S.S', 'growth', 'system']
+videos:
+  [
+    {
+      title: 'Simon Sinek: How great leaders inspire action',
+      embed: 'https://www.youtube-nocookie.com/embed/u4ZoJKF_VuA',
+      caption: 'Phù hợp với lớp Strategy và Content: hệ thống tăng trưởng mạnh cần bắt đầu từ một lý do đủ rõ để audience tin và đi theo.',
+    },
+  ]
 contents:
   [
     'Tăng trưởng hiện đại không còn là cuộc đua của những mẹo ngắn hạn. Điều tạo khác biệt là khả năng xây một hệ thống có thể lặp lại, đo lường và cải thiện liên tục.',

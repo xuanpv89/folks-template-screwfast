@@ -10,6 +10,14 @@ cardImageAlt: 'Analytics dashboard for modern growth workflows'
 readTime: 4
 category: 'Operations'
 tags: ['tools', 'workflows', 'growth']
+videos:
+  [
+    {
+      title: 'Brené Brown: The power of vulnerability',
+      embed: 'https://www.youtube-nocookie.com/embed/iCvmsMzlF7o',
+      caption: 'A people-side companion to workflow design: trust, openness, and connection are part of operating a healthy growth system.',
+    },
+  ]
 contents:
   [
     'Modern growth depends on more than a stack of apps. Tools only matter when they support a clear workflow.',

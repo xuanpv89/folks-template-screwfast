@@ -140,6 +140,32 @@ const ogTitle = `${post.data.title} | Blog | ${SITE.title}`;
             )
           )
         }
+        {
+          post.data.videos?.map(video => (
+            <figure class="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+              <div class="aspect-video">
+                <iframe
+                  class="h-full w-full"
+                  src={video.embed}
+                  title={video.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                />
+              </div>
+              <figcaption class="p-4">
+                <p class="font-bold text-neutral-800 dark:text-neutral-200">
+                  {video.title}
+                </p>
+                {video.caption && (
+                  <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    {video.caption}
+                  </p>
+                )}
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
       <div
         class="mx-auto grid max-w-(--breakpoint-lg) gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0"

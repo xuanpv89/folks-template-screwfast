@@ -10,6 +10,14 @@ cardImageAlt: 'Workshop for building a structured growth system'
 readTime: 5
 category: 'Growth Systems'
 tags: ['strategy', 'systems', 'execution']
+videos:
+  [
+    {
+      title: 'Derek Sivers: How to start a movement',
+      embed: 'https://www.youtube-nocookie.com/embed/V74AxCqOTvg',
+      caption: 'A concise reminder that growth systems need early participants, visible momentum, and a repeatable invitation.',
+    },
+  ]
 contents:
   [
     'A growth system starts with clarity. Define who you serve, what value you create, and what action should happen next.',

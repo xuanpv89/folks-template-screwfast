@@ -10,6 +10,14 @@ cardImageAlt: 'Team planning a structured growth strategy'
 readTime: 4
 category: 'C.H.E.S.S'
 tags: ['growth', 'marketing', 'community']
+videos:
+  [
+    {
+      title: 'Simon Sinek: How great leaders inspire action',
+      embed: 'https://www.youtube-nocookie.com/embed/u4ZoJKF_VuA',
+      caption: 'Useful context for the Strategy and Content layers: strong systems begin with a clear reason people can believe in.',
+    },
+  ]
 contents:
   [
     'Growth is no longer about isolated tactics. It is about building a system that connects attention, trust, community, operations, and scale.',
