@@ -1,0 +1,400 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import Icon from '@components/ui/icons/Icon.astro';
+import compassCover from '@images/emotion-compass-cover.png';
+import compassWheel from '@images/emotion-compass-wheel.png';
+import trustCard from '@images/emotion-card-trust.png';
+import angerCard from '@images/emotion-card-anger.png';
+import productPhoto from '@images/emotion-compass.jpg';
+import brandLogo from '@images/folks-brand-logo.png';
+import { SITE } from '@data/constants';
+
+const chessLayers = [
+  {
+    title: 'Content',
+    text: 'Compassio turns psychology, wellbeing, work, relationship, and happiness topics into accessible learning content.',
+    icon: 'books',
+  },
+  {
+    title: 'Hub',
+    text: 'The project creates shared language so people can gather around emotional awareness, reflection, and conversation.',
+    icon: 'groups',
+  },
+  {
+    title: 'Event',
+    text: 'Workshops and guided sessions help people practice emotional check-ins, active listening, and relationship skills together.',
+    icon: 'verified',
+  },
+  {
+    title: 'Store',
+    text: 'La Ban Cam Xuc and related publications turn the knowledge system into tangible tools people can use repeatedly.',
+    icon: 'dashboard',
+  },
+  {
+    title: 'Session',
+    text: 'Facilitated reflection, coaching, and small-group experiences can bring the tools into deeper personal or team work.',
+    icon: 'frame',
+  },
+];
+
+const programs = [
+  {
+    name: 'La Ban Cam Xuc',
+    description:
+      'A visual card deck for naming emotions, understanding inner signals, and opening safer conversations.',
+  },
+  {
+    name: 'Hoc Nhanh, Song Cham',
+    description:
+      'Short practical lessons that apply psychology to everyday listening, reflection, and life skills.',
+  },
+  {
+    name: 'Relation Ship',
+    description:
+      'A relationship series exploring love, attachment, intimacy, commitment, and the feelings around connection.',
+  },
+  {
+    name: 'Cai Nghe Cai Nghiep',
+    description:
+      'A work and career series about motivation, choices, meaning, and the emotional side of professional life.',
+  },
+];
+
+const outcomes = [
+  'Name emotions with clearer language',
+  'Start check-ins without forcing people to overshare',
+  'Turn reflection into small next actions',
+  'Support classrooms, workshops, coaching, and team conversations',
+];
+
+const contentCategories = [
+  'Podcast & Video',
+  'Mental Healthcare',
+  'Career',
+  'Love',
+  'Self Development',
+  'Emotion',
+  'Perspective',
+  'Shop',
+];
+
+const originalChannels = [
+  {
+    title: 'Book an expert',
+    description:
+      'The booking page positions Compassio as a place where people can book support with specialists.',
+    href: 'https://folksasia.wixsite.com/compassio/booking',
+    cta: 'Open booking',
+  },
+  {
+    title: 'Events',
+    description:
+      'Facebook events keep the community loop active through workshops, talks, and live experiences.',
+    href: 'https://www.facebook.com/compassio.info/events',
+    cta: 'View events',
+  },
+  {
+    title: 'Podcast & Video',
+    description:
+      'Compassio publishes long-form conversations and practical psychology content for work, relationships, listening, and happiness.',
+    href: 'https://folksasia.wixsite.com/compassio/podcast',
+    cta: 'Watch podcast',
+  },
+  {
+    title: 'Publications & content collaboration',
+    description:
+      'The original navigation highlights publications and content collaboration as part of the Compassio ecosystem.',
+    href: 'https://folksasia.wixsite.com/compassio',
+    cta: 'Explore Compassio',
+  },
+];
+
+const podcastHighlights = [
+  "From 'Love or discipline at work?' to leadership, care, and sustainable teams.",
+  'Career conversations through the Cai Nghe Cai Nghiep series.',
+  'Active listening practice through Hoc Nhanh, Song Cham.',
+  'Relationship and happiness reflections through Relation Ship and Doc Cung Compassio.',
+];
+
+const pageTitle = `Compassio | ${SITE.title}`;
+const metaDescription =
+  'Compassio is a Folks project built with the C.H.E.S.S model, connecting wellbeing content, emotional tools, community learning, and guided reflection.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle="Compassio | A Folks C.H.E.S.S Project"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://folksteam.com/compassio',
+    url: 'https://folksteam.com/compassio',
+    name: 'Compassio',
+    description: metaDescription,
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://folksteam.com',
+      name: 'Folks Team',
+    },
+    inLanguage: 'en-US',
+  }}
+>
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_.95fr] lg:px-8 lg:py-20 2xl:max-w-full">
+    <div class="flex flex-col justify-center">
+      <p class="mb-4 text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        A Folks C.H.E.S.S Project
+      </p>
+      <h1 class="text-4xl font-black tracking-tight text-balance text-neutral-900 md:text-6xl dark:text-neutral-100">
+        Compassio: wellbeing, work, relationship, happiness, and emotional literacy
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Compassio is a learning and reflection project built around psychology, emotional awareness, relationships, and everyday wellbeing. As a Folks project, Compassio shows how the C.H.E.S.S model can turn content into tools, community, events, products, and deeper sessions.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/products"
+          class="inline-flex items-center rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Explore La Ban Cam Xuc
+        </a>
+        <a
+          href="https://folksasia.wixsite.com/compassio"
+          class="inline-flex items-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Visit original Compassio
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-5">
+      <div class="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 p-3 shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+        <Image
+          src={productPhoto}
+          alt="Compassio Emotional Compass product set"
+          class="h-[420px] w-full rounded-xl object-cover"
+          loading="eager"
+          format="webp"
+        />
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <Image
+          src={compassCover}
+          alt="La Ban Cam Xuc cover artwork"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+        <Image
+          src={compassWheel}
+          alt="Emotion compass wheel"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-neutral-200 bg-white px-4 py-6 dark:border-neutral-800 dark:bg-neutral-950">
+    <div class="mx-auto flex max-w-[85rem] flex-wrap justify-center gap-3 sm:px-6 lg:px-8 2xl:max-w-full">
+      {
+        contentCategories.map(category => (
+          <span class="rounded-full border border-neutral-200 px-4 py-2 text-sm font-bold text-neutral-700 dark:border-neutral-800 dark:text-neutral-300">
+            {category}
+          </span>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-[#397a54] px-4 py-14 text-white">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <p class="text-sm font-bold uppercase tracking-widest underline underline-offset-4">
+        Compassio source map
+      </p>
+      <div class="mt-6 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+        <div>
+          <h2 class="text-5xl font-black tracking-tight md:text-7xl">
+            Mental Healthcare
+          </h2>
+          <p class="mt-4 max-w-2xl text-lg text-white/80">
+            The original Compassio experience is organized around discoverable content, expert booking, events, publications, and collaboration. On this page, those pieces become a clearer C.H.E.S.S landing system.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            originalChannels.map(channel => (
+              <a
+                href={channel.href}
+                class="rounded-xl border border-white/25 bg-white/10 p-5 transition hover:bg-white/15"
+              >
+                <h3 class="text-xl font-black">{channel.title}</h3>
+                <p class="mt-2 text-sm text-white/80">{channel.description}</p>
+                <span class="mt-4 inline-flex text-sm font-bold text-white">
+                  {channel.cta}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          How Compassio fits the C.H.E.S.S model
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          Compassio is not only a content project. It can become a complete ecosystem where learning, community, tools, and guided practice support one another.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        {
+          chessLayers.map(layer => (
+            <article class="rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-950">
+              <Icon name={layer.icon} />
+              <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">
+                {layer.title}
+              </h3>
+              <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                {layer.text}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:px-8 2xl:max-w-full">
+    <div class="grid gap-5 sm:grid-cols-2">
+      <Image
+        src={trustCard}
+        alt="Tin Tuong emotion card"
+        class="h-80 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+      <Image
+        src={angerCard}
+        alt="Change emotion card back"
+        class="h-80 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+    </div>
+    <div class="flex flex-col justify-center">
+      <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        La Ban Cam Xuc turns feelings into a usable language
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        The Emotional Compass deck helps people pause, recognize what is happening inside, and choose a more thoughtful response. It is useful for personal reflection, classrooms, workshops, coaching, and team check-ins.
+      </p>
+      <div class="mt-7 grid gap-3 sm:grid-cols-2">
+        {
+          outcomes.map(item => (
+            <div class="rounded-xl border border-neutral-200 p-4 font-bold text-neutral-800 dark:border-neutral-800 dark:text-neutral-200">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 px-4 py-14 text-white">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div>
+          <Image
+            src={brandLogo}
+            alt="Folks branding"
+            class="mb-8 h-40 w-full rounded-2xl object-cover"
+            format="webp"
+          />
+          <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+            Content series that make inner work easier to approach
+          </h2>
+          <p class="mt-4 text-neutral-300">
+            The original Compassio site highlights podcast and content directions around work, relationships, active listening, solitude, and happiness. These topics become the Content layer of the ecosystem.
+          </p>
+          <a
+            href="https://folksasia.wixsite.com/compassio/podcast"
+            class="mt-6 inline-flex rounded-lg bg-white px-5 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-200"
+          >
+            Open podcast page
+          </a>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          {
+            programs.map(program => (
+              <article class="rounded-xl bg-white/10 p-6">
+                <h3 class="text-xl font-black">{program.name}</h3>
+                <p class="mt-3 text-sm text-neutral-300">{program.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+      <div class="mt-8 grid gap-3 md:grid-cols-2">
+        {
+          podcastHighlights.map(item => (
+            <div class="rounded-xl border border-white/15 p-4 text-sm font-bold text-white/90">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl border border-neutral-200 p-8 dark:border-neutral-800 lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[1fr_.8fr] lg:items-center">
+        <div>
+          <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+            A project designed for long-term emotional literacy
+          </h2>
+          <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+            Compassio can grow as a practical wellbeing ecosystem: free learning content, community discussion, workshops, reflective products, and premium guided experiences. That is C.H.E.S.S in motion.
+          </p>
+        </div>
+        <div class="rounded-xl bg-neutral-100 p-6 dark:bg-neutral-900">
+          <p class="text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+            Original Compassio info
+          </p>
+          <p class="mt-4 text-neutral-700 dark:text-neutral-300">
+            Topics: wellbeing, work, relationship, happiness, and more.
+          </p>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">
+            Location: 814/27 Su Van Hanh, District 10, Vietnam.
+          </p>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">
+            Phone: 0973768653
+          </p>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="https://folksasia.wixsite.com/compassio/booking"
+          class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Book now
+        </a>
+        <a
+          href="https://www.facebook.com/compassio.info/events"
+          class="inline-flex rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          View events
+        </a>
+        <a
+          href="/chess"
+          class="inline-flex rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          See the C.H.E.S.S model
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -30,17 +30,17 @@ const mostRecentPost: CollectionEntry<'blog'> = blogPosts[0];
 const otherPosts: CollectionEntry<'blog'>[] = blogPosts.slice(1);
 
 // Define variables for page content
-const title: string = 'Your Gateway to Construction Excellence';
+const title: string = 'Growth Systems, Community, and C.H.E.S.S Thinking';
 const subTitle: string =
-  'Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.';
+  'Explore practical writing on C.H.E.S.S, content engines, community building, emotional tools, and the systems behind sustainable growth.';
 const secondTitle: string = 'Insights';
 const secondSubTitle: string =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ";
+  'Short perspectives for builders and operators designing clearer, more durable growth systems.';
 
 const pageTitle: string = `Blog | ${SITE.title}`;
 const metaDescription =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.";
-const ogTitle = 'Construction Industry Blog | ScrewFast';
+  'Articles and insights from Folks Team on C.H.E.S.S, growth systems, content, community, and modern marketing.';
+const ogTitle = 'Growth Systems Blog | Folks Team';
 ---
 
 <MainLayout
@@ -50,17 +50,16 @@ const ogTitle = 'Construction Industry Blog | ScrewFast';
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://screwfast.uk/blog',
-    url: 'https://screwfast.uk/blog',
-    name: 'Blog | ScrewFast',
-    description:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
+    '@id': 'https://folksteam.com/blog',
+    url: 'https://folksteam.com/blog',
+    name: 'Blog | Folks Team',
+    description: metaDescription,
     isPartOf: {
       '@type': 'WebSite',
-      url: 'https://screwfast.uk',
-      name: 'ScrewFast',
+      url: 'https://folksteam.com',
+      name: 'Folks Team',
       description:
-        'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.',
+        'Folks Team builds modern growth systems based on C.H.E.S.S.',
     },
     inLanguage: 'en-US',
   }}

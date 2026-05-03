@@ -1,0 +1,401 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import Icon from '@components/ui/icons/Icon.astro';
+import compassCover from '@images/emotion-compass-cover.png';
+import compassWheel from '@images/emotion-compass-wheel.png';
+import trustCard from '@images/emotion-card-trust.png';
+import angerCard from '@images/emotion-card-anger.png';
+import productPhoto from '@images/emotion-compass.jpg';
+import brandLogo from '@images/folks-brand-logo.png';
+import { SITE } from '@data/constants';
+
+const chessLayers = [
+  {
+    title: 'Content',
+    text: 'Compassio biến các chủ đề tâm lý, wellbeing, công việc, quan hệ và hạnh phúc thành nội dung dễ tiếp cận.',
+    icon: 'books',
+  },
+  {
+    title: 'Hub',
+    text: 'Dự án tạo ngôn ngữ chung để mọi người cùng thảo luận về cảm xúc, phản tư và kết nối.',
+    icon: 'groups',
+  },
+  {
+    title: 'Event',
+    text: 'Workshop và session có hướng dẫn giúp mọi người thực hành check-in cảm xúc, lắng nghe chủ động và kỹ năng quan hệ.',
+    icon: 'verified',
+  },
+  {
+    title: 'Store',
+    text: 'La Bàn Cảm Xúc và các ấn phẩm liên quan biến tri thức thành công cụ hữu hình có thể dùng lặp lại.',
+    icon: 'dashboard',
+  },
+  {
+    title: 'Session',
+    text: 'Các phiên reflection, coaching và nhóm nhỏ đưa công cụ vào trải nghiệm cá nhân hoặc đội nhóm sâu hơn.',
+    icon: 'frame',
+  },
+];
+
+const programs = [
+  {
+    name: 'La Bàn Cảm Xúc',
+    description:
+      'Bộ thẻ trực quan giúp gọi tên cảm xúc, hiểu tín hiệu bên trong và mở ra các cuộc trò chuyện an toàn hơn.',
+  },
+  {
+    name: 'Học Nhanh, Sống Chậm',
+    description:
+      'Các bài thực hành ngắn ứng dụng tâm lý học vào lắng nghe, phản tư và kỹ năng sống hằng ngày.',
+  },
+  {
+    name: 'Relation Ship',
+    description:
+      'Series về tình yêu, sự gắn bó, thân mật, cam kết và những cảm xúc xoay quanh kết nối.',
+  },
+  {
+    name: 'Cái Nghề Cái Nghiệp',
+    description:
+      'Series về công việc, lựa chọn nghề nghiệp, động lực, ý nghĩa và mặt cảm xúc của đời sống chuyên môn.',
+  },
+];
+
+const outcomes = [
+  'Gọi tên cảm xúc bằng ngôn ngữ rõ hơn',
+  'Mở check-in mà không ép mọi người chia sẻ quá mức',
+  'Biến phản tư thành hành động nhỏ tiếp theo',
+  'Hỗ trợ lớp học, workshop, coaching và trò chuyện đội nhóm',
+];
+
+const contentCategories = [
+  'Podcast & Video',
+  'Chăm Sóc Tinh Thần',
+  'Nghề Nghiệp',
+  'Tình Yêu',
+  'Phát Triển Bản Thân',
+  'Cảm Xúc',
+  'Góc Nhìn',
+  'Shop',
+];
+
+const originalChannels = [
+  {
+    title: 'Booking chuyên gia',
+    description:
+      'Trang booking của Compassio có lời mời đặt lịch với chuyên gia và nút Đặt ngay.',
+    href: 'https://folksasia.wixsite.com/compassio/booking',
+    cta: 'Mở booking',
+  },
+  {
+    title: 'Sự kiện',
+    description:
+      'Facebook events giữ vòng tương tác cộng đồng thông qua workshop, talk và trải nghiệm live.',
+    href: 'https://www.facebook.com/compassio.info/events',
+    cta: 'Xem sự kiện',
+  },
+  {
+    title: 'Podcast & Video',
+    description:
+      'Compassio có các cuộc trò chuyện và nội dung tâm lý thực hành về công việc, quan hệ, lắng nghe và hạnh phúc.',
+    href: 'https://folksasia.wixsite.com/compassio/podcast',
+    cta: 'Xem podcast',
+  },
+  {
+    title: 'Ấn phẩm & hợp tác nội dung',
+    description:
+      'Điều hướng gốc của Compassio nhấn mạnh ấn phẩm và hợp tác nội dung như một phần của hệ sinh thái.',
+    href: 'https://folksasia.wixsite.com/compassio',
+    cta: 'Khám phá Compassio',
+  },
+];
+
+const podcastHighlights = [
+  "Từ 'yêu hay kỷ luật trong công việc?' đến lãnh đạo, chăm sóc và đội nhóm bền vững.",
+  'Trò chuyện nghề nghiệp qua series Cái Nghề Cái Nghiệp.',
+  'Thực hành lắng nghe chủ động qua Học Nhanh, Sống Chậm.',
+  'Phản tư về quan hệ và hạnh phúc qua Relation Ship và Đọc Cùng Compassio.',
+];
+
+const pageTitle = `Compassio | ${SITE.title}`;
+const metaDescription =
+  'Compassio là một dự án của Folks vận hành theo mô hình C.H.E.S.S, kết nối nội dung wellbeing, công cụ cảm xúc, học tập cộng đồng và reflection có hướng dẫn.';
+---
+
+<MainLayout
+  lang="vi"
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle="Compassio | Dự án C.H.E.S.S của Folks"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://folksteam.com/vi/compassio',
+    url: 'https://folksteam.com/vi/compassio',
+    name: 'Compassio',
+    description: metaDescription,
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://folksteam.com/vi',
+      name: 'Folks Team',
+    },
+    inLanguage: 'vi-VN',
+  }}
+>
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_.95fr] lg:px-8 lg:py-20 2xl:max-w-full">
+    <div class="flex flex-col justify-center">
+      <p class="mb-4 text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        Dự án C.H.E.S.S của Folks
+      </p>
+      <h1 class="text-4xl font-black tracking-tight text-balance text-neutral-900 md:text-6xl dark:text-neutral-100">
+        Compassio: wellbeing, công việc, quan hệ, hạnh phúc và hiểu biết cảm xúc
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Compassio là dự án học tập và phản tư xoay quanh tâm lý học, nhận diện cảm xúc, quan hệ và wellbeing hằng ngày. Dưới mô hình C.H.E.S.S, Compassio có thể phát triển từ content thành công cụ, cộng đồng, workshop, sản phẩm và các session sâu hơn.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/vi/products"
+          class="inline-flex items-center rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Xem La Bàn Cảm Xúc
+        </a>
+        <a
+          href="https://folksasia.wixsite.com/compassio"
+          class="inline-flex items-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Xem Compassio gốc
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-5">
+      <div class="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 p-3 shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
+        <Image
+          src={productPhoto}
+          alt="Bộ sản phẩm La Bàn Cảm Xúc của Compassio"
+          class="h-[420px] w-full rounded-xl object-cover"
+          loading="eager"
+          format="webp"
+        />
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <Image
+          src={compassCover}
+          alt="Bìa La Bàn Cảm Xúc"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+        <Image
+          src={compassWheel}
+          alt="Vòng La Bàn Cảm Xúc"
+          class="h-56 w-full rounded-2xl object-cover"
+          format="webp"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-neutral-200 bg-white px-4 py-6 dark:border-neutral-800 dark:bg-neutral-950">
+    <div class="mx-auto flex max-w-[85rem] flex-wrap justify-center gap-3 sm:px-6 lg:px-8 2xl:max-w-full">
+      {
+        contentCategories.map(category => (
+          <span class="rounded-full border border-neutral-200 px-4 py-2 text-sm font-bold text-neutral-700 dark:border-neutral-800 dark:text-neutral-300">
+            {category}
+          </span>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-[#397a54] px-4 py-14 text-white">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <p class="text-sm font-bold uppercase tracking-widest underline underline-offset-4">
+        Bản đồ nguồn Compassio
+      </p>
+      <div class="mt-6 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+        <div>
+          <h2 class="text-5xl font-black tracking-tight md:text-7xl">
+            Chăm Sóc Tinh Thần
+          </h2>
+          <p class="mt-4 max-w-2xl text-lg text-white/80">
+            Trải nghiệm Compassio gốc được tổ chức quanh nội dung dễ tìm, booking chuyên gia, sự kiện, ấn phẩm và hợp tác nội dung. Trên landing page này, các mảnh đó được chuyển thành một hệ C.H.E.S.S rõ hơn.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            originalChannels.map(channel => (
+              <a
+                href={channel.href}
+                class="rounded-xl border border-white/25 bg-white/10 p-5 transition hover:bg-white/15"
+              >
+                <h3 class="text-xl font-black">{channel.title}</h3>
+                <p class="mt-2 text-sm text-white/80">{channel.description}</p>
+                <span class="mt-4 inline-flex text-sm font-bold text-white">
+                  {channel.cta}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          Compassio vận hành theo C.H.E.S.S như thế nào?
+        </h2>
+        <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+          Compassio không chỉ là một dự án nội dung. Nó có thể trở thành hệ sinh thái nơi tri thức, cộng đồng, công cụ và thực hành có hướng dẫn hỗ trợ nhau.
+        </p>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+        {
+          chessLayers.map(layer => (
+            <article class="rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-950">
+              <Icon name={layer.icon} />
+              <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">
+                {layer.title}
+              </h3>
+              <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                {layer.text}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:px-8 2xl:max-w-full">
+    <div class="grid gap-5 sm:grid-cols-2">
+      <Image
+        src={trustCard}
+        alt="Thẻ cảm xúc Tin Tưởng"
+        class="h-80 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+      <Image
+        src={angerCard}
+        alt="Mặt sau thẻ cảm xúc Change"
+        class="h-80 w-full rounded-2xl object-cover"
+        format="webp"
+      />
+    </div>
+    <div class="flex flex-col justify-center">
+      <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        La Bàn Cảm Xúc biến cảm xúc thành một ngôn ngữ có thể dùng được
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Bộ thẻ giúp người dùng dừng lại, nhận diện điều đang diễn ra bên trong và chọn phản ứng có ý thức hơn. Nó phù hợp cho phản tư cá nhân, lớp học, workshop, coaching và check-in đội nhóm.
+      </p>
+      <div class="mt-7 grid gap-3 sm:grid-cols-2">
+        {
+          outcomes.map(item => (
+            <div class="rounded-xl border border-neutral-200 p-4 font-bold text-neutral-800 dark:border-neutral-800 dark:text-neutral-200">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 px-4 py-14 text-white">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div>
+          <Image
+            src={brandLogo}
+            alt="Branding Folks"
+            class="mb-8 h-40 w-full rounded-2xl object-cover"
+            format="webp"
+          />
+          <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+            Các series nội dung giúp inner work dễ tiếp cận hơn
+          </h2>
+          <p class="mt-4 text-neutral-300">
+            Site Compassio gốc có các hướng nội dung về công việc, quan hệ, lắng nghe chủ động, ở một mình và hạnh phúc. Đây là lớp Content quan trọng của hệ sinh thái.
+          </p>
+          <a
+            href="https://folksasia.wixsite.com/compassio/podcast"
+            class="mt-6 inline-flex rounded-lg bg-white px-5 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-200"
+          >
+            Mở trang podcast
+          </a>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          {
+            programs.map(program => (
+              <article class="rounded-xl bg-white/10 p-6">
+                <h3 class="text-xl font-black">{program.name}</h3>
+                <p class="mt-3 text-sm text-neutral-300">{program.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+      <div class="mt-8 grid gap-3 md:grid-cols-2">
+        {
+          podcastHighlights.map(item => (
+            <div class="rounded-xl border border-white/15 p-4 text-sm font-bold text-white/90">
+              {item}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl border border-neutral-200 p-8 dark:border-neutral-800 lg:p-12">
+      <div class="grid gap-8 lg:grid-cols-[1fr_.8fr] lg:items-center">
+        <div>
+          <h2 class="text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+            Một dự án được thiết kế cho emotional literacy dài hạn
+          </h2>
+          <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+            Compassio có thể phát triển như một hệ sinh thái wellbeing thực hành: nội dung miễn phí, thảo luận cộng đồng, workshop, sản phẩm phản tư và trải nghiệm có hướng dẫn. Đó là C.H.E.S.S đang vận hành.
+          </p>
+        </div>
+        <div class="rounded-xl bg-neutral-100 p-6 dark:bg-neutral-900">
+          <p class="text-sm font-bold uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+            Thông tin Compassio gốc
+          </p>
+          <p class="mt-4 text-neutral-700 dark:text-neutral-300">
+            Chủ đề: wellbeing, công việc, quan hệ, hạnh phúc và hơn thế nữa.
+          </p>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">
+            Địa chỉ: 814/27 Sư Vạn Hạnh, Quận 10, Việt Nam.
+          </p>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">
+            Điện thoại: 0973768653
+          </p>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="https://folksasia.wixsite.com/compassio/booking"
+          class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600"
+        >
+          Đặt ngay
+        </a>
+        <a
+          href="https://www.facebook.com/compassio.info/events"
+          class="inline-flex rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Xem sự kiện
+        </a>
+        <a
+          href="/vi/chess"
+          class="inline-flex rounded-lg border border-neutral-300 px-5 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+        >
+          Xem mô hình C.H.E.S.S
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
