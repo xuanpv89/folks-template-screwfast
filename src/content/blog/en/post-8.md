@@ -2,8 +2,8 @@
 title: 'Strengths of the C.H.E.S.S Model'
 description: 'Why C.H.E.S.S is powerful for personal brands, community-led businesses, and teams that want sustainable growth.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-30
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team brand logo'

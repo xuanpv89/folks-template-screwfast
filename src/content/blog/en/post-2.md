@@ -2,8 +2,8 @@
 title: 'How to Build a Growth System from Scratch'
 description: 'Learn how to turn strategy into execution using structured frameworks.'
 author: 'Folks Team'
-authorImage: '@/images/blog/brad.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2025-07-14
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop for building a structured growth system'

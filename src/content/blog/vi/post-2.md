@@ -2,8 +2,8 @@
 title: 'Cách xây một growth system từ con số không'
 description: 'Từ chiến lược, content, cộng đồng đến workflow thực thi hằng tuần.'
 author: 'Folks Team'
-authorImage: '@/images/blog/brad.avif'
-authorImageAlt: 'Avatar tác giả'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2024-02-10
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop xây dựng hệ thống'

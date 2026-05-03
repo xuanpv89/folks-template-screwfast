@@ -2,8 +2,8 @@
 title: 'Tools & Systems for Modern Growth'
 description: 'Discover essential tools and workflows to build scalable systems.'
 author: 'Folks Team'
-authorImage: '@/images/blog/anna.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2025-07-13
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Analytics dashboard for modern growth workflows'

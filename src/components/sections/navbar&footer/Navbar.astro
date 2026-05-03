@@ -11,6 +11,7 @@ import LanguagePicker from '@components/ui/LanguagePicker.astro';
 // Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === 'vi' ? viStrings : enStrings;
 const homeUrl = Astro.currentLocale === 'vi' ? '/vi' : '/';
+type NavBarLink = (typeof strings.navBarLinks)[number];
 ---
 
 {/* Main header component */}
@@ -87,9 +88,54 @@ const homeUrl = Astro.currentLocale === 'vi' ? '/vi' : '/';
       >
         {/* Navigation links and Authentication component */}
         {
-          strings.navBarLinks.map(link => (
-            <NavLink url={link.url} name={link.name} />
-          ))
+          strings.navBarLinks.map((link: NavBarLink) => {
+            if ('children' in link && link.children?.length) {
+              return (
+                <div class="hs-dropdown py-3 [--adaptive:none] md:py-4 md:[--trigger:hover]">
+                  <button
+                    type="button"
+                    class="flex w-full items-center gap-x-1 text-base font-medium text-neutral-600 hover:text-neutral-500 md:text-sm 2xl:text-base dark:text-neutral-400 dark:hover:text-neutral-500"
+                  >
+                    {link.name}
+                    <svg
+                      class="size-4"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4 6L8 10L12 6"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 top-full z-10 hidden min-w-48 rounded-xl bg-neutral-50 p-2 opacity-0 shadow-xl transition-[opacity,margin] duration-[150ms] dark:bg-neutral-800">
+                    <a
+                      class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
+                      href={link.url}
+                    >
+                      {link.name}
+                    </a>
+                    {link.children.map(child => (
+                      <a
+                        class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
+                        href={child.url}
+                      >
+                        {child.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
+            return <NavLink url={link.url} name={link.name} />;
+          })
         }
 
         <Authentication />

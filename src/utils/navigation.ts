@@ -1,13 +1,14 @@
 const navBarLinks = [
   { name: 'Homes', url: '/' },
-  { name: 'Product', url: '/products' },
   {
     name: 'C.H.E.S.S',
     url: '/chess',
     children: [{ name: 'Compassio', url: '/compassio' }],
   },
   { name: 'Services', url: '/services' },
+  { name: 'Product', url: '/products' },
   { name: 'Blog', url: '/blog' },
+  { name: 'Help', url: 'https://www.folksteam.com/guides/getting-started' },
   { name: 'Contact', url: '/contact' },
 ];
 

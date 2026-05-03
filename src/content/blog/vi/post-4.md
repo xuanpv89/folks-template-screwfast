@@ -2,8 +2,8 @@
 title: 'Hiểu 5 thành phần của C.H.E.S.S'
 description: 'Content, Hub, Event, Store và Session là 5 thành phần cốt lõi của một hệ sinh thái tăng trưởng hiện đại.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-03
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Đội nhóm xây bản đồ tăng trưởng cộng đồng'

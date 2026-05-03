@@ -1,13 +1,14 @@
 const navBarLinks = [
   { name: 'Trang chủ', url: '/vi' },
-  { name: 'Sản phẩm', url: '/vi/products' },
   {
     name: 'C.H.E.S.S',
     url: '/vi/chess',
     children: [{ name: 'Compassio', url: '/vi/compassio' }],
   },
   { name: 'Dịch vụ', url: '/vi/services' },
+  { name: 'Sản phẩm', url: '/vi/products' },
   { name: 'Blog', url: '/vi/blog' },
+  { name: 'Help', url: 'https://www.folksteam.com/guides/getting-started' },
   { name: 'Liên hệ', url: '/vi/contact' },
 ];
 

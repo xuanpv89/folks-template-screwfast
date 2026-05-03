@@ -2,8 +2,8 @@
 title: 'When Should You Use the C.H.E.S.S Model?'
 description: 'C.H.E.S.S is best for builders who care about community, knowledge products, personal brands, and long-term engagement.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-28
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Strategic planning session'

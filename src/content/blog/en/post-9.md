@@ -2,8 +2,8 @@
 title: 'Weaknesses and Challenges of C.H.E.S.S'
 description: 'The C.H.E.S.S model is powerful, but it requires time, coordination, patience, and active community management.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-29
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Planning board for a complex growth system'

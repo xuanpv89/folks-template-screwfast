@@ -2,8 +2,8 @@
 title: 'Mô hình C.H.E.S.S: framework tăng trưởng hoàn chỉnh'
 description: 'Cách kết nối Content, Hub, Ecosystem, System và Scale thành một hệ thống tăng trưởng bền vững.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2024-02-06
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Đội nhóm xây chiến lược tăng trưởng'

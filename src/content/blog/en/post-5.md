@@ -2,8 +2,8 @@
 title: 'Understanding the Five Components of C.H.E.S.S'
 description: 'A practical breakdown of Content, Hub, Event, Store, and Session as the core components of a modern growth ecosystem.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-03
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Team mapping a community growth system'

@@ -2,8 +2,8 @@
 title: 'Kết luận về C.H.E.S.S'
 description: 'C.H.E.S.S là sự dịch chuyển từ acquisition sang hệ sinh thái bền vững, nơi mọi người ở lại, tương tác và lớn lên cùng bạn.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-27
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Logo Folks Team'

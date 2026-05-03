@@ -2,8 +2,8 @@
 title: 'Điểm mạnh của mô hình C.H.E.S.S'
 description: 'Vì sao C.H.E.S.S mạnh với personal brand, community-led business và các đội nhóm muốn tăng trưởng bền vững.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-30
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Logo Folks Team'

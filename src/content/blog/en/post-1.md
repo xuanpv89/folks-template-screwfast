@@ -2,8 +2,8 @@
 title: 'The C.H.E.S.S Model: A Complete Growth Framework'
 description: "In today's world, growth is not about hacks - it's about systems. C.H.E.S.S helps you attract, engage, and scale sustainably."
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2025-07-15
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Team planning a structured growth strategy'

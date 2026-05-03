@@ -2,8 +2,8 @@
 title: 'Culture, Creativity & Growth'
 description: "Growth is not just systems - it's also identity, creativity, and long-term vision."
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2025-07-12
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team brand mark for growth culture'

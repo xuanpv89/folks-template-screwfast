@@ -2,8 +2,8 @@
 title: 'C.H.E.S.S so với AIDA, Funnel, Flywheel và Content Marketing'
 description: 'So sánh C.H.E.S.S với các mô hình marketing quen thuộc để thấy vì sao nó phù hợp với growth dựa trên community.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-01
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Dashboard phân tích tăng trưởng'

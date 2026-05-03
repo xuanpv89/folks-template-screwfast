@@ -58,17 +58,34 @@ export default defineConfig({
         },
         {
           label: 'Practice Tools',
+          translations: {
+            vi: 'Công cụ thực hành',
+          },
           items: [
-            { label: 'Compassio Guides', link: 'tools/tool-guides/' },
-            { label: 'Reflection Tool Care', link: 'tools/equipment-care/' },
+            {
+              label: 'Compassio Guides',
+              translations: { vi: 'Hướng dẫn Compassio' },
+              link: 'tools/tool-guides/',
+            },
+            {
+              label: 'Reflection Tool Care',
+              translations: { vi: 'Chăm sóc công cụ phản tư' },
+              link: 'tools/equipment-care/',
+            },
           ],
         },
         {
           label: 'Compassio Programs',
+          translations: {
+            vi: 'Chương trình Compassio',
+          },
           autogenerate: { directory: 'construction' },
         },
         {
           label: 'Advanced Facilitation',
+          translations: {
+            vi: 'Facilitation nâng cao',
+          },
           autogenerate: { directory: 'advanced' },
         },
       ],

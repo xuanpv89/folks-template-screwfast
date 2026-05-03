@@ -2,8 +2,8 @@
 title: 'Khi nào nên dùng mô hình C.H.E.S.S?'
 description: 'C.H.E.S.S phù hợp với người xây personal brand, community, sản phẩm tri thức và tương tác dài hạn.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-28
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Buổi hoạch định chiến lược'

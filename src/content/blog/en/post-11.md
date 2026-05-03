@@ -2,8 +2,8 @@
 title: 'Final Thoughts on C.H.E.S.S'
 description: 'C.H.E.S.S represents a shift from customer acquisition toward durable ecosystems where people stay, engage, and grow over time.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-04-27
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team logo'

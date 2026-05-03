@@ -2,8 +2,8 @@
 title: 'How the C.H.E.S.S Model Works Together'
 description: 'C.H.E.S.S is not a linear funnel. It is an ecosystem where attention, relationships, engagement, revenue, and premium value reinforce one another.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-02
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop session for community engagement'

@@ -2,8 +2,8 @@
 title: 'C.H.E.S.S vận hành cùng nhau như thế nào?'
 description: 'C.H.E.S.S không phải funnel tuyến tính, mà là một hệ sinh thái nơi chú ý, quan hệ, tương tác, doanh thu và giá trị cao cấp hỗ trợ nhau.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Avatar tác giả Folks Team'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-02
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop tương tác cộng đồng'

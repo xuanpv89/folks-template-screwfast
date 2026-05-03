@@ -2,8 +2,8 @@
 title: 'C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Marketing'
 description: 'A comparison of C.H.E.S.S with familiar marketing models, and why it is especially useful for community-led growth.'
 author: 'Folks Team'
-authorImage: '@/images/blog/jacob.avif'
-authorImageAlt: 'Folks Team author avatar'
+authorImage: '@/images/folks-brand-mark.jpg'
+authorImageAlt: 'Folks logo'
 pubDate: 2026-05-01
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Growth analytics dashboard'
