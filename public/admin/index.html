@@ -6,18 +6,21 @@
     <meta name="robots" content="noindex" />
     <title>Folks Team CMS</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+
       :root {
         color-scheme: light;
         --ink: #262626;
-        --muted: #66615a;
-        --line: #e7e2d7;
-        --paper: #fffdf7;
+        --muted: #525252;
+        --soft: #737373;
+        --line: #e5e5e5;
+        --paper: #e5e5e5;
         --panel: #ffffff;
-        --brand: #f5b700;
-        --brand-dark: #b7791f;
-        --green: #4fb174;
+        --brand: #4fb16f;
+        --brand-dark: #3f965c;
+        --brand-soft: #dcf4e4;
         font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Be Vietnam Pro', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
         line-height: 1.5;
       }
@@ -28,9 +31,7 @@
 
       body {
         margin: 0;
-        background:
-          radial-gradient(circle at top left, rgb(245 183 0 / 18%), transparent 34rem),
-          linear-gradient(135deg, #f6f3ea 0%, #efeee8 52%, #f5f0df 100%);
+        background: var(--paper);
         color: var(--ink);
       }
 
@@ -51,11 +52,11 @@
         justify-content: space-between;
         gap: 16px;
         margin-bottom: 22px;
-        border: 1px solid rgb(255 255 255 / 64%);
-        border-radius: 28px;
-        background: rgb(255 253 247 / 78%);
+        border: 1px solid rgb(220 244 228 / 72%);
+        border-radius: 36px;
+        background: rgb(240 250 243 / 72%);
         padding: 16px;
-        box-shadow: 0 18px 55px rgb(38 38 38 / 8%);
+        box-shadow: 0 18px 55px rgb(38 38 38 / 7%);
         backdrop-filter: blur(16px);
       }
 
@@ -70,12 +71,11 @@
         width: 50px;
         height: 50px;
         place-items: center;
-        border-radius: 14px;
-        background:
-          linear-gradient(135deg, #ffdf69, #f5b700 54%, #4fb174);
+        border-radius: 8px;
+        background: var(--brand);
         color: #fff;
         font-weight: 900;
-        box-shadow: 0 14px 25px rgb(245 183 0 / 28%);
+        box-shadow: 0 14px 25px rgb(79 177 111 / 25%);
       }
 
       .eyebrow {
@@ -112,7 +112,7 @@
         min-height: 42px;
         border: 0;
         border-radius: 999px;
-        background: var(--ink);
+        background: var(--brand);
         color: #fff;
         cursor: pointer;
         display: inline-flex;
@@ -123,6 +123,10 @@
         font-size: 14px;
         font-weight: 800;
         text-decoration: none;
+      }
+
+      .nav a:not(.secondary) {
+        background: var(--ink);
       }
 
       button.secondary,
@@ -138,12 +142,66 @@
         margin-bottom: 18px;
       }
 
-      .notice {
-        border: 1px solid #f8dd83;
+      .hero-panel {
+        display: grid;
+        gap: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f5f5f5;
+        padding: 22px;
+        box-shadow: 0 18px 45px rgb(38 38 38 / 8%);
+      }
+
+      @media (min-width: 900px) {
+        .hero-panel {
+          grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+          align-items: center;
+        }
+      }
+
+      .hero-copy h2 {
+        margin-bottom: 8px;
+        font-size: clamp(24px, 3vw, 38px);
+        line-height: 1.08;
+      }
+
+      .status-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      @media (min-width: 560px) {
+        .status-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .status-card {
+        border: 1px solid var(--line);
         border-radius: 18px;
-        background: linear-gradient(135deg, #fff8dc, #fffdf7);
+        background: rgb(255 255 255 / 72%);
+        padding: 14px;
+      }
+
+      .status-card strong {
+        display: block;
+        margin-top: 3px;
+        font-size: 20px;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .notice {
+        border: 1px solid #bde8cb;
+        border-radius: 8px;
+        background: #f0faf3;
         padding: 18px;
-        color: #713f12;
+        color: #244f34;
       }
 
       .steps {
@@ -167,7 +225,7 @@
         height: 28px;
         place-items: center;
         border-radius: 999px;
-        background: var(--ink);
+        background: var(--brand);
         color: #fff;
         font-size: 12px;
         font-weight: 900;
@@ -187,10 +245,10 @@
 
       .card {
         border: 1px solid var(--line);
-        border-radius: 22px;
-        background: rgb(255 253 247 / 92%);
+        border-radius: 8px;
+        background: #fff;
         padding: 22px;
-        box-shadow: 0 24px 70px rgb(38 38 38 / 10%);
+        box-shadow: 0 18px 45px rgb(38 38 38 / 8%);
       }
 
       .form-grid {
@@ -221,9 +279,9 @@
       select,
       textarea {
         width: 100%;
-        border: 1px solid #ded8cc;
-        border-radius: 12px;
-        background: #fffefb;
+        border: 1px solid #d4d4d4;
+        border-radius: 8px;
+        background: #fafafa;
         color: var(--ink);
         font: inherit;
         font-size: 14px;
@@ -240,7 +298,7 @@
       textarea:focus {
         border-color: var(--brand);
         background: #fff;
-        box-shadow: 0 0 0 3px rgb(245 183 0 / 18%);
+        box-shadow: 0 0 0 3px rgb(79 177 111 / 18%);
       }
 
       textarea {
@@ -260,7 +318,7 @@
         max-height: 72vh;
         overflow: auto;
         border: 1px solid #2b2b2b;
-        border-radius: 18px;
+        border-radius: 8px;
         background:
           linear-gradient(180deg, rgb(255 255 255 / 4%), transparent 80px),
           #171717;
@@ -277,9 +335,9 @@
       }
 
       .path {
-        border: 1px solid #e7e2d7;
-        border-radius: 12px;
-        background: #f7f5ef;
+        border: 1px solid #d4d4d4;
+        border-radius: 8px;
+        background: #f5f5f5;
         padding: 8px 10px;
         color: #404040;
         font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -290,10 +348,9 @@
       .publish-box {
         display: grid;
         gap: 12px;
-        border: 1px solid #cfe8d7;
-        border-radius: 18px;
-        background:
-          linear-gradient(135deg, rgb(79 177 116 / 14%), rgb(255 253 247 / 86%));
+        border: 1px solid #bde8cb;
+        border-radius: 8px;
+        background: #f0faf3;
         padding: 16px;
       }
 
@@ -303,7 +360,7 @@
 
       .publish-box p {
         margin: 0;
-        color: #255c3a;
+        color: #244f34;
         font-size: 13px;
       }
 
@@ -340,9 +397,8 @@
         display: grid;
         gap: 10px;
         border: 1px solid #e7e2d7;
-        border-radius: 16px;
-        background:
-          linear-gradient(135deg, #fffdf7, #f8f5ed);
+        border-radius: 8px;
+        background: #fff;
         padding: 12px;
         font-size: 13px;
       }
@@ -362,11 +418,19 @@
         margin-bottom: 4px;
       }
 
+      .draft-title strong {
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
       .pill {
         display: inline-flex;
         align-items: center;
         border-radius: 999px;
-        background: #262626;
+        background: var(--brand);
         color: #fff;
         padding: 3px 8px;
         font-size: 11px;
@@ -377,6 +441,13 @@
         color: var(--muted);
         font-size: 12px;
         overflow-wrap: anywhere;
+      }
+
+      .draft-actions {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+        justify-content: flex-end;
       }
 
       .draft-item button {
@@ -396,6 +467,20 @@
         justify-content: space-between;
         gap: 12px;
         margin-bottom: 10px;
+      }
+
+      .form-section {
+        display: grid;
+        gap: 14px;
+        border: 1px solid #eee7d8;
+        border-radius: 8px;
+        background: #fafafa;
+        padding: 14px;
+      }
+
+      .form-section h3 {
+        margin-bottom: 0;
+        font-size: 15px;
       }
 
       .hidden {
@@ -421,37 +506,41 @@
       </header>
 
       <section class="intro">
-        <div class="notice">
-          <strong>CMS offline-ready:</strong> trang này không dùng CDN nên sẽ
-          mở được ngay. Nó tạo file Markdown đúng schema blog hiện tại. Sau khi
-          tải file, đặt vào thư mục tương ứng rồi commit/deploy.
+        <div class="hero-panel">
+          <div class="hero-copy">
+            <p class="eyebrow">Editorial Workspace</p>
+            <h2>Viết, lưu draft, preview và publish bài blog từ một nơi.</h2>
+            <p class="hint">
+              CMS này không phụ thuộc CDN. Bạn có thể làm offline bằng Markdown,
+              hoặc publish trực tiếp lên GitHub nếu đã có token.
+            </p>
+            <div class="toolbar">
+              <a class="secondary" href="/blog">Xem Blog EN</a>
+              <a class="secondary" href="/vi/blog">Xem Blog VI</a>
+            </div>
+          </div>
+          <div class="status-grid">
+            <div class="status-card">
+              <p class="eyebrow">Mode</p>
+              <strong>Offline-first</strong>
+              <p class="hint">Không cần CDN.</p>
+            </div>
+            <div class="status-card">
+              <p class="eyebrow">Output</p>
+              <strong>Markdown</strong>
+              <p class="hint">Đúng schema Astro.</p>
+            </div>
+            <div class="status-card">
+              <p class="eyebrow">Publish</p>
+              <strong>GitHub</strong>
+              <p class="hint">Commit vào repo.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <h2>Sau khi điền form thì làm gì?</h2>
-          <ol class="steps">
-            <li>
-              <span>1</span>
-              <div>
-                Bấm <strong>Download .md</strong> để tải file bài viết, hoặc
-                <strong>Copy Markdown</strong> nếu muốn dán thủ công.
-              </div>
-            </li>
-            <li>
-              <span>2</span>
-              <div>
-                Đặt file vào đúng đường dẫn đang hiển thị bên dưới form, ví dụ
-                <code>src/content/blog/en/test-1.md</code>.
-              </div>
-            </li>
-            <li>
-              <span>3</span>
-              <div>
-                Hoặc dùng mục <strong>Publish to GitHub</strong> trong form để
-                commit bài trực tiếp lên repo. Khi deploy build xong, bài sẽ tự
-                hiện trên trang Blog và filter theo category.
-              </div>
-            </li>
-          </ol>
+        <div class="notice">
+          <strong>Luồng nhanh:</strong> điền form, kiểm tra preview, lưu draft
+          nếu cần, rồi bấm <strong>Publish to GitHub</strong> hoặc tải file
+          <strong>.md</strong> để commit thủ công.
         </div>
       </section>
 
@@ -465,96 +554,108 @@
             <span class="pill">Markdown</span>
           </div>
 
-          <div class="row">
+          <div class="form-section">
+            <h3>Post basics</h3>
+            <div class="row">
+              <label>
+                Ngôn ngữ
+                <select id="locale" name="locale">
+                  <option value="en">English</option>
+                  <option value="vi">Tiếng Việt</option>
+                </select>
+              </label>
+              <label>
+                Slug / filename
+                <input id="slug" name="slug" placeholder="my-new-post" required />
+              </label>
+            </div>
+
             <label>
-              Ngôn ngữ
-              <select id="locale" name="locale">
-                <option value="en">English</option>
-                <option value="vi">Tiếng Việt</option>
-              </select>
+              Title
+              <input id="title" name="title" placeholder="Tiêu đề bài viết" required />
             </label>
+
             <label>
-              Slug / filename
-              <input id="slug" name="slug" placeholder="my-new-post" required />
+              Description
+              <textarea id="description" name="description" placeholder="Mô tả ngắn cho SEO và card blog" required></textarea>
             </label>
           </div>
 
-          <label>
-            Title
-            <input id="title" name="title" placeholder="Tiêu đề bài viết" required />
-          </label>
+          <div class="form-section">
+            <h3>Publishing details</h3>
+            <div class="row">
+              <label>
+                Author
+                <input id="author" name="author" value="Folks Team" required />
+              </label>
+              <label>
+                Role
+                <input id="role" name="role" value="Editorial Team" />
+              </label>
+            </div>
 
-          <label>
-            Description
-            <textarea id="description" name="description" placeholder="Mô tả ngắn cho SEO và card blog" required></textarea>
-          </label>
+            <div class="row">
+              <label>
+                Publish date
+                <input id="pubDate" name="pubDate" type="date" required />
+              </label>
+              <label>
+                Read time
+                <input id="readTime" name="readTime" type="number" min="1" value="4" required />
+              </label>
+            </div>
 
-          <div class="row">
-            <label>
-              Author
-              <input id="author" name="author" value="Folks Team" required />
-            </label>
-            <label>
-              Role
-              <input id="role" name="role" value="Editorial Team" />
-            </label>
+            <div class="row">
+              <label>
+                Category
+                <select id="category" name="category">
+                  <option>C.H.E.S.S</option>
+                  <option>Strategy</option>
+                  <option>Growth Systems</option>
+                  <option>Operations</option>
+                  <option>Brand & Culture</option>
+                  <option>Marketing Models</option>
+                </select>
+              </label>
+              <label>
+                Tags
+                <input id="tags" name="tags" placeholder="growth, community, strategy" />
+              </label>
+            </div>
           </div>
 
-          <div class="row">
-            <label>
-              Publish date
-              <input id="pubDate" name="pubDate" type="date" required />
-            </label>
-            <label>
-              Read time
-              <input id="readTime" name="readTime" type="number" min="1" value="4" required />
-            </label>
+          <div class="form-section">
+            <h3>Media</h3>
+            <div class="row">
+              <label>
+                Card image
+                <input id="cardImage" name="cardImage" value="@/images/growth-brainstorm.jpg" required />
+              </label>
+              <label>
+                Card image alt
+                <input id="cardImageAlt" name="cardImageAlt" placeholder="Alt text cho ảnh card" required />
+              </label>
+            </div>
+
+            <div class="row">
+              <label>
+                Author image
+                <input id="authorImage" name="authorImage" value="@/images/blog/anna.avif" required />
+              </label>
+              <label>
+                Author image alt
+                <input id="authorImageAlt" name="authorImageAlt" value="Folks Team author" required />
+              </label>
+            </div>
           </div>
 
-          <div class="row">
+          <div class="form-section">
+            <h3>Content</h3>
             <label>
-              Category
-              <select id="category" name="category">
-                <option>C.H.E.S.S</option>
-                <option>Strategy</option>
-                <option>Growth Systems</option>
-                <option>Operations</option>
-                <option>Brand & Culture</option>
-                <option>Marketing Models</option>
-              </select>
-            </label>
-            <label>
-              Tags
-              <input id="tags" name="tags" placeholder="growth, community, strategy" />
+              Contents
+              <textarea id="contents" name="contents" placeholder="Mỗi đoạn cách nhau bằng một dòng trống." required></textarea>
             </label>
           </div>
-
-          <div class="row">
-            <label>
-              Card image
-              <input id="cardImage" name="cardImage" value="@/images/growth-brainstorm.jpg" required />
-            </label>
-            <label>
-              Card image alt
-              <input id="cardImageAlt" name="cardImageAlt" placeholder="Alt text cho ảnh card" required />
-            </label>
-          </div>
-
-          <div class="row">
-            <label>
-              Author image
-              <input id="authorImage" name="authorImage" value="@/images/blog/anna.avif" required />
-            </label>
-            <label>
-              Author image alt
-              <input id="authorImageAlt" name="authorImageAlt" value="Folks Team author" required />
-            </label>
-          </div>
-
-          <label>
-            Contents
-            <textarea id="contents" name="contents" placeholder="Mỗi đoạn cách nhau bằng một dòng trống." required></textarea>
-          </label>
 
           <div>
             <p class="hint">Đường dẫn lưu file:</p>
