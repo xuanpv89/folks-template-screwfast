@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,129 +7,518 @@
     <title>Folks Team CMS</title>
     <style>
       :root {
-        color-scheme: light dark;
+        color-scheme: light;
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        min-height: 100vh;
-        background: #f5f5f0;
+        background: #f4f1e8;
         color: #262626;
       }
 
-      .cms-status {
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        margin: 0 auto;
+        max-width: 1180px;
+        padding: 28px 18px 56px;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mark {
         display: grid;
-        min-height: 100vh;
+        width: 42px;
+        height: 42px;
         place-items: center;
-        padding: 24px;
+        border-radius: 10px;
+        background: #f4b400;
+        color: #fff;
+        font-weight: 900;
       }
 
-      .cms-status__card {
-        width: min(100%, 560px);
-        border: 1px solid #e5e5e5;
-        border-radius: 16px;
-        background: #fff;
-        padding: 28px;
-        box-shadow: 0 24px 60px rgb(15 23 42 / 10%);
-      }
-
-      .cms-status__eyebrow {
-        margin: 0 0 10px;
-        color: #ca8a04;
+      .eyebrow {
+        margin: 0;
+        color: #b7791f;
         font-size: 12px;
         font-weight: 900;
         letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      .cms-status h1 {
-        margin: 0;
-        font-size: clamp(28px, 5vw, 44px);
-        line-height: 1.05;
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
-      .cms-status p {
-        margin: 14px 0 0;
-        color: #525252;
-        line-height: 1.6;
+      h1 {
+        margin-bottom: 0;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1;
+        letter-spacing: -0.02em;
       }
 
-      .cms-status code {
-        border-radius: 6px;
-        background: #f4f4f5;
-        padding: 2px 6px;
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
       }
 
-      .cms-status__error {
-        display: none;
-        margin-top: 18px;
-        border-radius: 12px;
-        background: #fef2f2;
-        color: #991b1b;
-        padding: 14px;
+      .nav a,
+      button {
+        min-height: 42px;
+        border: 0;
+        border-radius: 10px;
+        background: #262626;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        font: inherit;
         font-size: 14px;
+        font-weight: 800;
+        text-decoration: none;
       }
 
-      .cms-status[data-error="true"] .cms-status__error {
+      button.secondary,
+      .nav a.secondary {
+        border: 1px solid #d4d4d4;
+        background: #fff;
+        color: #262626;
+      }
+
+      .intro {
+        display: grid;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .notice {
+        border: 1px solid #fde68a;
+        border-radius: 16px;
+        background: #fffbeb;
+        padding: 18px;
+        color: #713f12;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      @media (min-width: 960px) {
+        .grid {
+          grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+          align-items: start;
+        }
+      }
+
+      .card {
+        border: 1px solid #e5e5e5;
+        border-radius: 16px;
+        background: #fff;
+        padding: 18px;
+        box-shadow: 0 18px 45px rgb(15 23 42 / 8%);
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .row {
+        display: grid;
+        gap: 14px;
+      }
+
+      @media (min-width: 680px) {
+        .row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: #404040;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid #d4d4d4;
+        border-radius: 10px;
+        background: #fafafa;
+        color: #262626;
+        font: inherit;
+        font-size: 14px;
+        padding: 11px 12px;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      pre {
+        min-height: 640px;
+        max-height: 78vh;
+        overflow: auto;
+        border-radius: 12px;
+        background: #171717;
+        color: #f5f5f5;
+        font-size: 13px;
+        line-height: 1.55;
+        padding: 16px;
+        white-space: pre-wrap;
+      }
+
+      .hint {
+        color: #737373;
+        font-size: 13px;
+      }
+
+      .path {
+        border-radius: 8px;
+        background: #f5f5f5;
+        padding: 8px 10px;
+        color: #404040;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        overflow-wrap: anywhere;
+      }
+
+      .toast {
+        display: none;
+        margin-top: 10px;
+        border-radius: 10px;
+        background: #ecfdf5;
+        color: #065f46;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .toast.show {
         display: block;
       }
     </style>
   </head>
   <body>
-    <div class="cms-status" id="cms-status">
-      <div class="cms-status__card">
-        <p class="cms-status__eyebrow">Folks Team CMS</p>
-        <h1>Loading blog manager</h1>
-        <p>
-          The CMS is loading from Decap. If this screen stays here, the browser
-          could not load the CMS script from the CDN.
-        </p>
-        <p>
-          Config file:
-          <code>/admin/config.yml</code>
-        </p>
-        <div class="cms-status__error" id="cms-error">
-          Cannot load Decap CMS. Please check the internet connection or allow
-          scripts from <code>cdn.jsdelivr.net</code> / <code>unpkg.com</code>.
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">FT</div>
+          <div>
+            <p class="eyebrow">Folks Team CMS</p>
+            <h1>Blog Manager</h1>
+          </div>
         </div>
-      </div>
-    </div>
+        <nav class="nav" aria-label="Admin links">
+          <a href="/blog">Blog EN</a>
+          <a href="/vi/blog">Blog VI</a>
+          <a class="secondary" href="/">Home</a>
+        </nav>
+      </header>
+
+      <section class="intro">
+        <div class="notice">
+          <strong>CMS offline-ready:</strong> trang này không dùng CDN nên sẽ
+          mở được ngay. Nó tạo file Markdown đúng schema blog hiện tại. Sau khi
+          tải file, đặt vào thư mục tương ứng rồi commit/deploy.
+        </div>
+      </section>
+
+      <section class="grid">
+        <form class="card form-grid" id="post-form">
+          <h2>Tạo bài blog</h2>
+
+          <div class="row">
+            <label>
+              Ngôn ngữ
+              <select id="locale" name="locale">
+                <option value="en">English</option>
+                <option value="vi">Tiếng Việt</option>
+              </select>
+            </label>
+            <label>
+              Slug / filename
+              <input id="slug" name="slug" placeholder="my-new-post" required />
+            </label>
+          </div>
+
+          <label>
+            Title
+            <input id="title" name="title" placeholder="Tiêu đề bài viết" required />
+          </label>
+
+          <label>
+            Description
+            <textarea id="description" name="description" placeholder="Mô tả ngắn cho SEO và card blog" required></textarea>
+          </label>
+
+          <div class="row">
+            <label>
+              Author
+              <input id="author" name="author" value="Folks Team" required />
+            </label>
+            <label>
+              Role
+              <input id="role" name="role" value="Editorial Team" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Publish date
+              <input id="pubDate" name="pubDate" type="date" required />
+            </label>
+            <label>
+              Read time
+              <input id="readTime" name="readTime" type="number" min="1" value="4" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Category
+              <select id="category" name="category">
+                <option>C.H.E.S.S</option>
+                <option>Strategy</option>
+                <option>Growth Systems</option>
+                <option>Operations</option>
+                <option>Brand & Culture</option>
+                <option>Marketing Models</option>
+              </select>
+            </label>
+            <label>
+              Tags
+              <input id="tags" name="tags" placeholder="growth, community, strategy" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Card image
+              <input id="cardImage" name="cardImage" value="@/images/growth-brainstorm.jpg" required />
+            </label>
+            <label>
+              Card image alt
+              <input id="cardImageAlt" name="cardImageAlt" placeholder="Alt text cho ảnh card" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Author image
+              <input id="authorImage" name="authorImage" value="@/images/blog/anna.avif" required />
+            </label>
+            <label>
+              Author image alt
+              <input id="authorImageAlt" name="authorImageAlt" value="Folks Team author" required />
+            </label>
+          </div>
+
+          <label>
+            Contents
+            <textarea id="contents" name="contents" placeholder="Mỗi đoạn cách nhau bằng một dòng trống." required></textarea>
+          </label>
+
+          <div>
+            <p class="hint">Đường dẫn lưu file:</p>
+            <div class="path" id="target-path">src/content/blog/en/my-new-post.md</div>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="download">Download .md</button>
+            <button type="button" class="secondary" id="copy">Copy Markdown</button>
+            <button type="reset" class="secondary">Reset</button>
+          </div>
+          <div class="toast" id="toast">Copied.</div>
+        </form>
+
+        <section class="card">
+          <h2>Markdown preview</h2>
+          <p class="hint">
+            File tạo ra tương thích với collection schema trong
+            <code>src/content.config.ts</code>.
+          </p>
+          <pre id="preview"></pre>
+        </section>
+      </section>
+    </main>
 
     <script>
-      window.CMS_MANUAL_INIT = true;
-      const statusEl = document.getElementById('cms-status');
+      const form = document.getElementById('post-form');
+      const preview = document.getElementById('preview');
+      const targetPath = document.getElementById('target-path');
+      const toast = document.getElementById('toast');
 
-      function showError() {
-        if (statusEl) statusEl.dataset.error = 'true';
+      const fields = [
+        'locale',
+        'slug',
+        'title',
+        'description',
+        'author',
+        'role',
+        'pubDate',
+        'readTime',
+        'category',
+        'tags',
+        'cardImage',
+        'cardImageAlt',
+        'authorImage',
+        'authorImageAlt',
+        'contents',
+      ];
+
+      function today() {
+        return new Date().toISOString().slice(0, 10);
       }
 
-      function loadScript(src, onError) {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = () => {
-          if (window.CMS) {
-            document.body.innerHTML = '';
-            window.CMS.init();
-          } else {
-            onError();
-          }
+      function slugify(value) {
+        return value
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
+      function quote(value) {
+        return `'${String(value || '').replace(/'/g, "''")}'`;
+      }
+
+      function getValue(id) {
+        return document.getElementById(id).value.trim();
+      }
+
+      function listFromTextarea(value) {
+        return value
+          .split(/\n\s*\n/)
+          .map(item => item.trim())
+          .filter(Boolean);
+      }
+
+      function tagList(value) {
+        return value
+          .split(',')
+          .map(item => item.trim())
+          .filter(Boolean);
+      }
+
+      function buildMarkdown() {
+        const data = Object.fromEntries(fields.map(id => [id, getValue(id)]));
+        const slug = slugify(data.slug || data.title || 'new-blog-post');
+        const tags = tagList(data.tags);
+        const contents = listFromTextarea(data.contents);
+        const target = `src/content/blog/${data.locale}/${slug}.md`;
+        targetPath.textContent = target;
+
+        return {
+          slug,
+          target,
+          markdown: `---
+title: ${quote(data.title)}
+description: ${quote(data.description)}
+author: ${quote(data.author || 'Folks Team')}
+role: ${quote(data.role || 'Editorial Team')}
+authorImage: '${data.authorImage || '@/images/blog/anna.avif'}'
+authorImageAlt: ${quote(data.authorImageAlt || 'Folks Team author')}
+pubDate: ${data.pubDate || today()}
+cardImage: '${data.cardImage || '@/images/growth-brainstorm.jpg'}'
+cardImageAlt: ${quote(data.cardImageAlt)}
+readTime: ${Number(data.readTime || 4)}
+category: ${quote(data.category || 'C.H.E.S.S')}
+tags: [${tags.map(quote).join(', ')}]
+contents:
+${contents.map(item => `  - ${quote(item)}`).join('\n')}
+---
+
+${contents.join('\n\n')}
+`,
         };
-        script.onerror = onError;
-        document.body.appendChild(script);
       }
 
-      loadScript(
-        'https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js',
-        () => {
-          loadScript(
-            'https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js',
-            showError
-          );
+      function updatePreview() {
+        const result = buildMarkdown();
+        preview.textContent = result.markdown;
+      }
+
+      function downloadFile() {
+        const result = buildMarkdown();
+        const blob = new Blob([result.markdown], {
+          type: 'text/markdown;charset=utf-8',
+        });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `${result.slug}.md`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+
+      async function copyMarkdown() {
+        const result = buildMarkdown();
+        await navigator.clipboard.writeText(result.markdown);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1600);
+      }
+
+      document.getElementById('pubDate').value = today();
+      document.getElementById('slug').value = 'new-blog-post';
+      document.getElementById('title').addEventListener('input', event => {
+        const slugInput = document.getElementById('slug');
+        if (!slugInput.dataset.edited) {
+          slugInput.value = slugify(event.target.value);
         }
-      );
+      });
+      document.getElementById('slug').addEventListener('input', event => {
+        event.target.dataset.edited = 'true';
+        event.target.value = slugify(event.target.value);
+      });
+
+      form.addEventListener('input', updatePreview);
+      form.addEventListener('reset', () => setTimeout(updatePreview));
+      document.getElementById('download').addEventListener('click', downloadFile);
+      document.getElementById('copy').addEventListener('click', copyMarkdown);
+      updatePreview();
     </script>
   </body>
 </html>
