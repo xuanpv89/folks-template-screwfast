@@ -4,11 +4,18 @@ import NavLink from '@components/ui/links/NavLink.astro';
 import Authentication from '../misc/Authentication.astro';
 import enStrings from '@utils/navigation.ts';
 import viStrings from '@utils/vi/navigation.ts';
+import zhStrings from '@utils/zh/navigation.ts';
 import BrandLogo from '@components/BrandLogo.astro';
 import LanguagePicker from '@components/ui/LanguagePicker.astro';
 
-const strings = Astro.currentLocale === 'vi' ? viStrings : enStrings;
-const homeUrl = Astro.currentLocale === 'vi' ? '/vi' : '/';
+const strings =
+  Astro.currentLocale === 'vi'
+    ? viStrings
+    : Astro.currentLocale === 'zh'
+      ? zhStrings
+      : enStrings;
+const homeUrl =
+  Astro.currentLocale === 'vi' ? '/vi' : Astro.currentLocale === 'zh' ? '/zh' : '/';
 type NavBarLink = (typeof strings.navBarLinks)[number];
 ---
 

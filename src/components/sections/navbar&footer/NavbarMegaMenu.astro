@@ -6,12 +6,19 @@ import MegaMenuLink from '@components/ui/links/MegaMenuLink.astro';
 import Authentication from '../misc/Authentication.astro';
 import enStrings from '@utils/navigation.ts';
 import viStrings from '@utils/vi/navigation.ts';
+import zhStrings from '@utils/zh/navigation.ts';
 import BrandLogo from '@components/BrandLogo.astro';
 import LanguagePicker from '@components/ui/LanguagePicker.astro';
 
 // Select the correct translation based on the page's lang prop:
-const strings = Astro.currentLocale === 'vi' ? viStrings : enStrings;
-const homeUrl = Astro.currentLocale === 'vi' ? '/vi' : '/';
+const strings =
+  Astro.currentLocale === 'vi'
+    ? viStrings
+    : Astro.currentLocale === 'zh'
+      ? zhStrings
+      : enStrings;
+const homeUrl =
+  Astro.currentLocale === 'vi' ? '/vi' : Astro.currentLocale === 'zh' ? '/zh' : '/';
 type NavBarLink = (typeof strings.navBarLinks)[number];
 ---
 
@@ -118,12 +125,6 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
                     </svg>
                   </button>
                   <div class="hs-dropdown-menu hs-dropdown-open:opacity-100 top-full z-10 hidden min-w-48 rounded-xl bg-neutral-50 p-2 opacity-0 shadow-xl transition-[opacity,margin] duration-[150ms] dark:bg-neutral-800">
-                    <a
-                      class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
-                      href={link.url}
-                    >
-                      {link.name}
-                    </a>
                     {link.children.map(child => (
                       <a
                         class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"

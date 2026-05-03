@@ -8,7 +8,9 @@ const { title, subTitle, url } = Astro.props;
 const btnTitle =
   Astro.currentLocale === 'vi'
     ? 'Liên hệ tư vấn'
-    : 'Contact us';
+    : Astro.currentLocale === 'zh'
+      ? '联系咨询'
+      : 'Contact us';
 
 // Define TypeScript interface for props
 interface Props {

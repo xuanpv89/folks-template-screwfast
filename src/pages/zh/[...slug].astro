@@ -1,0 +1,388 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import NewsletterSignup from '@components/sections/misc/NewsletterSignup.astro';
+import { SITE } from '@data/constants';
+
+export function getStaticPaths() {
+  const routes = [
+    'about',
+    'services',
+    'chess',
+    'compassio',
+    'contact',
+    'member',
+    'blog',
+    'products',
+    'insights',
+    ...Array.from({ length: 11 }, (_, index) => `blog/post-${index + 1}`),
+    'products/item-a765',
+    'products/item-b203',
+    'products/item-f303',
+    'products/item-t845',
+    'insights/insight-1',
+    'insights/insight-2',
+    'insights/insight-3',
+  ];
+
+  return routes.map(slug => ({ params: { slug } }));
+}
+
+const pages = {
+  about: {
+    eyebrow: 'About Folks Team',
+    title: '我们帮助团队把好想法变成可持续运行的系统',
+    description:
+      'Folks Team 是一个结合策略、内容、体验设计和社群运营的团队。我们服务教育、文化、创意与成长型组织，帮助它们建立更清晰、更有人味、更能长期运作的增长系统。',
+    image:
+      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '我们的信念',
+        items: [
+          '增长不是单次活动，而是一套能被团队理解、执行和复盘的系统。',
+          '品牌不只是视觉和文字，更是组织如何与人建立信任。',
+          '好的内容应该服务学习、关系和行动，而不是只追求曝光。',
+        ],
+      },
+      {
+        title: '我们如何工作',
+        items: [
+          '先澄清定位、受众、核心信息与业务目标。',
+          '再设计内容节奏、活动体验、社群入口和转化路径。',
+          '最后把流程整理成团队可以持续使用的工具、模板和运营机制。',
+        ],
+      },
+    ],
+    team: [
+      ['Strategy Lead', '负责定位、C.H.E.S.S 架构、商业目标和路线图。'],
+      ['Content Designer', '负责内容系统、故事线、知识库和发布节奏。'],
+      ['Community Facilitator', '负责工作坊、社群互动、体验流程和复盘机制。'],
+      ['Growth Producer', '负责项目推进、数据追踪、自动化和上线协作。'],
+    ],
+  },
+  services: {
+    eyebrow: 'Services',
+    title: '从策略到执行的增长系统服务',
+    description:
+      '我们不只交付单一页面或活动，而是帮团队建立能够持续运作的内容、社群和转化系统。',
+    image:
+      'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '策略与系统设计',
+        items: [
+          '品牌定位、受众地图、核心信息和增长路径。',
+          'C.H.E.S.S 模型诊断：Content、Hub、Event、Store、Session。',
+          '把目标拆解成可执行的内容、活动、产品和社群计划。',
+        ],
+      },
+      {
+        title: '内容与知识库',
+        items: [
+          '设计博客、案例研究、指南、FAQ 和知识库结构。',
+          '建立内容模板、分类、编辑流程和 CMS 管理方式。',
+          '让内容能支持搜索、学习、信任建立和转化。',
+        ],
+      },
+      {
+        title: '工作坊与社群体验',
+        items: [
+          '设计线下或线上体验课、引导流程和互动工具。',
+          '把一次活动延伸成长期社群关系。',
+          '为教育、文化、创意团队建立可复制的体验模型。',
+        ],
+      },
+    ],
+  },
+  chess: {
+    eyebrow: 'C.H.E.S.S Model',
+    title: 'C.H.E.S.S 是 Folks Team 的增长与运营框架',
+    description:
+      '它把组织的增长拆成五个相互连接的层级：Content、Hub、Event、Store、Session。每一层都承担不同任务，但最终共同服务信任、学习、关系和业务成果。',
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: 'Content',
+        items: [
+          '把专业知识、案例、方法和观点转化为可持续传播的内容。',
+          '内容帮助受众理解你是谁、解决什么问题、为什么值得信任。',
+        ],
+      },
+      {
+        title: 'Hub',
+        items: [
+          '网站、知识库、社群入口和资源中心是所有内容和行动的集合点。',
+          'Hub 让用户知道从哪里开始，也让团队更容易维护信息。',
+        ],
+      },
+      {
+        title: 'Event, Store, Session',
+        items: [
+          'Event 创造真实互动和体验。',
+          'Store 把产品、项目和服务整理成清晰 offer。',
+          'Session 用顾问、课程、引导和复盘建立更深关系。',
+        ],
+      },
+    ],
+  },
+  compassio: {
+    eyebrow: 'Compassio',
+    title: 'Compassio 帮助人们命名、观察并理解情绪',
+    description:
+      'Compassio 是一套反思卡牌与引导工具，适合个人、学习小组、工作坊、促进者和社区使用。它可以成为 C.H.E.S.S 中内容、活动与关系层的重要连接点。',
+    image:
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '适用场景',
+        items: [
+          '团队复盘、教育工作坊、心理教育、社群对话和个人反思。',
+          '帮助参与者从抽象感受进入具体语言。',
+          '让安全、倾听和共同理解成为体验的一部分。',
+        ],
+      },
+      {
+        title: '和 C.H.E.S.S 的连接',
+        items: [
+          'Content：把情绪识读方法变成文章、视频和指南。',
+          'Event：用工作坊和体验课建立真实互动。',
+          'Session：用引导和复盘把一次体验延伸成长期支持。',
+        ],
+      },
+    ],
+  },
+  contact: {
+    eyebrow: 'Contact',
+    title: '和 Folks Team 开始一次具体讨论',
+    description:
+      '告诉我们你正在建设什么系统、遇到什么挑战、希望先从哪里开始。我们会通过 email 回复。',
+    image:
+      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '联系方式',
+        items: [
+          '地址：50 Quách Giai, Cát Lái, TPHCM',
+          'Email：contact@folksteam.com',
+          '适合讨论：C.H.E.S.S、Compassio、网站内容系统、工作坊和社群运营。',
+        ],
+      },
+    ],
+    contact: true,
+  },
+  member: {
+    eyebrow: 'Member',
+    title: '会员入口正在为 Folks Team 社群准备',
+    description:
+      '这里将用于课程资源、工具下载、工作坊资料、社群更新和项目协作。当前可先通过联系页面申请加入或了解合作方式。',
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '未来会包含',
+        items: [
+          '会员专属资源库与 Compassio 工具指南。',
+          '工作坊资料、案例模板和复盘表。',
+          '社群公告、活动报名和项目协作入口。',
+        ],
+      },
+    ],
+  },
+  blog: {
+    eyebrow: 'Blog',
+    title: '关于增长系统、内容、社群和组织学习的文章',
+    description:
+      '中文博客页面用于展示 Folks Team 的观点、案例、方法和运营笔记。后续通过 CMS 发布的文章可以逐步加入中文版本。',
+    image:
+      'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '内容分类',
+        items: [
+          'C.H.E.S.S：增长模型、系统设计和运营框架。',
+          'Community：社群、工作坊、学习体验和关系设计。',
+          'Operations：CMS、内容流程、数据和协作方式。',
+          'Insights：案例、观察和团队实践笔记。',
+        ],
+      },
+    ],
+    newsletter: true,
+  },
+  products: {
+    eyebrow: 'Products',
+    title: '产品与工具',
+    description:
+      'Folks Team 的产品围绕反思、学习、内容系统和社群实践展开，帮助团队更容易把方法落地。',
+    image:
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '核心产品',
+        items: [
+          'Compassio：情绪识读与反思卡牌。',
+          'C.H.E.S.S Toolkit：内容、Hub、活动、产品与 Session 的系统模板。',
+          'Workshop Kits：适合学习小组、教育组织和社群的引导工具包。',
+        ],
+      },
+    ],
+  },
+  insights: {
+    eyebrow: 'Insights',
+    title: '更深入的案例、方法和实践观察',
+    description:
+      'Insights 页面用于承载比博客更长、更结构化的内容，例如模型拆解、案例研究、项目复盘和 Table of Contents 友好的长文。',
+    image:
+      'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80',
+    sections: [
+      {
+        title: '推荐主题',
+        items: [
+          'Dancenter Vietnam 如何用 C.H.E.S.S 连接课程、活动、社群和品牌内容。',
+          'Compassio 如何从反思工具扩展为内容、工作坊与社群系统。',
+          '如何为教育与创意组织建立可持续的 Knowledge Base。',
+        ],
+      },
+    ],
+  },
+} as const;
+
+type PageKey = keyof typeof pages;
+const slug = (Astro.params.slug ?? 'about').split('/')[0] as PageKey;
+const page = pages[slug];
+const pageTitle = `${page.title} | ${SITE.title}`;
+---
+
+<MainLayout
+  title={pageTitle}
+  lang="zh-CN"
+  customDescription={page.description}
+  customOgTitle={page.title}
+>
+  <section class="pt-16 pb-12 md:pt-24">
+    <div class="grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+      <div>
+        <p class="text-sm font-black uppercase tracking-widest text-green-600">
+          {page.eyebrow}
+        </p>
+        <h1 class="mt-4 text-4xl font-black leading-tight text-neutral-900 md:text-6xl dark:text-neutral-50">
+          {page.title}
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-neutral-700 dark:text-neutral-300">
+          {page.description}
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-[28px] bg-neutral-900 shadow-2xl">
+        <img src={page.image} alt={page.title} class="h-full min-h-[360px] w-full object-cover opacity-90" />
+      </div>
+    </div>
+  </section>
+
+  <section class="grid gap-5 py-10 md:grid-cols-2">
+    {page.sections.map(section => (
+      <article class="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-700 dark:bg-neutral-900">
+        <h2 class="text-2xl font-black text-neutral-900 dark:text-neutral-50">{section.title}</h2>
+        <ul class="mt-5 space-y-3">
+          {section.items.map(item => (
+            <li class="flex gap-3 text-neutral-700 dark:text-neutral-300">
+              <span class="mt-2 h-2 w-2 flex-none rounded-full bg-green-600"></span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </section>
+
+  {'team' in page && (
+    <section id="team" class="py-12">
+      <div class="mb-8 max-w-3xl">
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600">
+          Team
+        </p>
+        <h2 class="mt-3 text-3xl font-black text-neutral-900 md:text-5xl dark:text-neutral-50">
+          Folks Team 的核心角色
+        </h2>
+      </div>
+      <div class="grid gap-5 md:grid-cols-4">
+        {page.team.map(([role, summary], index) => (
+          <article class="rounded-lg bg-white p-5 shadow-sm dark:bg-neutral-900">
+            <img
+              src={`https://images.unsplash.com/photo-${[
+                '1560250097-0b93528c311a',
+                '1494790108377-be9c29b29330',
+                '1507003211169-0a1dd7228f2d',
+                '1551836022-d5d88e9218df',
+              ][index]}?auto=format&fit=facearea&facepad=2&w=480&h=480&q=80`}
+              alt={role}
+              class="h-48 w-full rounded-lg object-cover"
+            />
+            <h3 class="mt-4 text-lg font-black text-neutral-900 dark:text-neutral-50">{role}</h3>
+            <p class="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{summary}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {'contact' in page && (
+    <section class="py-10">
+      <form id="zh-contact-form" class="grid gap-4 rounded-lg bg-white p-6 shadow-sm dark:bg-neutral-900">
+        <input type="hidden" name="locale" value="zh" />
+        <label class="grid gap-2 text-sm font-bold text-neutral-800 dark:text-neutral-200">
+          姓名
+          <input required name="name" class="rounded-lg border border-neutral-300 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950" />
+        </label>
+        <label class="grid gap-2 text-sm font-bold text-neutral-800 dark:text-neutral-200">
+          Email
+          <input required type="email" name="email" class="rounded-lg border border-neutral-300 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950" />
+        </label>
+        <label class="grid gap-2 text-sm font-bold text-neutral-800 dark:text-neutral-200">
+          你想讨论什么？
+          <textarea required name="message" rows="6" class="rounded-lg border border-neutral-300 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-950"></textarea>
+        </label>
+        <button type="submit" class="w-fit rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700">
+          发送
+        </button>
+        <p id="zh-contact-status" class="text-sm text-neutral-600 dark:text-neutral-400"></p>
+      </form>
+    </section>
+  )}
+
+  {'newsletter' in page && <NewsletterSignup locale="zh" />}
+
+  <section class="my-14 rounded-[28px] bg-neutral-950 p-8 text-white md:p-12">
+    <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <h2 class="text-3xl font-black md:text-5xl">
+        想把这个系统应用到你的组织？
+      </h2>
+      <a href="/zh/contact" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700">
+        联系 Folks Team
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  const form = document.getElementById('zh-contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('zh-contact-status');
+
+  form?.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!status) return;
+
+    status.textContent = '正在发送...';
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(
+        Array.from(new FormData(form).entries()) as string[][]
+      ),
+    });
+
+    status.textContent = response.ok
+      ? '已发送，我们会尽快回复。'
+      : '发送失败，请直接邮件 contact@folksteam.com。';
+    if (response.ok) form.reset();
+  });
+</script>

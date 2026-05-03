@@ -6,9 +6,14 @@ import type { CollectionEntry } from 'astro:content';
 const {
   insightEntry,
   insightLocale,
-  label = Astro.currentLocale === 'vi' ? '\u0110\u1ecdc th\u00eam' : 'Read more',
+  label =
+    Astro.currentLocale === 'vi'
+      ? 'Đọc thêm'
+      : Astro.currentLocale === 'zh'
+        ? '阅读更多'
+        : 'Read more',
 } = Astro.props;
-const insightSlug = insightEntry.id.replace(/^(en|vi|fr)\//, '');
+const insightSlug = insightEntry.id.replace(/^(en|vi|zh|fr)\//, '');
 
 interface Props {
   insightEntry: CollectionEntry<'insights'>;

@@ -30,6 +30,7 @@ export default defineConfig({
         locales: {
           en: 'en', // The `defaultLocale` value must present in `locales` keys
           vi: 'vi',
+          zh: 'zh',
         },
       },
     }),
@@ -46,6 +47,7 @@ export default defineConfig({
           lang: 'en',
         },
         vi: { label: 'Tiếng Việt', lang: 'vi' },
+        zh: { label: '中文', lang: 'zh-CN' },
       },
       // https://starlight.astro.build/guides/sidebar/
       sidebar: [
@@ -53,6 +55,7 @@ export default defineConfig({
           label: 'Compassio Quick Start',
           translations: {
             vi: 'Hướng dẫn bắt đầu nhanh',
+            zh: '快速入门指南',
           },
           autogenerate: { directory: 'guides' },
         },
@@ -60,16 +63,17 @@ export default defineConfig({
           label: 'Practice Tools',
           translations: {
             vi: 'Công cụ thực hành',
+            zh: '实践工具',
           },
           items: [
             {
               label: 'Compassio Guides',
-              translations: { vi: 'Hướng dẫn Compassio' },
+              translations: { vi: 'Hướng dẫn Compassio', zh: 'Compassio 指南' },
               link: 'tools/tool-guides/',
             },
             {
               label: 'Reflection Tool Care',
-              translations: { vi: 'Chăm sóc công cụ phản tư' },
+              translations: { vi: 'Chăm sóc công cụ phản tư', zh: '反思工具维护' },
               link: 'tools/equipment-care/',
             },
           ],
@@ -78,6 +82,7 @@ export default defineConfig({
           label: 'Compassio Programs',
           translations: {
             vi: 'Chương trình Compassio',
+            zh: 'Compassio 项目',
           },
           autogenerate: { directory: 'construction' },
         },
@@ -85,6 +90,7 @@ export default defineConfig({
           label: 'Advanced Facilitation',
           translations: {
             vi: 'Facilitation nâng cao',
+            zh: '高级引导',
           },
           autogenerate: { directory: 'advanced' },
         },

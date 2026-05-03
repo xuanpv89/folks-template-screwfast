@@ -1,10 +1,11 @@
 ---
 import LoginBtn from '@components/ui/buttons/LoginBtn.astro';
 
-const isVi = Astro.currentLocale === 'vi';
-const title = isVi ? 'Thành viên' : 'Member';
-const url = isVi ? '/vi/member' : '/member';
+const locale = Astro.currentLocale;
+const title =
+  locale === 'vi' ? 'Thành viên' : locale === 'zh' ? '会员' : 'Member';
+const url =
+  locale === 'vi' ? '/vi/member' : locale === 'zh' ? '/zh/member' : '/member';
 ---
 
-{/* Login Button */}
 <LoginBtn title={title} url={url} />
