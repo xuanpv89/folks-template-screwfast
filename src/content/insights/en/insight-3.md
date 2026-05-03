@@ -1,37 +1,78 @@
 ---
-title: 'The Impact of Sustainable Practices'
-description: 'Discover how ScrewFast is leading the charge in promoting sustainability within the construction industry'
-cardImage: '@/images/insights/insight-3.avif'
-cardImageAlt: 'Top view mechanical tools arrangement'
+title: 'Emotional Compass Makes Reflection Easier'
+description: 'A small reflective tool can help groups name emotions, slow down reactions, and choose better next steps.'
+cardImage: '@/images/emotion-compass.jpg'
+cardImageAlt: 'Emotional Compass reflective card deck'
 ---
 
-The construction industry casts a long shadow. While it provides the essential framework for our lives, its environmental impact is undeniable. From resource depletion and pollution to energy consumption and waste generation, traditional construction practices take a toll on our planet. But a revolution is brewing, and at the forefront is ScrewFast, a company demonstrably changing the game with its commitment to sustainable practices.
+Groups often struggle to talk about emotions because the language is either too vague or too intense. Emotional Compass creates a softer starting point.
 
-## The Scope of the Challenge
+Instead of asking someone to explain everything immediately, the tool helps them choose a word, image, or prompt that gives the conversation shape. That small structure can make sharing feel safer and more specific.
 
-Imagine this: the construction industry is responsible for a staggering 36% of global energy use and a whopping 40% of total CO2 emissions [1]. That's not all. Buildings and construction are major contributors to solid waste generation, accounting for up to 40%, and gobble up 30% of the world's raw materials [1]. These statistics paint a clear picture: business as usual is simply unsustainable.
+## The Problem With Emotional Conversations
 
-## ScrewFast: Building with Responsibility
+Many groups want more honest conversations, but they do not always have the structure to hold them well.
 
-ScrewFast is a company built on the foundation of responsibility. They understand the environmental cost of construction and are taking decisive action to change course. Their commitment to sustainability permeates every aspect of their operations, from the materials they use to the construction processes they implement.
+Without structure, one person may overshare, another may withdraw, and the facilitator may feel responsible for fixing everything. Emotional Compass does not replace care, training, or facilitation, but it gives the group a shared starting point.
 
-- **Material Innovation:** ScrewFast prioritizes the use of recycled and recyclable materials. This not only reduces reliance on virgin resources but also lessens the environmental burden associated with resource extraction.
-- **Energy Efficiency:** ScrewFast champions energy-efficient construction methods. This might involve incorporating high-performance insulation materials, optimizing building design for natural light and ventilation, or even integrating renewable energy sources like solar panels. The result? Buildings that require less energy to operate, leading to a significant reduction in greenhouse gas emissions.
-- **Waste Reduction:** ScrewFast meticulously plans and executes projects to minimize waste generation. This can involve using prefabricated components, employing modular construction techniques, and implementing meticulous waste segregation and recycling programs. By minimizing waste, ScrewFast conserves resources and reduces the environmental impact associated with landfills.
-- **Sustainable Sourcing:** ScrewFast takes a responsible approach to sourcing its materials. They prioritize working with suppliers who share their commitment to sustainability. This ensures that the environmental footprint is considered throughout the entire supply chain.
+### Vague Language
 
-## The Impact of Change
+People often say "I feel bad", "I am stressed", or "I am fine" because more precise language is not available in the moment.
 
-ScrewFast's dedication to sustainable practices extends far beyond their company walls. The ripple effect of their actions is substantial:
+### Fast Reactions
 
-- **Environmental Benefits:** By promoting resource conservation, reduced energy consumption, and minimized waste, ScrewFast contributes significantly to a healthier planet. This translates to cleaner air, a more stable climate, and the preservation of natural resources for future generations.
-- **Economic Advantages:** Sustainable construction practices often lead to long-term economic benefits. Energy-efficient buildings have lower operational costs, and sustainable materials can sometimes be surprisingly cost-competitive. ScrewFast demonstrates that being green can also be good for the bottom line.
-- **Social Responsibility:** ScrewFast recognizes that sustainability encompasses more than just the environment. They are committed to creating safe and healthy work environments for their employees and fostering positive relationships with the communities in which they operate.
+When emotions move quickly, people may defend, explain, or avoid before they understand what is happening.
 
-## Leading by Example
+### Uneven Safety
 
-ScrewFast isn't just talking the talk, they're walking the walk. Their commitment to sustainability is evident in every project they undertake. By showcasing the tangible benefits of sustainable construction, ScrewFast is inspiring a paradigm shift within the industry. They are paving the way for a future where buildings are not only functional but also environmentally responsible.
+Some people are comfortable sharing. Others need a smaller step before they speak.
 
-## The Road Ahead
+## How Emotional Compass Helps
 
-The construction industry is at a crossroads. ScrewFast stands as a beacon, illuminating the path towards a more sustainable future. By embracing innovative practices and prioritizing environmental responsibility, ScrewFast is not just building structures; they are building a better tomorrow. As more companies follow suit, the impact will be profound. A greener construction industry signifies a healthier planet for all.
+The tool works because it lowers the pressure of the first sentence.
+
+### Naming
+
+Choosing a card or word gives the feeling a name. Naming does not solve the situation, but it makes the conversation less blurry.
+
+### Observing
+
+Once a feeling is named, the group can observe what it is connected to: a need, event, memory, boundary, hope, or tension.
+
+### Navigating
+
+The final step is not to analyze forever. It is to choose a next action: ask for support, rest, clarify, apologize, continue, pause, or celebrate.
+
+## Use Cases
+
+Emotional Compass can be used in many C.H.E.S.S contexts.
+
+### Content
+
+Cards can inspire reflective prompts, videos, articles, journaling questions, and discussion starters.
+
+### Hub
+
+Communities can use cards for weekly check-ins, group reflection, or member support rituals.
+
+### Event
+
+Workshops can use the deck to open conversations, close sessions, or help participants process a shared experience.
+
+### Session
+
+Facilitators, coaches, and educators can use the deck in smaller settings where personal context matters more.
+
+## Facilitation Principles
+
+Emotional tools should be used with care.
+
+- Give people the right to pass.
+- Do not force a personal story.
+- Ask one question at a time.
+- Move from naming to needs and next steps.
+- Close with grounding, not intensity.
+
+## The Takeaway
+
+Emotional Compass is powerful because it is small. It creates just enough structure for people to begin, and sometimes beginning is the hardest part of reflection.

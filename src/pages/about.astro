@@ -3,32 +3,54 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Icon from '@components/ui/icons/Icon.astro';
 import { SITE } from '@data/constants';
 
+const groupPhoto =
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85';
+
 const values = [
   ['Clarity', 'We turn broad ideas into practical maps, language, and next steps.'],
   ['Human systems', 'Growth should serve people, relationships, and community trust.'],
   ['Useful craft', 'We build content, tools, services, and workflows that teams can actually use.'],
 ];
 
-const team = [
+const operatingModel = [
+  ['Research', 'Listen to the audience, map current touchpoints, and find where trust is already forming.'],
+  ['Design', 'Shape the C.H.E.S.S system: Content, Hub, Event, Store, and Session.'],
+  ['Build', 'Create the actual pages, resources, playbooks, offers, and community rituals.'],
+  ['Improve', 'Review signals, simplify friction, and turn feedback into the next version of the system.'],
+];
+
+const teamRoles = [
   {
-    name: 'Strategy Team',
+    title: 'Growth Strategist',
     role: 'C.H.E.S.S architecture',
-    bio: 'Maps positioning, audience journeys, growth loops, and service systems into a clear operating model.',
+    image:
+      'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Owns positioning, audience journeys, growth loops, service design, and the overall strategic map.',
   },
   {
-    name: 'Content Team',
-    role: 'Editorial and media',
-    bio: 'Designs articles, video concepts, learning resources, and reflective prompts that make ideas easier to understand.',
+    title: 'Content Lead',
+    role: 'Editorial and media systems',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Turns strategy into articles, videos, guides, prompts, scripts, and repeatable publishing workflows.',
   },
   {
-    name: 'Community Team',
-    role: 'Hub and experience design',
-    bio: 'Shapes workshops, events, member journeys, and feedback loops so people feel connected and supported.',
+    title: 'Community Facilitator',
+    role: 'Hub, events, and member experience',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Designs check-ins, workshops, feedback loops, participation pathways, and safer group conversations.',
   },
   {
-    name: 'Product Team',
-    role: 'Compassio and tools',
-    bio: 'Develops practical tools such as Emotional Compass and structured resources for learning groups and facilitators.',
+    title: 'Product Designer',
+    role: 'Compassio and reflective tools',
+    image:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Shapes Emotional Compass, facilitation resources, toolkits, and product experiences for real practice.',
   },
 ];
 
@@ -59,98 +81,117 @@ const metaDescription =
       <h1 class="mt-4 text-4xl font-black tracking-tight text-neutral-900 md:text-6xl dark:text-neutral-100">
         We build growth systems with a human center.
       </h1>
-    </div>
-    <div class="flex flex-col justify-end">
-      <p class="text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+      <p class="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
         Folks Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.
       </p>
-      <p class="mt-5 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
-        We also develop Compassio and Emotional Compass, tools that help people name emotions, reflect with care, and build better conversations.
-      </p>
+    </div>
+    <div class="overflow-hidden rounded-2xl bg-neutral-900 shadow-xl">
+      <img
+        src={groupPhoto}
+        alt="Team workshop and strategy discussion"
+        class="h-full min-h-[420px] w-full object-cover"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto grid max-w-[85rem] gap-10 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8 2xl:max-w-full">
+      <div>
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+          Our Story
+        </p>
+        <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          From growth tactics to systems people can actually use.
+        </h2>
+      </div>
+      <div class="space-y-5 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        <p>
+          Folks Team was created for teams who want growth without losing the human meaning behind the work. We believe strategy should not live in slides only. It should become content people understand, community rituals people return to, offers people can choose clearly, and sessions that create deeper change.
+        </p>
+        <p>
+          Compassio and Emotional Compass extend that belief into emotional literacy. They help people name what they feel, reflect with more care, and build conversations that are specific enough to be useful and gentle enough to be safe.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="grid gap-6 md:grid-cols-3">
+      {values.map(([title, body]) => (
+        <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
+          <span class="text-yellow-600 dark:text-yellow-400"><Icon name="checkCircle" /></span>
+          <h2 class="mt-4 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h2>
+          <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
     <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
-      <div class="grid gap-6 md:grid-cols-3">
-        {values.map(([title, body]) => (
-          <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
-            <span class="text-yellow-600 dark:text-yellow-400"><Icon name="checkCircle" /></span>
-            <h2 class="mt-4 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h2>
-            <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
-    <div class="grid gap-10 lg:grid-cols-[.85fr_1.15fr]">
-      <div>
+      <div class="max-w-3xl">
         <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
-          What We Do
+          How We Work
         </p>
         <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
-          Strategy, content, community, and tools working together.
-        </h2>
-      </div>
-      <div class="grid gap-4">
-        {[
-          ['C.H.E.S.S consulting', 'We help map complete growth ecosystems, from content to community to offers and high-value sessions.'],
-          ['Compassio products', 'We create reflective tools and practices for emotional literacy, workshops, learning groups, and facilitators.'],
-          ['Content and docs', 'We produce articles, guides, video ideas, and resource hubs that make knowledge easier to use.'],
-          ['Community experiences', 'We design events, workshops, feedback loops, and participation pathways that build belonging.'],
-        ].map(([title, body]) => (
-          <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
-            <h3 class="text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h3>
-            <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="team" class="bg-neutral-950 px-4 py-14 text-white">
-    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
-      <div class="max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-widest text-yellow-400">
-          Team / Đội ngũ
-        </p>
-        <h2 class="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-          A cross-functional team for strategy, content, community, and products.
+          A practical operating model for C.H.E.S.S.
         </h2>
       </div>
       <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {team.map(member => (
-          <article class="rounded-xl bg-white/10 p-6">
-            <div class="flex size-12 items-center justify-center rounded-full bg-yellow-500 text-lg font-black text-white">
-              {member.name.charAt(0)}
-            </div>
-            <h3 class="mt-5 text-xl font-black text-white">{member.name}</h3>
-            <p class="mt-1 text-sm font-bold text-yellow-300">{member.role}</p>
-            <p class="mt-4 text-sm leading-6 text-neutral-300">{member.bio}</p>
+        {operatingModel.map(([title, body], index) => (
+          <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+            <span class="flex size-10 items-center justify-center rounded-full bg-yellow-500 text-sm font-black text-white">
+              {index + 1}
+            </span>
+            <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h3>
+            <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
-    <div class="rounded-2xl bg-neutral-100 p-8 dark:bg-neutral-900">
-      <div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
-        <div>
-          <h2 class="text-3xl font-black tracking-tight text-neutral-900 dark:text-neutral-100">
-            Work with Folks Team
-          </h2>
-          <p class="mt-4 text-neutral-600 dark:text-neutral-400">
-            Visit us or send a note. We can help you shape a C.H.E.S.S system, Compassio workshop, content hub, or community experience.
-          </p>
-        </div>
-        <div class="grid gap-3 text-neutral-700 dark:text-neutral-300">
-          <p><strong>Address:</strong> 50 Quach Giai, Cat Lai, Ho Chi Minh City</p>
-          <p><strong>Email:</strong> <a class="text-yellow-600 dark:text-yellow-400" href="mailto:contact@folksteam.com">contact@folksteam.com</a></p>
-          <p><a class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600" href="/contact">Contact us</a></p>
-        </div>
+  <section id="team" class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="max-w-3xl">
+      <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        Team / Roles
+      </p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        The core roles behind Folks Team.
+      </h2>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Folks works as a compact cross-functional team. Each role owns a different part of the system, but the work stays connected through one shared C.H.E.S.S map.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {teamRoles.map(member => (
+        <article class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+          <img src={member.image} alt={`${member.title} portrait`} class="aspect-square w-full object-cover" loading="lazy" />
+          <div class="p-6">
+            <h3 class="text-xl font-black text-neutral-900 dark:text-neutral-100">{member.title}</h3>
+            <p class="mt-1 text-sm font-bold text-yellow-600 dark:text-yellow-400">{member.role}</p>
+            <p class="mt-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{member.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 px-4 py-14 text-white">
+    <div class="mx-auto grid max-w-[85rem] gap-8 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-8 2xl:max-w-full">
+      <div>
+        <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+          Work with Folks Team
+        </h2>
+        <p class="mt-4 text-neutral-300">
+          We can help you shape a C.H.E.S.S system, Compassio workshop, content hub, case study, or community experience.
+        </p>
+      </div>
+      <div class="grid gap-3 text-neutral-300">
+        <p><strong class="text-white">Address:</strong> 50 Quach Giai, Cat Lai, Ho Chi Minh City</p>
+        <p><strong class="text-white">Email:</strong> <a class="text-yellow-300" href="mailto:contact@folksteam.com">contact@folksteam.com</a></p>
+        <p><a class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600" href="/contact">Contact us</a></p>
       </div>
     </div>
   </section>

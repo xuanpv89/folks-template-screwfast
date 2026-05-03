@@ -3,17 +3,55 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Icon from '@components/ui/icons/Icon.astro';
 import { SITE } from '@data/constants';
 
+const groupPhoto =
+  'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=85';
+
 const values = [
   ['Rõ ràng', 'Biến ý tưởng rộng thành bản đồ, ngôn ngữ và bước tiếp theo cụ thể.'],
   ['Hệ thống có tính người', 'Tăng trưởng cần phục vụ con người, quan hệ và niềm tin cộng đồng.'],
   ['Thực dụng', 'Xây nội dung, công cụ, dịch vụ và workflow mà đội ngũ có thể dùng thật.'],
 ];
 
-const team = [
-  ['Strategy Team', 'Kiến trúc C.H.E.S.S', 'Xây positioning, hành trình audience, growth loop và mô hình dịch vụ.'],
-  ['Content Team', 'Editorial và media', 'Thiết kế bài viết, video, tài liệu học tập và prompt phản tư.'],
-  ['Community Team', 'Hub và trải nghiệm', 'Thiết kế workshop, event, member journey và vòng phản hồi.'],
-  ['Product Team', 'Compassio và công cụ', 'Phát triển Emotional Compass và tài nguyên cho facilitator, nhóm học tập.'],
+const operatingModel = [
+  ['Research', 'Lắng nghe audience, map điểm chạm hiện tại và tìm nơi niềm tin đang hình thành.'],
+  ['Design', 'Thiết kế hệ thống C.H.E.S.S: Content, Hub, Event, Store và Session.'],
+  ['Build', 'Tạo page, tài nguyên, playbook, offer và ritual cộng đồng có thể vận hành.'],
+  ['Improve', 'Đọc tín hiệu, giảm ma sát và biến feedback thành phiên bản tiếp theo.'],
+];
+
+const teamRoles = [
+  {
+    title: 'Growth Strategist',
+    role: 'Kiến trúc C.H.E.S.S',
+    image:
+      'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Phụ trách positioning, audience journey, growth loop, service design và bản đồ chiến lược tổng thể.',
+  },
+  {
+    title: 'Content Lead',
+    role: 'Editorial và media system',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Biến chiến lược thành bài viết, video, guide, prompt, script và workflow xuất bản lặp lại.',
+  },
+  {
+    title: 'Community Facilitator',
+    role: 'Hub, event và member experience',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Thiết kế check-in, workshop, feedback loop, hành trình tham gia và cuộc trò chuyện nhóm an toàn hơn.',
+  },
+  {
+    title: 'Product Designer',
+    role: 'Compassio và công cụ phản tư',
+    image:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=facearea&facepad=2&w=600&h=600&q=85',
+    summary:
+      'Phát triển Emotional Compass, tài nguyên điều phối, toolkit và trải nghiệm sản phẩm cho thực hành thật.',
+  },
 ];
 
 const pageTitle = `Về chúng tôi | ${SITE.title}`;
@@ -35,21 +73,45 @@ const metaDescription =
       <h1 class="mt-4 text-4xl font-black tracking-tight text-neutral-900 md:text-6xl dark:text-neutral-100">
         Chúng tôi xây hệ thống tăng trưởng lấy con người làm trung tâm.
       </h1>
-    </div>
-    <div class="flex flex-col justify-end">
-      <p class="text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+      <p class="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
         Folks Team giúp team, cộng đồng, educator và builder biến ý tưởng rời rạc thành hệ thống bền vững dựa trên C.H.E.S.S: Content, Hub, Event, Store và Session.
       </p>
-      <p class="mt-5 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
-        Chúng tôi cũng phát triển Compassio và Emotional Compass để hỗ trợ emotional literacy, phản tư và đối thoại sâu hơn.
-      </p>
+    </div>
+    <div class="overflow-hidden rounded-2xl bg-neutral-900 shadow-xl">
+      <img
+        src={groupPhoto}
+        alt="Hình chụp nhóm trong buổi workshop chiến lược"
+        class="h-full min-h-[420px] w-full object-cover"
+        loading="eager"
+      />
     </div>
   </section>
 
   <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
-    <div class="mx-auto grid max-w-[85rem] gap-6 sm:px-6 md:grid-cols-3 lg:px-8 2xl:max-w-full">
+    <div class="mx-auto grid max-w-[85rem] gap-10 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8 2xl:max-w-full">
+      <div>
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+          Câu chuyện
+        </p>
+        <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          Từ tactic rời rạc đến hệ thống có thể dùng thật.
+        </h2>
+      </div>
+      <div class="space-y-5 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        <p>
+          Folks Team được tạo ra cho những đội ngũ muốn tăng trưởng mà không đánh mất ý nghĩa con người phía sau công việc. Strategy không nên chỉ nằm trong slide. Nó cần trở thành content dễ hiểu, ritual cộng đồng, offer rõ ràng và session tạo thay đổi sâu hơn.
+        </p>
+        <p>
+          Compassio và Emotional Compass mở rộng tinh thần đó vào emotional literacy, giúp mọi người gọi tên cảm xúc, phản tư với sự chăm sóc và trò chuyện cụ thể hơn.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="grid gap-6 md:grid-cols-3">
       {values.map(([title, body]) => (
-        <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+        <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-800">
           <span class="text-yellow-600 dark:text-yellow-400"><Icon name="checkCircle" /></span>
           <h2 class="mt-4 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h2>
           <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
@@ -58,39 +120,69 @@ const metaDescription =
     </div>
   </section>
 
-  <section id="team" class="bg-neutral-950 px-4 py-14 text-white">
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
     <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
       <div class="max-w-3xl">
-        <p class="text-sm font-black uppercase tracking-widest text-yellow-400">
-          Team / Đội ngũ
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+          Cách chúng tôi làm việc
         </p>
-        <h2 class="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-          Đội ngũ liên chức năng về strategy, content, community và product.
+        <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+          Một operating model thực dụng cho C.H.E.S.S.
         </h2>
       </div>
       <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {team.map(([name, role, bio]) => (
-          <article class="rounded-xl bg-white/10 p-6">
-            <div class="flex size-12 items-center justify-center rounded-full bg-yellow-500 text-lg font-black text-white">
-              {name.charAt(0)}
-            </div>
-            <h3 class="mt-5 text-xl font-black text-white">{name}</h3>
-            <p class="mt-1 text-sm font-bold text-yellow-300">{role}</p>
-            <p class="mt-4 text-sm leading-6 text-neutral-300">{bio}</p>
+        {operatingModel.map(([title, body], index) => (
+          <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+            <span class="flex size-10 items-center justify-center rounded-full bg-yellow-500 text-sm font-black text-white">
+              {index + 1}
+            </span>
+            <h3 class="mt-5 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h3>
+            <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
-    <div class="rounded-2xl bg-neutral-100 p-8 dark:bg-neutral-900">
-      <h2 class="text-3xl font-black tracking-tight text-neutral-900 dark:text-neutral-100">
-        Liên hệ Folks Team
+  <section id="team" class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="max-w-3xl">
+      <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        Team / Đội ngũ
+      </p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-neutral-900 md:text-5xl dark:text-neutral-100">
+        Các vị trí cốt lõi phía sau Folks Team.
       </h2>
-      <div class="mt-4 grid gap-3 text-neutral-700 dark:text-neutral-300">
-        <p><strong>Địa chỉ:</strong> 50 Quách Giai, Cát Lái, TPHCM</p>
-        <p><strong>Email:</strong> <a class="text-yellow-600 dark:text-yellow-400" href="mailto:contact@folksteam.com">contact@folksteam.com</a></p>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Folks vận hành như một đội ngũ liên chức năng gọn. Mỗi vị trí sở hữu một phần khác nhau của hệ thống, nhưng tất cả được nối bằng một bản đồ C.H.E.S.S chung.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {teamRoles.map(member => (
+        <article class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+          <img src={member.image} alt={`Chân dung ${member.title}`} class="aspect-square w-full object-cover" loading="lazy" />
+          <div class="p-6">
+            <h3 class="text-xl font-black text-neutral-900 dark:text-neutral-100">{member.title}</h3>
+            <p class="mt-1 text-sm font-bold text-yellow-600 dark:text-yellow-400">{member.role}</p>
+            <p class="mt-4 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{member.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-neutral-950 px-4 py-14 text-white">
+    <div class="mx-auto grid max-w-[85rem] gap-8 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-8 2xl:max-w-full">
+      <div>
+        <h2 class="text-3xl font-black tracking-tight md:text-5xl">
+          Liên hệ Folks Team
+        </h2>
+        <p class="mt-4 text-neutral-300">
+          Chúng tôi có thể hỗ trợ bạn thiết kế hệ thống C.H.E.S.S, workshop Compassio, content hub, case study hoặc trải nghiệm cộng đồng.
+        </p>
+      </div>
+      <div class="grid gap-3 text-neutral-300">
+        <p><strong class="text-white">Địa chỉ:</strong> 50 Quách Giai, Cát Lái, TPHCM</p>
+        <p><strong class="text-white">Email:</strong> <a class="text-yellow-300" href="mailto:contact@folksteam.com">contact@folksteam.com</a></p>
         <p><a class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600" href="/vi/contact">Liên hệ</a></p>
       </div>
     </div>
