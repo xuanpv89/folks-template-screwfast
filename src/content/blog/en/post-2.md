@@ -8,6 +8,7 @@ pubDate: 2025-07-14
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop for building a structured growth system'
 readTime: 5
+category: 'Growth Systems'
 tags: ['strategy', 'systems', 'execution']
 contents:
   [

@@ -8,6 +8,7 @@ pubDate: 2026-05-01
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Dashboard phân tích tăng trưởng'
 readTime: 5
+category: 'Marketing Models'
 tags: ['frameworks', 'marketing', 'C.H.E.S.S']
 contents:
   [

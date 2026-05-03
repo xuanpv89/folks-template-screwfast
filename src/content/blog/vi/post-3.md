@@ -9,6 +9,7 @@ pubDate: 2024-02-18
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Dashboard đo lường tăng trưởng'
 readTime: 3
+category: 'Operations'
 tags: ['tools', 'operations', 'systems']
 contents:
   [

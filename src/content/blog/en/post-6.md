@@ -8,6 +8,7 @@ pubDate: 2026-05-02
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop session for community engagement'
 readTime: 4
+category: 'Growth Systems'
 tags: ['growth systems', 'community', 'strategy']
 contents:
   [

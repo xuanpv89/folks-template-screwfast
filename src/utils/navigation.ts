@@ -1,9 +1,12 @@
 const navBarLinks = [
-  { name: 'Homes', url: '/' },
+  { name: 'Home', url: '/' },
   {
     name: 'C.H.E.S.S',
     url: '/chess',
-    children: [{ name: 'Compassio', url: '/compassio' }],
+    children: [
+      { name: 'Compassio', url: '/compassio' },
+      { name: 'Case Study', url: '/case-studies/dancenter-chess' },
+    ],
   },
   { name: 'Services', url: '/services' },
   { name: 'Products', url: '/products' },
@@ -14,46 +17,36 @@ const navBarLinks = [
 
 const footerLinks = [
   {
-    section: 'Product',
+    section: 'Explore',
     links: [
-      { name: 'Framework', url: '/products' },
-      { name: 'Systems', url: '#features' },
-      { name: 'Security', url: '#' },
-      { name: 'Team', url: '#' },
-      { name: 'Enterprise', url: '#' },
+      { name: 'C.H.E.S.S Model', url: '/chess' },
+      { name: 'Compassio', url: '/compassio' },
+      { name: 'Products', url: '/products' },
+      { name: 'Services', url: '/services' },
       { name: 'Case Studies', url: '/case-studies/dancenter-chess' },
-      { name: 'Pricing', url: '#' },
     ],
   },
   {
     section: 'Resources',
     links: [
-      { name: 'Platform', url: '#' },
-      { name: 'Developer API', url: '#' },
-      { name: 'Partners', url: '#' },
-      { name: 'Guides', url: '/welcome-to-docs/' },
-      { name: 'Community', url: '#' },
-    ],
-  },
-  {
-    section: 'Support',
-    links: [
-      { name: 'Docs', url: '/welcome-to-docs/' },
-      { name: 'Forum', url: '#' },
-      { name: 'Professional Services', url: '/services' },
-      { name: 'Workflows', url: '#' },
-      { name: 'Status', url: '#' },
-      { name: 'Contact', url: '/contact' },
+      { name: 'Blog', url: '/blog' },
+      { name: 'Guides', url: '/guides/getting-started/' },
+      { name: 'Docs Home', url: '/welcome-to-docs/' },
     ],
   },
   {
     section: 'Company',
     links: [
-      { name: 'About', url: '#' },
-      { name: 'Blog', url: '/blog' },
-      { name: 'Careers', url: '#' },
-      { name: 'Press', url: '#' },
-      { name: 'Impact', url: '#' },
+      { name: 'About Us', url: '/about' },
+      { name: 'Team', url: '/about#team' },
+      { name: 'Contact', url: '/contact' },
+    ],
+  },
+  {
+    section: 'Contact',
+    links: [
+      { name: 'contact@folksteam.com', url: 'mailto:contact@folksteam.com' },
+      { name: '50 Quach Giai, Cat Lai, HCMC', url: '/contact' },
     ],
   },
 ];

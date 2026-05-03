@@ -3,67 +3,60 @@ const navBarLinks = [
   {
     name: 'C.H.E.S.S',
     url: '/vi/chess',
-    children: [{ name: 'Compassio', url: '/vi/compassio' }],
+    children: [
+      { name: 'Compassio', url: '/vi/compassio' },
+      { name: 'Case Study', url: '/case-studies/dancenter-chess' },
+    ],
   },
   { name: 'Dịch vụ', url: '/vi/services' },
   { name: 'Sản phẩm', url: '/vi/products' },
   { name: 'Blog', url: '/vi/blog' },
-  { name: 'Help', url: '/vi/guides/getting-started/' },
+  { name: 'Hướng dẫn', url: '/vi/guides/getting-started/' },
   { name: 'Liên hệ', url: '/vi/contact' },
 ];
 
 const footerLinks = [
   {
-    section: 'Sản phẩm',
+    section: 'Khám phá',
     links: [
-      { name: 'Framework', url: '/vi/products' },
-      { name: 'Hệ thống', url: '/vi#features' },
-      { name: 'Bảo mật', url: '#' },
-      { name: 'Đội ngũ', url: '#' },
-      { name: 'Doanh nghiệp', url: '#' },
+      { name: 'Mô hình C.H.E.S.S', url: '/vi/chess' },
+      { name: 'Compassio', url: '/vi/compassio' },
+      { name: 'Sản phẩm', url: '/vi/products' },
+      { name: 'Dịch vụ', url: '/vi/services' },
       { name: 'Case Studies', url: '/case-studies/dancenter-chess' },
-      { name: 'Pricing', url: '#' },
     ],
   },
   {
     section: 'Tài nguyên',
     links: [
-      { name: 'Nền tảng', url: '#' },
-      { name: 'Developer API', url: '#' },
-      { name: 'Đối tác', url: '#' },
-      { name: 'Hướng dẫn', url: '/vi/welcome-to-docs/' },
-      { name: 'Cộng đồng', url: '#' },
-    ],
-  },
-  {
-    section: 'Hỗ trợ',
-    links: [
-      { name: 'Docs', url: '/vi/welcome-to-docs/' },
-      { name: 'Forum', url: '#' },
-      { name: 'Dịch vụ', url: '/vi/services' },
-      { name: 'Workflows', url: '#' },
-      { name: 'Trạng thái', url: '#' },
-      { name: 'Liên hệ', url: '/vi/contact' },
+      { name: 'Blog', url: '/vi/blog' },
+      { name: 'Hướng dẫn', url: '/vi/guides/getting-started/' },
+      { name: 'Docs Home', url: '/vi/welcome-to-docs/' },
     ],
   },
   {
     section: 'Công ty',
     links: [
-      { name: 'About', url: '#' },
-      { name: 'Blog', url: '/vi/blog' },
-      { name: 'Careers', url: '#' },
-      { name: 'Press', url: '#' },
-      { name: 'Impact', url: '#' },
+      { name: 'Về chúng tôi', url: '/vi/about' },
+      { name: 'Đội ngũ', url: '/vi/about#team' },
+      { name: 'Liên hệ', url: '/vi/contact' },
+    ],
+  },
+  {
+    section: 'Liên hệ',
+    links: [
+      { name: 'contact@folksteam.com', url: 'mailto:contact@folksteam.com' },
+      { name: '50 Quách Giai, Cát Lái, TPHCM', url: '/vi/contact' },
     ],
   },
 ];
 
 const socialLinks = {
-  facebook: '#',
-  x: '#',
+  facebook: 'https://www.facebook.com/',
+  x: 'https://twitter.com/',
   github: 'https://github.com/xuanpv89/folks-template-screwfast',
-  google: '#',
-  slack: '#',
+  google: 'https://www.google.com/',
+  slack: 'https://slack.com/',
 };
 
 export default {

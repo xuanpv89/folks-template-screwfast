@@ -11,7 +11,7 @@ import Icon from '@components/ui/icons/Icon.astro';
 // Define the variables that will be used in this component
 const title: string = 'Contact us';
 const subTitle: string =
-  "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
+  "Have questions or want to discuss a project? Reach out, and let's design the right growth system together.";
 const formTitle: string = 'Fill in the form below';
 const formSubTitle: string = "We'll get back to you in 1-2 business days.";
 ---
@@ -82,10 +82,10 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
           heading="Knowledgebase"
-          content="Browse through all of our knowledgebase articles."
+          content="Browse our guides and C.H.E.S.S resources."
           isLinkVisible={true}
           linkTitle="Visit guides & tutorials"
-          linkURL="#"
+          linkURL="/welcome-to-docs/"
           isArrowVisible={true}
           ><Icon name="question" />
         </ContactIconBlock>
@@ -95,16 +95,16 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           content="Explore our FAQ for quick, clear answers to common queries."
           isLinkVisible={true}
           linkTitle="Visit FAQ"
-          linkURL="#"
+          linkURL="/#faq"
           isArrowVisible={true}
           ><Icon name="chatBubble" />
         </ContactIconBlock>
 
         <ContactIconBlock
           heading="Visit our office"
-          content="UK ScrewFast"
+          content="Folks Team"
           isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          addressContent="50 Quach Giai, Cat Lai, Ho Chi Minh City"
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
@@ -112,8 +112,8 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           heading="Contact us by email"
           content="Prefer the written word? Drop us an email at"
           isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
+          linkTitle="contact@folksteam.com"
+          linkURL="mailto:contact@folksteam.com"
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
       </div>

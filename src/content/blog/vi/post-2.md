@@ -8,6 +8,7 @@ pubDate: 2024-02-10
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Workshop xây dựng hệ thống'
 readTime: 5
+category: 'Growth Systems'
 tags: ['strategy', 'workflow', 'growth']
 contents:
   [

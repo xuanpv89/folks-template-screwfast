@@ -17,7 +17,7 @@ const docs = '/' + locale + 'welcome-to-docs/';
 
 <style>
   .site-title {
-    gap: 0.9rem;
+    gap: 0.75rem;
     margin-right: 1rem;
   }
   .site-title a {
@@ -42,8 +42,28 @@ const docs = '/' + locale + 'welcome-to-docs/';
     letter-spacing: 0;
   }
   .docs-link {
+    margin-left: 0.15rem;
     font-size: 1.65rem;
     font-weight: 800;
+  }
+
+  @media (max-width: 40rem) {
+    .site-title {
+      gap: 0.55rem;
+      margin-right: 0.5rem;
+    }
+    .brand-mark {
+      width: 2rem;
+      height: 2rem;
+    }
+    .brand-name {
+      margin-left: 0.45rem;
+      font-size: 1.05rem;
+    }
+    .docs-link {
+      margin-left: 0.35rem;
+      font-size: 1.25rem;
+    }
   }
 
   .flex {

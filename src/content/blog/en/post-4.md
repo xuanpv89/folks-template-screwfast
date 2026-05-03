@@ -8,6 +8,7 @@ pubDate: 2025-07-12
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team brand mark for growth culture'
 readTime: 4
+category: 'Brand & Culture'
 tags: ['culture', 'creativity', 'growth']
 contents:
   [

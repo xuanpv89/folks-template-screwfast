@@ -8,6 +8,7 @@ pubDate: 2026-05-03
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Team mapping a community growth system'
 readTime: 5
+category: 'C.H.E.S.S'
 tags: ['C.H.E.S.S', 'marketing', 'community']
 contents:
   [

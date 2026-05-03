@@ -8,6 +8,7 @@ pubDate: 2026-04-27
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team logo'
 readTime: 3
+category: 'Strategy'
 tags: ['C.H.E.S.S', 'growth', 'systems thinking']
 contents:
   [

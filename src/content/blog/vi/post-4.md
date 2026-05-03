@@ -8,6 +8,7 @@ pubDate: 2026-05-03
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Đội nhóm xây bản đồ tăng trưởng cộng đồng'
 readTime: 5
+category: 'C.H.E.S.S'
 tags: ['C.H.E.S.S', 'marketing', 'community']
 contents:
   [

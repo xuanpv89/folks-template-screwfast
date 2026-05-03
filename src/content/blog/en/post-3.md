@@ -8,6 +8,7 @@ pubDate: 2025-07-13
 cardImage: '@/images/growth-analytics.jpg'
 cardImageAlt: 'Analytics dashboard for modern growth workflows'
 readTime: 4
+category: 'Operations'
 tags: ['tools', 'workflows', 'growth']
 contents:
   [

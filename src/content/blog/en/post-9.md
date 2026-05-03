@@ -8,6 +8,7 @@ pubDate: 2026-04-29
 cardImage: '@/images/growth-workshop.jpg'
 cardImageAlt: 'Planning board for a complex growth system'
 readTime: 4
+category: 'Operations'
 tags: ['operations', 'community', 'marketing']
 contents:
   [

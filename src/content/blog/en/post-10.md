@@ -8,6 +8,7 @@ pubDate: 2026-04-28
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Strategic planning session'
 readTime: 3
+category: 'Strategy'
 tags: ['strategy', 'personal brand', 'community']
 contents:
   [

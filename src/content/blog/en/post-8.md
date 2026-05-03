@@ -8,6 +8,7 @@ pubDate: 2026-04-30
 cardImage: '@/images/folks-brand-logo.png'
 cardImageAlt: 'Folks Team brand logo'
 readTime: 4
+category: 'C.H.E.S.S'
 tags: ['growth', 'community', 'systems']
 contents:
   [

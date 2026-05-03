@@ -1,5 +1,4 @@
-﻿---
-//Import relevant dependencies
+---
 import ThemeIcon from '@components/ThemeIcon.astro';
 import NavLink from '@components/ui/links/NavLink.astro';
 import Authentication from '../misc/Authentication.astro';
@@ -8,31 +7,27 @@ import viStrings from '@utils/vi/navigation.ts';
 import BrandLogo from '@components/BrandLogo.astro';
 import LanguagePicker from '@components/ui/LanguagePicker.astro';
 
-// Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === 'vi' ? viStrings : enStrings;
 const homeUrl = Astro.currentLocale === 'vi' ? '/vi' : '/';
 type NavBarLink = (typeof strings.navBarLinks)[number];
 ---
 
-{/* Main header component */}
 <header
   class="sticky inset-x-0 top-4 z-50 flex w-full flex-wrap text-sm md:flex-nowrap md:justify-start"
 >
-  {/* Navigation container */}
   <nav
     class="relative mx-2 w-full rounded-[36px] border border-yellow-100/40 bg-yellow-50/60 px-4 py-3 backdrop-blur-md md:flex md:items-center md:justify-between md:px-6 md:py-0 lg:px-8 xl:mx-auto dark:border-neutral-700/40 dark:bg-neutral-800/80 dark:backdrop-blur-md"
     aria-label="Global"
   >
     <div class="flex items-center justify-between">
-      {/* Brand logo */}
       <a
-        class="flex-none rounded-lg text-xl font-bold ring-zinc-500 outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:focus:outline-hidden"
+        class="inline-flex flex-none rounded-lg text-xl font-bold ring-zinc-500 outline-hidden focus-visible:ring-3 dark:ring-zinc-200 dark:focus:outline-hidden"
         href={homeUrl}
-        aria-label="Brand"
+        aria-label="Folks Team home"
       >
-        <BrandLogo class="h-auto w-24" />
+        <BrandLogo class="h-auto" />
       </a>
-      {/* Collapse toggle for smaller screens */}
+
       <div class="mr-5 ml-auto md:hidden">
         <button
           type="button"
@@ -72,33 +67,37 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
           </svg>
         </button>
       </div>
-      {/* ThemeIcon component specifically for smaller screens */}
+
       <span class="inline-block md:hidden">
         <ThemeIcon />
       </span>
     </div>
-    {/* Contains navigation links */}
+
     <div
       id="navbar-collapse-with-animation"
       class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block md:overflow-visible"
     >
-      {/* Navigation links container */}
       <div
         class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 md:gap-y-0 md:ps-7 lg:gap-x-7"
       >
-        {/* Navigation links and Authentication component */}
         {
           strings.navBarLinks.map((link: NavBarLink) => {
             if ('children' in link && link.children?.length) {
+              const submenuId = `submenu-${link.name
+                .replace(/\W+/g, '-')
+                .toLowerCase()}`;
+
               return (
                 <div class="group relative py-3 md:py-4">
                   <button
                     type="button"
-                    class="flex w-full items-center gap-x-1 text-base font-medium text-neutral-600 hover:text-neutral-500 md:text-sm 2xl:text-base dark:text-neutral-400 dark:hover:text-neutral-500"
+                    class="js-mobile-submenu-toggle flex w-full items-center gap-x-1 text-base font-medium text-neutral-600 hover:text-neutral-500 md:text-sm 2xl:text-base dark:text-neutral-400 dark:hover:text-neutral-500"
+                    aria-expanded="false"
+                    aria-controls={submenuId}
                   >
                     {link.name}
                     <svg
-                      class="size-4"
+                      class="size-4 transition-transform duration-200 md:group-hover:rotate-180"
                       width="16"
                       height="16"
                       viewBox="0 0 16 16"
@@ -114,13 +113,11 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
                       />
                     </svg>
                   </button>
-                  <div class="mt-2 min-w-48 rounded-xl bg-neutral-50 p-2 shadow-xl transition-[opacity,visibility] duration-[150ms] md:invisible md:absolute md:top-full md:left-0 md:z-10 md:mt-0 md:opacity-0 md:before:absolute md:before:-top-3 md:before:left-0 md:before:h-3 md:before:w-full md:before:content-[''] md:group-focus-within:visible md:group-focus-within:opacity-100 md:group-hover:visible md:group-hover:opacity-100 dark:bg-neutral-800">
-                    <a
-                      class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
-                      href={link.url}
-                    >
-                      {link.name}
-                    </a>
+
+                  <div
+                    id={submenuId}
+                    class="js-mobile-submenu mt-2 hidden min-w-48 rounded-xl bg-neutral-50 p-2 shadow-xl transition-[opacity,visibility] duration-[150ms] md:invisible md:absolute md:top-full md:left-0 md:z-10 md:mt-0 md:block md:opacity-0 md:before:absolute md:before:-top-3 md:before:left-0 md:before:h-3 md:before:w-full md:before:content-[''] md:group-focus-within:visible md:group-focus-within:opacity-100 md:group-hover:visible md:group-hover:opacity-100 dark:bg-neutral-800"
+                  >
                     {link.children.map(child => (
                       <a
                         class="block rounded-lg px-4 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-700"
@@ -140,7 +137,6 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
 
         <Authentication />
         <LanguagePicker />
-        {/* ThemeIcon component specifically for larger screens */}
         <span class="hidden md:inline-block">
           <ThemeIcon />
         </span>
@@ -148,7 +144,29 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
     </div>
   </nav>
 </header>
-{/* Theme Appearance script to manage light/dark modes */}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggles = document.querySelectorAll<HTMLButtonElement>(
+      '.js-mobile-submenu-toggle'
+    );
+
+    toggles.forEach(toggle => {
+      const menu = toggle.nextElementSibling as HTMLElement | null;
+      if (!menu?.classList.contains('js-mobile-submenu')) return;
+
+      toggle.addEventListener('click', () => {
+        if (window.matchMedia('(min-width: 768px)').matches) return;
+
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        menu.classList.toggle('hidden', isOpen);
+        toggle.querySelector('svg')?.classList.toggle('rotate-180', !isOpen);
+      });
+    });
+  });
+</script>
+
 <script is:inline>
   const HSThemeAppearance = {
     init() {
@@ -253,4 +271,3 @@ type NavBarLink = (typeof strings.navBarLinks)[number];
     });
   });
 </script>
-

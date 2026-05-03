@@ -8,6 +8,7 @@ pubDate: 2025-07-15
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Team planning a structured growth strategy'
 readTime: 4
+category: 'C.H.E.S.S'
 tags: ['growth', 'marketing', 'community']
 contents:
   [

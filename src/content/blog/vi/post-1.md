@@ -8,6 +8,7 @@ pubDate: 2024-02-06
 cardImage: '@/images/growth-brainstorm.jpg'
 cardImageAlt: 'Đội nhóm xây chiến lược tăng trưởng'
 readTime: 4
+category: 'C.H.E.S.S'
 tags: ['C.H.E.S.S', 'growth', 'system']
 contents:
   [

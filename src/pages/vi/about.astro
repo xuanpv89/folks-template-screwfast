@@ -1,0 +1,98 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Icon from '@components/ui/icons/Icon.astro';
+import { SITE } from '@data/constants';
+
+const values = [
+  ['Rõ ràng', 'Biến ý tưởng rộng thành bản đồ, ngôn ngữ và bước tiếp theo cụ thể.'],
+  ['Hệ thống có tính người', 'Tăng trưởng cần phục vụ con người, quan hệ và niềm tin cộng đồng.'],
+  ['Thực dụng', 'Xây nội dung, công cụ, dịch vụ và workflow mà đội ngũ có thể dùng thật.'],
+];
+
+const team = [
+  ['Strategy Team', 'Kiến trúc C.H.E.S.S', 'Xây positioning, hành trình audience, growth loop và mô hình dịch vụ.'],
+  ['Content Team', 'Editorial và media', 'Thiết kế bài viết, video, tài liệu học tập và prompt phản tư.'],
+  ['Community Team', 'Hub và trải nghiệm', 'Thiết kế workshop, event, member journey và vòng phản hồi.'],
+  ['Product Team', 'Compassio và công cụ', 'Phát triển Emotional Compass và tài nguyên cho facilitator, nhóm học tập.'],
+];
+
+const pageTitle = `Về chúng tôi | ${SITE.title}`;
+const metaDescription =
+  'Tìm hiểu Folks Team, đội ngũ xây C.H.E.S.S, Compassio, công cụ phản tư, dịch vụ tăng trưởng và trải nghiệm cộng đồng.';
+---
+
+<MainLayout
+  lang="vi"
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle="Về Folks Team"
+>
+  <section class="mx-auto grid max-w-[85rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:py-20 2xl:max-w-full">
+    <div>
+      <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+        About Us
+      </p>
+      <h1 class="mt-4 text-4xl font-black tracking-tight text-neutral-900 md:text-6xl dark:text-neutral-100">
+        Chúng tôi xây hệ thống tăng trưởng lấy con người làm trung tâm.
+      </h1>
+    </div>
+    <div class="flex flex-col justify-end">
+      <p class="text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Folks Team giúp team, cộng đồng, educator và builder biến ý tưởng rời rạc thành hệ thống bền vững dựa trên C.H.E.S.S: Content, Hub, Event, Store và Session.
+      </p>
+      <p class="mt-5 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
+        Chúng tôi cũng phát triển Compassio và Emotional Compass để hỗ trợ emotional literacy, phản tư và đối thoại sâu hơn.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-neutral-100 px-4 py-14 dark:bg-neutral-900">
+    <div class="mx-auto grid max-w-[85rem] gap-6 sm:px-6 md:grid-cols-3 lg:px-8 2xl:max-w-full">
+      {values.map(([title, body]) => (
+        <article class="rounded-xl bg-white p-6 dark:bg-neutral-950">
+          <span class="text-yellow-600 dark:text-yellow-400"><Icon name="checkCircle" /></span>
+          <h2 class="mt-4 text-xl font-black text-neutral-900 dark:text-neutral-100">{title}</h2>
+          <p class="mt-3 text-neutral-600 dark:text-neutral-400">{body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="team" class="bg-neutral-950 px-4 py-14 text-white">
+    <div class="mx-auto max-w-[85rem] sm:px-6 lg:px-8 2xl:max-w-full">
+      <div class="max-w-3xl">
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-400">
+          Team / Đội ngũ
+        </p>
+        <h2 class="mt-3 text-3xl font-black tracking-tight md:text-5xl">
+          Đội ngũ liên chức năng về strategy, content, community và product.
+        </h2>
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {team.map(([name, role, bio]) => (
+          <article class="rounded-xl bg-white/10 p-6">
+            <div class="flex size-12 items-center justify-center rounded-full bg-yellow-500 text-lg font-black text-white">
+              {name.charAt(0)}
+            </div>
+            <h3 class="mt-5 text-xl font-black text-white">{name}</h3>
+            <p class="mt-1 text-sm font-bold text-yellow-300">{role}</p>
+            <p class="mt-4 text-sm leading-6 text-neutral-300">{bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="rounded-2xl bg-neutral-100 p-8 dark:bg-neutral-900">
+      <h2 class="text-3xl font-black tracking-tight text-neutral-900 dark:text-neutral-100">
+        Liên hệ Folks Team
+      </h2>
+      <div class="mt-4 grid gap-3 text-neutral-700 dark:text-neutral-300">
+        <p><strong>Địa chỉ:</strong> 50 Quách Giai, Cát Lái, TPHCM</p>
+        <p><strong>Email:</strong> <a class="text-yellow-600 dark:text-yellow-400" href="mailto:contact@folksteam.com">contact@folksteam.com</a></p>
+        <p><a class="inline-flex rounded-lg bg-yellow-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-yellow-600" href="/vi/contact">Liên hệ</a></p>
+      </div>
+    </div>
+  </section>
+</MainLayout>

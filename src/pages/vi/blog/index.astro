@@ -19,10 +19,21 @@ const blogPosts: CollectionEntry<'blog'>[] = vietnameseBlogEntries.sort(
   (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const selectedCategory = Astro.url.searchParams.get('category') ?? 'Tất cả';
+const allCategory = 'Tất cả';
+const categories = [
+  allCategory,
+  ...Array.from(new Set(blogPosts.map(post => post.data.category))).sort(),
+];
+const filteredBlogPosts =
+  selectedCategory === allCategory
+    ? blogPosts
+    : blogPosts.filter(post => post.data.category === selectedCategory);
 
 const insightPosts: CollectionEntry<'insights'>[] = vietnameseInsightsEntries;
-const mostRecentPost: CollectionEntry<'blog'> = blogPosts[0];
-const otherPosts: CollectionEntry<'blog'>[] = blogPosts.slice(1);
+const mostRecentPost: CollectionEntry<'blog'> | undefined =
+  filteredBlogPosts[0];
+const otherPosts: CollectionEntry<'blog'>[] = filteredBlogPosts.slice(1);
 
 const title: string = 'Góc nhìn về tăng trưởng có cấu trúc';
 const subTitle: string =
@@ -77,6 +88,28 @@ const ogTitle = 'Blog tăng trưởng | Folks Team';
     </div>
   </section>
 
+  <section class="mx-auto max-w-[85rem] px-4 pt-8 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="flex flex-wrap justify-center gap-2">
+      {
+        categories.map(category => (
+          <a
+            href={category === allCategory
+              ? '/vi/blog'
+              : `/vi/blog?category=${encodeURIComponent(category)}`}
+            class:list={[
+              'rounded-full border px-4 py-2 text-sm font-bold transition',
+              selectedCategory === category
+                ? 'border-yellow-500 bg-yellow-500 text-white'
+                : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800',
+            ]}
+          >
+            {category}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
   <section
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
   >
@@ -89,11 +122,13 @@ const ogTitle = 'Blog tăng trưởng | Folks Team';
     </div>
   </section>
 
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="vi" />
-  </section>
+  {
+    mostRecentPost && (
+      <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+        <CardBlogRecent blogEntry={mostRecentPost} recentBlogLocale="vi" />
+      </section>
+    )
+  }
 
   <section
     class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"

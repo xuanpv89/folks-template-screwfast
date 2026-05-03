@@ -95,6 +95,21 @@ const blogPosts = [
     description: "Growth is not just systems - it's also identity, creativity, and long-term vision.",
   },
 ];
+
+const videoGallery = [
+  {
+    title: 'Compassio video: emotions as shared language',
+    description:
+      'A public Compassio video showing how reflective content can open emotional literacy, conversation, and community connection.',
+    embed: 'https://www.youtube.com/embed/dmlx6WOkGAo',
+  },
+  {
+    title: 'Compassio practice in motion',
+    description:
+      'Video helps audiences understand the tone, values, and lived practice behind Compassio before joining a workshop or exploring the tools.',
+    embed: 'https://www.youtube.com/embed/uKN44Jjhw2o',
+  },
+];
 ---
 
 <MainLayout>
@@ -126,6 +141,47 @@ const blogPosts = [
       <span class="font-bold text-neutral-900 dark:text-neutral-100">Philosophy:</span>
       Clarity, Systems, and Sustainable Growth
     </p>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+      <div>
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+          Video Gallery
+        </p>
+        <h2 class="mt-3 text-3xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+          See how content can carry community energy
+        </h2>
+        <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+          Video is one of the clearest ways to show learning, emotion, and trust. In a C.H.E.S.S system, Compassio videos can support discovery, reflective practice, and stronger community memory.
+        </p>
+      </div>
+      <a class="font-semibold text-yellow-600 dark:text-yellow-400 lg:text-right" href="https://www.youtube.com/@compassio2016/videos">
+        View Compassio channel
+      </a>
+    </div>
+    <div class="mt-8 grid gap-6 lg:grid-cols-2">
+      {
+        videoGallery.map(video => (
+          <article class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+            <div class="aspect-video">
+              <iframe
+                class="h-full w-full"
+                src={video.embed}
+                title={video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{video.title}</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{video.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
   </section>
 
   <FeaturesGeneral

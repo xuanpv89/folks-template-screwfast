@@ -70,6 +70,21 @@ const blogPosts = [
     'Tăng trưởng không chỉ là hệ thống, mà còn là bản sắc, sáng tạo và tầm nhìn dài hạn.',
   ],
 ];
+
+const videoGallery = [
+  {
+    title: 'Compassio video: cảm xúc như một ngôn ngữ chung',
+    description:
+      'Video công khai từ Compassio cho thấy nội dung phản tư có thể mở ra emotional literacy, đối thoại và kết nối cộng đồng.',
+    embed: 'https://www.youtube.com/embed/dmlx6WOkGAo',
+  },
+  {
+    title: 'Thực hành Compassio qua video',
+    description:
+      'Video giúp audience cảm nhận giọng điệu, giá trị và cách thực hành của Compassio trước khi tham gia workshop hoặc khám phá công cụ.',
+    embed: 'https://www.youtube.com/embed/uKN44Jjhw2o',
+  },
+];
 ---
 
 <MainLayout lang="vi">
@@ -101,6 +116,47 @@ const blogPosts = [
       <span class="font-bold text-neutral-900 dark:text-neutral-100">Triết lý:</span>
       Clarity, Systems, and Sustainable Growth
     </p>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+      <div>
+        <p class="text-sm font-black uppercase tracking-widest text-yellow-600 dark:text-yellow-400">
+          Video Gallery
+        </p>
+        <h2 class="mt-3 text-3xl font-bold text-neutral-800 md:text-4xl dark:text-neutral-200">
+          Xem cách nội dung truyền tải năng lượng cộng đồng
+        </h2>
+        <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+          Video là cách trực quan để cho thấy học tập, cảm xúc và niềm tin. Trong C.H.E.S.S, video Compassio có thể hỗ trợ discovery, thực hành phản tư và ký ức cộng đồng.
+        </p>
+      </div>
+      <a class="font-semibold text-yellow-600 dark:text-yellow-400 lg:text-right" href="https://www.youtube.com/@compassio2016/videos">
+        Xem kênh Compassio
+      </a>
+    </div>
+    <div class="mt-8 grid gap-6 lg:grid-cols-2">
+      {
+        videoGallery.map(video => (
+          <article class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900">
+            <div class="aspect-video">
+              <iframe
+                class="h-full w-full"
+                src={video.embed}
+                title={video.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="font-bold text-neutral-800 dark:text-neutral-200">{video.title}</h3>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{video.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
   </section>
 
   <FeaturesGeneral
