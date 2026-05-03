@@ -8,7 +8,7 @@ const navBarLinks = [
   { name: 'Services', url: '/services' },
   { name: 'Products', url: '/products' },
   { name: 'Blog', url: '/blog' },
-  { name: 'Help', url: 'https://www.folksteam.com/guides/getting-started' },
+  { name: 'Help', url: '/guides/getting-started/' },
   { name: 'Contact', url: '/contact' },
 ];
 

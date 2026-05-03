@@ -8,7 +8,7 @@ const navBarLinks = [
   { name: 'Dịch vụ', url: '/vi/services' },
   { name: 'Sản phẩm', url: '/vi/products' },
   { name: 'Blog', url: '/vi/blog' },
-  { name: 'Help', url: 'https://www.folksteam.com/guides/getting-started' },
+  { name: 'Help', url: '/vi/guides/getting-started/' },
   { name: 'Liên hệ', url: '/vi/contact' },
 ];
 
