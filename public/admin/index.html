@@ -252,6 +252,24 @@
         overflow-wrap: anywhere;
       }
 
+      .publish-box {
+        display: grid;
+        gap: 12px;
+        border: 1px solid #dbeafe;
+        border-radius: 14px;
+        background: #eff6ff;
+        padding: 14px;
+      }
+
+      .publish-box h3 {
+        margin: 0;
+      }
+
+      .publish-box p {
+        color: #1e3a8a;
+        font-size: 13px;
+      }
+
       .toast {
         display: none;
         margin-top: 10px;
@@ -261,6 +279,11 @@
         padding: 10px 12px;
         font-size: 13px;
         font-weight: 700;
+      }
+
+      .toast.error {
+        background: #fef2f2;
+        color: #991b1b;
       }
 
       .toast.show {
@@ -339,8 +362,9 @@
             <li>
               <span>3</span>
               <div>
-                Commit/deploy lại website. Khi build xong, bài sẽ tự hiện trên
-                trang Blog và filter theo category.
+                Hoặc dùng mục <strong>Publish to GitHub</strong> trong form để
+                commit bài trực tiếp lên repo. Khi deploy build xong, bài sẽ tự
+                hiện trên trang Blog và filter theo category.
               </div>
             </li>
           </ol>
@@ -449,6 +473,39 @@
 
           <a id="download-link" class="hidden" download="new-blog-post.md"></a>
 
+          <div class="publish-box">
+            <h3>Publish to GitHub</h3>
+            <p>
+              Dùng GitHub fine-grained token có quyền
+              <strong>Contents: Read and write</strong> cho repo này. Token chỉ
+              được lưu trong trình duyệt của bạn.
+            </p>
+            <div class="row">
+              <label>
+                Repository
+                <input id="githubRepo" value="xuanpv89/folks-template-screwfast" />
+              </label>
+              <label>
+                Branch
+                <input id="githubBranch" value="main" />
+              </label>
+            </div>
+            <label>
+              GitHub token
+              <input
+                id="githubToken"
+                type="password"
+                autocomplete="off"
+                placeholder="github_pat_..."
+              />
+            </label>
+            <div class="actions">
+              <button type="button" id="publish-github">Publish to GitHub</button>
+              <button type="button" class="secondary" id="save-token">Save token locally</button>
+              <button type="button" class="secondary" id="clear-token">Clear token</button>
+            </div>
+          </div>
+
           <div class="actions">
             <button type="button" id="generate">Generate preview</button>
             <button type="button" id="download">Download .md</button>
@@ -482,6 +539,9 @@
       const toast = document.getElementById('toast');
       const draftsEl = document.getElementById('drafts');
       const downloadLink = document.getElementById('download-link');
+      const githubRepo = document.getElementById('githubRepo');
+      const githubBranch = document.getElementById('githubBranch');
+      const githubToken = document.getElementById('githubToken');
 
       const fields = [
         'locale',
@@ -603,10 +663,95 @@ ${contents.join('\n\n')}
         }
       }
 
-      function showToast(message) {
+      function showToast(message, type = 'success') {
         toast.textContent = message;
+        toast.classList.toggle('error', type === 'error');
         toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2200);
+        setTimeout(() => toast.classList.remove('show'), type === 'error' ? 5200 : 2600);
+      }
+
+      function toBase64Utf8(value) {
+        const bytes = new TextEncoder().encode(value);
+        let binary = '';
+        bytes.forEach(byte => {
+          binary += String.fromCharCode(byte);
+        });
+        return btoa(binary);
+      }
+
+      async function githubRequest(url, token, options = {}) {
+        const response = await fetch(url, {
+          ...options,
+          headers: {
+            Accept: 'application/vnd.github+json',
+            Authorization: `Bearer ${token}`,
+            'X-GitHub-Api-Version': '2022-11-28',
+            ...(options.headers || {}),
+          },
+        });
+
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : null;
+        if (!response.ok) {
+          const message = data?.message || `GitHub API error ${response.status}`;
+          const error = new Error(message);
+          error.status = response.status;
+          throw error;
+        }
+        return data;
+      }
+
+      async function publishToGithub() {
+        const result = updatePreview();
+        const repo = githubRepo.value.trim();
+        const branch = githubBranch.value.trim() || 'main';
+        const token = githubToken.value.trim();
+
+        if (!repo.includes('/')) {
+          showToast('Repository phải có dạng owner/repo.');
+          return;
+        }
+        if (!token) {
+          showToast('Bạn cần nhập GitHub token trước khi publish.');
+          return;
+        }
+
+        const button = document.getElementById('publish-github');
+        button.disabled = true;
+        button.textContent = 'Publishing...';
+
+        try {
+          const apiPath = encodeURIComponent(result.target).replace(/%2F/g, '/');
+          const url = `https://api.github.com/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`;
+          let sha;
+
+          try {
+            const existing = await githubRequest(url, token);
+            sha = existing.sha;
+          } catch (error) {
+            if (error.status !== 404) throw error;
+          }
+
+          const commitUrl = `https://api.github.com/repos/${repo}/contents/${apiPath}`;
+          const body = {
+            message: `${sha ? 'Update' : 'Create'} blog post: ${result.slug}`,
+            content: toBase64Utf8(result.markdown),
+            branch,
+            ...(sha ? { sha } : {}),
+          };
+
+          await githubRequest(commitUrl, token, {
+            method: 'PUT',
+            body: JSON.stringify(body),
+          });
+
+          showToast(`Đã publish ${result.target} lên GitHub.`);
+        } catch (error) {
+          showToast(`Publish lỗi: ${error.message}`, 'error');
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Publish to GitHub';
+        }
       }
 
       function currentDraft() {
@@ -716,6 +861,23 @@ ${contents.join('\n\n')}
       document.getElementById('download').addEventListener('click', downloadFile);
       document.getElementById('copy').addEventListener('click', copyMarkdown);
       document.getElementById('save-draft').addEventListener('click', saveDraft);
+      document.getElementById('publish-github').addEventListener('click', publishToGithub);
+      document.getElementById('save-token').addEventListener('click', () => {
+        localStorage.setItem('folksGithubRepo', githubRepo.value.trim());
+        localStorage.setItem('folksGithubBranch', githubBranch.value.trim());
+        localStorage.setItem('folksGithubToken', githubToken.value.trim());
+        showToast('Đã lưu GitHub settings trên trình duyệt.');
+      });
+      document.getElementById('clear-token').addEventListener('click', () => {
+        localStorage.removeItem('folksGithubRepo');
+        localStorage.removeItem('folksGithubBranch');
+        localStorage.removeItem('folksGithubToken');
+        githubToken.value = '';
+        showToast('Đã xóa token khỏi trình duyệt.');
+      });
+      githubRepo.value = localStorage.getItem('folksGithubRepo') || githubRepo.value;
+      githubBranch.value = localStorage.getItem('folksGithubBranch') || githubBranch.value;
+      githubToken.value = localStorage.getItem('folksGithubToken') || '';
       renderDrafts();
       updatePreview();
     </script>
