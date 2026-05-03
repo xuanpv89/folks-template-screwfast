@@ -39,7 +39,7 @@ const footerLinks = [
     links: [
       { name: 'Blog', url: '/blog' },
       { name: 'Guides', url: '/guides/getting-started/' },
-      { name: 'Docs Home', url: '/welcome-to-docs/' },
+      { name: 'Projects', url: '/projects/' },
     ],
   },
   {

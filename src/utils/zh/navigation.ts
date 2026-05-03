@@ -39,7 +39,7 @@ const footerLinks = [
     links: [
       { name: '博客', url: '/zh/blog' },
       { name: '指南', url: '/zh/guides/getting-started/' },
-      { name: '文档首页', url: '/zh/welcome-to-docs/' },
+      { name: 'Projects', url: '/projects/' },
     ],
   },
   {

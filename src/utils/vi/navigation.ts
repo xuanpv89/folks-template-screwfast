@@ -39,7 +39,7 @@ const footerLinks = [
     links: [
       { name: 'Blog', url: '/vi/blog' },
       { name: 'Hướng dẫn', url: '/vi/guides/getting-started/' },
-      { name: 'Docs Home', url: '/vi/welcome-to-docs/' },
+      { name: 'Projects', url: '/projects/' },
     ],
   },
   {
