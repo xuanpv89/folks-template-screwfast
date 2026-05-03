@@ -32,6 +32,9 @@ const memberRoles = [
         <a href="/guides/getting-started/" class="inline-flex rounded-lg border border-neutral-300 px-6 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800">
           View guides
         </a>
+        <a href="/admin/" class="inline-flex rounded-lg border border-neutral-300 px-6 py-3 text-sm font-bold text-neutral-800 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800">
+          Open CMS
+        </a>
       </div>
     </div>
     <div class="overflow-hidden rounded-2xl bg-neutral-100 dark:bg-neutral-900">
@@ -71,6 +74,12 @@ const memberRoles = [
         <h2 class="mt-3 text-3xl font-bold text-neutral-900 dark:text-neutral-100">Different members, one shared model</h2>
       </div>
       <div class="grid gap-4">
+        <article class="rounded-xl border border-yellow-300 bg-yellow-50 p-6 dark:border-yellow-700 dark:bg-yellow-950/30">
+          <h3 class="font-bold text-neutral-900 dark:text-neutral-100">Editorial access</h3>
+          <p class="mt-2 text-neutral-600 dark:text-neutral-400">
+            Blog editors can open the CMS to draft, review, publish, and update posts without touching code.
+          </p>
+        </article>
         {
           memberRoles.map(([title, description]) => (
             <article class="rounded-xl border border-neutral-200 p-6 dark:border-neutral-700">

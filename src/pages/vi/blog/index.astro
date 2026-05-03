@@ -3,6 +3,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import CardBlog from '@components/ui/cards/CardBlog.astro';
 import CardBlogRecent from '@components/ui/cards/CardBlogRecent.astro';
 import CardInsight from '@components/ui/cards/CardInsight.astro';
+import NewsletterSignup from '@components/sections/misc/NewsletterSignup.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { SITE } from '@data/constants';
@@ -87,6 +88,8 @@ const ogTitle = 'Blog tăng trưởng | Folks Team';
       </p>
     </div>
   </section>
+
+  <NewsletterSignup locale="vi" />
 
   <section class="mx-auto max-w-[85rem] px-4 pt-8 sm:px-6 lg:px-8 2xl:max-w-full">
     <div class="flex flex-wrap justify-center gap-2">

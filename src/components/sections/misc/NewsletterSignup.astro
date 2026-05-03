@@ -1,0 +1,126 @@
+---
+const {
+  locale = Astro.currentLocale === 'vi' ? 'vi' : 'en',
+  compact = false,
+  id = compact ? `newsletter-email-compact-${locale}` : `newsletter-email-${locale}`,
+} = Astro.props;
+
+interface Props {
+  locale?: 'en' | 'vi';
+  compact?: boolean;
+  id?: string;
+}
+
+const copy = locale === 'vi'
+  ? {
+      eyebrow: 'Newsletter',
+      title: 'Nhận bài viết mới từ Folks Team',
+      description:
+        'Đăng ký để nhận bài viết về C.H.E.S.S, cộng đồng, nội dung và hệ thống tăng trưởng bền vững.',
+      placeholder: 'Email của bạn',
+      button: 'Đăng ký',
+      note: 'Chúng tôi chỉ gửi nội dung hữu ích, không spam.',
+      subject: 'Đăng ký newsletter mới từ website Folks Team',
+    }
+  : {
+      eyebrow: 'Newsletter',
+      title: 'Get new writing from Folks Team',
+      description:
+        'Subscribe for practical notes on C.H.E.S.S, community, content, and sustainable growth systems.',
+      placeholder: 'Your email',
+      button: 'Subscribe',
+      note: 'Useful updates only. No spam.',
+      subject: 'New Folks Team newsletter signup',
+    };
+---
+
+<section
+  class:list={[
+    compact
+      ? 'rounded-xl border border-neutral-200 bg-white p-5 dark:border-neutral-700 dark:bg-neutral-800'
+      : 'mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 2xl:max-w-full',
+  ]}
+>
+  <div
+    class:list={[
+      compact
+        ? ''
+        : 'rounded-2xl bg-neutral-900 p-6 md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-8 md:p-8 dark:bg-neutral-950',
+    ]}
+  >
+    <div>
+      <p
+        class:list={[
+          'text-sm font-black uppercase tracking-widest',
+          compact ? 'text-yellow-600 dark:text-yellow-400' : 'text-yellow-400',
+        ]}
+      >
+        {copy.eyebrow}
+      </p>
+      <h2
+        class:list={[
+          'mt-2 font-bold',
+          compact
+            ? 'text-lg text-neutral-900 dark:text-neutral-100'
+            : 'text-2xl text-white md:text-3xl',
+        ]}
+      >
+        {copy.title}
+      </h2>
+      <p
+        class:list={[
+          'mt-2',
+          compact
+            ? 'text-sm text-neutral-600 dark:text-neutral-400'
+            : 'max-w-2xl text-neutral-300',
+        ]}
+      >
+        {copy.description}
+      </p>
+    </div>
+
+    <form
+      action="https://formsubmit.co/contact@folksteam.com"
+      method="POST"
+      class:list={[
+        'mt-5 flex gap-2',
+        compact ? 'flex-col' : 'flex-col sm:flex-row md:mt-0',
+      ]}
+    >
+      <input type="hidden" name="_subject" value={copy.subject} />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="source" value={compact ? 'compact-signup' : 'newsletter-section'} />
+      <label class="sr-only" for={id}>
+        {copy.placeholder}
+      </label>
+      <input
+        id={id}
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder={copy.placeholder}
+        class:list={[
+          'min-h-12 rounded-lg border border-neutral-300 px-4 text-sm outline-hidden focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100',
+          compact ? 'w-full' : 'w-full sm:w-72',
+        ]}
+      />
+      <button
+        type="submit"
+        class="min-h-12 rounded-lg bg-yellow-500 px-5 text-sm font-bold text-white transition hover:bg-yellow-600"
+      >
+        {copy.button}
+      </button>
+    </form>
+
+    <p
+      class:list={[
+        'mt-3 text-xs',
+        compact ? 'text-neutral-500 dark:text-neutral-500' : 'text-neutral-400 md:col-span-2',
+      ]}
+    >
+      {copy.note}
+    </p>
+  </div>
+</section>

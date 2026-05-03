@@ -1,0 +1,80 @@
+backend:
+  name: github
+  repo: xuanpv89/folks-template-screwfast
+  branch: main
+
+local_backend: true
+publish_mode: editorial_workflow
+media_folder: "src/images/blog"
+public_folder: "@/images/blog"
+
+site_url: "https://folksteam.com"
+display_url: "https://folksteam.com"
+logo_url: "/favicon.ico"
+
+collections:
+  - name: "blog_en"
+    label: "Blog - English"
+    label_singular: "English post"
+    folder: "src/content/blog/en"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "blog/{{slug}}"
+    sortable_fields: ["pubDate", "title", "category"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Author", name: "author", widget: "string", default: "Folks Team" }
+      - { label: "Role", name: "role", widget: "string", required: false, default: "Editorial Team" }
+      - { label: "Author image", name: "authorImage", widget: "image", default: "@/images/blog/anna.avif" }
+      - { label: "Author image alt", name: "authorImageAlt", widget: "string", default: "Folks Team author" }
+      - { label: "Publish date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Card image", name: "cardImage", widget: "image", default: "@/images/growth-brainstorm.jpg" }
+      - { label: "Card image alt", name: "cardImageAlt", widget: "string" }
+      - { label: "Read time", name: "readTime", widget: "number", value_type: "int", min: 1, default: 4 }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["C.H.E.S.S", "Strategy", "Growth Systems", "Operations", "Brand & Culture", "Marketing Models"]
+      - { label: "Tags", name: "tags", widget: "list", required: false, field: { label: "Tag", name: "tag", widget: "string" } }
+      - label: "Post paragraphs"
+        name: "contents"
+        widget: "list"
+        min: 2
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - { label: "Body notes", name: "body", widget: "markdown", required: false }
+
+  - name: "blog_vi"
+    label: "Blog - Vietnamese"
+    label_singular: "Vietnamese post"
+    folder: "src/content/blog/vi"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    preview_path: "vi/blog/{{slug}}"
+    sortable_fields: ["pubDate", "title", "category"]
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string" }
+      - { label: "Mô tả", name: "description", widget: "text" }
+      - { label: "Tác giả", name: "author", widget: "string", default: "Folks Team" }
+      - { label: "Vai trò", name: "role", widget: "string", required: false, default: "Editorial Team" }
+      - { label: "Ảnh tác giả", name: "authorImage", widget: "image", default: "@/images/blog/anna.avif" }
+      - { label: "Alt ảnh tác giả", name: "authorImageAlt", widget: "string", default: "Tác giả Folks Team" }
+      - { label: "Ngày đăng", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Ảnh card", name: "cardImage", widget: "image", default: "@/images/growth-brainstorm.jpg" }
+      - { label: "Alt ảnh card", name: "cardImageAlt", widget: "string" }
+      - { label: "Thời gian đọc", name: "readTime", widget: "number", value_type: "int", min: 1, default: 4 }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["C.H.E.S.S", "Strategy", "Growth Systems", "Operations", "Brand & Culture", "Marketing Models"]
+      - { label: "Tags", name: "tags", widget: "list", required: false, field: { label: "Tag", name: "tag", widget: "string" } }
+      - label: "Các đoạn nội dung"
+        name: "contents"
+        widget: "list"
+        min: 2
+        field: { label: "Đoạn", name: "paragraph", widget: "text" }
+      - { label: "Ghi chú nội dung", name: "body", widget: "markdown", required: false }
