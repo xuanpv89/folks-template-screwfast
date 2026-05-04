@@ -892,19 +892,19 @@
             <h3>Ảnh đại diện</h3>
             <div class="row">
               <label>
-                Card image
-                <input id="cardImage" name="cardImage" value="@/images/growth-brainstorm.jpg" required />
+                Card image link
+                <input id="cardImage" name="cardImage" value="@/images/growth-brainstorm.jpg" placeholder="Dán link hình vào đây" required />
               </label>
               <label>
                 Card image alt
-                <input id="cardImageAlt" name="cardImageAlt" placeholder="Alt text cho ảnh card" required />
+                <input id="cardImageAlt" name="cardImageAlt" placeholder="Tự lấy theo title nếu để trống" />
               </label>
             </div>
 
             <div class="row">
               <label>
-                Author image
-                <input id="authorImage" name="authorImage" value="@/images/blog/anna.avif" required />
+                Author image link
+                <input id="authorImage" name="authorImage" value="@/images/blog/anna.avif" placeholder="Dán link hình vào đây" required />
               </label>
               <label>
                 Author image alt
@@ -915,19 +915,9 @@
               <label>Upload card image
                 <input type="file" accept="image/avif,image/jpeg,image/png,image/webp,image/gif" data-upload-field="cardImage" />
               </label>
-              <label>Card image URL
-                <input data-upload-url-field="cardImage" placeholder="https://example.com/card.jpg" />
-              </label>
-              <button type="button" data-upload-url-button="cardImage">Upload card URL</button>
-            </div>
-            <div class="media-actions">
               <label>Upload author image
                 <input type="file" accept="image/avif,image/jpeg,image/png,image/webp,image/gif" data-upload-field="authorImage" />
               </label>
-              <label>Author image URL
-                <input data-upload-url-field="authorImage" placeholder="https://example.com/avatar.jpg" />
-              </label>
-              <button type="button" data-upload-url-button="authorImage">Upload author URL</button>
             </div>
           </div>
 
@@ -973,6 +963,10 @@
                 autocomplete="off"
                 placeholder="ADMIN_SECRET"
               />
+            </label>
+            <label class="check-row">
+              <input id="rememberAdminSecret" type="checkbox" />
+              Ghi nhớ Admin secret trên máy này
             </label>
             <label class="check-row">
               <input id="allowUpdate" type="checkbox" />
@@ -1066,7 +1060,9 @@
       const githubRepo = document.getElementById('githubRepo');
       const githubBranch = document.getElementById('githubBranch');
       const adminSecret = document.getElementById('adminSecret');
+      const rememberAdminSecret = document.getElementById('rememberAdminSecret');
       const allowUpdate = document.getElementById('allowUpdate');
+      const adminSecretStorageKey = 'folksAdminSecret';
 
       const fields = [
         'locale',
@@ -1176,11 +1172,11 @@
         if (block.type === 'image') {
           return `
             <div class="row">
-              <label>Image path or URL
-                <input data-block-field="src" value="${escapeHtml(block.src)}" placeholder="@/images/blog/uploads/image.jpg" />
+              <label>Image link
+                <input data-block-field="src" value="${escapeHtml(block.src)}" placeholder="Dán link hình vào đây" />
               </label>
-              <label>Alt text
-                <input data-block-field="alt" value="${escapeHtml(block.alt)}" />
+              <label>Mô tả ảnh
+                <input data-block-field="alt" value="${escapeHtml(block.alt)}" placeholder="Không bắt buộc" />
               </label>
             </div>
             <label>Caption
@@ -1190,10 +1186,6 @@
               <label>Upload from computer
                 <input type="file" accept="image/avif,image/jpeg,image/png,image/webp,image/gif" data-upload-image="${index}" />
               </label>
-              <label>Or copy image URL
-                <input data-image-url="${index}" placeholder="https://example.com/image.jpg" />
-              </label>
-              <button type="button" data-upload-url="${index}">Upload URL</button>
             </div>
           `;
         }
@@ -1355,7 +1347,6 @@
       function validatePost(result) {
         const title = getValue('title');
         const description = getValue('description');
-        const cardImageAlt = getValue('cardImageAlt');
         const contents = listFromTextarea(getValue('contents')).length
           ? listFromTextarea(getValue('contents'))
           : summaryFromBlocks();
@@ -1363,11 +1354,18 @@
 
         if (!title) errors.push('Title');
         if (!description) errors.push('Description');
-        if (!cardImageAlt) errors.push('Card image alt');
         if (!contents.length) errors.push('Contents');
         if (!result.slug) errors.push('Slug');
 
         return errors;
+      }
+
+      function saveRememberedAdminSecret() {
+        if (rememberAdminSecret.checked) {
+          localStorage.setItem(adminSecretStorageKey, adminSecret.value.trim());
+        } else {
+          localStorage.removeItem(adminSecretStorageKey);
+        }
       }
 
       function escapeHtml(value) {
@@ -1377,6 +1375,10 @@
           .replaceAll('>', '&gt;')
           .replaceAll('"', '&quot;')
           .replaceAll("'", '&#039;');
+      }
+
+      function escapeHtmlWithBreaks(value) {
+        return escapeHtml(value).replace(/\r?\n/g, '<br>');
       }
 
       function formatSavedAt(value) {
@@ -1392,6 +1394,7 @@
         const slug = slugify(data.slug || data.title || 'new-blog-post');
         const tags = tagList(data.tags);
         const bodyMarkdown = buildBodyMarkdown();
+        const cardImageAlt = data.cardImageAlt || data.title || data.description || 'Blog cover image';
         const contents = listFromTextarea(data.contents).length
           ? listFromTextarea(data.contents)
           : summaryFromBlocks();
@@ -1415,7 +1418,7 @@ authorImage: '${data.authorImage || '@/images/blog/anna.avif'}'
 authorImageAlt: ${quote(data.authorImageAlt || 'Folks Team author')}
 pubDate: ${data.pubDate || today()}
 cardImage: '${data.cardImage || '@/images/growth-brainstorm.jpg'}'
-cardImageAlt: ${quote(data.cardImageAlt)}
+cardImageAlt: ${quote(cardImageAlt)}
 readTime: ${Number(data.readTime || 4)}
 category: ${quote(data.category || 'C.H.E.S.S')}
 tags: [${tags.map(quote).join(', ')}]
@@ -1440,7 +1443,7 @@ ${bodyMarkdown || contents.join('\n\n')}
               return `<${tag}>${escapeHtml(block.value)}</${tag}>`;
             }
             if (block.type === 'paragraph' && block.value) {
-              return `<p>${escapeHtml(block.value)}</p>`;
+              return `<p>${escapeHtmlWithBreaks(block.value)}</p>`;
             }
             if (block.type === 'image' && block.src) {
               const src = block.src.startsWith('@/images/')
@@ -1452,7 +1455,7 @@ ${bodyMarkdown || contents.join('\n\n')}
               return `<figure><div class="path">${escapeHtml(youtubeEmbedUrl(block.url))}</div><p>${escapeHtml(block.title || 'Video embed')}</p>${block.caption ? `<p><em>${escapeHtml(block.caption)}</em></p>` : ''}</figure>`;
             }
             if (block.type === 'quote' && block.value) {
-              return `<blockquote>${escapeHtml(block.value)}${block.cite ? `<br><strong>${escapeHtml(block.cite)}</strong>` : ''}</blockquote>`;
+              return `<blockquote>${escapeHtmlWithBreaks(block.value)}${block.cite ? `<br><strong>${escapeHtml(block.cite)}</strong>` : ''}</blockquote>`;
             }
             if ((block.type === 'bullets' || block.type === 'numbers') && block.value) {
               const tag = block.type === 'bullets' ? 'ul' : 'ol';
@@ -1601,6 +1604,7 @@ ${bodyMarkdown || contents.join('\n\n')}
 
         const block = contentBlocks[index];
         if (!block) return;
+        saveRememberedAdminSecret();
         updatePublishStatus('Uploading image to GitHub...');
         const response = await adminMediaRequest({
           adminSecret: secret,
@@ -1626,6 +1630,7 @@ ${bodyMarkdown || contents.join('\n\n')}
           return;
         }
 
+        saveRememberedAdminSecret();
         updatePublishStatus('Uploading image to GitHub...');
         const response = await adminMediaRequest({
           adminSecret: secret,
@@ -1658,6 +1663,7 @@ ${bodyMarkdown || contents.join('\n\n')}
           showToast('Bạn cần nhập Admin secret.', 'error');
           return;
         }
+        saveRememberedAdminSecret();
         if (validationErrors.length) {
           showToast(`Chưa thể publish. Thiếu: ${validationErrors.join(', ')}.`, 'error');
           return;
@@ -1699,7 +1705,7 @@ ${bodyMarkdown || contents.join('\n\n')}
           showToast(`Publish lỗi: ${error.message}`, 'error');
         } finally {
           button.disabled = false;
-          button.textContent = action === 'draft' ? 'Save cloud draft' : 'Publish to GitHub';
+          button.textContent = action === 'draft' ? 'Lưu nháp' : 'Đăng bài';
         }
       }
 
@@ -1919,8 +1925,11 @@ ${bodyMarkdown || contents.join('\n\n')}
       document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
       document.getElementById('clear-secret').addEventListener('click', () => {
         adminSecret.value = '';
-        showToast('Admin secret cleared from the form.');
+        rememberAdminSecret.checked = false;
+        localStorage.removeItem(adminSecretStorageKey);
+        showToast('Đã xóa Admin secret khỏi form và trình duyệt.');
       });
+      rememberAdminSecret.addEventListener('change', saveRememberedAdminSecret);
       document.getElementById('tab-live').addEventListener('click', () => {
         articlePreview.classList.remove('hidden');
         preview.classList.add('hidden');
@@ -1954,6 +1963,11 @@ ${bodyMarkdown || contents.join('\n\n')}
       }
       githubBranch.value = localStorage.getItem('folksGithubBranch') || githubBranch.value;
       localStorage.removeItem('folksGithubToken');
+      const savedAdminSecret = localStorage.getItem(adminSecretStorageKey);
+      if (savedAdminSecret) {
+        adminSecret.value = savedAdminSecret;
+        rememberAdminSecret.checked = true;
+      }
       renderBlocks();
       renderDrafts();
       updatePreview();
