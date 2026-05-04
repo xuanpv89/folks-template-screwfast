@@ -2,42 +2,86 @@ export const config = {
   matcher: '/admin/:path*',
 };
 
-function unauthorized(message = 'Authentication required.') {
-  return new Response(message, {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="Folks Team CMS"',
-      'Content-Type': 'text/plain; charset=utf-8',
-    },
-  });
+const SESSION_COOKIE = 'folks_admin_session';
+
+function redirectToLogin(request) {
+  const url = new URL('/admin/login.html', request.url);
+  url.searchParams.set('next', request.nextUrl?.pathname || new URL(request.url).pathname);
+  return Response.redirect(url);
 }
 
-function decodeBasicAuth(value) {
-  if (!value?.startsWith('Basic ')) {
-    return null;
+function getCookie(request, name) {
+  const cookie = request.headers.get('cookie') || '';
+  const match = cookie
+    .split(';')
+    .map(part => part.trim())
+    .find(part => part.startsWith(`${name}=`));
+
+  return match ? decodeURIComponent(match.slice(name.length + 1)) : '';
+}
+
+function base64UrlToBytes(value) {
+  const base64 = value.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, '=');
+  const binary = atob(padded);
+  const bytes = new Uint8Array(binary.length);
+
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+
+  return bytes;
+}
+
+function bytesToBase64Url(bytes) {
+  let binary = '';
+  bytes.forEach(byte => {
+    binary += String.fromCharCode(byte);
+  });
+
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+async function sign(value, secret) {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(value));
+  return bytesToBase64Url(new Uint8Array(signature));
+}
+
+async function isValidSession(token, secret) {
+  const [payload, signature] = String(token || '').split('.');
+  if (!payload || !signature) {
+    return false;
+  }
+
+  const expected = await sign(payload, secret);
+  if (expected !== signature) {
+    return false;
   }
 
   try {
-    const decoded = atob(value.slice(6));
-    const separator = decoded.indexOf(':');
-    if (separator < 0) {
-      return null;
-    }
-
-    return {
-      username: decoded.slice(0, separator),
-      password: decoded.slice(separator + 1),
-    };
+    const data = JSON.parse(new TextDecoder().decode(base64UrlToBytes(payload)));
+    return Number(data.exp || 0) > Math.floor(Date.now() / 1000);
   } catch {
-    return null;
+    return false;
   }
 }
 
-export default function middleware(request) {
-  const adminPassword = process.env.ADMIN_PASSWORD || process.env.ADMIN_SECRET;
-  const adminUser = process.env.ADMIN_USER || 'admin';
+export default async function middleware(request) {
+  const pathname = request.nextUrl?.pathname || new URL(request.url).pathname;
 
-  if (!adminPassword) {
+  if (pathname === '/admin/login.html') {
+    return undefined;
+  }
+
+  const adminSecret = process.env.ADMIN_SECRET;
+  if (!adminSecret) {
     return new Response('Admin authentication is not configured.', {
       status: 503,
       headers: {
@@ -46,13 +90,9 @@ export default function middleware(request) {
     });
   }
 
-  const credentials = decodeBasicAuth(request.headers.get('authorization'));
-  if (!credentials) {
-    return unauthorized();
-  }
-
-  if (credentials.username !== adminUser || credentials.password !== adminPassword) {
-    return unauthorized('Invalid admin credentials.');
+  const session = getCookie(request, SESSION_COOKIE);
+  if (!(await isValidSession(session, adminSecret))) {
+    return redirectToLogin(request);
   }
 
   return undefined;
