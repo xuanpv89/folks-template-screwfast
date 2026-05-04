@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-04T17:33:52.220Z",
+  "updatedAt": "2026-05-04T17:34:54.386Z",
   "pages": [
     {
       "id": "home",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "about",
+      "id": "about-us",
       "title": "About Us",
       "path": "/about",
       "sections": [
