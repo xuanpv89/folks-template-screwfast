@@ -417,6 +417,35 @@
         display: block;
       }
 
+      .status-log {
+        display: grid;
+        gap: 8px;
+        border: 1px solid #d4d4d4;
+        border-radius: 8px;
+        background: #fff;
+        padding: 12px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .status-log a {
+        color: var(--brand-dark);
+        font-weight: 800;
+      }
+
+      .check-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: #403d37;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .check-row input {
+        width: auto;
+      }
+
       .drafts {
         display: grid;
         gap: 10px;
@@ -499,6 +528,72 @@
         top: 18px;
       }
 
+      .preview-tabs {
+        display: inline-flex;
+        gap: 6px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #f5f5f5;
+        padding: 4px;
+      }
+
+      .preview-tabs button {
+        min-height: 32px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .preview-tabs button.active {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      .article-preview {
+        display: grid;
+        gap: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 20px;
+      }
+
+      .article-preview h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.08;
+      }
+
+      .article-preview .article-meta,
+      .article-preview .article-description {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .article-preview .article-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .article-preview .article-tags span {
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        padding: 4px 9px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .article-preview .article-body {
+        display: grid;
+        gap: 14px;
+        color: #333;
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
       .section-title {
         display: flex;
         align-items: end;
@@ -552,7 +647,7 @@
             <h2>Viết, lưu draft, preview và publish bài blog từ một nơi.</h2>
             <p class="hint">
               CMS này không phụ thuộc CDN. Bạn có thể làm offline bằng Markdown,
-              hoặc publish trực tiếp lên GitHub nếu đã có token.
+              hoặc publish qua API server dùng GitHub token trong Vercel env.
             </p>
             <div class="toolbar">
               <a class="secondary" href="/blog">Xem Blog EN</a>
@@ -707,9 +802,8 @@
           <div class="publish-box">
             <h3>Publish to GitHub</h3>
             <p>
-              Dùng GitHub fine-grained token có quyền
-              <strong>Contents: Read and write</strong> cho repo này. Token chỉ
-              được lưu trong trình duyệt của bạn.
+              Publish qua Vercel Function. GitHub token nằm trong server env,
+              không lưu trong trình duyệt.
             </p>
             <p>
               Sau khi bấm <strong>Publish to GitHub</strong>, CMS sẽ tạo commit
@@ -727,19 +821,26 @@
               </label>
             </div>
             <label>
-              GitHub token
+              Admin secret
               <input
-                id="githubToken"
+                id="adminSecret"
                 type="password"
                 autocomplete="off"
-                placeholder="github_pat_..."
+                placeholder="ADMIN_SECRET"
               />
             </label>
+            <label class="check-row">
+              <input id="allowUpdate" type="checkbox" />
+              Update existing post if slug already exists
+            </label>
+            <div class="status-log" id="publish-status">
+              Ready. Publish will commit to GitHub, then Vercel should deploy from main.
+            </div>
             <div class="actions">
               <div class="button-row">
                 <button type="button" class="primary-action" id="publish-github">Publish to GitHub</button>
-                <button type="button" class="utility-action" id="save-token">Save token</button>
-                <button type="button" class="danger-action" id="clear-token">Clear</button>
+                <button type="button" class="utility-action" id="save-cloud-draft">Save cloud draft</button>
+                <button type="button" class="danger-action" id="clear-secret">Clear</button>
               </div>
             </div>
           </div>
@@ -773,15 +874,19 @@
           <div class="section-title">
             <div>
               <p class="eyebrow">Preview</p>
-              <h2>Markdown preview</h2>
+              <h2>Post preview</h2>
             </div>
-            <span class="pill">Live</span>
+            <div class="preview-tabs" aria-label="Preview mode">
+              <button type="button" class="active" id="tab-live">Live</button>
+              <button type="button" id="tab-markdown">Markdown</button>
+            </div>
           </div>
           <p class="hint">
             File tạo ra tương thích với collection schema trong
             <code>src/content.config.ts</code>.
           </p>
-          <pre id="preview"></pre>
+          <article class="article-preview" id="article-preview"></article>
+          <pre id="preview" class="hidden"></pre>
         </section>
       </section>
     </main>
@@ -793,9 +898,12 @@
       const toast = document.getElementById('toast');
       const draftsEl = document.getElementById('drafts');
       const downloadLink = document.getElementById('download-link');
+      const articlePreview = document.getElementById('article-preview');
+      const publishStatus = document.getElementById('publish-status');
       const githubRepo = document.getElementById('githubRepo');
       const githubBranch = document.getElementById('githubBranch');
-      const githubToken = document.getElementById('githubToken');
+      const adminSecret = document.getElementById('adminSecret');
+      const allowUpdate = document.getElementById('allowUpdate');
 
       const fields = [
         'locale',
@@ -894,6 +1002,11 @@
         return {
           slug,
           target,
+          data: {
+            ...data,
+            tags,
+            contents,
+          },
           markdown: `---
 title: ${quote(data.title)}
 description: ${quote(data.description)}
@@ -916,9 +1029,39 @@ ${contents.join('\n\n')}
         };
       }
 
+      function renderArticlePreview(result) {
+        const data = result.data;
+        const title = data.title || 'Untitled post';
+        const description = data.description || 'Short description will appear here.';
+        const tags = data.tags.length ? data.tags : ['draft'];
+        const contents = data.contents.length
+          ? data.contents
+          : ['Write at least one paragraph to see the live article preview.'];
+
+        articlePreview.innerHTML = `
+          <div>
+            <p class="eyebrow">${escapeHtml(data.category || 'C.H.E.S.S')}</p>
+            <h1>${escapeHtml(title)}</h1>
+          </div>
+          <p class="article-description">${escapeHtml(description)}</p>
+          <p class="article-meta">
+            ${escapeHtml(data.author || 'Folks Team')} ·
+            ${escapeHtml(data.pubDate || today())} ·
+            ${escapeHtml(data.readTime || '4')} min read
+          </p>
+          <div class="article-tags">
+            ${tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
+          </div>
+          <div class="article-body">
+            ${contents.map(item => `<p>${escapeHtml(item)}</p>`).join('')}
+          </div>
+        `;
+      }
+
       function updatePreview() {
         const result = buildMarkdown();
         preview.textContent = result.markdown;
+        renderArticlePreview(result);
         return result;
       }
 
@@ -957,30 +1100,31 @@ ${contents.join('\n\n')}
         setTimeout(() => toast.classList.remove('show'), type === 'error' ? 5200 : 2600);
       }
 
-      function toBase64Utf8(value) {
-        const bytes = new TextEncoder().encode(value);
-        let binary = '';
-        bytes.forEach(byte => {
-          binary += String.fromCharCode(byte);
-        });
-        return btoa(binary);
+      function updatePublishStatus(message, links = []) {
+        publishStatus.innerHTML = `
+          <div>${escapeHtml(message)}</div>
+          ${links
+            .filter(link => link.url)
+            .map(
+              link =>
+                `<div><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></div>`
+            )
+            .join('')}
+        `;
       }
 
-      async function githubRequest(url, token, options = {}) {
-        const response = await fetch(url, {
-          ...options,
+      async function adminBlogRequest(payload) {
+        const response = await fetch('/api/admin-blog', {
+          method: 'POST',
           headers: {
-            Accept: 'application/vnd.github+json',
-            Authorization: `Bearer ${token}`,
-            'X-GitHub-Api-Version': '2022-11-28',
-            ...(options.headers || {}),
+            'Content-Type': 'application/json',
           },
+          body: JSON.stringify(payload),
         });
 
-        const text = await response.text();
-        const data = text ? JSON.parse(text) : null;
+        const data = await response.json().catch(() => null);
         if (!response.ok) {
-          const message = data?.message || `GitHub API error ${response.status}`;
+          const message = data?.message || `Admin API error ${response.status}`;
           const error = new Error(message);
           error.status = response.status;
           throw error;
@@ -988,19 +1132,19 @@ ${contents.join('\n\n')}
         return data;
       }
 
-      async function publishToGithub() {
+      async function submitToAdminApi(action) {
         const result = updatePreview();
         const repo = githubRepo.value.trim();
         const branch = githubBranch.value.trim() || 'main';
-        const token = githubToken.value.trim();
+        const secret = adminSecret.value.trim();
         const validationErrors = validatePost(result);
 
         if (!repo.includes('/')) {
           showToast('Repository phải có dạng owner/repo.', 'error');
           return;
         }
-        if (!token) {
-          showToast('Bạn cần nhập GitHub token trước khi publish.', 'error');
+        if (!secret) {
+          showToast('Bạn cần nhập Admin secret.', 'error');
           return;
         }
         if (validationErrors.length) {
@@ -1008,36 +1152,33 @@ ${contents.join('\n\n')}
           return;
         }
 
-        const button = document.getElementById('publish-github');
+        const button =
+          action === 'draft'
+            ? document.getElementById('save-cloud-draft')
+            : document.getElementById('publish-github');
         button.disabled = true;
-        button.textContent = 'Publishing...';
+        button.textContent = action === 'draft' ? 'Saving...' : 'Publishing...';
+        updatePublishStatus(action === 'draft' ? 'Saving cloud draft...' : 'Committing to GitHub...');
 
         try {
-          const apiPath = encodeURIComponent(result.target).replace(/%2F/g, '/');
-          const url = `https://api.github.com/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`;
-          let sha;
-
-          try {
-            const existing = await githubRequest(url, token);
-            sha = existing.sha;
-          } catch (error) {
-            if (error.status !== 404) throw error;
-          }
-
-          const commitUrl = `https://api.github.com/repos/${repo}/contents/${apiPath}`;
-          const body = {
-            message: `${sha ? 'Update' : 'Create'} blog post: ${result.slug}`,
-            content: toBase64Utf8(result.markdown),
+          const response = await adminBlogRequest({
+            action,
+            adminSecret: secret,
+            repo,
             branch,
-            ...(sha ? { sha } : {}),
-          };
-
-          const published = await githubRequest(commitUrl, token, {
-            method: 'PUT',
-            body: JSON.stringify(body),
+            locale: getValue('locale'),
+            slug: result.slug,
+            markdown: result.markdown,
+            allowUpdate: allowUpdate.checked,
           });
 
-          const commitLink = published?.commit?.html_url;
+          const verb = action === 'draft' ? 'Cloud draft saved' : 'Published';
+          const deployMessage = response.deploy?.message || 'Check Vercel deployment status.';
+          updatePublishStatus(`${verb}: ${response.target}. ${deployMessage}`, [
+            { label: 'Open commit', url: response.commitUrl },
+            { label: 'Open file', url: response.fileUrl },
+          ]);
+          const commitLink = response.commitUrl;
           showToast(
             commitLink
               ? `Đã publish ${result.target}. Commit: ${commitLink}`
@@ -1047,8 +1188,16 @@ ${contents.join('\n\n')}
           showToast(`Publish lỗi: ${error.message}`, 'error');
         } finally {
           button.disabled = false;
-          button.textContent = 'Publish to GitHub';
+          button.textContent = action === 'draft' ? 'Save cloud draft' : 'Publish to GitHub';
         }
+      }
+
+      async function publishToGithub() {
+        return submitToAdminApi('publish');
+      }
+
+      async function saveCloudDraft() {
+        return submitToAdminApi('draft');
       }
 
       function currentDraft() {
@@ -1166,18 +1315,22 @@ ${contents.join('\n\n')}
       document.getElementById('copy').addEventListener('click', copyMarkdown);
       document.getElementById('save-draft').addEventListener('click', saveDraft);
       document.getElementById('publish-github').addEventListener('click', publishToGithub);
-      document.getElementById('save-token').addEventListener('click', () => {
-        localStorage.setItem('folksGithubRepo', githubRepo.value.trim());
-        localStorage.setItem('folksGithubBranch', githubBranch.value.trim());
-        localStorage.setItem('folksGithubToken', githubToken.value.trim());
-        showToast('Đã lưu GitHub settings trên trình duyệt.');
+      document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
+      document.getElementById('clear-secret').addEventListener('click', () => {
+        adminSecret.value = '';
+        showToast('Admin secret cleared from the form.');
       });
-      document.getElementById('clear-token').addEventListener('click', () => {
-        localStorage.removeItem('folksGithubRepo');
-        localStorage.removeItem('folksGithubBranch');
-        localStorage.removeItem('folksGithubToken');
-        githubToken.value = '';
-        showToast('Đã xóa token khỏi trình duyệt.');
+      document.getElementById('tab-live').addEventListener('click', () => {
+        articlePreview.classList.remove('hidden');
+        preview.classList.add('hidden');
+        document.getElementById('tab-live').classList.add('active');
+        document.getElementById('tab-markdown').classList.remove('active');
+      });
+      document.getElementById('tab-markdown').addEventListener('click', () => {
+        articlePreview.classList.add('hidden');
+        preview.classList.remove('hidden');
+        document.getElementById('tab-live').classList.remove('active');
+        document.getElementById('tab-markdown').classList.add('active');
       });
       const savedGithubRepo = localStorage.getItem('folksGithubRepo');
       githubRepo.value =
@@ -1188,7 +1341,7 @@ ${contents.join('\n\n')}
         localStorage.setItem('folksGithubRepo', 'xuanpv89/folksteam.com');
       }
       githubBranch.value = localStorage.getItem('folksGithubBranch') || githubBranch.value;
-      githubToken.value = localStorage.getItem('folksGithubToken') || '';
+      localStorage.removeItem('folksGithubToken');
       renderDrafts();
       updatePreview();
     </script>
