@@ -686,6 +686,59 @@
       .hidden {
         display: none;
       }
+
+      .quick-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .tab-nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #f5f5f5;
+        padding: 5px;
+      }
+
+      .tab-nav button {
+        min-height: 38px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .tab-nav button.active {
+        background: var(--brand);
+        color: #fff;
+      }
+
+      [data-tab-panel][hidden] {
+        display: none;
+      }
+
+      details.advanced-box {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fafafa;
+        padding: 12px;
+      }
+
+      details.advanced-box summary {
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      details.advanced-box > * + * {
+        margin-top: 12px;
+      }
     </style>
   </head>
   <body>
@@ -754,11 +807,19 @@
               <p class="eyebrow">Editor</p>
               <h2>Tạo bài blog</h2>
             </div>
-            <span class="pill">Markdown</span>
+            <div class="quick-actions">
+              <button type="button" class="utility-action" id="quick-save-draft">Lưu nháp</button>
+              <button type="button" class="primary-action" id="quick-publish">Tới bước đăng</button>
+            </div>
+          </div>
+          <div class="tab-nav" aria-label="Blog editor sections">
+            <button type="button" class="active" data-editor-tab="write">1. Viết bài</button>
+            <button type="button" data-editor-tab="settings">2. Cài đặt</button>
+            <button type="button" data-editor-tab="publish">3. Đăng bài</button>
           </div>
 
-          <div class="form-section">
-            <h3>Post basics</h3>
+          <div class="form-section" data-tab-panel="write">
+            <h3>Bài viết</h3>
             <div class="row">
               <label>
                 Ngôn ngữ
@@ -784,8 +845,8 @@
             </label>
           </div>
 
-          <div class="form-section">
-            <h3>Publishing details</h3>
+          <div class="form-section" data-tab-panel="settings" hidden>
+            <h3>Cài đặt xuất bản</h3>
             <div class="row">
               <label>
                 Author
@@ -827,8 +888,8 @@
             </div>
           </div>
 
-          <div class="form-section">
-            <h3>Media</h3>
+          <div class="form-section" data-tab-panel="settings" hidden>
+            <h3>Ảnh đại diện</h3>
             <div class="row">
               <label>
                 Card image
@@ -870,12 +931,8 @@
             </div>
           </div>
 
-          <div class="form-section">
-            <h3>Content</h3>
-            <label>
-              Summary paragraphs
-              <textarea id="contents" name="contents" placeholder="Used for SEO/card excerpts. Leave empty to generate from paragraph blocks."></textarea>
-            </label>
+          <div class="form-section" data-tab-panel="write">
+            <h3>Nội dung</h3>
             <div class="block-toolbar" aria-label="Add content block">
               <button type="button" data-add-block="heading">+ Heading</button>
               <button type="button" data-add-block="paragraph">+ Paragraph</button>
@@ -890,34 +947,24 @@
             <div class="block-list" id="block-list"></div>
           </div>
 
-          <div>
+          <div data-tab-panel="publish" hidden>
             <p class="hint">Đường dẫn lưu file:</p>
             <div class="path" id="target-path">src/content/blog/en/my-new-post.md</div>
           </div>
 
           <a id="download-link" class="hidden" download="new-blog-post.md"></a>
 
-          <div class="publish-box">
-            <h3>Publish to GitHub</h3>
+          <div class="publish-box" data-tab-panel="publish" hidden>
+            <h3>Đăng bài</h3>
             <p>
               Publish qua Vercel Function. GitHub token nằm trong server env,
               không lưu trong trình duyệt.
             </p>
             <p>
-              Sau khi bấm <strong>Publish to GitHub</strong>, CMS sẽ tạo commit
+              Sau khi bấm <strong>Đăng bài</strong>, CMS sẽ tạo commit
               file Markdown vào repo. Vercel sẽ tự deploy lại nếu project đang
               kết nối với GitHub.
             </p>
-            <div class="row">
-              <label>
-                Repository
-                <input id="githubRepo" value="xuanpv89/folksteam.com" />
-              </label>
-              <label>
-                Branch
-                <input id="githubBranch" value="main" />
-              </label>
-            </div>
             <label>
               Admin secret
               <input
@@ -936,17 +983,34 @@
             </div>
             <div class="actions">
               <div class="button-row">
-                <button type="button" class="primary-action" id="publish-github">Publish to GitHub</button>
-                <button type="button" class="utility-action" id="save-cloud-draft">Save cloud draft</button>
+                <button type="button" class="primary-action" id="publish-github">Đăng bài</button>
+                <button type="button" class="utility-action" id="save-cloud-draft">Lưu nháp</button>
                 <button type="button" class="danger-action" id="clear-secret">Clear</button>
               </div>
             </div>
+            <details class="advanced-box">
+              <summary>Cài đặt nâng cao</summary>
+              <div class="row">
+                <label>
+                  Repository
+                  <input id="githubRepo" value="xuanpv89/folksteam.com" />
+                </label>
+                <label>
+                  Branch
+                  <input id="githubBranch" value="main" />
+                </label>
+              </div>
+              <label>
+                Summary paragraphs
+                <textarea id="contents" name="contents" placeholder="Tự tạo từ đoạn văn nếu để trống."></textarea>
+              </label>
+            </details>
           </div>
 
-          <div class="form-section">
-            <h3>Editor actions</h3>
+          <div class="form-section" data-tab-panel="publish" hidden>
+            <h3>Công cụ nâng cao</h3>
             <div class="button-row">
-              <button type="button" class="primary-action" id="generate">Generate preview</button>
+              <button type="button" class="primary-action" id="generate">Cập nhật preview</button>
               <button type="button" id="download">Download .md</button>
               <button type="button" class="utility-action" id="copy">Copy Markdown</button>
             </div>
@@ -957,7 +1021,7 @@
           </div>
           <div class="toast" id="toast">Done.</div>
 
-          <div>
+          <div data-tab-panel="publish" hidden>
             <div class="section-title">
               <div>
                 <p class="eyebrow">Local drafts</p>
@@ -1847,6 +1911,11 @@ ${bodyMarkdown || contents.join('\n\n')}
       document.getElementById('copy').addEventListener('click', copyMarkdown);
       document.getElementById('save-draft').addEventListener('click', saveDraft);
       document.getElementById('publish-github').addEventListener('click', publishToGithub);
+      document.getElementById('quick-save-draft').addEventListener('click', saveDraft);
+      document.getElementById('quick-publish').addEventListener('click', () => {
+        setEditorTab('publish');
+        adminSecret.focus();
+      });
       document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
       document.getElementById('clear-secret').addEventListener('click', () => {
         adminSecret.value = '';
@@ -1863,6 +1932,17 @@ ${bodyMarkdown || contents.join('\n\n')}
         preview.classList.remove('hidden');
         document.getElementById('tab-live').classList.remove('active');
         document.getElementById('tab-markdown').classList.add('active');
+      });
+      function setEditorTab(tab) {
+        document.querySelectorAll('[data-editor-tab]').forEach(button => {
+          button.classList.toggle('active', button.dataset.editorTab === tab);
+        });
+        document.querySelectorAll('[data-tab-panel]').forEach(panel => {
+          panel.hidden = panel.dataset.tabPanel !== tab;
+        });
+      }
+      document.querySelectorAll('[data-editor-tab]').forEach(button => {
+        button.addEventListener('click', () => setEditorTab(button.dataset.editorTab));
       });
       const savedGithubRepo = localStorage.getItem('folksGithubRepo');
       githubRepo.value =
