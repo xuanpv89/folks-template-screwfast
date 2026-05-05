@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-05-05T06:21:59.917Z",
+  "updatedAt": "2026-05-05T06:30:44.676Z",
   "pages": [
     {
       "id": "home",
       "title": "Home",
-      "path": "/",
+      "path": "/trang-moi",
       "sections": [
         {
           "id": "hero",
@@ -52,25 +52,6 @@
               "label": "Summary",
               "type": "textarea",
               "value": "A compact team of strategists, facilitators, content makers, and product builders."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "trang-moi",
-      "title": "Trang mới",
-      "path": "/trang-moi",
-      "sections": [
-        {
-          "id": "gioi-thieu",
-          "title": "Giới thiệu",
-          "fields": [
-            {
-              "key": "noiDungMoi",
-              "label": "Nội dung mới",
-              "type": "text",
-              "value": ""
             }
           ]
         }
