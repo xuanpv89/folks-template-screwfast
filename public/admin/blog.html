@@ -204,6 +204,11 @@
         color: #244f34;
       }
 
+      .notice h2 {
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+
       .steps {
         display: grid;
         gap: 10px;
@@ -273,6 +278,31 @@
         color: #403d37;
         font-size: 13px;
         font-weight: 800;
+      }
+
+      .field-note {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .field-error {
+        display: none;
+        color: #991b1b;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .field-error.show {
+        display: block;
+      }
+
+      input[aria-invalid='true'],
+      textarea[aria-invalid='true'],
+      select[aria-invalid='true'] {
+        border-color: #ef4444;
+        background: #fff7f7;
+        box-shadow: 0 0 0 3px rgb(239 68 68 / 14%);
       }
 
       input,
@@ -397,6 +427,58 @@
         font-size: 13px;
       }
 
+      .readiness {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .readiness li {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        color: #57534e;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .readiness li::before {
+        content: '';
+        display: grid;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        place-items: center;
+        border: 1px solid #d4d4d4;
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      .readiness li.done {
+        color: #166534;
+      }
+
+      .readiness li.done::before {
+        content: '✓';
+        border-color: var(--brand);
+        background: var(--brand);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .safe-note {
+        border: 1px solid #fed7aa;
+        border-radius: 8px;
+        background: #fff7ed;
+        padding: 12px;
+        color: #7c2d12;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
       .toast {
         display: none;
         margin-top: 10px;
@@ -415,6 +497,12 @@
 
       .toast.show {
         display: block;
+      }
+
+      .autosave {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
       }
 
       .status-log {
@@ -760,6 +848,25 @@
         color: #fff;
       }
 
+      .next-step {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #d9f0df;
+        border-radius: 8px;
+        background: #f7fcf8;
+        padding: 12px;
+      }
+
+      .next-step p {
+        margin: 0;
+        color: #244f34;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
       [data-tab-panel][hidden] {
         display: none;
       }
@@ -806,39 +913,42 @@
       <section class="intro">
         <div class="hero-panel">
           <div class="hero-copy">
-            <p class="eyebrow">Editorial Workspace</p>
-            <h2>Viết, lưu draft, preview và publish bài blog từ một nơi.</h2>
+            <p class="eyebrow">Không cần biết kỹ thuật</p>
+            <h2>Viết bài, xem trước và đăng lên website trong 3 bước.</h2>
             <p class="hint">
-              CMS này không phụ thuộc CDN. Bạn có thể làm offline bằng Markdown,
-              hoặc publish qua API server dùng GitHub token trong Vercel env.
+              Chỉ cần nhập tiêu đề, nội dung, kiểm tra bản xem trước rồi bấm đăng.
+              Các phần kỹ thuật đã được đưa vào mục nâng cao.
             </p>
             <div class="toolbar">
-              <a class="secondary" href="/blog">Xem Blog EN</a>
-              <a class="secondary" href="/vi/blog">Xem Blog VI</a>
+              <a class="secondary" href="/blog">Xem blog tiếng Anh</a>
+              <a class="secondary" href="/vi/blog">Xem blog tiếng Việt</a>
             </div>
           </div>
           <div class="status-grid">
             <div class="status-card">
-              <p class="eyebrow">Mode</p>
-              <strong>Offline-first</strong>
-              <p class="hint">Không cần CDN.</p>
+              <p class="eyebrow">Bước 1</p>
+              <strong>Viết bài</strong>
+              <p class="hint">Nhập nội dung như form thường.</p>
             </div>
             <div class="status-card">
-              <p class="eyebrow">Output</p>
-              <strong>Markdown</strong>
-              <p class="hint">Đúng schema Astro.</p>
+              <p class="eyebrow">Bước 2</p>
+              <strong>Xem trước</strong>
+              <p class="hint">Biết bài sẽ hiện thế nào.</p>
             </div>
             <div class="status-card">
-              <p class="eyebrow">Publish</p>
-              <strong>GitHub</strong>
-              <p class="hint">Commit vào repo.</p>
+              <p class="eyebrow">Bước 3</p>
+              <strong>Đăng bài</strong>
+              <p class="hint">CMS tự đưa lên website.</p>
             </div>
           </div>
         </div>
         <div class="notice">
-          <strong>Luồng nhanh:</strong> điền form, kiểm tra preview, lưu draft
-          nếu cần, rồi bấm <strong>Publish to GitHub</strong> hoặc tải file
-          <strong>.md</strong> để commit thủ công.
+          <h2>Cách dùng nhanh</h2>
+          <ol class="steps">
+            <li><span>1</span><strong>Viết tiêu đề, mô tả và nội dung chính của bài.</strong></li>
+            <li><span>2</span><strong>Nhìn khung xem trước bên phải để kiểm tra bài đọc ổn chưa.</strong></li>
+            <li><span>3</span><strong>Khi bảng kiểm đã xanh, bấm Đăng bài lên website.</strong></li>
+          </ol>
         </div>
       </section>
 
@@ -846,12 +956,12 @@
         <form class="card form-grid" id="post-form" novalidate>
           <div class="section-title">
             <div>
-              <p class="eyebrow">Editor</p>
-              <h2>Tạo bài blog</h2>
+              <p class="eyebrow">Soạn bài</p>
+              <h2>Tạo bài blog mới</h2>
             </div>
             <div class="quick-actions">
               <button type="button" class="utility-action" id="quick-save-draft">Lưu nháp</button>
-              <button type="button" class="primary-action" id="quick-publish">Tới bước đăng</button>
+              <button type="button" class="primary-action" id="quick-publish">Kiểm tra để đăng</button>
             </div>
           </div>
           <div class="tab-nav" aria-label="Blog editor sections">
@@ -860,30 +970,42 @@
             <button type="button" data-editor-tab="publish">3. Đăng bài</button>
           </div>
 
+          <div class="next-step">
+            <p id="next-step-text">Bắt đầu bằng tiêu đề và mô tả ngắn. CMS sẽ tự lưu nháp trên máy này.</p>
+            <span class="autosave" id="autosave-status">Chưa có thay đổi</span>
+          </div>
+
           <div class="form-section" data-tab-panel="write">
-            <h3>Bài viết</h3>
+            <h3>Thông tin bắt buộc</h3>
             <div class="row">
               <label>
-                Ngôn ngữ
+                Bài này đăng ở ngôn ngữ nào?
                 <select id="locale" name="locale">
                   <option value="en">English</option>
                   <option value="vi">Tiếng Việt</option>
                 </select>
+                <span class="field-note">Chọn đúng nơi bài sẽ xuất hiện trên website.</span>
               </label>
               <label>
                 Đường dẫn bài viết
                 <input id="slug" name="slug" placeholder="vi-du-bai-viet" required />
+                <span class="field-note">Tự tạo từ tiêu đề. Chỉ dùng chữ thường, số và dấu gạch ngang.</span>
+                <span class="field-error" data-error-for="slug"></span>
               </label>
             </div>
 
             <label>
-              Title
+              Tiêu đề bài viết
               <input id="title" name="title" placeholder="Tiêu đề bài viết" required />
+              <span class="field-note">Nên rõ ý, người đọc nhìn là biết bài nói về gì.</span>
+              <span class="field-error" data-error-for="title"></span>
             </label>
 
             <label>
-              Description
+              Mô tả ngắn
               <textarea id="description" name="description" placeholder="Mô tả ngắn cho SEO và card blog" required></textarea>
+              <span class="field-note">1-2 câu tóm tắt. Phần này hiện trên thẻ bài viết và Google.</span>
+              <span class="field-error" data-error-for="description"></span>
             </label>
           </div>
 
@@ -973,6 +1095,7 @@
 
           <div class="form-section" data-tab-panel="write">
             <h3>Nội dung</h3>
+            <p class="hint">Viết từng khối nhỏ cho dễ sửa. Nếu chỉ cần bài đơn giản, dùng “Đoạn văn” là đủ.</p>
             <div class="block-toolbar" aria-label="Add content block">
               <button type="button" data-add-block="paragraph">+ Đoạn văn</button>
               <button type="button" data-add-block="image">+ Hình ảnh</button>
@@ -1010,31 +1133,32 @@
           <a id="download-link" class="hidden" download="new-blog-post.md"></a>
 
           <div class="publish-box" data-tab-panel="publish" hidden>
-            <h3>Đăng bài</h3>
-            <p>
-              Publish qua Vercel Function. GitHub token nằm trong server env,
-              không lưu trong trình duyệt.
-            </p>
-            <p>
-              Sau khi bấm <strong>Đăng bài</strong>, CMS sẽ tạo commit
-              file Markdown vào repo. Vercel sẽ tự deploy lại nếu project đang
-              kết nối với GitHub.
-            </p>
+            <h3>Sẵn sàng đăng?</h3>
+            <p>Kiểm tra các mục dưới đây. Khi đủ, bạn có thể đăng bài lên website.</p>
+            <ul class="readiness" id="readiness-list">
+              <li data-check="title">Có tiêu đề bài viết</li>
+              <li data-check="description">Có mô tả ngắn</li>
+              <li data-check="content">Có ít nhất một đoạn nội dung</li>
+              <li data-check="slug">Có đường dẫn hợp lệ</li>
+            </ul>
+            <div class="safe-note">
+              Mẹo an toàn: nếu chưa chắc, bấm “Lưu nháp” trước. Nút “Đăng bài lên website” chỉ dùng khi bài đã sẵn sàng công khai.
+            </div>
             <label class="check-row">
               <input id="allowUpdate" type="checkbox" />
               Cập nhật bài cũ nếu đường dẫn đã tồn tại
             </label>
             <div class="status-log" id="publish-status">
-              Sẵn sàng. Khi đăng, CMS sẽ commit lên GitHub và Vercel sẽ deploy từ main.
+              Chưa đăng. CMS sẽ báo tiến trình ở đây sau khi bạn bấm nút.
             </div>
             <div class="actions">
               <div class="button-row">
-                <button type="button" class="primary-action" id="publish-github">Đăng bài</button>
+                <button type="button" class="primary-action" id="publish-github">Đăng bài lên website</button>
                 <button type="button" class="utility-action" id="save-cloud-draft">Lưu nháp</button>
               </div>
             </div>
             <details class="advanced-box">
-              <summary>Cài đặt nâng cao</summary>
+              <summary>Cài đặt kỹ thuật nâng cao</summary>
               <div class="row">
                 <label>
                   Repository
@@ -1056,8 +1180,8 @@
             <h3>Công cụ nâng cao</h3>
             <div class="button-row">
               <button type="button" class="primary-action" id="generate">Cập nhật preview</button>
-              <button type="button" id="download">Tải file .md</button>
-              <button type="button" class="utility-action" id="copy">Copy mã Markdown</button>
+              <button type="button" id="download">Tải file dự phòng</button>
+              <button type="button" class="utility-action" id="copy">Copy mã kỹ thuật</button>
             </div>
             <div class="button-row">
               <button type="button" class="utility-action" id="save-draft">Lưu nháp</button>
@@ -1071,7 +1195,7 @@
           <div class="section-title">
             <div>
               <p class="eyebrow">Preview</p>
-              <h2>Post preview</h2>
+              <h2>Xem trước bài viết</h2>
             </div>
             <div class="preview-tabs" aria-label="Preview mode">
               <button type="button" class="active" id="tab-live">Xem trước</button>
@@ -1079,8 +1203,7 @@
             </div>
           </div>
           <p class="hint">
-            File tạo ra tương thích với collection schema trong
-            <code>src/content.config.ts</code>.
+            Đây là bản mô phỏng để bạn đọc lại tiêu đề, mô tả, ảnh và nội dung trước khi đăng.
           </p>
           <article class="article-preview" id="article-preview"></article>
           <pre id="preview" class="hidden"></pre>
@@ -1101,6 +1224,11 @@
       const githubRepo = document.getElementById('githubRepo');
       const githubBranch = document.getElementById('githubBranch');
       const allowUpdate = document.getElementById('allowUpdate');
+      const autosaveStatus = document.getElementById('autosave-status');
+      const nextStepText = document.getElementById('next-step-text');
+      const readinessList = document.getElementById('readiness-list');
+      let autosaveTimer;
+      let lastAutosaveAt = null;
 
       const fields = [
         'locale',
@@ -1152,6 +1280,14 @@
           .split(/\n\s*\n/)
           .map(item => item.trim())
           .filter(Boolean);
+      }
+
+      function hasBodyContent() {
+        syncBlocksFromDom();
+        return contentBlocks.some(block => {
+          if (block.type === 'divider') return false;
+          return ['value', 'src', 'url', 'label'].some(key => String(block[key] || '').trim());
+        });
       }
 
       function tagList(value) {
@@ -1314,6 +1450,7 @@
         contentBlocks.push(defaultBlock(type));
         renderBlocks();
         updatePreview();
+        scheduleAutosave();
       }
 
       function markdownImagePath(src) {
@@ -1423,14 +1560,69 @@
         const contents = listFromTextarea(getValue('contents')).length
           ? listFromTextarea(getValue('contents'))
           : summaryFromBlocks();
+        const bodyContent = hasBodyContent();
         const errors = [];
 
-        if (!title) errors.push('Title');
-        if (!description) errors.push('Description');
-        if (!contents.length) errors.push('Contents');
-        if (!result.slug) errors.push('Đường dẫn bài viết');
+        if (!title) errors.push({ field: 'title', label: 'tiêu đề bài viết' });
+        if (!description) errors.push({ field: 'description', label: 'mô tả ngắn' });
+        if (!contents.length && !bodyContent) errors.push({ field: 'content', label: 'nội dung bài viết' });
+        if (!result.slug) errors.push({ field: 'slug', label: 'đường dẫn bài viết' });
 
         return errors;
+      }
+
+      function clearFieldErrors() {
+        document.querySelectorAll('[aria-invalid="true"]').forEach(field => {
+          field.removeAttribute('aria-invalid');
+        });
+        document.querySelectorAll('[data-error-for]').forEach(error => {
+          error.textContent = '';
+          error.classList.remove('show');
+        });
+      }
+
+      function showFieldErrors(errors) {
+        clearFieldErrors();
+        errors.forEach(error => {
+          if (!['title', 'description', 'slug'].includes(error.field)) return;
+          const field = document.getElementById(error.field);
+          const message = document.querySelector(`[data-error-for="${error.field}"]`);
+          if (field) field.setAttribute('aria-invalid', 'true');
+          if (message) {
+            message.textContent = `Vui lòng nhập ${error.label}.`;
+            message.classList.add('show');
+          }
+        });
+      }
+
+      function readinessState(result) {
+        return {
+          title: Boolean(getValue('title')),
+          description: Boolean(getValue('description')),
+          content: hasBodyContent(),
+          slug: Boolean(result.slug),
+        };
+      }
+
+      function updateReadiness(result) {
+        const state = readinessState(result);
+        readinessList?.querySelectorAll('[data-check]').forEach(item => {
+          item.classList.toggle('done', Boolean(state[item.dataset.check]));
+        });
+
+        if (!state.title) {
+          nextStepText.textContent = 'Bắt đầu bằng tiêu đề bài viết.';
+          return;
+        }
+        if (!state.description) {
+          nextStepText.textContent = 'Thêm mô tả ngắn để người đọc biết bài viết nói về gì.';
+          return;
+        }
+        if (!state.content) {
+          nextStepText.textContent = 'Thêm ít nhất một đoạn nội dung trong phần Nội dung.';
+          return;
+        }
+        nextStepText.textContent = 'Bài đã đủ thông tin cơ bản. Bạn có thể kiểm tra bản xem trước rồi đăng.';
       }
 
       function escapeHtml(value) {
@@ -1564,7 +1756,31 @@ ${bodyMarkdown || contents.join('\n\n')}
         preview.textContent = result.markdown;
         renderArticlePreview(result);
         updateMediaPreviews();
+        updateReadiness(result);
         return result;
+      }
+
+      function saveAutosaveDraft() {
+        try {
+          const draft = currentDraft();
+          localStorage.setItem(
+            'folksBlogAutosave',
+            JSON.stringify({ ...draft, savedAt: new Date().toISOString() })
+          );
+          lastAutosaveAt = new Date();
+          autosaveStatus.textContent = `Đã tự lưu ${lastAutosaveAt.toLocaleTimeString('vi-VN', {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}`;
+        } catch {
+          autosaveStatus.textContent = 'Không thể tự lưu trên trình duyệt này';
+        }
+      }
+
+      function scheduleAutosave() {
+        autosaveStatus.textContent = 'Đang chờ tự lưu...';
+        window.clearTimeout(autosaveTimer);
+        autosaveTimer = window.setTimeout(saveAutosaveDraft, 700);
       }
 
       function downloadFile() {
@@ -1618,17 +1834,17 @@ ${bodyMarkdown || contents.join('\n\n')}
       function deployStatusLinks(response, publicUrl) {
         return [
           publicUrl ? { label: 'Mở bài viết', url: publicUrl } : null,
-          { label: 'Open commit', url: response.commitUrl },
-          { label: 'Open file', url: response.fileUrl },
-          response.deployment?.url ? { label: 'Open deployed site', url: response.deployment.url } : null,
-          response.deployment?.inspectorUrl ? { label: 'Open Vercel deploy', url: response.deployment.inspectorUrl } : null,
+          { label: 'Xem thay đổi kỹ thuật', url: response.commitUrl },
+          { label: 'Xem file bài viết', url: response.fileUrl },
+          response.deployment?.url ? { label: 'Mở website đã deploy', url: response.deployment.url } : null,
+          response.deployment?.inspectorUrl ? { label: 'Xem trạng thái Vercel', url: response.deployment.inspectorUrl } : null,
         ].filter(Boolean);
       }
 
       async function waitForDeployStatus(response, branch, publicUrl) {
         if (!response.commitSha) return;
 
-        updatePublishStatus('Committed. Checking the real Vercel deploy status...', deployStatusLinks(response, publicUrl));
+        updatePublishStatus('Đã lưu bài. CMS đang kiểm tra website cập nhật xong chưa...', deployStatusLinks(response, publicUrl));
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
           await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
@@ -1638,19 +1854,19 @@ ${bodyMarkdown || contents.join('\n\n')}
           });
           const status = await statusResponse.json().catch(() => null);
           if (!statusResponse.ok) {
-            updatePublishStatus(`Post is committed, but deploy status could not be checked: ${status?.message || statusResponse.status}`, deployStatusLinks(response, publicUrl));
+            updatePublishStatus(`Bài đã được lưu, nhưng CMS chưa kiểm tra được deploy: ${status?.message || statusResponse.status}`, deployStatusLinks(response, publicUrl));
             return status;
           }
 
           response.deployment = status.deployment;
-          updatePublishStatus(status.message || `Deploy status: ${status.status}`, deployStatusLinks(response, publicUrl));
+          updatePublishStatus(status.message || `Trạng thái cập nhật website: ${status.status}`, deployStatusLinks(response, publicUrl));
 
           if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
             return status;
           }
         }
 
-        updatePublishStatus('Deploy is still running or was not found after a few minutes. Open Vercel to keep checking.', deployStatusLinks(response, publicUrl));
+        updatePublishStatus('Website vẫn đang cập nhật hoặc chưa tìm thấy deploy sau vài phút. Mở Vercel để kiểm tra tiếp.', deployStatusLinks(response, publicUrl));
       }
 
       async function adminBlogRequest(payload) {
@@ -1747,17 +1963,27 @@ ${bodyMarkdown || contents.join('\n\n')}
           return;
         }
         if (validationErrors.length) {
-          showToast(`Chưa thể publish. Thiếu: ${validationErrors.join(', ')}.`, 'error');
+          showFieldErrors(validationErrors);
+          const labels = validationErrors.map(error => error.label).join(', ');
+          showToast(`Chưa thể đăng. Bạn cần bổ sung: ${labels}.`, 'error');
+          if (validationErrors.some(error => ['title', 'description', 'slug'].includes(error.field))) {
+            setEditorTab('write');
+          }
           return;
         }
+        clearFieldErrors();
 
         const button =
           action === 'draft'
             ? document.getElementById('save-cloud-draft')
             : document.getElementById('publish-github');
         button.disabled = true;
-        button.textContent = action === 'draft' ? 'Saving...' : 'Publishing...';
-        updatePublishStatus(action === 'draft' ? 'Saving cloud draft...' : 'Committing to GitHub...');
+        button.textContent = action === 'draft' ? 'Đang lưu...' : 'Đang đăng...';
+        updatePublishStatus(
+          action === 'draft'
+            ? 'Đang lưu nháp lên hệ thống...'
+            : 'Đang gửi bài lên website. Vui lòng giữ nguyên trang này trong vài phút...'
+        );
 
         try {
           const response = await adminBlogRequest({
@@ -1770,14 +1996,15 @@ ${bodyMarkdown || contents.join('\n\n')}
             allowUpdate: allowUpdate.checked,
           });
 
-          const verb = action === 'draft' ? 'Cloud draft saved' : 'Published';
-          const deployMessage = response.deploy?.message || 'Check Vercel deployment status.';
+          const verb = action === 'draft' ? 'Đã lưu nháp' : 'Đã gửi bài';
+          const deployMessage =
+            response.deploy?.message || 'CMS đang kiểm tra quá trình cập nhật website.';
           const statusLinks = [
             action === 'publish'
               ? { label: 'Mở bài viết', url: publicPostUrl(getValue('locale'), result.slug) }
               : null,
-            { label: 'Open commit', url: response.commitUrl },
-            { label: 'Open file', url: response.fileUrl },
+            { label: 'Xem thay đổi kỹ thuật', url: response.commitUrl },
+            { label: 'Xem file bài viết', url: response.fileUrl },
           ].filter(Boolean);
           updatePublishStatus(`${verb}: ${response.target}. ${deployMessage}`, statusLinks);
           if (action === 'publish') {
@@ -1786,14 +2013,14 @@ ${bodyMarkdown || contents.join('\n\n')}
           const commitLink = response.commitUrl;
           showToast(
             commitLink
-              ? `Đã publish ${result.target}. Commit: ${commitLink}`
-              : `Đã publish ${result.target} lên GitHub.`
+              ? `Đã gửi bài lên website. CMS đang chờ deploy hoàn tất.`
+              : `Đã gửi bài lên website.`
           );
         } catch (error) {
-          showToast(`Publish lỗi: ${error.message}`, 'error');
+          showToast(`Đăng bài lỗi: ${error.message}`, 'error');
         } finally {
           button.disabled = false;
-          button.textContent = action === 'draft' ? 'Lưu nháp' : 'Đăng bài';
+          button.textContent = action === 'draft' ? 'Lưu nháp' : 'Đăng bài lên website';
         }
       }
 
@@ -1829,7 +2056,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         const drafts = readDrafts();
         draftsEl.innerHTML = '';
         if (!drafts.length) {
-          draftsEl.innerHTML = '<p class="hint">Chưa có draft nào.</p>';
+          draftsEl.innerHTML = '<p class="hint">Chưa có nháp đã lưu. Khi viết, CMS vẫn tự lưu tạm trên máy này.</p>';
           return;
         }
 
@@ -1849,8 +2076,8 @@ ${bodyMarkdown || contents.join('\n\n')}
               </div>
             </div>
             <div class="draft-actions">
-              <button type="button" data-load="${index}">Load</button>
-              <button type="button" class="secondary" data-delete="${index}">Delete</button>
+              <button type="button" data-load="${index}">Mở lại</button>
+              <button type="button" class="secondary" data-delete="${index}">Xóa</button>
             </div>
           `;
           draftsEl.appendChild(item);
@@ -1909,13 +2136,17 @@ ${bodyMarkdown || contents.join('\n\n')}
         event.target.value = slugify(event.target.value);
       });
 
-      form.addEventListener('input', updatePreview);
+      form.addEventListener('input', () => {
+        updatePreview();
+        scheduleAutosave();
+      });
       document.querySelectorAll('[data-add-block]').forEach(button => {
         button.addEventListener('click', () => addBlock(button.dataset.addBlock));
       });
       blockList.addEventListener('input', event => {
         syncBlocksFromDom();
         updatePreview();
+        scheduleAutosave();
       });
       blockList.addEventListener('click', event => {
         const removeIndex = event.target.dataset.removeBlock;
@@ -1927,6 +2158,7 @@ ${bodyMarkdown || contents.join('\n\n')}
           if (!contentBlocks.length) contentBlocks.push(defaultBlock('paragraph'));
           renderBlocks();
           updatePreview();
+          scheduleAutosave();
         }
 
         if (moveIndex !== undefined) {
@@ -1939,6 +2171,7 @@ ${bodyMarkdown || contents.join('\n\n')}
             contentBlocks.splice(nextIndex, 0, block);
             renderBlocks();
             updatePreview();
+            scheduleAutosave();
           }
         }
       });
@@ -1966,6 +2199,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         contentBlocks = [defaultBlock('paragraph')];
         renderBlocks();
         updatePreview();
+        scheduleAutosave();
       }));
       draftsEl.addEventListener('click', event => {
         const loadIndex = event.target.dataset.load;
