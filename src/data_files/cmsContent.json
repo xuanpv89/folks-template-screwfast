@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-05T19:51:28.332Z",
+  "updatedAt": "2026-05-05T20:04:55.967Z",
   "pages": [
     {
       "id": "folks-team",
@@ -48,7 +48,7 @@
               "key": "text-5",
               "label": "C.H.E.S.S",
               "type": "text",
-              "value": "C.H.E.S.S",
+              "value": " C.H.E.S.S",
               "match": "C.H.E.S.S"
             },
             {
