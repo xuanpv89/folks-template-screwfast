@@ -96,9 +96,10 @@
       .field-card { border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 14px; }
       .field-card header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
       .field-card header strong { font-size: 14px; }
+      .field-card textarea, .field-card input[data-field-value] { background: #fff; font-size: 15px; line-height: 1.55; }
       .section-title { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
       .hint { color: var(--muted); font-size: 13px; }
-      .meta-grid { display: grid; gap: 8px; margin: 14px 0; }
+      .meta-grid { display: none; gap: 8px; margin: 14px 0; }
       @media (min-width: 760px) { .meta-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
       .meta-card { border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 10px 12px; }
       .meta-card small { display: block; color: var(--muted); font-size: 12px; font-weight: 800; }
@@ -113,9 +114,11 @@
       }
       .publish-box { display: grid; gap: 12px; border: 1px solid #bde8cb; border-radius: 8px; background: var(--brand-soft); padding: 14px; margin-top: 14px; }
       .tools-panel { margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 12px 14px; }
-      .tools-panel summary, .field-advanced summary { cursor: pointer; color: var(--ink); font-weight: 900; }
+      .tools-panel summary, .field-advanced summary, .structure-panel summary { cursor: pointer; color: var(--ink); font-weight: 900; }
       .tools-panel .button-row { margin-top: 12px; }
       .field-advanced { margin-top: 12px; border: 1px solid #e7e5df; border-radius: 8px; background: #fff; padding: 10px 12px; }
+      .structure-panel { margin-top: 14px; border: 1px solid #e7e5df; border-radius: 8px; background: #fff; padding: 12px 14px; }
+      .step-label { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; border-radius: 999px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 900; }
       .status-log {
         display: grid; gap: 8px; border: 1px solid #d4d4d4; border-radius: 8px;
         background: #fff; color: var(--muted); padding: 12px; font-size: 13px;
@@ -138,6 +141,7 @@
       .preview-field { display: grid; gap: 4px; border-top: 1px solid #eee; padding-top: 8px; }
       .preview-field strong { font-size: 13px; }
       .preview-field div { white-space: pre-wrap; }
+      .technical-note { display: none; }
       .hidden { display: none; }
       .toast { display: none; margin-top: 10px; border-radius: 8px; background: #ecfdf5; color: #065f46; padding: 10px 12px; font-size: 13px; font-weight: 700; }
       .toast.error { background: #fef2f2; color: #991b1b; }
@@ -167,15 +171,14 @@
       <section class="hero-panel">
         <div>
           <p class="eyebrow">Không gian soạn nội dung</p>
-          <h2>Chỉnh nội dung theo trang, section và từng trường copy.</h2>
+          <h2>Chọn trang, sửa chữ, rồi đăng lên website.</h2>
           <p>
-            Dữ liệu chính nằm ở <code>src/data_files/cmsContent.json</code>. CMS sẽ tải bản đang
-            publish từ GitHub, cho phép lưu bản chỉnh sửa trên máy này, rồi đăng lại khi đã kiểm tra xong.
+            Màn hình này dành cho việc sửa nội dung. Các cài đặt kỹ thuật được đặt trong phần nâng cao.
           </p>
         </div>
         <div class="status-strip" id="source-status" aria-live="polite">
           <strong>Đang tải nội dung...</strong>
-          <small>CMS đang lấy dữ liệu mới nhất từ GitHub.</small>
+          <small>Đang lấy nội dung mới nhất của website.</small>
         </div>
       </section>
 
@@ -183,7 +186,7 @@
         <aside class="card sidebar">
           <div class="section-title">
             <div>
-              <p class="eyebrow">Danh sách trang</p>
+              <p class="eyebrow"><span class="step-label">1</span> Chọn trang</p>
               <h2>Trang</h2>
             </div>
           </div>
@@ -192,16 +195,13 @@
             <input id="page-search" placeholder="Nhập tên hoặc đường dẫn..." />
           </label>
           <div class="list" id="page-list"></div>
-          <div class="actions" style="margin-top:14px">
-            <button type="button" id="add-page">Thêm trang</button>
-          </div>
         </aside>
 
         <section class="card" data-content-editor>
           <div class="section-title">
             <div>
-              <p class="eyebrow">Trình soạn</p>
-              <h2 id="editor-title">Soạn nội dung trang</h2>
+              <p class="eyebrow"><span class="step-label">2</span> Sửa nội dung</p>
+              <h2 id="editor-title">Nội dung trang</h2>
             </div>
           </div>
           <div class="meta-grid">
@@ -210,7 +210,7 @@
               <strong id="current-page-meta">-</strong>
             </div>
             <div class="meta-card">
-              <small>Section đang chọn</small>
+              <small>Mục đang chọn</small>
               <strong id="current-section-meta">-</strong>
             </div>
             <div class="meta-card">
@@ -224,41 +224,50 @@
               Tên trang
               <input id="page-title" />
             </label>
-            <label>
-              Đường dẫn trang
-              <input id="page-path" />
-            </label>
           </div>
-          <div class="button-row" style="margin-top:12px">
-            <button type="button" class="secondary" id="move-page-up">Đưa trang lên</button>
-            <button type="button" class="secondary" id="move-page-down">Đưa trang xuống</button>
-            <button type="button" class="danger" id="delete-page">Xóa trang</button>
-          </div>
+          <details class="structure-panel">
+            <summary>Quản lý trang nâng cao</summary>
+            <div class="row" style="margin-top:12px">
+              <label>
+                Đường dẫn trang
+                <input id="page-path" />
+              </label>
+            </div>
+            <div class="button-row" style="margin-top:12px">
+              <button type="button" id="add-page">Thêm trang</button>
+              <button type="button" class="secondary" id="move-page-up">Đưa trang lên</button>
+              <button type="button" class="secondary" id="move-page-down">Đưa trang xuống</button>
+              <button type="button" class="danger" id="delete-page">Xóa trang</button>
+            </div>
+          </details>
 
           <div class="section-title" style="margin-top:18px">
             <div>
-              <p class="eyebrow">Các phần</p>
-              <h3>Phần nội dung trong trang</h3>
+              <p class="eyebrow">Mục trong trang</p>
+              <h3>Chọn mục cần sửa</h3>
             </div>
-            <button type="button" id="add-section">Thêm phần</button>
           </div>
           <div class="list" id="section-list"></div>
-          <div class="button-row" style="margin-top:12px">
-            <button type="button" class="secondary" id="move-section-up">Đưa phần lên</button>
-            <button type="button" class="secondary" id="move-section-down">Đưa phần xuống</button>
-            <button type="button" class="danger" id="delete-section">Xóa phần</button>
-          </div>
+          <details class="structure-panel">
+            <summary>Quản lý mục nâng cao</summary>
+            <div class="button-row" style="margin-top:12px">
+              <button type="button" id="add-section">Thêm mục</button>
+              <button type="button" class="secondary" id="move-section-up">Đưa mục lên</button>
+              <button type="button" class="secondary" id="move-section-down">Đưa mục xuống</button>
+              <button type="button" class="danger" id="delete-section">Xóa mục</button>
+            </div>
+          </details>
 
           <div class="publish-box">
-            <h3>Phần đang chọn</h3>
+            <h3>Nội dung đang chọn</h3>
             <div class="row">
               <label>
-                Tên phần nội dung
+                Tên mục
                 <input id="section-title-input" />
               </label>
             </div>
             <details class="field-advanced">
-              <summary>Cấu hình section</summary>
+              <summary>Cấu hình mục</summary>
               <div class="row" style="margin-top:12px">
                 <label>
                   Mã phần nội dung
@@ -269,41 +278,45 @@
             <div class="section-title" style="margin-top:8px">
               <div>
                 <p class="eyebrow">Nội dung nhỏ</p>
-                <h3>Từng trường nội dung</h3>
+                <h3>Các dòng chữ có thể sửa</h3>
               </div>
-              <button type="button" id="add-field">Thêm trường</button>
             </div>
             <div class="field-list" id="field-list"></div>
+            <details class="structure-panel">
+              <summary>Quản lý dòng chữ nâng cao</summary>
+              <div class="button-row" style="margin-top:12px">
+                <button type="button" id="add-field">Thêm dòng chữ</button>
+              </div>
+            </details>
           </div>
 
           <details class="tools-panel">
             <summary>Công cụ và dữ liệu nâng cao</summary>
             <div class="button-row">
-              <button type="button" class="secondary" id="reload-live">Tải lại bản GitHub</button>
+              <button type="button" class="secondary" id="reload-live">Tải lại nội dung online</button>
               <button type="button" class="secondary" id="clear-draft">Bỏ bản lưu trên máy</button>
-              <button type="button" class="secondary" id="export-json">Tải JSON</button>
-              <button type="button" class="secondary" id="copy-json">Copy JSON</button>
+              <button type="button" class="secondary" id="export-json">Tải dữ liệu</button>
+              <button type="button" class="secondary" id="copy-json">Copy dữ liệu</button>
             </div>
           </details>
 
           <div class="publish-box">
-            <h3>Đăng nội dung</h3>
+            <h3><span class="step-label">3</span> Đăng lên website</h3>
             <p class="hint">
-              CMS sẽ dùng phiên đăng nhập admin và GitHub token trong Vercel env,
-              không cần nhập token trong trình duyệt.
+              Bấm đăng khi đã kiểm tra xong. Website sẽ cập nhật sau khi hệ thống deploy hoàn tất.
             </p>
             <div class="status-log" id="publish-status">
-              Sẵn sàng. Khi đăng, CMS sẽ commit vào <code>src/data_files/cmsContent.json</code>.
+              Sẵn sàng đăng nội dung lên website.
             </div>
             <details>
               <summary>Cài đặt nâng cao</summary>
               <div class="row" style="margin-top:12px">
                 <label>
-                  Kho GitHub
+                Kho dữ liệu
                   <input id="githubRepo" value="xuanpv89/folksteam.com" />
                 </label>
                 <label>
-                  Nhánh
+                  Nhánh dữ liệu
                   <input id="githubBranch" value="main" />
                 </label>
               </div>
@@ -320,15 +333,15 @@
         <section class="card preview-card">
           <div class="section-title">
             <div>
-              <p class="eyebrow">Xem trước phần đang sửa</p>
-              <h2>Xem trước</h2>
+              <p class="eyebrow">Kiểm tra nhanh</p>
+              <h2>Nội dung đang sửa</h2>
             </div>
             <div class="preview-tabs" aria-label="Preview mode">
               <button type="button" class="active" id="tab-readable">Xem nội dung</button>
-              <button type="button" id="tab-json">JSON nâng cao</button>
+              <button type="button" id="tab-json">Dữ liệu kỹ thuật</button>
             </div>
           </div>
-          <div class="path">src/data_files/cmsContent.json</div>
+          <div class="path technical-note">src/data_files/cmsContent.json</div>
           <div class="content-preview" id="content-preview"></div>
           <pre id="preview" class="hidden"></pre>
         </section>
@@ -426,6 +439,10 @@
         dirtyStatus.textContent = value ? 'Có thay đổi chưa đăng' : 'Chưa có thay đổi mới';
       }
 
+      function getSectionLabel(section) {
+        return section.title || section.id || 'Mục chưa đặt tên';
+      }
+
       function escapeHtml(value) {
         return String(value || '')
           .replaceAll('&', '&amp;')
@@ -469,7 +486,7 @@
         const data = await response.json().catch(() => null);
 
         if (!response.ok) {
-          throw new Error(data?.message || `Không tải được nội dung GitHub (${response.status}).`);
+          throw new Error(data?.message || `Không tải được nội dung online (${response.status}).`);
         }
 
         return {
@@ -480,7 +497,7 @@
 
       async function initializeContent(preferDraft = true) {
         const draft = getSavedDraft();
-        setSourceStatus('Đang tải nội dung...', 'CMS đang lấy dữ liệu mới nhất từ GitHub.');
+        setSourceStatus('Đang tải nội dung...', 'Đang lấy nội dung mới nhất của website.');
 
         try {
           const published = await loadPublishedContent();
@@ -494,17 +511,17 @@
             baseSha = draft.baseSha || '';
             setSourceStatus(
               'Đang dùng bản lưu trên máy này',
-              'Có bản chỉnh sửa đã lưu trong trình duyệt. Bấm "Tải lại bản GitHub" trong Công cụ nếu muốn bỏ bản này.',
+              'Có bản chỉnh sửa đã lưu trong trình duyệt. Nếu muốn lấy lại nội dung mới nhất trên website, mở Công cụ nâng cao.',
               'warning'
             );
           } else {
-            setSourceStatus('Đã tải bản GitHub', 'Bạn đang chỉnh nội dung mới nhất từ repository.');
+            setSourceStatus('Đã tải nội dung online', 'Bạn đang chỉnh nội dung mới nhất của website.');
           }
         } catch (error) {
           state = draft?.content?.pages?.length ? draft.content : structuredClone(defaultContent);
           baseSha = draft?.baseSha || '';
           setSourceStatus(
-            draft?.content?.pages?.length ? 'Đang dùng bản lưu offline' : 'Đang dùng dữ liệu mẫu',
+            draft?.content?.pages?.length ? 'Đang dùng bản lưu trên máy này' : 'Đang dùng dữ liệu mẫu',
             error.message,
             'error'
           );
@@ -566,7 +583,7 @@
         const sections = currentPage().sections || [];
 
         if (!sections.length) {
-          sectionList.innerHTML = '<div class="empty-state">Trang này chưa có section. Bấm "Thêm phần" để bắt đầu.</div>';
+          sectionList.innerHTML = '<div class="empty-state">Trang này chưa có mục nội dung. Mở phần quản lý nâng cao nếu cần thêm mục mới.</div>';
           return;
         }
 
@@ -574,7 +591,7 @@
           const button = document.createElement('button');
           button.type = 'button';
           button.className = `item ${index === sectionIndex ? 'active' : ''}`;
-          button.innerHTML = `<span>${escapeHtml(section.title)}</span><small>${escapeHtml(section.id)}</small>`;
+          button.innerHTML = `<span>${escapeHtml(getSectionLabel(section))}</span>`;
           button.addEventListener('click', () => {
             saveCurrentFromInputs();
             sectionIndex = index;
@@ -589,7 +606,7 @@
         const fields = currentSection().fields || [];
 
         if (!fields.length) {
-          fieldList.innerHTML = '<div class="empty-state">Section này chưa có trường nội dung. Bấm "Thêm trường" để thêm headline, mô tả, CTA...</div>';
+          fieldList.innerHTML = '<div class="empty-state">Mục này chưa có dòng chữ để sửa. Mở phần quản lý nâng cao nếu cần thêm dòng mới.</div>';
           return;
         }
 
@@ -601,16 +618,15 @@
             : `<input data-field-value="${index}" value="${escapeHtml(field.value || '')}" />`;
           wrapper.innerHTML = `
             <header>
-              <strong>Trường ${index + 1}</strong>
-              <span class="hint">${escapeHtml(field.key || 'chua-co-ma')}</span>
+              <strong>${escapeHtml(field.label || `Dòng chữ ${index + 1}`)}</strong>
             </header>
             <div class="row">
-              <label>Tên hiển thị<input data-field-label="${index}" value="${escapeHtml(field.label || '')}" /></label>
               <label>Nội dung${input}</label>
             </div>
             <details class="field-advanced">
-              <summary>Cấu hình trường</summary>
+              <summary>Cấu hình dòng chữ</summary>
               <div class="row" style="margin-top:12px">
+                <label>Tên hiển thị<input data-field-label="${index}" value="${escapeHtml(field.label || '')}" /></label>
                 <label>Mã nội dung<input data-field-key="${index}" value="${escapeHtml(field.key || '')}" /></label>
                 <label>Kiểu nội dung
                   <select data-field-type="${index}">
@@ -623,7 +639,7 @@
             <div class="actions" style="margin-top:12px">
               <button type="button" class="secondary" data-move-field="${index}" data-direction="-1">Đưa lên</button>
               <button type="button" class="secondary" data-move-field="${index}" data-direction="1">Đưa xuống</button>
-              <button type="button" class="danger" data-remove-field="${index}">Xóa trường</button>
+              <button type="button" class="danger" data-remove-field="${index}">Xóa dòng chữ</button>
             </div>
           `;
           fieldList.appendChild(wrapper);
@@ -639,7 +655,7 @@
         sectionTitle.value = section.title;
         document.getElementById('editor-title').textContent = `Nội dung: ${page.title}`;
         currentPageMeta.textContent = `${page.title || 'Chưa có tên'} (${page.path || '/'})`;
-        currentSectionMeta.textContent = `${section.title || 'Chưa có tên'} (${section.id || 'chua-co-ma'})`;
+        currentSectionMeta.textContent = getSectionLabel(section);
         movePageUp.disabled = pageIndex === 0;
         movePageDown.disabled = pageIndex >= state.pages.length - 1;
         moveSectionUp.disabled = sectionIndex === 0;
@@ -656,12 +672,11 @@
             <div>
               <p class="eyebrow">${escapeHtml(page.path || '/')}</p>
               <h3>${escapeHtml(page.title || 'Chưa có tên trang')}</h3>
-              <p class="preview-summary">Đang xem section đang chọn. JSON nâng cao vẫn chứa toàn bộ dữ liệu website.</p>
+              <p class="preview-summary">Đang xem mục đang chọn.</p>
             </div>
             <section class="preview-section">
               <div>
-                <strong>${escapeHtml(section.title || 'Chưa có tên phần')}</strong>
-                <p class="hint">${escapeHtml(section.id || 'chua-co-ma-phan')}</p>
+                <strong>${escapeHtml(getSectionLabel(section))}</strong>
               </div>
               ${(section.fields || [])
                 .map(field => `
@@ -670,7 +685,7 @@
                     <div>${escapeHtml(field.value || 'Chưa có nội dung')}</div>
                   </div>
                 `)
-                .join('') || '<div class="empty-state">Section này chưa có trường nội dung.</div>'}
+                .join('') || '<div class="empty-state">Mục này chưa có nội dung.</div>'}
             </section>
           </article>
         `;
@@ -766,7 +781,7 @@
       }
 
       function buildPublishSummary() {
-        if (!serverContent) return 'CMS chưa có bản GitHub để so sánh. Hãy kiểm tra kỹ trước khi đăng.';
+        if (!serverContent) return 'Hệ thống chưa tải được bản đang online. Hãy tải lại trước khi đăng.';
 
         const currentPages = state.pages?.length || 0;
         const serverPages = serverContent.pages?.length || 0;
@@ -777,11 +792,7 @@
           return JSON.stringify(page) !== JSON.stringify(serverPage);
         }).length;
 
-        return [
-          `Trang: ${serverPages} -> ${currentPages}`,
-          `Trường nội dung: ${serverFields} -> ${currentFields}`,
-          `Trang có thay đổi: ${changedPages}`,
-        ].join('. ');
+        return `Bạn sắp đăng ${currentPages} trang, ${currentFields} dòng nội dung. Có ${changedPages} trang đã thay đổi.`;
       }
 
       async function publishToGithub() {
@@ -791,7 +802,7 @@
         const validationErrors = validateContent();
 
         if (!repo.includes('/')) {
-          showToast('Repository phải có dạng owner/repo.', 'error');
+          showToast('Kho dữ liệu không hợp lệ. Hãy kiểm tra trong cài đặt nâng cao.', 'error');
           return;
         }
         if (validationErrors.length) {
@@ -799,13 +810,13 @@
           return;
         }
         if (!baseSha) {
-          updatePublishStatus('Chưa thể đăng vì CMS không có mốc so sánh với bản GitHub hiện tại. Hãy bấm "Tải lại bản GitHub" trong Công cụ.');
-          showToast('Hãy tải lại bản GitHub trước khi đăng.', 'error');
+          updatePublishStatus('Chưa thể đăng vì hệ thống chưa tải được bản đang online. Mở Công cụ và dữ liệu nâng cao rồi bấm "Tải lại nội dung online".');
+          showToast('Hãy tải lại nội dung online trước khi đăng.', 'error');
           return;
         }
 
         const summary = buildPublishSummary();
-        updatePublishStatus(`Sắp đăng nội dung. ${summary}`);
+        updatePublishStatus(summary);
         if (!window.confirm(`Đăng nội dung lên website?\n\n${summary}`)) {
           return;
         }
@@ -813,7 +824,7 @@
         const button = document.getElementById('publish-github');
         button.disabled = true;
         button.textContent = 'Đang đăng...';
-        updatePublishStatus('Đang commit nội dung lên GitHub...');
+        updatePublishStatus('Đang đăng nội dung lên website...');
 
         try {
           const result = await adminContentRequest({
@@ -822,16 +833,16 @@
             baseSha,
             content: state,
           });
-          updatePublishStatus(`${result.target} đã được cập nhật. ${result.deploy?.message || ''}`, [
-            { label: 'Mở commit trên GitHub', url: result.commitUrl },
-            { label: 'Mở file đã cập nhật', url: result.fileUrl },
+          updatePublishStatus(`Đã gửi nội dung mới. ${result.deploy?.message || ''}`, [
+            { label: 'Xem lần cập nhật', url: result.commitUrl },
+            { label: 'Xem dữ liệu đã cập nhật', url: result.fileUrl },
           ]);
           localStorage.removeItem(DRAFT_KEY);
           serverContent = structuredClone(state);
           baseSha = result.sha || baseSha;
           setDirty(false);
-          setSourceStatus('Đã đăng nội dung', 'Nội dung đã được commit lên GitHub. Vercel sẽ deploy theo cấu hình repository.');
-          showToast('Đã đăng nội dung lên GitHub.');
+          setSourceStatus('Đã đăng nội dung', 'Nội dung đã được gửi lên hệ thống. Website sẽ cập nhật sau khi deploy xong.');
+          showToast('Đã đăng nội dung.');
         } finally {
           button.disabled = false;
           button.textContent = 'Đăng nội dung';
@@ -867,7 +878,7 @@
           showToast('Cần giữ lại ít nhất một phần nội dung.', 'error');
           return;
         }
-        if (!window.confirm(`Xóa section "${currentSection().title}" khỏi trang "${page.title}"?`)) {
+        if (!window.confirm(`Xóa mục "${currentSection().title}" khỏi trang "${page.title}"?`)) {
           return;
         }
         page.sections.splice(sectionIndex, 1);
@@ -964,24 +975,24 @@
         showToast('Đã lưu trên máy này.');
       });
       document.getElementById('reload-live').addEventListener('click', () => {
-        if (hasUnsavedChanges && !window.confirm('Bạn có thay đổi chưa đăng. Tải lại bản GitHub sẽ bỏ các thay đổi trên màn hình.')) return;
+        if (hasUnsavedChanges && !window.confirm('Bạn có thay đổi chưa đăng. Tải lại nội dung online sẽ bỏ các thay đổi trên màn hình.')) return;
         localStorage.removeItem(DRAFT_KEY);
         initializeContent(false);
       });
       document.getElementById('clear-draft').addEventListener('click', () => {
         localStorage.removeItem(DRAFT_KEY);
-        setSourceStatus('Đã bỏ bản lưu trên máy này', 'Nội dung trên màn hình vẫn giữ nguyên. Bấm "Tải lại bản GitHub" nếu muốn lấy lại bản đang publish.');
+        setSourceStatus('Đã bỏ bản lưu trên máy này', 'Nội dung trên màn hình vẫn giữ nguyên. Bấm "Tải lại nội dung online" nếu muốn lấy lại bản đang publish.');
         showToast('Đã bỏ bản lưu trên máy này.');
       });
       document.getElementById('export-json').addEventListener('click', downloadJson);
       document.getElementById('copy-json').addEventListener('click', async () => {
         saveCurrentFromInputs();
         await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
-        showToast('Đã copy JSON.');
+        showToast('Đã copy dữ liệu.');
       });
       document.getElementById('publish-github').addEventListener('click', () => {
         publishToGithub().catch(error => {
-          const reloadHint = error.status === 409 ? ' Hãy bấm "Tải lại bản GitHub" trong Công cụ rồi kiểm tra lại.' : '';
+          const reloadHint = error.status === 409 ? ' Hãy mở Công cụ nâng cao, bấm "Tải lại nội dung online", rồi kiểm tra lại.' : '';
           updatePublishStatus(`Đăng nội dung bị lỗi: ${error.message}${reloadHint}`);
           showToast(`Đăng lỗi: ${error.message}`, 'error');
         });

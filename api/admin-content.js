@@ -135,7 +135,7 @@ export default async function handler(request, response) {
     if (!isSafeRepo(repo) || !isSafeBranch(branch)) {
       return sendJson(response, 400, {
         ok: false,
-        message: 'Kho GitHub hoặc nhánh không hợp lệ.',
+        message: 'Kho dữ liệu hoặc nhánh dữ liệu không hợp lệ.',
       });
     }
 
@@ -189,7 +189,7 @@ export default async function handler(request, response) {
   if (!isSafeRepo(repo) || !isSafeBranch(branch)) {
     return sendJson(response, 400, {
       ok: false,
-      message: 'Kho GitHub hoặc nhánh không hợp lệ.',
+      message: 'Kho dữ liệu hoặc nhánh dữ liệu không hợp lệ.',
     });
   }
 
@@ -224,7 +224,7 @@ export default async function handler(request, response) {
       ok: false,
       code: 'CONTENT_BASE_REQUIRED',
       message:
-        'CMS chưa có mốc so sánh với bản GitHub hiện tại. Hãy tải lại bản GitHub trước khi đăng để tránh ghi đè thay đổi mới.',
+        'CMS chưa có mốc so sánh với nội dung online hiện tại. Hãy tải lại nội dung online trước khi đăng để tránh ghi đè thay đổi mới.',
       currentSha: sha,
     });
   }
@@ -234,7 +234,7 @@ export default async function handler(request, response) {
       ok: false,
       code: 'CONTENT_CHANGED',
       message:
-        'Nội dung trên GitHub đã được cập nhật bởi một phiên khác. Hãy tải lại bản GitHub trước khi đăng để tránh ghi đè thay đổi mới.',
+        'Nội dung online đã được cập nhật bởi một phiên khác. Hãy tải lại nội dung online trước khi đăng để tránh ghi đè thay đổi mới.',
       currentSha: sha,
       baseSha,
     });
@@ -270,7 +270,7 @@ export default async function handler(request, response) {
         deployHook === null
           ? {
             status: 'github',
-              message: 'Đã commit lên GitHub. Vercel sẽ tự deploy từ nhánh đã kết nối.',
+              message: 'Đã gửi nội dung mới. Website sẽ tự cập nhật sau khi deploy hoàn tất.',
             }
           : {
               status: deployHook.ok ? 'queued' : 'failed',
