@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-05T06:30:44.676Z",
+  "updatedAt": "2026-05-05T10:32:38.061Z",
   "pages": [
     {
       "id": "home",
@@ -14,7 +14,7 @@
               "key": "headline",
               "label": "Headline",
               "type": "text",
-              "value": "A Modern Growth System Built on C.H.E.S.S"
+              "value": "Folks - A Modern Growth System Built on C.H.E.S.S"
             },
             {
               "key": "subtitle",
