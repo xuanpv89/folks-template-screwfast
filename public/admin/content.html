@@ -294,6 +294,7 @@
             <summary>Công cụ và dữ liệu nâng cao</summary>
             <div class="button-row">
               <button type="button" class="secondary" id="reload-live">Tải lại nội dung online</button>
+              <button type="button" class="secondary" id="scan-site">Quét tất cả trang</button>
               <button type="button" class="secondary" id="clear-draft">Bỏ bản lưu trên máy</button>
               <button type="button" class="secondary" id="export-json">Tải dữ liệu</button>
               <button type="button" class="secondary" id="copy-json">Copy dữ liệu</button>
@@ -443,6 +444,100 @@
         return section.title || section.id || 'Mục chưa đặt tên';
       }
 
+      function getPageKey(path) {
+        return path === '/' ? 'home' : slugify(path.replace(/^\/+/, '') || 'home');
+      }
+
+      function normalizeText(value) {
+        return String(value || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function isEditableTextNode(node) {
+        const parent = node.parentElement;
+        if (!parent) return false;
+        if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'CANVAS', 'IFRAME'].includes(parent.tagName)) return false;
+        if (parent.closest('[data-cms-ignore], nav, footer')) return false;
+        return normalizeText(node.nodeValue).length > 1;
+      }
+
+      function sectionTitleFromElement(element, fallback) {
+        const heading = element?.querySelector?.('h1,h2,h3');
+        return normalizeText(heading?.textContent) || fallback;
+      }
+
+      function extractPageContent(path, html) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('script,style,noscript,svg,canvas,iframe,nav,footer').forEach(element => element.remove());
+
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+        const groups = new Map();
+        let textIndex = 0;
+
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          if (!isEditableTextNode(node)) continue;
+
+          const text = normalizeText(node.nodeValue);
+          const sectionElement = node.parentElement.closest('section,article,main') || doc.body;
+          const sectionIndex = [...doc.body.querySelectorAll('section,article,main')].indexOf(sectionElement);
+          const sectionKey = sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
+          const sectionTitle = sectionTitleFromElement(sectionElement, sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang');
+
+          if (!groups.has(sectionKey)) {
+            groups.set(sectionKey, {
+              id: sectionKey,
+              title: sectionTitle,
+              fields: [],
+            });
+          }
+
+          textIndex += 1;
+          groups.get(sectionKey).fields.push({
+            key: `text-${textIndex}`,
+            label: text.length > 46 ? `${text.slice(0, 46)}...` : text,
+            type: text.length > 90 ? 'textarea' : 'text',
+            value: text,
+            match: text,
+          });
+        }
+
+        return {
+          id: getPageKey(path),
+          title: doc.title || path,
+          path,
+          sections: [...groups.values()].filter(section => section.fields.length),
+        };
+      }
+
+      function mergeScannedPage(scannedPage, existingPage) {
+        if (!existingPage) return scannedPage;
+
+        const existingByMatch = new Map();
+        (existingPage.sections || []).forEach(section => {
+          (section.fields || []).forEach(field => {
+            const match = normalizeText(field.match || field.original || field.value);
+            if (match) existingByMatch.set(match, field);
+          });
+        });
+
+        return {
+          ...scannedPage,
+          sections: scannedPage.sections.map(section => ({
+            ...section,
+            fields: section.fields.map(field => {
+              const existing = existingByMatch.get(normalizeText(field.match));
+              return existing ? { ...field, value: existing.value ?? field.value } : field;
+            }),
+          })),
+        };
+      }
+
+      function hasRuntimeEditableContent(content) {
+        return (content.pages || []).some(page =>
+          (page.sections || []).some(section => (section.fields || []).some(field => field.match))
+        );
+      }
+
       function escapeHtml(value) {
         return String(value || '')
           .replaceAll('&', '&amp;')
@@ -495,8 +590,111 @@
         };
       }
 
+      async function fetchSitemapPaths() {
+        const seen = new Set();
+        const paths = [];
+
+        async function readXml(path) {
+          const response = await fetch(path, { credentials: 'same-origin' });
+          if (!response.ok) return '';
+          return response.text();
+        }
+
+        async function collectFromXml(path) {
+          const xml = await readXml(path);
+          if (!xml) return;
+
+          const doc = new DOMParser().parseFromString(xml, 'application/xml');
+          const locs = [...doc.querySelectorAll('loc')].map(loc => loc.textContent.trim()).filter(Boolean);
+
+          for (const loc of locs) {
+            const url = new URL(loc, window.location.origin);
+            if (url.origin !== window.location.origin) continue;
+
+            if (url.pathname.endsWith('.xml')) {
+              await collectFromXml(url.pathname);
+              continue;
+            }
+
+            const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
+            if (
+              normalizedPath.startsWith('/admin') ||
+              normalizedPath.startsWith('/api') ||
+              normalizedPath.includes('/docs/')
+            ) {
+              continue;
+            }
+
+            if (!seen.has(normalizedPath)) {
+              seen.add(normalizedPath);
+              paths.push(normalizedPath);
+            }
+          }
+        }
+
+        await collectFromXml('/sitemap-index.xml');
+        await collectFromXml('/sitemap.xml');
+        await collectFromXml('/sitemap-0.xml');
+
+        if (!paths.length) {
+          ['/', '/about', '/services', '/contact', '/member', '/chess', '/compassio', '/products', '/projects', '/vi', '/vi/about', '/vi/services', '/vi/contact'].forEach(path => {
+            if (!seen.has(path)) {
+              seen.add(path);
+              paths.push(path);
+            }
+          });
+        }
+
+        return paths;
+      }
+
+      async function scanSiteContent() {
+        saveCurrentFromInputs();
+        const scanButton = document.getElementById('scan-site');
+        scanButton.disabled = true;
+        scanButton.textContent = 'Đang quét...';
+        updatePublishStatus('Đang quét các trang public để tạo danh sách nội dung có thể sửa...');
+
+        try {
+          const paths = await fetchSitemapPaths();
+          const existingByPath = new Map((state.pages || []).map(page => [page.path, page]));
+          const pages = [];
+
+          for (const path of paths) {
+            const response = await fetch(path, { credentials: 'same-origin' });
+            if (!response.ok) continue;
+
+            const html = await response.text();
+            const scannedPage = extractPageContent(path, html);
+            if (!scannedPage.sections.length) continue;
+
+            pages.push(mergeScannedPage(scannedPage, existingByPath.get(path)));
+          }
+
+          if (!pages.length) {
+            showToast('Không quét được nội dung nào từ website.', 'error');
+            return;
+          }
+
+          state.pages = pages;
+          pageIndex = 0;
+          sectionIndex = 0;
+          setDirty(true);
+          setSourceStatus('Đã quét nội dung website', `Tìm thấy ${pages.length} trang có nội dung có thể chỉnh.`, 'warning');
+          updatePublishStatus(`Đã quét ${pages.length} trang. Kiểm tra nhanh rồi bấm "Đăng nội dung" để áp dụng.`);
+          render();
+        } catch (error) {
+          updatePublishStatus(`Quét nội dung bị lỗi: ${error.message}`);
+          showToast(`Quét lỗi: ${error.message}`, 'error');
+        } finally {
+          scanButton.disabled = false;
+          scanButton.textContent = 'Quét tất cả trang';
+        }
+      }
+
       async function initializeContent(preferDraft = true) {
         const draft = getSavedDraft();
+        let shouldAutoScan = false;
         setSourceStatus('Đang tải nội dung...', 'Đang lấy nội dung mới nhất của website.');
 
         try {
@@ -517,6 +715,15 @@
           } else {
             setSourceStatus('Đã tải nội dung online', 'Bạn đang chỉnh nội dung mới nhất của website.');
           }
+
+          if (!hasRuntimeEditableContent(state)) {
+            shouldAutoScan = true;
+            setSourceStatus(
+              'Đang chuẩn bị danh sách nội dung',
+              'Dữ liệu cũ chưa khớp với website hiện tại. CMS sẽ tự quét lại các trang public.',
+              'warning'
+            );
+          }
         } catch (error) {
           state = draft?.content?.pages?.length ? draft.content : structuredClone(defaultContent);
           baseSha = draft?.baseSha || '';
@@ -530,6 +737,10 @@
         pageIndex = Math.min(pageIndex, state.pages.length - 1);
         sectionIndex = 0;
         render();
+
+        if (shouldAutoScan) {
+          scanSiteContent();
+        }
       }
 
       function currentPage() {
@@ -979,6 +1190,7 @@
         localStorage.removeItem(DRAFT_KEY);
         initializeContent(false);
       });
+      document.getElementById('scan-site').addEventListener('click', scanSiteContent);
       document.getElementById('clear-draft').addEventListener('click', () => {
         localStorage.removeItem(DRAFT_KEY);
         setSourceStatus('Đã bỏ bản lưu trên máy này', 'Nội dung trên màn hình vẫn giữ nguyên. Bấm "Tải lại nội dung online" nếu muốn lấy lại bản đang publish.');
