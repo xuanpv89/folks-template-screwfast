@@ -68,14 +68,61 @@
       button.secondary, .nav a.secondary { border: 1px solid #d4d4d4; background: #fff; color: var(--ink); }
       button.danger { border: 1px solid #fecaca; background: #fff; color: var(--danger); }
       button:disabled { cursor: not-allowed; opacity: .5; }
+      button.full { width: 100%; }
 
       .layout { display: grid; gap: 14px; }
       @media (min-width: 1120px) {
-        .layout { grid-template-columns: 300px minmax(0, 1fr) 360px; align-items: start; }
+        .layout { grid-template-columns: 330px minmax(0, 1fr) 390px; align-items: start; }
       }
       .panel { padding: 16px; }
-      .sidebar, .editor { position: sticky; top: 14px; }
+      @media (min-width: 1120px) {
+        .sidebar, .editor, .preview-panel {
+          position: sticky;
+          top: 14px;
+          max-height: calc(100vh - 28px);
+          overflow: auto;
+        }
+        .preview-panel {
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+      }
       .list { display: grid; gap: 8px; }
+      .page-summary {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .page-summary span { border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 5px 8px; }
+      .page-group {
+        display: grid;
+        gap: 8px;
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+      }
+      .page-group:first-child { border-top: 0; padding-top: 0; }
+      .page-group-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--brand-dark);
+        font-size: 12px;
+        font-weight: 950;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+      }
+      .page-group-title small {
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: none;
+      }
       .item {
         width: 100%;
         justify-content: flex-start;
@@ -119,11 +166,15 @@
 
       .preview-frame {
         width: 100%;
-        height: calc(100vh - 150px);
-        min-height: 640px;
+        flex: 1 1 auto;
+        height: calc(100vh - 160px);
+        min-height: 520px;
         border: 1px solid #d4d4d4;
         border-radius: 10px;
         background: #fff;
+      }
+      @media (max-width: 1119px) {
+        .preview-frame { height: 70vh; min-height: 520px; }
       }
       .hint { color: var(--muted); font-size: 13px; line-height: 1.55; }
       .field-meta { display: grid; gap: 6px; margin: 10px 0 14px; color: var(--muted); font-size: 13px; }
@@ -148,6 +199,8 @@
         font-size: 13px;
       }
       .publish-log a { color: var(--brand-dark); font-weight: 850; }
+      .publish-log.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+      .publish-log.warning { border-color: #fde68a; background: var(--warn-soft); color: #854d0e; }
       .empty { border: 1px dashed #cbd5c9; border-radius: 8px; background: #fbfcfa; color: var(--muted); padding: 14px; line-height: 1.6; }
       .type-pill { display: inline-flex; width: fit-content; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark); padding: 5px 9px; font-size: 12px; font-weight: 900; }
       .tools { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
@@ -155,7 +208,35 @@
       .toast { display: none; margin-top: 10px; border-radius: 8px; background: #ecfdf5; color: #065f46; padding: 10px 12px; font-size: 13px; font-weight: 800; }
       .toast.error { background: #fef2f2; color: #991b1b; }
       .toast.show { display: block; }
+      .modal-backdrop {
+        border: 0;
+        border-radius: 12px;
+        width: min(560px, calc(100vw - 32px));
+        padding: 0;
+        color: var(--ink);
+        box-shadow: 0 28px 80px rgb(0 0 0 / 24%);
+      }
+      .modal-backdrop::backdrop { background: rgb(0 0 0 / 45%); }
+      .modal-content { display: grid; gap: 16px; padding: 22px; }
+      .modal-content h2 { margin: 0; font-size: 24px; }
+      .summary-list {
+        display: grid;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fafafa;
+        padding: 12px;
+      }
+      .summary-row { display: flex; justify-content: space-between; gap: 14px; font-size: 13px; }
+      .summary-row strong { text-align: right; }
+      .modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
     </style>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <meta name="theme-color" content="#4fb16f" />
+    <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
   <body>
     <main class="shell">
@@ -185,6 +266,7 @@
             Tìm trang
             <input id="page-search" placeholder="Home, About, Services..." />
           </label>
+          <div id="page-summary" class="page-summary"></div>
           <div class="list" id="page-list" style="margin-top:12px"></div>
           <details class="tools">
             <summary>Công cụ nâng cao</summary>
@@ -196,7 +278,7 @@
           </details>
         </aside>
 
-        <section class="panel">
+        <section class="panel preview-panel">
           <div class="actions" style="justify-content:space-between;margin-bottom:12px">
             <div>
               <p class="eyebrow">Preview thật</p>
@@ -218,15 +300,56 @@
             <button type="button" class="secondary" id="save-field" disabled>Cập nhật preview</button>
             <button type="button" id="publish-github">Đăng lên website</button>
           </div>
-          <div id="publish-status" class="publish-log">Sẵn sàng.</div>
+          <div id="publish-status" class="publish-log">Sẵn sàng đăng khi bạn hoàn tất kiểm tra.</div>
           <div id="toast" class="toast">Done.</div>
         </aside>
       </section>
     </main>
 
+    <dialog id="publish-dialog" class="modal-backdrop">
+      <form method="dialog" class="modal-content">
+        <div>
+          <p class="eyebrow">Xuất bản</p>
+          <h2>Xác nhận đăng nội dung</h2>
+        </div>
+        <p class="hint" id="publish-dialog-intro"></p>
+        <div class="summary-list" id="publish-dialog-summary"></div>
+        <p class="hint">Sau khi đăng, website cần hoàn tất cập nhật trước khi khách truy cập nhìn thấy nội dung mới.</p>
+        <div class="modal-actions">
+          <button type="button" class="secondary" id="publish-cancel">Kiểm tra lại</button>
+          <button type="button" id="publish-confirm">Đăng lên website</button>
+        </div>
+      </form>
+    </dialog>
+
     <script>
       const defaultContent = { updatedAt: new Date().toISOString(), pages: [] };
       const draftKey = 'folksVisualContentDraft';
+      const knownContentPaths = [
+        '/',
+        '/about',
+        '/services',
+        '/contact',
+        '/member',
+        '/chess',
+        '/compassio',
+        '/products',
+        '/projects',
+        '/projects/compassio',
+        '/blog',
+        '/vi',
+        '/vi/about',
+        '/vi/services',
+        '/vi/contact',
+        '/vi/member',
+        '/vi/chess',
+        '/vi/compassio',
+        '/vi/products',
+        '/vi/projects',
+        '/vi/projects/compassio',
+        '/vi/blog',
+        '/zh',
+      ];
 
       let state = structuredClone(defaultContent);
       let serverContent = null;
@@ -236,6 +359,7 @@
       let hasUnsavedChanges = false;
 
       const pageList = document.getElementById('page-list');
+      const pageSummary = document.getElementById('page-summary');
       const pageSearch = document.getElementById('page-search');
       const pageFrame = document.getElementById('page-frame');
       const previewTitle = document.getElementById('preview-title');
@@ -246,6 +370,11 @@
       const editorHint = document.getElementById('editor-hint');
       const saveFieldButton = document.getElementById('save-field');
       const toast = document.getElementById('toast');
+      const publishDialog = document.getElementById('publish-dialog');
+      const publishDialogIntro = document.getElementById('publish-dialog-intro');
+      const publishDialogSummary = document.getElementById('publish-dialog-summary');
+      const publishCancelButton = document.getElementById('publish-cancel');
+      const publishConfirmButton = document.getElementById('publish-confirm');
 
       function slugify(value) {
         return String(value || 'item').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -284,7 +413,8 @@
         return (page?.sections || []).flatMap(section => (section.fields || []).map(field => ({ section, field })));
       }
 
-      function updatePublishStatus(message, links = []) {
+      function updatePublishStatus(message, links = [], type = 'info') {
+        publishStatus.className = `publish-log ${type === 'error' ? 'error' : type === 'warning' ? 'warning' : ''}`;
         publishStatus.innerHTML = `
           <div>${escapeHtml(message)}</div>
           ${links.filter(link => link.url).map(link => `<div><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></div>`).join('')}
@@ -292,19 +422,34 @@
       }
 
       function deployStatusLinks(result, deployment) {
+        const page = currentPage();
         return [
-          { label: 'Open commit', url: result.commitUrl },
-          { label: 'Open updated data', url: result.fileUrl },
-          deployment?.url ? { label: 'Open deployed site', url: deployment.url } : null,
-          deployment?.inspectorUrl ? { label: 'Open Vercel deploy', url: deployment.inspectorUrl } : null,
+          page?.path ? { label: 'Mở trang live', url: page.path } : null,
+          deployment?.url ? { label: 'Mở bản website vừa cập nhật', url: deployment.url } : null,
+          { label: 'Xem lịch sử cập nhật', url: result.commitUrl },
         ].filter(Boolean);
+      }
+
+      async function verifyLiveContent(expectedUpdatedAt) {
+        if (!expectedUpdatedAt) return false;
+        try {
+          const response = await fetch(`/cms-content.json?live_check=${Date.now()}`, {
+            cache: 'no-store',
+            credentials: 'same-origin',
+          });
+          if (!response.ok) return false;
+          const live = await response.json();
+          return live?.updatedAt === expectedUpdatedAt;
+        } catch {
+          return false;
+        }
       }
 
       async function waitForDeployStatus(result, branch) {
         if (!result.commitSha) return;
 
         const links = deployStatusLinks(result);
-        updatePublishStatus('Content committed. Checking the real Vercel deploy status...', links);
+        updatePublishStatus('Đã gửi nội dung. Đang chờ website cập nhật bản mới...', links);
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
           await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
@@ -314,19 +459,43 @@
           });
           const status = await response.json().catch(() => null);
           if (!response.ok) {
-            updatePublishStatus(`Content is committed, but deploy status could not be checked: ${status?.message || response.status}`, links);
+            updatePublishStatus(`Đã lưu nội dung, nhưng chưa kiểm tra được website live. Bạn có thể mở trang để kiểm tra lại sau ít phút.`, links, 'warning');
             return status;
           }
 
           const nextLinks = deployStatusLinks(result, status.deployment);
-          updatePublishStatus(status.message || `Deploy status: ${status.status}`, nextLinks);
+          if (status.status === 'READY') {
+            const isLive = await verifyLiveContent(result.updatedAt);
+            updatePublishStatus(
+              isLive
+                ? 'Website đã nhận nội dung mới và đang hiển thị bản vừa đăng.'
+                : 'Website đã cập nhật xong, nhưng nội dung live chưa khớp bản vừa đăng. Hãy mở trang live để kiểm tra lại.',
+              nextLinks,
+              isLive ? 'success' : 'warning'
+            );
+            return status;
+          }
+
+          if (status.status === 'unconfigured') {
+            const isLive = await verifyLiveContent(result.updatedAt);
+            updatePublishStatus(
+              isLive
+                ? 'Website đã nhận nội dung mới và đang hiển thị bản vừa đăng.'
+                : status.message || 'Đã lưu nội dung mới. Website thường sẽ tự cập nhật trong ít phút.',
+              nextLinks,
+              isLive ? 'success' : 'warning'
+            );
+            return status;
+          }
+
+          updatePublishStatus(status.message || 'Website đang cập nhật bản mới...', nextLinks);
 
           if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
             return status;
           }
         }
 
-        updatePublishStatus('Deploy is still running or was not found after a few minutes. Open Vercel to keep checking.', links);
+        updatePublishStatus('Website vẫn đang cập nhật. Hãy mở trang live để kiểm tra lại sau ít phút.', links, 'warning');
       }
 
       async function loadPublishedContent() {
@@ -534,6 +703,15 @@
         const seen = new Set();
         const paths = [];
 
+        function addPath(path) {
+          const normalizedPath = String(path || '/').replace(/\/$/, '') || '/';
+          if (normalizedPath.startsWith('/admin') || normalizedPath.startsWith('/api') || normalizedPath.includes('/docs/')) return;
+          if (!seen.has(normalizedPath)) {
+            seen.add(normalizedPath);
+            paths.push(normalizedPath);
+          }
+        }
+
         async function collect(path) {
           const response = await fetch(path, { credentials: 'same-origin' });
           if (!response.ok) return;
@@ -545,12 +723,7 @@
               await collect(url.pathname);
               continue;
             }
-            const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
-            if (normalizedPath.startsWith('/admin') || normalizedPath.startsWith('/api') || normalizedPath.includes('/docs/')) continue;
-            if (!seen.has(normalizedPath)) {
-              seen.add(normalizedPath);
-              paths.push(normalizedPath);
-            }
+            addPath(url.pathname);
           }
         }
 
@@ -558,14 +731,7 @@
         await collect('/sitemap.xml');
         await collect('/sitemap-0.xml');
 
-        if (!paths.length) {
-          ['/', '/about', '/services', '/contact', '/member', '/chess', '/compassio', '/products', '/projects', '/vi', '/vi/about', '/vi/services', '/vi/contact'].forEach(path => {
-            if (!seen.has(path)) {
-              seen.add(path);
-              paths.push(path);
-            }
-          });
-        }
+        knownContentPaths.forEach(addPath);
         return paths;
       }
 
@@ -603,15 +769,43 @@
 
       function renderPages() {
         const query = pageSearch.value.trim().toLowerCase();
-        const visiblePages = (state.pages || [])
+        const allPages = state.pages || [];
+        const visiblePages = sortPages(allPages
           .map((page, index) => ({ page, index }))
-          .filter(({ page }) => !query || `${page.title} ${page.path}`.toLowerCase().includes(query));
+          .filter(({ page }) => !query || `${page.title} ${page.path} ${languageLabel(pageLanguage(page))} ${pageGroupLabel(page)}`.toLowerCase().includes(query)));
+
+        const languageCounts = allPages.reduce((counts, page) => {
+          const language = pageLanguage(page);
+          counts[language] = (counts[language] || 0) + 1;
+          return counts;
+        }, {});
+        pageSummary.innerHTML = [
+          `<span>${allPages.length} trang</span>`,
+          ...Object.entries(languageCounts).map(([language, count]) => `<span>${escapeHtml(languageLabel(language))}: ${count}</span>`),
+        ].join('');
 
         pageList.innerHTML = visiblePages.length
           ? ''
           : '<div class="empty">Không tìm thấy trang phù hợp.</div>';
 
-        visiblePages.forEach(({ page, index }) => {
+        const groups = new Map();
+        visiblePages.forEach(item => {
+          const key = `${pageLanguage(item.page)}-${pageGroupLabel(item.page)}`;
+          if (!groups.has(key)) {
+            groups.set(key, {
+              title: `${languageLabel(pageLanguage(item.page))} - ${pageGroupLabel(item.page)}`,
+              items: [],
+            });
+          }
+          groups.get(key).items.push(item);
+        });
+
+        groups.forEach(group => {
+          const groupElement = document.createElement('div');
+          groupElement.className = 'page-group';
+          groupElement.innerHTML = `<div class="page-group-title"><span>${escapeHtml(group.title)}</span><small>${group.items.length} trang</small></div>`;
+
+          group.items.forEach(({ page, index }) => {
           const button = document.createElement('button');
           button.type = 'button';
           button.className = `item ${index === pageIndex ? 'active' : ''}`;
@@ -622,7 +816,10 @@
             renderPages();
             loadCurrentPage();
           });
-          pageList.appendChild(button);
+            groupElement.appendChild(button);
+          });
+
+          pageList.appendChild(groupElement);
         });
       }
 
@@ -642,6 +839,55 @@
         if (type === 'seo-title') return 'SEO title';
         if (type === 'seo-description') return 'SEO description';
         return 'Text';
+      }
+
+      function pageLanguage(page) {
+        if (page.path === '/vi' || page.path.startsWith('/vi/')) return 'vi';
+        if (page.path === '/zh' || page.path.startsWith('/zh/')) return 'zh';
+        return 'en';
+      }
+
+      function languageLabel(language) {
+        if (language === 'vi') return 'Tiếng Việt';
+        if (language === 'zh') return 'Tiếng Trung';
+        return 'English';
+      }
+
+      function pageGroupLabel(page) {
+        const path = page.path || '/';
+        const withoutLanguage = path.replace(/^\/(vi|zh)(?=\/|$)/, '') || '/';
+        if (withoutLanguage === '/') return 'Trang chính';
+        if (withoutLanguage.startsWith('/blog')) return 'Blog';
+        if (withoutLanguage.startsWith('/products')) return 'Products';
+        if (withoutLanguage.startsWith('/projects')) return 'Projects';
+        if (withoutLanguage.startsWith('/insights')) return 'Insights';
+        if (withoutLanguage.startsWith('/case-studies')) return 'Case studies';
+        return 'Trang giới thiệu';
+      }
+
+      function sortPages(items) {
+        const languageOrder = { en: 0, vi: 1, zh: 2 };
+        const groupOrder = {
+          'Trang chính': 0,
+          'Trang giới thiệu': 1,
+          Products: 2,
+          Projects: 3,
+          Blog: 4,
+          Insights: 5,
+          'Case studies': 6,
+        };
+        return items.sort((a, b) => {
+          const langDiff = (languageOrder[pageLanguage(a.page)] ?? 9) - (languageOrder[pageLanguage(b.page)] ?? 9);
+          if (langDiff) return langDiff;
+          const groupDiff = (groupOrder[pageGroupLabel(a.page)] ?? 9) - (groupOrder[pageGroupLabel(b.page)] ?? 9);
+          if (groupDiff) return groupDiff;
+          return String(a.page.path || '').localeCompare(String(b.page.path || ''));
+        });
+      }
+
+      function missingKnownPaths() {
+        const loaded = new Set((state.pages || []).map(page => page.path));
+        return knownContentPaths.filter(path => !loaded.has(path));
       }
 
       function selectPreviewField(doc, field, target) {
@@ -812,7 +1058,55 @@
         const textCount = fields.filter(field => !field.elementType || field.elementType === 'text').length;
         const linkCount = fields.filter(field => field.elementType === 'link').length;
         const imageCount = fields.filter(field => field.elementType === 'image' || field.elementType === 'alt').length;
-        return `Bạn sắp đăng ${pageCount} trang, ${textCount} dòng chữ, ${linkCount} link và ${imageCount} trường ảnh.`;
+        const languageCounts = (state.pages || []).reduce((counts, page) => {
+          const language = pageLanguage(page);
+          counts[language] = (counts[language] || 0) + 1;
+          return counts;
+        }, {});
+        return {
+          pageCount,
+          textCount,
+          linkCount,
+          imageCount,
+          currentTitle: currentPage()?.title || currentPage()?.path || 'Chưa chọn trang',
+          currentPath: currentPage()?.path || '',
+          languageSummary: Object.entries(languageCounts)
+            .map(([language, count]) => `${languageLabel(language)}: ${count}`)
+            .join(', '),
+        };
+      }
+
+      function showPublishDialog(summary) {
+        publishDialogIntro.textContent = `Bạn sắp đăng ${summary.pageCount} trang lên website. Trang đang kiểm tra: ${summary.currentTitle} ${summary.currentPath ? `(${summary.currentPath})` : ''}.`;
+        publishDialogSummary.innerHTML = [
+          ['Tổng số trang', `${summary.pageCount} trang`],
+          ['Ngôn ngữ', summary.languageSummary || 'Chưa có dữ liệu'],
+          ['Nội dung chữ', `${summary.textCount} mục`],
+          ['Link', `${summary.linkCount} link`],
+          ['Ảnh và mô tả ảnh', `${summary.imageCount} mục`],
+        ]
+          .map(([label, value]) => `<div class="summary-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`)
+          .join('');
+
+        return new Promise(resolve => {
+          const cleanup = value => {
+            publishCancelButton.removeEventListener('click', cancel);
+            publishConfirmButton.removeEventListener('click', confirm);
+            publishDialog.removeEventListener('cancel', cancel);
+            publishDialog.close();
+            resolve(value);
+          };
+          const cancel = event => {
+            event?.preventDefault?.();
+            cleanup(false);
+          };
+          const confirm = () => cleanup(true);
+
+          publishCancelButton.addEventListener('click', cancel);
+          publishConfirmButton.addEventListener('click', confirm);
+          publishDialog.addEventListener('cancel', cancel);
+          publishDialog.showModal();
+        });
       }
 
       async function publishContent() {
@@ -821,14 +1115,18 @@
           return;
         }
         const summary = buildPublishSummary();
-        if (!window.confirm(`Đăng nội dung lên website?\n\n${summary}`)) return;
+        if (!(await showPublishDialog(summary))) return;
 
         const button = document.getElementById('publish-github');
         button.disabled = true;
         button.textContent = 'Đang đăng...';
-        updatePublishStatus('Đang gửi nội dung lên website...');
+        updatePublishStatus('Đang gửi nội dung mới. Vui lòng giữ trang này mở để CMS kiểm tra website live...');
 
         try {
+          const nextContent = {
+            ...state,
+            updatedAt: new Date().toISOString(),
+          };
           const response = await fetch('/api/admin-content', {
             method: 'POST',
             credentials: 'same-origin',
@@ -837,24 +1135,26 @@
               repo: 'xuanpv89/folksteam.com',
               branch: 'main',
               baseSha,
-              content: state,
+              content: nextContent,
             }),
           });
           const result = await response.json().catch(() => null);
           if (!response.ok) throw new Error(result?.message || `Đăng lỗi ${response.status}`);
 
           localStorage.removeItem(draftKey);
-          serverContent = structuredClone(state);
+          state = structuredClone(nextContent);
+          serverContent = structuredClone(nextContent);
           baseSha = result.sha || baseSha;
           hasUnsavedChanges = false;
-          updatePublishStatus(`Đã gửi nội dung mới. ${result.deploy?.message || ''}`, [
-            { label: 'Xem lần cập nhật', url: result.commitUrl },
-            { label: 'Xem dữ liệu đã cập nhật', url: result.fileUrl },
+          updatePublishStatus('Đã lưu nội dung mới. Website đang cập nhật...', [
+            { label: 'Mở trang live', url: currentPage()?.path },
+            { label: 'Xem lịch sử cập nhật', url: result.commitUrl },
           ]);
+          result.updatedAt = nextContent.updatedAt;
           await waitForDeployStatus(result, 'main');
-          showToast('Đã đăng nội dung.');
+          showToast('Đã gửi nội dung mới.');
         } catch (error) {
-          updatePublishStatus(`Đăng nội dung bị lỗi: ${error.message}`);
+          updatePublishStatus(`Chưa đăng được nội dung: ${error.message}`, [], 'error');
           showToast(error.message, 'error');
         } finally {
           button.disabled = false;
@@ -879,7 +1179,11 @@
             setSourceStatus('Đã tải nội dung online', 'Click vào chữ trong preview để sửa.');
           }
 
-          if (!state.pages?.length || !state.pages.some(page => allFields(page).some(({ field }) => field.match))) {
+          if (
+            !state.pages?.length ||
+            !state.pages.some(page => allFields(page).some(({ field }) => field.match)) ||
+            missingKnownPaths().length
+          ) {
             await scanSite();
             return;
           }

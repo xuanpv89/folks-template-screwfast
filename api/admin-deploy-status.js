@@ -36,12 +36,12 @@ async function vercelRequest(path, token) {
 
 function deploymentMessage(deployment) {
   const state = deployment?.readyState || deployment?.state;
-  if (state === 'READY') return 'Deploy thành công. Website đã nhận bản mới.';
-  if (state === 'ERROR') return deployment?.errorMessage || 'Deploy lỗi. Hãy mở Vercel để xem build log.';
-  if (state === 'CANCELED') return 'Deploy đã bị hủy trên Vercel.';
-  if (state === 'BUILDING') return 'Vercel đang build bản mới.';
-  if (state === 'INITIALIZING' || state === 'QUEUED') return 'Deploy đang chờ Vercel xử lý.';
-  return 'Chưa thấy deployment tương ứng trên Vercel. Hệ thống sẽ kiểm tra lại.';
+  if (state === 'READY') return 'Website đã cập nhật xong.';
+  if (state === 'ERROR') return deployment?.errorMessage || 'Website chưa cập nhật được. Hãy thử lại hoặc nhờ kỹ thuật kiểm tra.';
+  if (state === 'CANCELED') return 'Lượt cập nhật đã bị hủy.';
+  if (state === 'BUILDING') return 'Website đang cập nhật bản mới.';
+  if (state === 'INITIALIZING' || state === 'QUEUED') return 'Website đang xếp hàng cập nhật.';
+  return 'Chưa thấy lượt cập nhật tương ứng. CMS sẽ kiểm tra lại.';
 }
 
 export default async function handler(request, response) {
@@ -73,7 +73,7 @@ export default async function handler(request, response) {
     return sendJson(response, 200, {
       ok: true,
       status: 'unconfigured',
-      message: 'Chưa cấu hình VERCEL_TOKEN nên admin chỉ xác nhận được commit GitHub, chưa đọc được status deploy thật.',
+      message: 'Đã lưu nội dung mới. Website thường sẽ tự cập nhật trong ít phút, nhưng CMS chưa kiểm tra được trạng thái live.',
     });
   }
 
@@ -104,7 +104,7 @@ export default async function handler(request, response) {
     return sendJson(response, 200, {
       ok: true,
       status: 'unconfigured',
-      message: 'Chưa cấu hình VERCEL_PROJECT_ID hoặc VERCEL_PROJECT_NAME nên chưa lọc được deployment chính xác.',
+      message: 'Đã lưu nội dung mới. Website thường sẽ tự cập nhật trong ít phút, nhưng CMS chưa xác định được dự án live để kiểm tra tự động.',
     });
   }
 
@@ -126,7 +126,7 @@ export default async function handler(request, response) {
       return sendJson(response, 200, {
         ok: true,
         status: 'pending',
-        message: 'Chưa thấy deployment tương ứng trên Vercel. Hệ thống sẽ kiểm tra lại.',
+        message: 'Chưa thấy lượt cập nhật tương ứng. CMS sẽ kiểm tra lại.',
       });
     }
 

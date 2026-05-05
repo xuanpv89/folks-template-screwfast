@@ -64,7 +64,7 @@ function validateContent(content) {
         if (!String(field.label || '').trim()) {
           errors.push(`${pageName} / ${sectionName}: trường "${key || fieldIndex + 1}" thiếu tên hiển thị.`);
         }
-        if (!['text', 'textarea'].includes(field.type)) {
+        if (!['text', 'textarea', 'url', 'image'].includes(field.type)) {
           errors.push(`${pageName} / ${sectionName}: trường "${key || fieldIndex + 1}" có kiểu nội dung không hợp lệ.`);
         }
       });
@@ -243,10 +243,11 @@ export default async function handler(request, response) {
   }
 
   try {
+    const updatedAt = content?.updatedAt || new Date().toISOString();
     const json = JSON.stringify(
       {
         ...content,
-        updatedAt: new Date().toISOString(),
+        updatedAt,
       },
       null,
       2
@@ -269,6 +270,7 @@ export default async function handler(request, response) {
       commitSha: commit?.commit?.sha || null,
       commitUrl: commit?.commit?.html_url || null,
       fileUrl: commit?.content?.html_url || null,
+      updatedAt,
       deploy:
         deployHook === null
           ? {
