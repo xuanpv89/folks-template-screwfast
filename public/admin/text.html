@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Folks Team Text Manager</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=admin-2" />
+    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-2" />
+    <link rel="shortcut icon" href="/admin-favicon.png?v=admin-2" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=admin-2" />
+    <style>
+      :root {
+        --ink: #262626;
+        --muted: #525252;
+        --line: #e5e5e5;
+        --paper: #e5e5e5;
+        --panel: #ffffff;
+        --brand: #4fb16f;
+        --brand-dark: #3f965c;
+        --brand-soft: #f0faf3;
+        --warn: #f59e0b;
+        --warn-soft: #fffbeb;
+        --danger: #b91c1c;
+        --danger-soft: #fef2f2;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f3f4f1; color: var(--ink); }
+      a { color: inherit; text-decoration: none; }
+
+      .shell { max-width: 1440px; margin: 0 auto; padding: 20px 18px 56px; }
+      .topbar {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+        margin-bottom: 18px; border: 1px solid rgb(220 244 228 / 72%); border-radius: 18px;
+        background: rgb(255 255 255 / 88%); padding: 14px; box-shadow: 0 14px 40px rgb(38 38 38 / 7%);
+      }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .mark { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; box-shadow: 0 14px 25px rgb(79 177 111 / 25%); }
+      .eyebrow { margin: 0; color: var(--brand-dark); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { margin-bottom: 0; font-size: clamp(28px, 4vw, 44px); line-height: 1; letter-spacing: 0; }
+      h2 { margin-bottom: 8px; }
+
+      .nav, .actions, .button-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      button, .nav a {
+        min-height: 40px; border: 0; border-radius: 8px; background: var(--brand); color: #fff;
+        cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+        padding: 9px 15px; font: inherit; font-size: 13px; font-weight: 800;
+      }
+      .nav a { background: var(--ink); }
+      button.secondary, .nav a.secondary { border: 1px solid #d4d4d4; background: #fff; color: var(--ink); }
+      button.danger { border: 1px solid #fecaca; background: #fff; color: var(--danger); }
+      button:disabled { cursor: not-allowed; opacity: .48; }
+      .button-row.primary-actions { position: sticky; bottom: 12px; z-index: 3; border: 1px solid #d7eadc; border-radius: 12px; background: rgb(255 255 255 / 92%); padding: 10px; box-shadow: 0 16px 48px rgb(38 38 38 / 14%); backdrop-filter: blur(12px); }
+
+      .hero-panel, .card {
+        border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 18px;
+        box-shadow: 0 18px 45px rgb(38 38 38 / 8%);
+      }
+      .hero-panel { display: grid; gap: 16px; margin-bottom: 18px; background: #fff; }
+      @media (min-width: 900px) { .hero-panel { grid-template-columns: minmax(0, 1fr) auto; align-items: end; } }
+      .hero-panel p { color: var(--muted); max-width: 760px; }
+      .status-strip { display: grid; gap: 8px; min-width: min(100%, 360px); border: 1px solid #d7eadc; border-radius: 8px; background: var(--brand-soft); padding: 12px; }
+      .status-strip strong { font-size: 14px; }
+      .status-strip small { color: var(--muted); line-height: 1.45; }
+      .status-strip.warning { border-color: #fde68a; background: var(--warn-soft); }
+      .status-strip.error { border-color: #fecaca; background: var(--danger-soft); }
+
+      .layout { display: grid; gap: 18px; }
+      @media (min-width: 1060px) {
+        .layout { grid-template-columns: 290px minmax(0, 1fr) minmax(360px, .8fr); align-items: start; }
+      }
+
+      .sidebar, .preview-card { position: sticky; top: 18px; }
+      .list { display: grid; gap: 8px; }
+      .item {
+        width: 100%; justify-content: flex-start; border: 1px solid var(--line); border-radius: 8px;
+        background: #fff; color: var(--ink); text-align: left; padding: 10px 12px;
+      }
+      .item.active { border-color: #bde8cb; background: var(--brand-soft); color: #244f34; }
+      .item span { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+      .item small { display: block; color: var(--muted); font-weight: 600; }
+
+      label { display: grid; gap: 6px; color: #403d37; font-size: 13px; font-weight: 800; }
+      input, select, textarea {
+        width: 100%; border: 1px solid #d4d4d4; border-radius: 8px; background: #fafafa; color: var(--ink);
+        font: inherit; font-size: 14px; padding: 12px 13px; outline: none;
+      }
+      textarea { min-height: 118px; resize: vertical; }
+      input:focus, select:focus, textarea:focus { border-color: var(--brand); background: #fff; box-shadow: 0 0 0 3px rgb(79 177 111 / 18%); }
+      .row { display: grid; gap: 12px; }
+      @media (min-width: 680px) { .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      .field-list { display: grid; gap: 12px; margin-top: 14px; }
+      .field-card { border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 14px; }
+      .field-card header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+      .field-card header strong { font-size: 14px; }
+      .field-card textarea, .field-card input[data-field-value] { background: #fff; font-size: 15px; line-height: 1.55; }
+      .section-title { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+      .hint { color: var(--muted); font-size: 13px; }
+      .meta-grid { display: none; gap: 8px; margin: 14px 0; }
+      @media (min-width: 760px) { .meta-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .meta-card { border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 10px 12px; }
+      .meta-card small { display: block; color: var(--muted); font-size: 12px; font-weight: 800; }
+      .meta-card strong { display: block; margin-top: 4px; font-size: 15px; overflow-wrap: anywhere; }
+      .path {
+        border: 1px solid #d4d4d4; border-radius: 8px; background: #f5f5f5; padding: 8px 10px;
+        color: #404040; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; overflow-wrap: anywhere;
+      }
+      pre {
+        min-height: 560px; max-height: 72vh; overflow: auto; border: 1px solid #2b2b2b; border-radius: 8px;
+        background: #171717; color: #f9f4df; font-size: 13px; line-height: 1.55; padding: 16px; white-space: pre-wrap;
+      }
+      .publish-box { display: grid; gap: 12px; border: 1px solid #bde8cb; border-radius: 8px; background: var(--brand-soft); padding: 14px; margin-top: 14px; }
+      .tools-panel { margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 12px 14px; }
+      .tools-panel summary, .field-advanced summary, .structure-panel summary { cursor: pointer; color: var(--ink); font-weight: 900; }
+      .tools-panel .button-row { margin-top: 12px; }
+      .field-advanced { margin-top: 12px; border: 1px solid #e7e5df; border-radius: 8px; background: #fff; padding: 10px 12px; }
+      .structure-panel { margin-top: 14px; border: 1px solid #e7e5df; border-radius: 8px; background: #fff; padding: 12px 14px; }
+      .step-label { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; border-radius: 999px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 900; }
+      .status-log {
+        display: grid; gap: 8px; border: 1px solid #d4d4d4; border-radius: 8px;
+        background: #fff; color: var(--muted); padding: 12px; font-size: 13px;
+      }
+      .status-log a { color: var(--brand-dark); font-weight: 800; }
+      .preview-tabs {
+        display: inline-flex; gap: 6px; border: 1px solid var(--line); border-radius: 999px;
+        background: #f5f5f5; padding: 4px;
+      }
+      .preview-tabs button { min-height: 32px; border-radius: 999px; background: transparent; color: var(--muted); padding: 6px 12px; font-size: 12px; }
+      .preview-tabs button.active { background: var(--brand); color: #fff; }
+      .content-preview {
+        display: grid; gap: 14px; min-height: 560px; max-height: 72vh; overflow: auto;
+        border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 16px;
+      }
+      .empty-state { border: 1px dashed #cbd5c9; border-radius: 8px; background: #fbfcfa; color: var(--muted); padding: 14px; line-height: 1.6; }
+      .preview-page, .preview-section { display: grid; gap: 8px; border: 1px solid #eee7d8; border-radius: 8px; background: #fafafa; padding: 12px; }
+      .preview-section { background: #fff; }
+      .preview-summary { color: var(--muted); font-size: 13px; line-height: 1.55; }
+      .preview-field { display: grid; gap: 4px; border-top: 1px solid #eee; padding-top: 8px; }
+      .preview-field strong { font-size: 13px; }
+      .preview-field div { white-space: pre-wrap; }
+      .technical-note { display: none; }
+      .hidden { display: none; }
+      .toast { display: none; margin-top: 10px; border-radius: 8px; background: #ecfdf5; color: #065f46; padding: 10px 12px; font-size: 13px; font-weight: 700; }
+      .toast.error { background: #fef2f2; color: #991b1b; }
+      .toast.show { display: block; }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
+          <div>
+            <p class="eyebrow">Folks Team CMS</p>
+            <h1>Text Manager</h1>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Admin links">
+          <a href="/admin/">Trang admin</a>
+          <a href="/admin/blog.html">Blog Manager</a>
+          <a href="/blog">Blog EN</a>
+          <a href="/vi/blog">Blog VI</a>
+          <a class="secondary" href="/">Home</a>
+          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+        </nav>
+      </header>
+
+      <section class="hero-panel">
+        <div>
+          <p class="eyebrow">Không gian soạn nội dung</p>
+          <h2>Chọn trang, sửa chữ, rồi đăng lên website.</h2>
+          <p>
+            Màn hình này dành cho việc sửa nội dung. Các cài đặt kỹ thuật được đặt trong phần nâng cao.
+          </p>
+        </div>
+        <div class="status-strip" id="source-status" aria-live="polite">
+          <strong>Đang tải nội dung...</strong>
+          <small>Đang lấy nội dung mới nhất của website.</small>
+        </div>
+      </section>
+
+      <section class="layout">
+        <aside class="card sidebar">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow"><span class="step-label">1</span> Chọn trang</p>
+              <h2>Trang</h2>
+            </div>
+          </div>
+          <label>
+            Tìm trang
+            <input id="page-search" placeholder="Nhập tên hoặc đường dẫn..." />
+          </label>
+          <div class="list" id="page-list"></div>
+        </aside>
+
+        <section class="card" data-content-editor>
+          <div class="section-title">
+            <div>
+              <p class="eyebrow"><span class="step-label">2</span> Sửa nội dung</p>
+              <h2 id="editor-title">Nội dung trang</h2>
+            </div>
+          </div>
+          <div class="meta-grid">
+            <div class="meta-card">
+              <small>Trang đang chọn</small>
+              <strong id="current-page-meta">-</strong>
+            </div>
+            <div class="meta-card">
+              <small>Mục đang chọn</small>
+              <strong id="current-section-meta">-</strong>
+            </div>
+            <div class="meta-card">
+              <small>Trạng thái</small>
+              <strong id="dirty-status">Chưa chỉnh sửa</strong>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>
+              Tên trang
+              <input id="page-title" />
+            </label>
+          </div>
+          <details class="structure-panel">
+            <summary>Quản lý trang nâng cao</summary>
+            <div class="row" style="margin-top:12px">
+              <label>
+                Đường dẫn trang
+                <input id="page-path" />
+              </label>
+            </div>
+            <div class="button-row" style="margin-top:12px">
+              <button type="button" id="add-page">Thêm trang</button>
+              <button type="button" class="secondary" id="move-page-up">Đưa trang lên</button>
+              <button type="button" class="secondary" id="move-page-down">Đưa trang xuống</button>
+              <button type="button" class="danger" id="delete-page">Xóa trang</button>
+            </div>
+          </details>
+
+          <div class="section-title" style="margin-top:18px">
+            <div>
+              <p class="eyebrow">Mục trong trang</p>
+              <h3>Chọn mục cần sửa</h3>
+            </div>
+          </div>
+          <div class="list" id="section-list"></div>
+          <details class="structure-panel">
+            <summary>Quản lý mục nâng cao</summary>
+            <div class="button-row" style="margin-top:12px">
+              <button type="button" id="add-section">Thêm mục</button>
+              <button type="button" class="secondary" id="move-section-up">Đưa mục lên</button>
+              <button type="button" class="secondary" id="move-section-down">Đưa mục xuống</button>
+              <button type="button" class="danger" id="delete-section">Xóa mục</button>
+            </div>
+          </details>
+
+          <div class="publish-box">
+            <h3>Nội dung đang chọn</h3>
+            <div class="row">
+              <label>
+                Tên mục
+                <input id="section-title-input" />
+              </label>
+            </div>
+            <details class="field-advanced">
+              <summary>Cấu hình mục</summary>
+              <div class="row" style="margin-top:12px">
+                <label>
+                  Mã phần nội dung
+                  <input id="section-id" />
+                </label>
+              </div>
+            </details>
+            <div class="section-title" style="margin-top:8px">
+              <div>
+                <p class="eyebrow">Nội dung nhỏ</p>
+                <h3>Các dòng chữ có thể sửa</h3>
+              </div>
+            </div>
+            <div class="field-list" id="field-list"></div>
+            <details class="structure-panel">
+              <summary>Quản lý dòng chữ nâng cao</summary>
+              <div class="button-row" style="margin-top:12px">
+                <button type="button" id="add-field">Thêm dòng chữ</button>
+              </div>
+            </details>
+          </div>
+
+          <details class="tools-panel">
+            <summary>Công cụ và dữ liệu nâng cao</summary>
+            <div class="button-row">
+              <button type="button" class="secondary" id="reload-live">Tải lại nội dung online</button>
+              <button type="button" class="secondary" id="scan-site">Quét tất cả trang</button>
+              <button type="button" class="secondary" id="clear-draft">Bỏ bản lưu trên máy</button>
+              <button type="button" class="secondary" id="export-json">Tải dữ liệu</button>
+              <button type="button" class="secondary" id="copy-json">Copy dữ liệu</button>
+            </div>
+          </details>
+
+          <div class="publish-box">
+            <h3><span class="step-label">3</span> Đăng lên website</h3>
+            <p class="hint">
+              Bấm đăng khi đã kiểm tra xong. Website sẽ cập nhật sau khi hệ thống deploy hoàn tất.
+            </p>
+            <div class="status-log" id="publish-status">
+              Sẵn sàng đăng nội dung lên website.
+            </div>
+            <details>
+              <summary>Cài đặt nâng cao</summary>
+              <div class="row" style="margin-top:12px">
+                <label>
+                Kho dữ liệu
+                  <input id="githubRepo" value="xuanpv89/folksteam.com" />
+                </label>
+                <label>
+                  Nhánh dữ liệu
+                  <input id="githubBranch" value="main" />
+                </label>
+              </div>
+            </details>
+          </div>
+
+          <div class="button-row primary-actions" style="margin-top:14px">
+            <button type="button" class="secondary" id="save-local">Lưu trên máy này</button>
+            <button type="button" id="publish-github">Đăng nội dung</button>
+          </div>
+          <div class="toast" id="toast">Done.</div>
+        </section>
+
+        <section class="card preview-card">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Kiểm tra nhanh</p>
+              <h2>Nội dung đang sửa</h2>
+            </div>
+            <div class="preview-tabs" aria-label="Preview mode">
+              <button type="button" class="active" id="tab-readable">Xem nội dung</button>
+              <button type="button" id="tab-json">Dữ liệu kỹ thuật</button>
+            </div>
+          </div>
+          <div class="path technical-note">src/data_files/cmsContent.json</div>
+          <div class="content-preview" id="content-preview"></div>
+          <pre id="preview" class="hidden"></pre>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const defaultContent = {
+        updatedAt: new Date().toISOString(),
+        pages: [
+          {
+            id: 'home',
+            title: 'Home',
+            path: '/',
+            sections: [
+              {
+                id: 'hero',
+                title: 'Hero',
+                fields: [
+                  { key: 'headline', label: 'Headline', type: 'text', value: 'A Modern Growth System Built on C.H.E.S.S' },
+                  { key: 'subtitle', label: 'Subtitle', type: 'textarea', value: 'A strategic framework for building marketing, community, and scalable growth systems.' },
+                  { key: 'primaryCta', label: 'Primary CTA', type: 'text', value: 'Get Started' }
+                ]
+              }
+            ]
+          },
+          {
+            id: 'about',
+            title: 'About Us',
+            path: '/about',
+            sections: [
+              {
+                id: 'team',
+                title: 'Team',
+                fields: [
+                  { key: 'headline', label: 'Headline', type: 'text', value: 'Meet the Folks Team' },
+                  { key: 'summary', label: 'Summary', type: 'textarea', value: 'A compact team of strategists, facilitators, content makers, and product builders.' }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+
+      const DRAFT_KEY = 'folksContentCms';
+      let state = structuredClone(defaultContent);
+      let serverContent = null;
+      let baseSha = '';
+      let pageIndex = 0;
+      let sectionIndex = 0;
+      let hasUnsavedChanges = false;
+
+      const pageList = document.getElementById('page-list');
+      const sectionList = document.getElementById('section-list');
+      const fieldList = document.getElementById('field-list');
+      const preview = document.getElementById('preview');
+      const contentPreview = document.getElementById('content-preview');
+      const publishStatus = document.getElementById('publish-status');
+      const toast = document.getElementById('toast');
+      const pageTitle = document.getElementById('page-title');
+      const pagePath = document.getElementById('page-path');
+      const sectionId = document.getElementById('section-id');
+      const sectionTitle = document.getElementById('section-title-input');
+      const githubRepo = document.getElementById('githubRepo');
+      const githubBranch = document.getElementById('githubBranch');
+      const sourceStatus = document.getElementById('source-status');
+      const pageSearch = document.getElementById('page-search');
+      const currentPageMeta = document.getElementById('current-page-meta');
+      const currentSectionMeta = document.getElementById('current-section-meta');
+      const dirtyStatus = document.getElementById('dirty-status');
+      const movePageUp = document.getElementById('move-page-up');
+      const movePageDown = document.getElementById('move-page-down');
+      const moveSectionUp = document.getElementById('move-section-up');
+      const moveSectionDown = document.getElementById('move-section-down');
+
+      function slugify(value) {
+        return String(value || 'item').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      }
+
+      function showToast(message, type = 'success') {
+        toast.textContent = message;
+        toast.classList.toggle('error', type === 'error');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), type === 'error' ? 5200 : 2400);
+      }
+
+      function setSourceStatus(title, detail, type = 'success') {
+        sourceStatus.classList.toggle('warning', type === 'warning');
+        sourceStatus.classList.toggle('error', type === 'error');
+        sourceStatus.innerHTML = `<strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small>`;
+      }
+
+      function setDirty(value) {
+        hasUnsavedChanges = value;
+        dirtyStatus.textContent = value ? 'Có thay đổi chưa đăng' : 'Chưa có thay đổi mới';
+      }
+
+      function getSectionLabel(section) {
+        return section.title || section.id || 'Mục chưa đặt tên';
+      }
+
+      function getPageKey(path) {
+        return path === '/' ? 'home' : slugify(path.replace(/^\/+/, '') || 'home');
+      }
+
+      function normalizeText(value) {
+        return String(value || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function isEditableTextNode(node) {
+        const parent = node.parentElement;
+        if (!parent) return false;
+        if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'CANVAS', 'IFRAME'].includes(parent.tagName)) return false;
+        if (parent.closest('[data-cms-ignore], nav, footer')) return false;
+        return normalizeText(node.nodeValue).length > 1;
+      }
+
+      function sectionTitleFromElement(element, fallback) {
+        const heading = element?.querySelector?.('h1,h2,h3');
+        return normalizeText(heading?.textContent) || fallback;
+      }
+
+      function extractPageContent(path, html) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('script,style,noscript,svg,canvas,iframe,nav,footer').forEach(element => element.remove());
+
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+        const groups = new Map();
+        let textIndex = 0;
+
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          if (!isEditableTextNode(node)) continue;
+
+          const text = normalizeText(node.nodeValue);
+          const sectionElement = node.parentElement.closest('section,article,main') || doc.body;
+          const sectionIndex = [...doc.body.querySelectorAll('section,article,main')].indexOf(sectionElement);
+          const sectionKey = sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
+          const sectionTitle = sectionTitleFromElement(sectionElement, sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang');
+
+          if (!groups.has(sectionKey)) {
+            groups.set(sectionKey, {
+              id: sectionKey,
+              title: sectionTitle,
+              fields: [],
+            });
+          }
+
+          textIndex += 1;
+          groups.get(sectionKey).fields.push({
+            key: `text-${textIndex}`,
+            label: text.length > 46 ? `${text.slice(0, 46)}...` : text,
+            type: text.length > 90 ? 'textarea' : 'text',
+            value: text,
+            match: text,
+          });
+        }
+
+        return {
+          id: getPageKey(path),
+          title: doc.title || path,
+          path,
+          sections: [...groups.values()].filter(section => section.fields.length),
+        };
+      }
+
+      function mergeScannedPage(scannedPage, existingPage) {
+        if (!existingPage) return scannedPage;
+
+        const existingByMatch = new Map();
+        (existingPage.sections || []).forEach(section => {
+          (section.fields || []).forEach(field => {
+            const match = normalizeText(field.match || field.original || field.value);
+            if (match) existingByMatch.set(match, field);
+          });
+        });
+
+        return {
+          ...scannedPage,
+          sections: scannedPage.sections.map(section => ({
+            ...section,
+            fields: section.fields.map(field => {
+              const existing = existingByMatch.get(normalizeText(field.match));
+              return existing ? { ...field, value: existing.value ?? field.value } : field;
+            }),
+          })),
+        };
+      }
+
+      function hasRuntimeEditableContent(content) {
+        return (content.pages || []).some(page =>
+          (page.sections || []).some(section => (section.fields || []).some(field => field.match))
+        );
+      }
+
+      function escapeHtml(value) {
+        return String(value || '')
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+      function updatePublishStatus(message, links = []) {
+        publishStatus.innerHTML = `
+          <div>${escapeHtml(message)}</div>
+          ${links
+            .filter(link => link.url)
+            .map(link => `<div><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></div>`)
+            .join('')}
+        `;
+      }
+
+      function getSavedDraft() {
+        try {
+          const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+          if (!draft) return null;
+          if (draft.content?.pages) return draft;
+          if (draft.pages) return { content: draft, baseSha: '', savedAt: '' };
+          return null;
+        } catch {
+          localStorage.removeItem(DRAFT_KEY);
+          return null;
+        }
+      }
+
+      async function loadPublishedContent() {
+        const repo = githubRepo.value.trim() || 'xuanpv89/folksteam.com';
+        const branch = githubBranch.value.trim() || 'main';
+        const params = new URLSearchParams({ repo, branch });
+        const response = await fetch(`/api/admin-content?${params.toString()}`, {
+          method: 'GET',
+          credentials: 'same-origin',
+        });
+        const data = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          throw new Error(data?.message || `Không tải được nội dung online (${response.status}).`);
+        }
+
+        return {
+          content: data.content,
+          sha: data.sha || '',
+        };
+      }
+
+      async function fetchSitemapPaths() {
+        const seen = new Set();
+        const paths = [];
+
+        async function readXml(path) {
+          const response = await fetch(path, { credentials: 'same-origin' });
+          if (!response.ok) return '';
+          return response.text();
+        }
+
+        async function collectFromXml(path) {
+          const xml = await readXml(path);
+          if (!xml) return;
+
+          const doc = new DOMParser().parseFromString(xml, 'application/xml');
+          const locs = [...doc.querySelectorAll('loc')].map(loc => loc.textContent.trim()).filter(Boolean);
+
+          for (const loc of locs) {
+            const url = new URL(loc, window.location.origin);
+            if (url.origin !== window.location.origin) continue;
+
+            if (url.pathname.endsWith('.xml')) {
+              await collectFromXml(url.pathname);
+              continue;
+            }
+
+            const normalizedPath = url.pathname.replace(/\/$/, '') || '/';
+            if (
+              normalizedPath.startsWith('/admin') ||
+              normalizedPath.startsWith('/api') ||
+              normalizedPath.includes('/docs/')
+            ) {
+              continue;
+            }
+
+            if (!seen.has(normalizedPath)) {
+              seen.add(normalizedPath);
+              paths.push(normalizedPath);
+            }
+          }
+        }
+
+        await collectFromXml('/sitemap-index.xml');
+        await collectFromXml('/sitemap.xml');
+        await collectFromXml('/sitemap-0.xml');
+
+        if (!paths.length) {
+          ['/', '/about', '/services', '/contact', '/member', '/chess', '/compassio', '/products', '/projects', '/vi', '/vi/about', '/vi/services', '/vi/contact'].forEach(path => {
+            if (!seen.has(path)) {
+              seen.add(path);
+              paths.push(path);
+            }
+          });
+        }
+
+        return paths;
+      }
+
+      async function scanSiteContent() {
+        saveCurrentFromInputs();
+        const scanButton = document.getElementById('scan-site');
+        scanButton.disabled = true;
+        scanButton.textContent = 'Đang quét...';
+        updatePublishStatus('Đang quét các trang public để tạo danh sách nội dung có thể sửa...');
+
+        try {
+          const paths = await fetchSitemapPaths();
+          const existingByPath = new Map((state.pages || []).map(page => [page.path, page]));
+          const pages = [];
+
+          for (const path of paths) {
+            const response = await fetch(path, { credentials: 'same-origin' });
+            if (!response.ok) continue;
+
+            const html = await response.text();
+            const scannedPage = extractPageContent(path, html);
+            if (!scannedPage.sections.length) continue;
+
+            pages.push(mergeScannedPage(scannedPage, existingByPath.get(path)));
+          }
+
+          if (!pages.length) {
+            showToast('Không quét được nội dung nào từ website.', 'error');
+            return;
+          }
+
+          state.pages = pages;
+          pageIndex = 0;
+          sectionIndex = 0;
+          setDirty(true);
+          setSourceStatus('Đã quét nội dung website', `Tìm thấy ${pages.length} trang có nội dung có thể chỉnh.`, 'warning');
+          updatePublishStatus(`Đã quét ${pages.length} trang. Kiểm tra nhanh rồi bấm "Đăng nội dung" để áp dụng.`);
+          render();
+        } catch (error) {
+          updatePublishStatus(`Quét nội dung bị lỗi: ${error.message}`);
+          showToast(`Quét lỗi: ${error.message}`, 'error');
+        } finally {
+          scanButton.disabled = false;
+          scanButton.textContent = 'Quét tất cả trang';
+        }
+      }
+
+      async function initializeContent(preferDraft = true) {
+        const draft = getSavedDraft();
+        let shouldAutoScan = false;
+        setSourceStatus('Đang tải nội dung...', 'Đang lấy nội dung mới nhất của website.');
+
+        try {
+          const published = await loadPublishedContent();
+          serverContent = published.content;
+          baseSha = published.sha;
+          state = structuredClone(serverContent);
+          setDirty(false);
+
+          if (preferDraft && draft?.content?.pages?.length) {
+            state = draft.content;
+            baseSha = draft.baseSha || '';
+            setSourceStatus(
+              'Đang dùng bản lưu trên máy này',
+              'Có bản chỉnh sửa đã lưu trong trình duyệt. Nếu muốn lấy lại nội dung mới nhất trên website, mở Công cụ nâng cao.',
+              'warning'
+            );
+          } else {
+            setSourceStatus('Đã tải nội dung online', 'Bạn đang chỉnh nội dung mới nhất của website.');
+          }
+
+          if (!hasRuntimeEditableContent(state)) {
+            shouldAutoScan = true;
+            setSourceStatus(
+              'Đang chuẩn bị danh sách nội dung',
+              'Dữ liệu cũ chưa khớp với website hiện tại. CMS sẽ tự quét lại các trang public.',
+              'warning'
+            );
+          }
+        } catch (error) {
+          state = draft?.content?.pages?.length ? draft.content : structuredClone(defaultContent);
+          baseSha = draft?.baseSha || '';
+          setSourceStatus(
+            draft?.content?.pages?.length ? 'Đang dùng bản lưu trên máy này' : 'Đang dùng dữ liệu mẫu',
+            error.message,
+            'error'
+          );
+        }
+
+        pageIndex = Math.min(pageIndex, state.pages.length - 1);
+        sectionIndex = 0;
+        render();
+
+        if (shouldAutoScan) {
+          scanSiteContent();
+        }
+      }
+
+      function currentPage() {
+        if (!Array.isArray(state.pages) || !state.pages.length) {
+          state.pages = [{ id: 'trang-moi', title: 'Trang mới', path: '/trang-moi', sections: [] }];
+          pageIndex = 0;
+        }
+        pageIndex = Math.min(pageIndex, state.pages.length - 1);
+        return state.pages[pageIndex];
+      }
+
+      function currentSection() {
+        const page = currentPage();
+        page.sections = Array.isArray(page.sections) ? page.sections : [];
+        if (!page.sections.length) {
+          page.sections.push({ id: 'phan-moi', title: 'Phần mới', fields: [] });
+        }
+        sectionIndex = Math.min(sectionIndex, page.sections.length - 1);
+        return page.sections[sectionIndex];
+      }
+
+      function renderPages() {
+        pageList.innerHTML = '';
+        const query = pageSearch.value.trim().toLowerCase();
+        const visiblePages = state.pages
+          .map((page, index) => ({ page, index }))
+          .filter(({ page }) => !query || `${page.title} ${page.path}`.toLowerCase().includes(query));
+
+        if (!visiblePages.length) {
+          pageList.innerHTML = '<div class="empty-state">Không tìm thấy trang phù hợp.</div>';
+          return;
+        }
+
+        visiblePages.forEach(({ page, index }) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `item ${index === pageIndex ? 'active' : ''}`;
+          button.innerHTML = `<span>${escapeHtml(page.title)}</span><small>${escapeHtml(page.path)}</small>`;
+          button.addEventListener('click', () => {
+            saveCurrentFromInputs();
+            pageIndex = index;
+            sectionIndex = 0;
+            render();
+          });
+          pageList.appendChild(button);
+        });
+      }
+
+      function renderSections() {
+        sectionList.innerHTML = '';
+        const sections = currentPage().sections || [];
+
+        if (!sections.length) {
+          sectionList.innerHTML = '<div class="empty-state">Trang này chưa có mục nội dung. Mở phần quản lý nâng cao nếu cần thêm mục mới.</div>';
+          return;
+        }
+
+        sections.forEach((section, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `item ${index === sectionIndex ? 'active' : ''}`;
+          button.innerHTML = `<span>${escapeHtml(getSectionLabel(section))}</span>`;
+          button.addEventListener('click', () => {
+            saveCurrentFromInputs();
+            sectionIndex = index;
+            render();
+          });
+          sectionList.appendChild(button);
+        });
+      }
+
+      function renderFields() {
+        fieldList.innerHTML = '';
+        const fields = currentSection().fields || [];
+
+        if (!fields.length) {
+          fieldList.innerHTML = '<div class="empty-state">Mục này chưa có dòng chữ để sửa. Mở phần quản lý nâng cao nếu cần thêm dòng mới.</div>';
+          return;
+        }
+
+        fields.forEach((field, index) => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'field-card';
+          const input = field.type === 'textarea'
+            ? `<textarea data-field-value="${index}">${escapeHtml(field.value || '')}</textarea>`
+            : `<input data-field-value="${index}" value="${escapeHtml(field.value || '')}" />`;
+          wrapper.innerHTML = `
+            <header>
+              <strong>${escapeHtml(field.label || `Dòng chữ ${index + 1}`)}</strong>
+            </header>
+            <div class="row">
+              <label>Nội dung${input}</label>
+            </div>
+            <details class="field-advanced">
+              <summary>Cấu hình dòng chữ</summary>
+              <div class="row" style="margin-top:12px">
+                <label>Tên hiển thị<input data-field-label="${index}" value="${escapeHtml(field.label || '')}" /></label>
+                <label>Mã nội dung<input data-field-key="${index}" value="${escapeHtml(field.key || '')}" /></label>
+                <label>Kiểu nội dung
+                  <select data-field-type="${index}">
+                    <option value="text" ${field.type === 'text' ? 'selected' : ''}>Một dòng</option>
+                    <option value="textarea" ${field.type === 'textarea' ? 'selected' : ''}>Nhiều dòng</option>
+                  </select>
+                </label>
+              </div>
+            </details>
+            <div class="actions" style="margin-top:12px">
+              <button type="button" class="secondary" data-move-field="${index}" data-direction="-1">Đưa lên</button>
+              <button type="button" class="secondary" data-move-field="${index}" data-direction="1">Đưa xuống</button>
+              <button type="button" class="danger" data-remove-field="${index}">Xóa dòng chữ</button>
+            </div>
+          `;
+          fieldList.appendChild(wrapper);
+        });
+      }
+
+      function syncInputs() {
+        const page = currentPage();
+        const section = currentSection();
+        pageTitle.value = page.title;
+        pagePath.value = page.path;
+        sectionId.value = section.id;
+        sectionTitle.value = section.title;
+        document.getElementById('editor-title').textContent = `Nội dung: ${page.title}`;
+        currentPageMeta.textContent = `${page.title || 'Chưa có tên'} (${page.path || '/'})`;
+        currentSectionMeta.textContent = getSectionLabel(section);
+        movePageUp.disabled = pageIndex === 0;
+        movePageDown.disabled = pageIndex >= state.pages.length - 1;
+        moveSectionUp.disabled = sectionIndex === 0;
+        moveSectionDown.disabled = sectionIndex >= currentPage().sections.length - 1;
+      }
+
+      function updatePreview() {
+        state.updatedAt = new Date().toISOString();
+        const page = currentPage();
+        const section = currentSection();
+        preview.textContent = JSON.stringify(state, null, 2);
+        contentPreview.innerHTML = `
+          <article class="preview-page">
+            <div>
+              <p class="eyebrow">${escapeHtml(page.path || '/')}</p>
+              <h3>${escapeHtml(page.title || 'Chưa có tên trang')}</h3>
+              <p class="preview-summary">Đang xem mục đang chọn.</p>
+            </div>
+            <section class="preview-section">
+              <div>
+                <strong>${escapeHtml(getSectionLabel(section))}</strong>
+              </div>
+              ${(section.fields || [])
+                .map(field => `
+                  <div class="preview-field">
+                    <strong>${escapeHtml(field.label || field.key || 'Trường nội dung')}</strong>
+                    <div>${escapeHtml(field.value || 'Chưa có nội dung')}</div>
+                  </div>
+                `)
+                .join('') || '<div class="empty-state">Mục này chưa có nội dung.</div>'}
+            </section>
+          </article>
+        `;
+      }
+
+      function render() {
+        renderPages();
+        renderSections();
+        syncInputs();
+        renderFields();
+        updatePreview();
+      }
+
+      function saveCurrentFromInputs() {
+        const page = currentPage();
+        const section = currentSection();
+        page.title = pageTitle.value.trim() || page.title;
+        page.path = pagePath.value.trim() || page.path;
+        page.id = slugify(page.title);
+        section.id = slugify(sectionId.value || section.title);
+        section.title = sectionTitle.value.trim() || section.title;
+        section.fields = Array.isArray(section.fields) ? section.fields : [];
+        section.fields.forEach((field, index) => {
+          const keyInput = document.querySelector(`[data-field-key="${index}"]`);
+          const labelInput = document.querySelector(`[data-field-label="${index}"]`);
+          const typeInput = document.querySelector(`[data-field-type="${index}"]`);
+          const valueInput = document.querySelector(`[data-field-value="${index}"]`);
+
+          if (!keyInput || !labelInput || !typeInput || !valueInput) return;
+
+          field.key = keyInput.value.trim() || field.key;
+          field.label = labelInput.value.trim() || field.label;
+          field.type = typeInput.value;
+          field.value = valueInput.value;
+        });
+        updatePreview();
+      }
+
+      function downloadJson() {
+        saveCurrentFromInputs();
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'cmsContent.json';
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }
+
+      function validateContent() {
+        const errors = [];
+        state.pages.forEach(page => {
+          if (!page.title?.trim()) errors.push('Có trang thiếu tên.');
+          if (!page.path?.trim().startsWith('/')) errors.push(`${page.title || 'Trang'}: đường dẫn phải bắt đầu bằng "/".`);
+          (page.sections || []).forEach(section => {
+            if (!section.id?.trim()) errors.push(`${page.title}: có phần thiếu mã.`);
+            if (!section.title?.trim()) errors.push(`${page.title}: có phần thiếu tên.`);
+            const keys = new Set();
+            (section.fields || []).forEach(field => {
+              if (!field.key?.trim()) errors.push(`${section.title}: có trường thiếu mã nội dung.`);
+              if (keys.has(field.key)) errors.push(`${section.title}: mã "${field.key}" bị trùng.`);
+              keys.add(field.key);
+              if (!field.label?.trim()) errors.push(`${section.title}: có trường thiếu tên hiển thị.`);
+            });
+          });
+        });
+        return errors;
+      }
+
+      async function adminContentRequest(payload) {
+        const response = await fetch('/api/admin-content', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          const data = await response.json().catch(() => null);
+          const error = new Error(data?.message || `Admin content API error ${response.status}`);
+          error.status = response.status;
+          throw error;
+        }
+        return response.json();
+      }
+
+      function countFields(content) {
+        return (content.pages || []).reduce(
+          (total, page) =>
+            total + (page.sections || []).reduce((sectionTotal, section) => sectionTotal + (section.fields || []).length, 0),
+          0
+        );
+      }
+
+      function buildPublishSummary() {
+        if (!serverContent) return 'Hệ thống chưa tải được bản đang online. Hãy tải lại trước khi đăng.';
+
+        const currentPages = state.pages?.length || 0;
+        const serverPages = serverContent.pages?.length || 0;
+        const currentFields = countFields(state);
+        const serverFields = countFields(serverContent);
+        const changedPages = (state.pages || []).filter((page, index) => {
+          const serverPage = serverContent.pages?.[index];
+          return JSON.stringify(page) !== JSON.stringify(serverPage);
+        }).length;
+
+        return `Bạn sắp đăng ${currentPages} trang, ${currentFields} dòng nội dung. Có ${changedPages} trang đã thay đổi.`;
+      }
+
+      async function publishToGithub() {
+        saveCurrentFromInputs();
+        const repo = githubRepo.value.trim();
+        const branch = githubBranch.value.trim() || 'main';
+        const validationErrors = validateContent();
+
+        if (!repo.includes('/')) {
+          showToast('Kho dữ liệu không hợp lệ. Hãy kiểm tra trong cài đặt nâng cao.', 'error');
+          return;
+        }
+        if (validationErrors.length) {
+          showToast(`Chưa thể đăng: ${validationErrors[0]}`, 'error');
+          return;
+        }
+        if (!baseSha) {
+          updatePublishStatus('Chưa thể đăng vì hệ thống chưa tải được bản đang online. Mở Công cụ và dữ liệu nâng cao rồi bấm "Tải lại nội dung online".');
+          showToast('Hãy tải lại nội dung online trước khi đăng.', 'error');
+          return;
+        }
+
+        const summary = buildPublishSummary();
+        updatePublishStatus(summary);
+        if (!window.confirm(`Đăng nội dung lên website?\n\n${summary}`)) {
+          return;
+        }
+
+        const button = document.getElementById('publish-github');
+        button.disabled = true;
+        button.textContent = 'Đang đăng...';
+        updatePublishStatus('Đang đăng nội dung lên website...');
+
+        try {
+          const result = await adminContentRequest({
+            repo,
+            branch,
+            baseSha,
+            content: state,
+          });
+          updatePublishStatus(`Đã gửi nội dung mới. ${result.deploy?.message || ''}`, [
+            { label: 'Xem lần cập nhật', url: result.commitUrl },
+            { label: 'Xem dữ liệu đã cập nhật', url: result.fileUrl },
+          ]);
+          localStorage.removeItem(DRAFT_KEY);
+          serverContent = structuredClone(state);
+          baseSha = result.sha || baseSha;
+          setDirty(false);
+          setSourceStatus('Đã đăng nội dung', 'Nội dung đã được gửi lên hệ thống. Website sẽ cập nhật sau khi deploy xong.');
+          showToast('Đã đăng nội dung.');
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Đăng nội dung';
+        }
+      }
+
+      function moveItem(items, index, direction) {
+        const nextIndex = index + direction;
+        if (nextIndex < 0 || nextIndex >= items.length) return index;
+        const [item] = items.splice(index, 1);
+        items.splice(nextIndex, 0, item);
+        return nextIndex;
+      }
+
+      function deleteSelectedPage() {
+        if (state.pages.length <= 1) {
+          showToast('Cần giữ lại ít nhất một trang.', 'error');
+          return;
+        }
+        if (!window.confirm(`Xóa trang "${currentPage().title}"? Thao tác này chỉ được đăng lên website khi bạn bấm "Đăng nội dung".`)) {
+          return;
+        }
+        state.pages.splice(pageIndex, 1);
+        pageIndex = Math.max(0, pageIndex - 1);
+        sectionIndex = 0;
+        setDirty(true);
+        render();
+      }
+
+      function deleteSelectedSection() {
+        const page = currentPage();
+        if (page.sections.length <= 1) {
+          showToast('Cần giữ lại ít nhất một phần nội dung.', 'error');
+          return;
+        }
+        if (!window.confirm(`Xóa mục "${currentSection().title}" khỏi trang "${page.title}"?`)) {
+          return;
+        }
+        page.sections.splice(sectionIndex, 1);
+        sectionIndex = Math.max(0, sectionIndex - 1);
+        setDirty(true);
+        render();
+      }
+
+      document.addEventListener('input', event => {
+        if (event.target.closest('[data-content-editor]')) {
+          saveCurrentFromInputs();
+          setDirty(true);
+        }
+      });
+      pageSearch.addEventListener('input', renderPages);
+      githubRepo.addEventListener('input', () => localStorage.setItem('folksGithubRepo', githubRepo.value.trim()));
+      githubBranch.addEventListener('input', () => localStorage.setItem('folksGithubBranch', githubBranch.value.trim()));
+      document.getElementById('add-page').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        state.pages.push({ id: 'trang-moi', title: 'Trang mới', path: '/trang-moi', sections: [{ id: 'gioi-thieu', title: 'Giới thiệu', fields: [] }] });
+        pageIndex = state.pages.length - 1;
+        sectionIndex = 0;
+        setDirty(true);
+        render();
+      });
+      document.getElementById('add-section').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        currentPage().sections.push({ id: 'phan-moi', title: 'Phần mới', fields: [] });
+        sectionIndex = currentPage().sections.length - 1;
+        setDirty(true);
+        render();
+      });
+      document.getElementById('add-field').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        currentSection().fields.push({ key: `noiDung${currentSection().fields.length + 1}`, label: 'Nội dung mới', type: 'text', value: '' });
+        setDirty(true);
+        render();
+      });
+      fieldList.addEventListener('click', event => {
+        const removeIndex = event.target.dataset.removeField;
+        const moveIndex = event.target.dataset.moveField;
+
+        if (removeIndex !== undefined) {
+          if (!window.confirm('Xóa trường nội dung này?')) return;
+          currentSection().fields.splice(Number(removeIndex), 1);
+          setDirty(true);
+          render();
+        }
+
+        if (moveIndex !== undefined) {
+          moveItem(currentSection().fields, Number(moveIndex), Number(event.target.dataset.direction));
+          setDirty(true);
+          render();
+        }
+      });
+      document.getElementById('move-page-up').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        pageIndex = moveItem(state.pages, pageIndex, -1);
+        setDirty(true);
+        render();
+      });
+      document.getElementById('move-page-down').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        pageIndex = moveItem(state.pages, pageIndex, 1);
+        setDirty(true);
+        render();
+      });
+      document.getElementById('delete-page').addEventListener('click', deleteSelectedPage);
+      document.getElementById('move-section-up').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        sectionIndex = moveItem(currentPage().sections, sectionIndex, -1);
+        setDirty(true);
+        render();
+      });
+      document.getElementById('move-section-down').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        sectionIndex = moveItem(currentPage().sections, sectionIndex, 1);
+        setDirty(true);
+        render();
+      });
+      document.getElementById('delete-section').addEventListener('click', deleteSelectedSection);
+      document.getElementById('save-local').addEventListener('click', () => {
+        saveCurrentFromInputs();
+        localStorage.setItem(
+          DRAFT_KEY,
+          JSON.stringify({
+            content: state,
+            baseSha,
+            savedAt: new Date().toISOString(),
+          })
+        );
+        setDirty(false);
+        setSourceStatus('Đã lưu trên máy này', 'Bản lưu này chưa xuất hiện trên website cho đến khi bạn bấm "Đăng nội dung".', 'warning');
+        showToast('Đã lưu trên máy này.');
+      });
+      document.getElementById('reload-live').addEventListener('click', () => {
+        if (hasUnsavedChanges && !window.confirm('Bạn có thay đổi chưa đăng. Tải lại nội dung online sẽ bỏ các thay đổi trên màn hình.')) return;
+        localStorage.removeItem(DRAFT_KEY);
+        initializeContent(false);
+      });
+      document.getElementById('scan-site').addEventListener('click', scanSiteContent);
+      document.getElementById('clear-draft').addEventListener('click', () => {
+        localStorage.removeItem(DRAFT_KEY);
+        setSourceStatus('Đã bỏ bản lưu trên máy này', 'Nội dung trên màn hình vẫn giữ nguyên. Bấm "Tải lại nội dung online" nếu muốn lấy lại bản đang publish.');
+        showToast('Đã bỏ bản lưu trên máy này.');
+      });
+      document.getElementById('export-json').addEventListener('click', downloadJson);
+      document.getElementById('copy-json').addEventListener('click', async () => {
+        saveCurrentFromInputs();
+        await navigator.clipboard.writeText(JSON.stringify(state, null, 2));
+        showToast('Đã copy dữ liệu.');
+      });
+      document.getElementById('publish-github').addEventListener('click', () => {
+        publishToGithub().catch(error => {
+          const reloadHint = error.status === 409 ? ' Hãy mở Công cụ nâng cao, bấm "Tải lại nội dung online", rồi kiểm tra lại.' : '';
+          updatePublishStatus(`Đăng nội dung bị lỗi: ${error.message}${reloadHint}`);
+          showToast(`Đăng lỗi: ${error.message}`, 'error');
+        });
+      });
+      document.getElementById('tab-readable').addEventListener('click', () => {
+        contentPreview.classList.remove('hidden');
+        preview.classList.add('hidden');
+        document.getElementById('tab-readable').classList.add('active');
+        document.getElementById('tab-json').classList.remove('active');
+      });
+      document.getElementById('tab-json').addEventListener('click', () => {
+        contentPreview.classList.add('hidden');
+        preview.classList.remove('hidden');
+        document.getElementById('tab-readable').classList.remove('active');
+        document.getElementById('tab-json').classList.add('active');
+      });
+      const savedGithubRepo = localStorage.getItem('folksGithubRepo');
+      githubRepo.value =
+        !savedGithubRepo || savedGithubRepo === 'xuanpv89/folks-template-screwfast'
+          ? 'xuanpv89/folksteam.com'
+          : savedGithubRepo;
+      if (savedGithubRepo === 'xuanpv89/folks-template-screwfast') {
+        localStorage.setItem('folksGithubRepo', 'xuanpv89/folksteam.com');
+      }
+      githubBranch.value = localStorage.getItem('folksGithubBranch') || githubBranch.value;
+      localStorage.removeItem('folksGithubToken');
+      initializeContent();
+    </script>
+    <script src="/admin/admin-session.js"></script>
+  </body>
+</html>
