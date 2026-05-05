@@ -871,8 +871,8 @@
                 </select>
               </label>
               <label>
-                Slug / filename
-                <input id="slug" name="slug" placeholder="my-new-post" required />
+                Đường dẫn bài viết
+                <input id="slug" name="slug" placeholder="vi-du-bai-viet" required />
               </label>
             </div>
 
@@ -891,29 +891,29 @@
             <h3>Cài đặt xuất bản</h3>
             <div class="row">
               <label>
-                Author
+                Tác giả
                 <input id="author" name="author" value="Folks Team" required />
               </label>
               <label>
-                Role
-                <input id="role" name="role" value="Editorial Team" />
+                Vai trò tác giả
+                <input id="role" name="role" value="Biên tập" />
               </label>
             </div>
 
             <div class="row">
               <label>
-                Publish date
+                Ngày đăng
                 <input id="pubDate" name="pubDate" type="date" required />
               </label>
               <label>
-                Read time
+                Thời gian đọc
                 <input id="readTime" name="readTime" type="number" min="1" value="4" required />
               </label>
             </div>
 
             <div class="row">
               <label>
-                Category
+                Chuyên mục
                 <select id="category" name="category">
                   <option>C.H.E.S.S</option>
                   <option>Strategy</option>
@@ -924,8 +924,8 @@
                 </select>
               </label>
               <label>
-                Tags
-                <input id="tags" name="tags" placeholder="growth, community, strategy" />
+                Từ khóa
+                <input id="tags" name="tags" placeholder="marketing, cộng đồng, chiến lược" />
               </label>
             </div>
           </div>
@@ -934,23 +934,23 @@
             <h3>Ảnh đại diện</h3>
             <div class="row">
               <label>
-                Card image link
-                <input id="cardImage" name="cardImage" placeholder="Dán link hình hoặc upload bên dưới" />
+                Ảnh bìa bài viết
+                <input id="cardImage" name="cardImage" placeholder="Dán link ảnh hoặc upload bên dưới" />
               </label>
               <label>
-                Card image alt
-                <input id="cardImageAlt" name="cardImageAlt" placeholder="Tự lấy theo title nếu để trống" />
+                Mô tả ảnh bìa
+                <input id="cardImageAlt" name="cardImageAlt" placeholder="Không bắt buộc, tự lấy theo tiêu đề nếu để trống" />
               </label>
             </div>
 
             <div class="row">
               <label>
-                Author image link
-                <input id="authorImage" name="authorImage" placeholder="Dán link hình hoặc upload bên dưới" />
+                Ảnh tác giả
+                <input id="authorImage" name="authorImage" placeholder="Dán link ảnh hoặc upload bên dưới" />
               </label>
               <label>
-                Author image alt
-                <input id="authorImageAlt" name="authorImageAlt" placeholder="Tự lấy theo author nếu để trống" />
+                Mô tả ảnh tác giả
+                <input id="authorImageAlt" name="authorImageAlt" placeholder="Không bắt buộc, tự lấy theo tên tác giả nếu để trống" />
               </label>
             </div>
             <div class="media-actions">
@@ -962,11 +962,11 @@
               </label>
             </div>
             <div class="image-preview" data-image-preview="cardImage">
-              <img alt="Card image preview" />
+              <img alt="Xem trước ảnh bìa" />
               <span></span>
             </div>
             <div class="image-preview" data-image-preview="authorImage">
-              <img alt="Author image preview" />
+              <img alt="Xem trước ảnh tác giả" />
               <span></span>
             </div>
           </div>
@@ -974,18 +974,18 @@
           <div class="form-section" data-tab-panel="write">
             <h3>Nội dung</h3>
             <div class="block-toolbar" aria-label="Add content block">
-              <button type="button" data-add-block="paragraph">+ Text</button>
-              <button type="button" data-add-block="image">+ Image</button>
+              <button type="button" data-add-block="paragraph">+ Đoạn văn</button>
+              <button type="button" data-add-block="image">+ Hình ảnh</button>
               <button type="button" data-add-block="video">+ Video</button>
-              <button type="button" data-add-block="quote">+ Quote</button>
+              <button type="button" data-add-block="quote">+ Trích dẫn</button>
               <details class="advanced-box">
-                <summary>More blocks</summary>
+                <summary>Thêm định dạng</summary>
                 <div class="button-row">
-                  <button type="button" data-add-block="heading">+ Heading</button>
-                  <button type="button" data-add-block="bullets">+ Bullets</button>
-                  <button type="button" data-add-block="numbers">+ Numbers</button>
+                  <button type="button" data-add-block="heading">+ Tiêu đề phụ</button>
+                  <button type="button" data-add-block="bullets">+ Danh sách chấm</button>
+                  <button type="button" data-add-block="numbers">+ Danh sách số</button>
                   <button type="button" data-add-block="link">+ Link</button>
-                  <button type="button" data-add-block="divider">+ Divider</button>
+                  <button type="button" data-add-block="divider">+ Đường kẻ</button>
                 </div>
               </details>
             </div>
@@ -1022,7 +1022,7 @@
             </p>
             <label class="check-row">
               <input id="allowUpdate" type="checkbox" />
-              Cập nhật bài cũ nếu slug đã tồn tại
+              Cập nhật bài cũ nếu đường dẫn đã tồn tại
             </label>
             <div class="status-log" id="publish-status">
               Sẵn sàng. Khi đăng, CMS sẽ commit lên GitHub và Vercel sẽ deploy từ main.
@@ -1056,12 +1056,12 @@
             <h3>Công cụ nâng cao</h3>
             <div class="button-row">
               <button type="button" class="primary-action" id="generate">Cập nhật preview</button>
-              <button type="button" id="download">Download .md</button>
+              <button type="button" id="download">Tải file .md</button>
               <button type="button" class="utility-action" id="copy">Copy mã Markdown</button>
             </div>
             <div class="button-row">
               <button type="button" class="utility-action" id="save-draft">Lưu nháp</button>
-              <button type="reset" class="utility-action">Reset</button>
+              <button type="reset" class="utility-action">Làm lại</button>
             </div>
           </div>
           <div class="toast" id="toast">Done.</div>
@@ -1174,29 +1174,29 @@
 
       function blockTitle(type) {
         return {
-          heading: 'Heading',
-          paragraph: 'Paragraph',
-          image: 'Image',
+          heading: 'Tiêu đề phụ',
+          paragraph: 'Đoạn văn',
+          image: 'Hình ảnh',
           video: 'Video',
-          quote: 'Quote',
-          bullets: 'Bullet list',
-          numbers: 'Numbered list',
-          link: 'Link button',
-          divider: 'Divider',
-        }[type] || 'Paragraph';
+          quote: 'Trích dẫn',
+          bullets: 'Danh sách chấm',
+          numbers: 'Danh sách số',
+          link: 'Link',
+          divider: 'Đường kẻ',
+        }[type] || 'Đoạn văn';
       }
 
       function renderBlockFields(block, index) {
         if (block.type === 'heading') {
           return `
             <div class="row">
-              <label>Level
+              <label>Cỡ tiêu đề
                 <select data-block-field="level">
                   <option value="2" ${Number(block.level || 2) === 2 ? 'selected' : ''}>H2</option>
                   <option value="3" ${Number(block.level || 2) === 3 ? 'selected' : ''}>H3</option>
                 </select>
               </label>
-              <label>Heading text
+              <label>Nội dung tiêu đề
                 <input data-block-field="value" value="${escapeHtml(block.value)}" />
               </label>
             </div>
@@ -1204,20 +1204,20 @@
         }
 
         if (block.type === 'paragraph') {
-          return `<label>Paragraph<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>`;
+          return `<label>Đoạn văn<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>`;
         }
 
         if (block.type === 'image') {
           return `
             <div class="row">
-              <label>Image link
-                <input data-block-field="src" value="${escapeHtml(block.src)}" placeholder="Dán link hình vào đây" />
+              <label>Link hình ảnh
+                <input data-block-field="src" value="${escapeHtml(block.src)}" placeholder="Dán link hình hoặc upload bên dưới" />
               </label>
               <label>Mô tả ảnh
                 <input data-block-field="alt" value="${escapeHtml(block.alt)}" placeholder="Không bắt buộc" />
               </label>
             </div>
-            <label>Caption
+            <label>Chú thích ảnh
               <input data-block-field="caption" value="${escapeHtml(block.caption)}" />
             </label>
             <div class="media-actions">
@@ -1226,7 +1226,7 @@
               </label>
             </div>
             <div class="image-preview ${block.src ? 'visible' : ''}">
-              <img src="${escapeHtml(imagePreviewSrc(block.src))}" alt="Image block preview" />
+              <img src="${escapeHtml(imagePreviewSrc(block.src))}" alt="Xem trước hình ảnh" />
               <span>${escapeHtml(block.src || '')}</span>
             </div>
           `;
@@ -1234,14 +1234,14 @@
 
         if (block.type === 'video') {
           return `
-            <label>YouTube or embed URL
+            <label>Link YouTube hoặc video embed
               <input data-block-field="url" value="${escapeHtml(block.url)}" placeholder="https://www.youtube.com/watch?v=..." />
             </label>
             <div class="row">
-              <label>Title
+              <label>Tiêu đề video
                 <input data-block-field="title" value="${escapeHtml(block.title)}" />
               </label>
-              <label>Caption
+              <label>Chú thích video
                 <input data-block-field="caption" value="${escapeHtml(block.caption)}" />
               </label>
             </div>
@@ -1250,21 +1250,21 @@
 
         if (block.type === 'quote') {
           return `
-            <label>Quote<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>
-            <label>Citation
+            <label>Nội dung trích dẫn<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>
+            <label>Nguồn trích dẫn
               <input data-block-field="cite" value="${escapeHtml(block.cite)}" />
             </label>
           `;
         }
 
         if (block.type === 'bullets' || block.type === 'numbers') {
-          return `<label>Items, one per line<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>`;
+          return `<label>Mỗi dòng là một ý<textarea data-block-field="value">${escapeHtml(block.value)}</textarea></label>`;
         }
 
         if (block.type === 'link') {
           return `
             <div class="row">
-              <label>Button label
+              <label>Chữ hiển thị
                 <input data-block-field="label" value="${escapeHtml(block.label)}" />
               </label>
               <label>URL
@@ -1274,7 +1274,7 @@
           `;
         }
 
-        return '<p class="hint">Divider block.</p>';
+        return '<p class="hint">Đường kẻ phân tách nội dung.</p>';
       }
 
       function renderBlocks() {
@@ -1287,9 +1287,9 @@
             <div class="block-head">
               <strong>${blockTitle(block.type)}</strong>
               <div class="block-actions">
-                <button type="button" data-move-block="${index}" data-direction="-1">Up</button>
-                <button type="button" data-move-block="${index}" data-direction="1">Down</button>
-                <button type="button" data-remove-block="${index}">Remove</button>
+                <button type="button" data-move-block="${index}" data-direction="-1">Lên</button>
+                <button type="button" data-move-block="${index}" data-direction="1">Xuống</button>
+                <button type="button" data-remove-block="${index}">Xóa</button>
               </div>
             </div>
             ${renderBlockFields(block, index)}
@@ -1376,7 +1376,7 @@
               return block.value;
             }
             if (block.type === 'image' && block.src) {
-              const image = `![${block.alt || 'Blog image'}](${markdownImagePath(block.src)})`;
+              const image = `![${block.alt || 'Hình ảnh bài viết'}](${markdownImagePath(block.src)})`;
               return block.caption ? `${image}\n\n_${block.caption}_` : image;
             }
             if (block.type === 'video' && block.url) {
@@ -1428,7 +1428,7 @@
         if (!title) errors.push('Title');
         if (!description) errors.push('Description');
         if (!contents.length) errors.push('Contents');
-        if (!result.slug) errors.push('Slug');
+        if (!result.slug) errors.push('Đường dẫn bài viết');
 
         return errors;
       }
@@ -1478,9 +1478,9 @@
 title: ${quote(data.title)}
 description: ${quote(data.description)}
 author: ${quote(data.author || 'Folks Team')}
-role: ${quote(data.role || 'Editorial Team')}
+role: ${quote(data.role || 'Biên tập')}
 authorImage: '${data.authorImage || '@/images/blog/anna.avif'}'
-authorImageAlt: ${quote(data.authorImageAlt || 'Folks Team author')}
+authorImageAlt: ${quote(data.authorImageAlt || data.author || 'Tác giả bài viết')}
 pubDate: ${data.pubDate || today()}
 cardImage: '${data.cardImage || '@/images/growth-brainstorm.jpg'}'
 cardImageAlt: ${quote(cardImageAlt)}
@@ -1498,9 +1498,9 @@ ${bodyMarkdown || contents.join('\n\n')}
 
       function renderArticlePreview(result) {
         const data = result.data;
-        const title = data.title || 'Untitled post';
-        const description = data.description || 'Short description will appear here.';
-        const tags = data.tags.length ? data.tags : ['draft'];
+        const title = data.title || 'Chưa có tiêu đề';
+        const description = data.description || 'Mô tả ngắn sẽ hiển thị ở đây.';
+        const tags = data.tags.length ? data.tags : ['nháp'];
         const body = contentBlocks
           .map(block => {
             if (block.type === 'heading' && block.value) {
@@ -1512,7 +1512,7 @@ ${bodyMarkdown || contents.join('\n\n')}
             }
             if (block.type === 'image' && block.src) {
               const src = imagePreviewSrc(block.src);
-              return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(block.alt || 'Blog image')}" />${block.caption ? `<p><em>${escapeHtml(block.caption)}</em></p>` : ''}</figure>`;
+              return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(block.alt || 'Hình ảnh bài viết')}" />${block.caption ? `<p><em>${escapeHtml(block.caption)}</em></p>` : ''}</figure>`;
             }
             if (block.type === 'video' && block.url) {
               return `<figure><div class="path">${escapeHtml(youtubeEmbedUrl(block.url))}</div><p>${escapeHtml(block.title || 'Video embed')}</p>${block.caption ? `<p><em>${escapeHtml(block.caption)}</em></p>` : ''}</figure>`;
@@ -1554,7 +1554,7 @@ ${bodyMarkdown || contents.join('\n\n')}
             ${tags.map(tag => `<span>${escapeHtml(tag)}</span>`).join('')}
           </div>
           <div class="article-body">
-            ${body || '<p>Write content blocks to see the live article preview.</p>'}
+            ${body || '<p>Thêm nội dung để xem trước bài viết.</p>'}
           </div>
         `;
       }
@@ -1798,13 +1798,13 @@ ${bodyMarkdown || contents.join('\n\n')}
           item.innerHTML = `
             <div>
               <div class="draft-title">
-                <strong>${escapeHtml(draft.title || draft.slug || 'Untitled')}</strong>
+                <strong>${escapeHtml(draft.title || draft.slug || 'Chưa có tiêu đề')}</strong>
                 <span class="pill">${escapeHtml((draft.locale || 'en').toUpperCase())}</span>
               </div>
               <div class="draft-meta">
-                ${escapeHtml(draft.category || 'Uncategorized')} ·
+                ${escapeHtml(draft.category || 'Chưa có chuyên mục')} ·
                 ${escapeHtml(draft.slug || 'new-blog-post')} ·
-                saved ${escapeHtml(formatSavedAt(draft.savedAt))}
+                lưu lúc ${escapeHtml(formatSavedAt(draft.savedAt))}
               </div>
             </div>
             <div class="draft-actions">
