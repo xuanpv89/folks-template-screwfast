@@ -183,6 +183,7 @@ export default async function handler(request, response) {
   const repo = String(body.repo || process.env.GITHUB_REPO || 'xuanpv89/folksteam.com').trim();
   const branch = String(body.branch || process.env.GITHUB_BRANCH || 'main').trim();
   const content = body.content;
+  const baseSha = String(body.baseSha || '').trim();
   const validationErrors = validateContent(content);
 
   if (!isSafeRepo(repo) || !isSafeBranch(branch)) {
@@ -218,6 +219,27 @@ export default async function handler(request, response) {
     }
   }
 
+  if (sha && !baseSha) {
+    return sendJson(response, 409, {
+      ok: false,
+      code: 'CONTENT_BASE_REQUIRED',
+      message:
+        'CMS chưa có mốc so sánh với bản GitHub hiện tại. Hãy tải lại bản GitHub trước khi đăng để tránh ghi đè thay đổi mới.',
+      currentSha: sha,
+    });
+  }
+
+  if (baseSha && sha && baseSha !== sha) {
+    return sendJson(response, 409, {
+      ok: false,
+      code: 'CONTENT_CHANGED',
+      message:
+        'Nội dung trên GitHub đã được cập nhật bởi một phiên khác. Hãy tải lại bản GitHub trước khi đăng để tránh ghi đè thay đổi mới.',
+      currentSha: sha,
+      baseSha,
+    });
+  }
+
   try {
     const json = JSON.stringify(
       {
@@ -241,6 +263,7 @@ export default async function handler(request, response) {
     return sendJson(response, 200, {
       ok: true,
       target: TARGET_PATH,
+      sha: commit?.content?.sha || sha || null,
       commitUrl: commit?.commit?.html_url || null,
       fileUrl: commit?.content?.html_url || null,
       deploy:
