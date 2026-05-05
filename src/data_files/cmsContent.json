@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-05T20:25:20.509Z",
+  "updatedAt": "2026-05-05T20:31:26.470Z",
   "pages": [
     {
       "id": "home",
@@ -74,7 +74,7 @@
               "key": "text-4",
               "label": "A Modern Growth System Built on",
               "type": "text",
-              "value": "A Modern Growth System Built on",
+              "value": "test A Modern Growth System Built on",
               "match": "A Modern Growth System Built on",
               "elementType": "text"
             },
@@ -5536,7 +5536,7 @@
         },
         {
           "id": "section-5",
-          "title": "Float-er & Flow-er: Two Types of Talent in Organizations",
+          "title": "Frugality",
           "fields": [
             {
               "key": "text-16",
@@ -5548,42 +5548,50 @@
             },
             {
               "key": "text-17",
-              "label": "Float-er & Flow-er: Two Types of Talent in Organizatio...",
+              "label": "Frugality",
               "type": "text",
               "value": "Float-er & Flow-er: Two Types of Talent in Organizations",
-              "match": "Float-er & Flow-er: Two Types of Talent in Organizations",
+              "match": "Frugality",
               "elementType": "text"
             },
             {
               "key": "text-18",
-              "label": "Folks Team",
-              "type": "text",
+              "label": "“On January 16, 1991, he went thirty-six days without ...",
+              "type": "textarea",
               "value": "Folks Team",
-              "match": "Folks Team",
+              "match": "“On January 16, 1991, he went thirty-six days without meeting or speaking to anyone. During that time, McCandless survived on just two kilos of rice and some sea creatures he gathered himself. The experience later convinced him that he could live in the Alaskan wilderness on a similarly meager diet.”",
               "elementType": "text"
             },
             {
               "key": "text-19",
-              "label": "Editorial Team",
+              "label": "Folks Team",
               "type": "text",
               "value": "Editorial Team",
-              "match": "Editorial Team",
+              "match": "Folks Team",
               "elementType": "text"
             },
             {
               "key": "text-20",
-              "label": "Read More",
+              "label": "Biên tập",
               "type": "text",
               "value": "Read More",
+              "match": "Biên tập",
+              "elementType": "text"
+            },
+            {
+              "key": "text-21",
+              "label": "Read More",
+              "type": "text",
+              "value": "Folks Team",
               "match": "Read More",
               "elementType": "text"
             },
             {
               "key": "link-8",
-              "label": "Link: Float-er & Flow-er: Two Types of Talent in Organizatio...",
+              "label": "Link: Frugality",
               "type": "url",
               "value": "/blog/float-er-flow-er-two-types-of-talent-in-organizations/",
-              "match": "/blog/float-er-flow-er-two-types-of-talent-in-organizations/",
+              "match": "/blog/frugality/",
               "elementType": "link"
             },
             {
@@ -5591,12 +5599,12 @@
               "label": "Link: Read More",
               "type": "url",
               "value": "/blog/float-er-flow-er-two-types-of-talent-in-organizations/",
-              "match": "/blog/float-er-flow-er-two-types-of-talent-in-organizations/",
+              "match": "/blog/frugality/",
               "elementType": "link"
             },
             {
               "key": "image-1",
-              "label": "Ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "label": "Ảnh: Frugality",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
@@ -5604,15 +5612,15 @@
             },
             {
               "key": "alt-1",
-              "label": "Mô tả ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "label": "Mô tả ảnh: Frugality",
               "type": "text",
               "value": "",
-              "match": "",
+              "match": "Frugality",
               "elementType": "alt"
             },
             {
               "key": "image-2",
-              "label": "Ảnh: Folks Team author",
+              "label": "Ảnh: Folks Team",
               "type": "image",
               "value": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
               "match": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
@@ -5620,48 +5628,40 @@
             },
             {
               "key": "alt-2",
-              "label": "Mô tả ảnh: Folks Team author",
+              "label": "Mô tả ảnh: Folks Team",
               "type": "text",
               "value": "Folks Team author",
-              "match": "Folks Team author",
+              "match": "Folks Team",
               "elementType": "alt"
             }
           ]
         },
         {
           "id": "section-6",
-          "title": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
+          "title": "Float-er & Flow-er: Two Types of Talent in Organizations",
           "fields": [
             {
-              "key": "text-21",
+              "key": "text-22",
               "label": "Folks Team",
               "type": "text",
-              "value": "Folks Team",
+              "value": "May 4, 2026",
               "match": "Folks Team",
               "elementType": "text"
             },
             {
-              "key": "text-22",
+              "key": "text-23",
               "label": "May 4, 2026",
               "type": "text",
-              "value": "May 4, 2026",
+              "value": "C.H.E.S.S",
               "match": "May 4, 2026",
               "elementType": "text"
             },
             {
-              "key": "text-23",
+              "key": "text-24",
               "label": "C.H.E.S.S",
               "type": "text",
-              "value": "C.H.E.S.S",
-              "match": "C.H.E.S.S",
-              "elementType": "text"
-            },
-            {
-              "key": "text-24",
-              "label": "Float-er & Flow-er: Two Types of Talent in Organizatio...",
-              "type": "text",
               "value": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
-              "match": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
@@ -5698,18 +5698,18 @@
             },
             {
               "key": "text-29",
-              "label": "New Blog Post",
+              "label": "Float-er & Flow-er: Two Types of Talent in Organizatio...",
               "type": "text",
               "value": "New Blog Post",
-              "match": "New Blog Post",
+              "match": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
               "elementType": "text"
             },
             {
               "key": "text-30",
-              "label": "Draft blog post created from the Folks Team CMS.",
+              "label": "Float-er & Flow-er: Two Types of Talent in Organizatio...",
               "type": "text",
               "value": "Draft blog post created from the Folks Team CMS.",
-              "match": "Draft blog post created from the Folks Team CMS.",
+              "match": "Float-er & Flow-er: Two Types of Talent in Organizations",
               "elementType": "text"
             },
             {
@@ -5730,26 +5730,26 @@
             },
             {
               "key": "text-33",
-              "label": "Strategy",
+              "label": "C.H.E.S.S",
               "type": "text",
               "value": "Strategy",
-              "match": "Strategy",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-34",
-              "label": "test 22",
+              "label": "New Blog Post",
               "type": "text",
               "value": "test 22",
-              "match": "test 22",
+              "match": "New Blog Post",
               "elementType": "text"
             },
             {
               "key": "text-35",
-              "label": "test 22",
+              "label": "Draft blog post created from the Folks Team CMS.",
               "type": "text",
               "value": "test 22",
-              "match": "test 22",
+              "match": "Draft blog post created from the Folks Team CMS.",
               "elementType": "text"
             },
             {
@@ -5770,90 +5770,90 @@
             },
             {
               "key": "text-38",
-              "label": "C.H.E.S.S",
+              "label": "Strategy",
               "type": "text",
               "value": "C.H.E.S.S",
-              "match": "C.H.E.S.S",
+              "match": "Strategy",
               "elementType": "text"
             },
             {
               "key": "text-39",
-              "label": "test1",
+              "label": "test 22",
               "type": "text",
               "value": "test1",
-              "match": "test1",
+              "match": "test 22",
               "elementType": "text"
             },
             {
               "key": "text-40",
-              "label": "Folks Team",
+              "label": "test 22",
               "type": "text",
               "value": "Folks Team",
-              "match": "Folks Team",
+              "match": "test 22",
               "elementType": "text"
             },
             {
               "key": "text-41",
-              "label": "May 4, 2026",
-              "type": "text",
-              "value": "May 4, 2026",
-              "match": "May 4, 2026",
-              "elementType": "text"
-            },
-            {
-              "key": "text-42",
-              "label": "C.H.E.S.S",
-              "type": "text",
-              "value": "C.H.E.S.S",
-              "match": "C.H.E.S.S",
-              "elementType": "text"
-            },
-            {
-              "key": "text-43",
-              "label": "The C.H.E.S.S Model: A Complete Framework for Modern M...",
-              "type": "text",
-              "value": "The C.H.E.S.S Model: A Complete Framework for Modern Marketing and Community Building",
-              "match": "The C.H.E.S.S Model: A Complete Framework for Modern Marketing and Community Building",
-              "elementType": "text"
-            },
-            {
-              "key": "text-44",
               "label": "Folks Team",
               "type": "text",
-              "value": "Folks Team",
+              "value": "May 4, 2026",
               "match": "Folks Team",
               "elementType": "text"
             },
             {
-              "key": "text-45",
-              "label": "May 3, 2026",
+              "key": "text-42",
+              "label": "May 4, 2026",
               "type": "text",
-              "value": "May 3, 2026",
-              "match": "May 3, 2026",
+              "value": "C.H.E.S.S",
+              "match": "May 4, 2026",
               "elementType": "text"
             },
             {
-              "key": "text-46",
+              "key": "text-43",
               "label": "C.H.E.S.S",
               "type": "text",
-              "value": "C.H.E.S.S",
+              "value": "The C.H.E.S.S Model: A Complete Framework for Modern Marketing and Community Building",
               "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
+              "key": "text-44",
+              "label": "test1",
+              "type": "text",
+              "value": "Folks Team",
+              "match": "test1",
+              "elementType": "text"
+            },
+            {
+              "key": "text-45",
+              "label": "Folks Team",
+              "type": "text",
+              "value": "May 3, 2026",
+              "match": "Folks Team",
+              "elementType": "text"
+            },
+            {
+              "key": "text-46",
+              "label": "May 4, 2026",
+              "type": "text",
+              "value": "C.H.E.S.S",
+              "match": "May 4, 2026",
+              "elementType": "text"
+            },
+            {
               "key": "text-47",
-              "label": "ok 1",
+              "label": "C.H.E.S.S",
               "type": "text",
               "value": "ok 1",
-              "match": "ok 1",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-48",
-              "label": "ok 1",
+              "label": "The C.H.E.S.S Model: A Complete Framework for Modern M...",
               "type": "text",
               "value": "ok 1",
-              "match": "ok 1",
+              "match": "The C.H.E.S.S Model: A Complete Framework for Modern Marketing and Community Building",
               "elementType": "text"
             },
             {
@@ -5882,18 +5882,18 @@
             },
             {
               "key": "text-52",
-              "label": "ok 3",
+              "label": "ok 1",
               "type": "text",
               "value": "ok 3",
-              "match": "ok 3",
+              "match": "ok 1",
               "elementType": "text"
             },
             {
               "key": "text-53",
-              "label": "test 3",
+              "label": "ok 1",
               "type": "text",
               "value": "test 3",
-              "match": "test 3",
+              "match": "ok 1",
               "elementType": "text"
             },
             {
@@ -5922,18 +5922,18 @@
             },
             {
               "key": "text-57",
-              "label": "Understanding the Five Components of C.H.E.S.S",
+              "label": "ok 3",
               "type": "text",
               "value": "Understanding the Five Components of C.H.E.S.S",
-              "match": "Understanding the Five Components of C.H.E.S.S",
+              "match": "ok 3",
               "elementType": "text"
             },
             {
               "key": "text-58",
-              "label": "A practical breakdown of Content, Hub, Event, Store, a...",
-              "type": "textarea",
+              "label": "test 3",
+              "type": "text",
               "value": "A practical breakdown of Content, Hub, Event, Store, and Session as the core components of a modern growth ecosystem.",
-              "match": "A practical breakdown of Content, Hub, Event, Store, and Session as the core components of a modern growth ecosystem.",
+              "match": "test 3",
               "elementType": "text"
             },
             {
@@ -5946,34 +5946,34 @@
             },
             {
               "key": "text-60",
-              "label": "May 2, 2026",
+              "label": "May 3, 2026",
               "type": "text",
               "value": "May 2, 2026",
-              "match": "May 2, 2026",
+              "match": "May 3, 2026",
               "elementType": "text"
             },
             {
               "key": "text-61",
-              "label": "Growth Systems",
+              "label": "C.H.E.S.S",
               "type": "text",
               "value": "Growth Systems",
-              "match": "Growth Systems",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-62",
-              "label": "How the C.H.E.S.S Model Works Together",
+              "label": "Understanding the Five Components of C.H.E.S.S",
               "type": "text",
               "value": "How the C.H.E.S.S Model Works Together",
-              "match": "How the C.H.E.S.S Model Works Together",
+              "match": "Understanding the Five Components of C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-63",
-              "label": "C.H.E.S.S is not a linear funnel. It is an ecosystem w...",
+              "label": "A practical breakdown of Content, Hub, Event, Store, a...",
               "type": "textarea",
               "value": "C.H.E.S.S is not a linear funnel. It is an ecosystem where attention, relationships, engagement, revenue, and premium value reinforce one another.",
-              "match": "C.H.E.S.S is not a linear funnel. It is an ecosystem where attention, relationships, engagement, revenue, and premium value reinforce one another.",
+              "match": "A practical breakdown of Content, Hub, Event, Store, and Session as the core components of a modern growth ecosystem.",
               "elementType": "text"
             },
             {
@@ -5986,34 +5986,34 @@
             },
             {
               "key": "text-65",
-              "label": "May 1, 2026",
+              "label": "May 2, 2026",
               "type": "text",
               "value": "May 1, 2026",
-              "match": "May 1, 2026",
+              "match": "May 2, 2026",
               "elementType": "text"
             },
             {
               "key": "text-66",
-              "label": "Marketing Models",
+              "label": "Growth Systems",
               "type": "text",
               "value": "Marketing Models",
-              "match": "Marketing Models",
+              "match": "Growth Systems",
               "elementType": "text"
             },
             {
               "key": "text-67",
-              "label": "C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Mar...",
+              "label": "How the C.H.E.S.S Model Works Together",
               "type": "text",
               "value": "C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Marketing",
-              "match": "C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Marketing",
+              "match": "How the C.H.E.S.S Model Works Together",
               "elementType": "text"
             },
             {
               "key": "text-68",
-              "label": "A comparison of C.H.E.S.S with familiar marketing mode...",
+              "label": "C.H.E.S.S is not a linear funnel. It is an ecosystem w...",
               "type": "textarea",
               "value": "A comparison of C.H.E.S.S with familiar marketing models, and why it is especially useful for community-led growth.",
-              "match": "A comparison of C.H.E.S.S with familiar marketing models, and why it is especially useful for community-led growth.",
+              "match": "C.H.E.S.S is not a linear funnel. It is an ecosystem where attention, relationships, engagement, revenue, and premium value reinforce one another.",
               "elementType": "text"
             },
             {
@@ -6026,34 +6026,34 @@
             },
             {
               "key": "text-70",
-              "label": "Apr 30, 2026",
+              "label": "May 1, 2026",
               "type": "text",
               "value": "Apr 30, 2026",
-              "match": "Apr 30, 2026",
+              "match": "May 1, 2026",
               "elementType": "text"
             },
             {
               "key": "text-71",
-              "label": "C.H.E.S.S",
+              "label": "Marketing Models",
               "type": "text",
               "value": "C.H.E.S.S",
-              "match": "C.H.E.S.S",
+              "match": "Marketing Models",
               "elementType": "text"
             },
             {
               "key": "text-72",
-              "label": "Strengths of the C.H.E.S.S Model",
+              "label": "C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Mar...",
               "type": "text",
               "value": "Strengths of the C.H.E.S.S Model",
-              "match": "Strengths of the C.H.E.S.S Model",
+              "match": "C.H.E.S.S vs. AIDA, Funnels, Flywheel, and Content Marketing",
               "elementType": "text"
             },
             {
               "key": "text-73",
-              "label": "Why C.H.E.S.S is powerful for personal brands, communi...",
+              "label": "A comparison of C.H.E.S.S with familiar marketing mode...",
               "type": "textarea",
               "value": "Why C.H.E.S.S is powerful for personal brands, community-led businesses, and teams that want sustainable growth.",
-              "match": "Why C.H.E.S.S is powerful for personal brands, community-led businesses, and teams that want sustainable growth.",
+              "match": "A comparison of C.H.E.S.S with familiar marketing models, and why it is especially useful for community-led growth.",
               "elementType": "text"
             },
             {
@@ -6066,34 +6066,34 @@
             },
             {
               "key": "text-75",
-              "label": "Apr 29, 2026",
+              "label": "Apr 30, 2026",
               "type": "text",
               "value": "Apr 29, 2026",
-              "match": "Apr 29, 2026",
+              "match": "Apr 30, 2026",
               "elementType": "text"
             },
             {
               "key": "text-76",
-              "label": "Operations",
+              "label": "C.H.E.S.S",
               "type": "text",
               "value": "Operations",
-              "match": "Operations",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-77",
-              "label": "Weaknesses and Challenges of C.H.E.S.S",
+              "label": "Strengths of the C.H.E.S.S Model",
               "type": "text",
               "value": "Weaknesses and Challenges of C.H.E.S.S",
-              "match": "Weaknesses and Challenges of C.H.E.S.S",
+              "match": "Strengths of the C.H.E.S.S Model",
               "elementType": "text"
             },
             {
               "key": "text-78",
-              "label": "The C.H.E.S.S model is powerful, but it requires time,...",
+              "label": "Why C.H.E.S.S is powerful for personal brands, communi...",
               "type": "textarea",
               "value": "The C.H.E.S.S model is powerful, but it requires time, coordination, patience, and active community management.",
-              "match": "The C.H.E.S.S model is powerful, but it requires time, coordination, patience, and active community management.",
+              "match": "Why C.H.E.S.S is powerful for personal brands, community-led businesses, and teams that want sustainable growth.",
               "elementType": "text"
             },
             {
@@ -6106,34 +6106,34 @@
             },
             {
               "key": "text-80",
-              "label": "Apr 28, 2026",
+              "label": "Apr 29, 2026",
               "type": "text",
               "value": "Apr 28, 2026",
-              "match": "Apr 28, 2026",
+              "match": "Apr 29, 2026",
               "elementType": "text"
             },
             {
               "key": "text-81",
-              "label": "Strategy",
+              "label": "Operations",
               "type": "text",
               "value": "Strategy",
-              "match": "Strategy",
+              "match": "Operations",
               "elementType": "text"
             },
             {
               "key": "text-82",
-              "label": "When Should You Use the C.H.E.S.S Model?",
+              "label": "Weaknesses and Challenges of C.H.E.S.S",
               "type": "text",
               "value": "When Should You Use the C.H.E.S.S Model?",
-              "match": "When Should You Use the C.H.E.S.S Model?",
+              "match": "Weaknesses and Challenges of C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-83",
-              "label": "C.H.E.S.S is best for builders who care about communit...",
+              "label": "The C.H.E.S.S model is powerful, but it requires time,...",
               "type": "textarea",
               "value": "C.H.E.S.S is best for builders who care about community, knowledge products, personal brands, and long-term engagement.",
-              "match": "C.H.E.S.S is best for builders who care about community, knowledge products, personal brands, and long-term engagement.",
+              "match": "The C.H.E.S.S model is powerful, but it requires time, coordination, patience, and active community management.",
               "elementType": "text"
             },
             {
@@ -6146,10 +6146,10 @@
             },
             {
               "key": "text-85",
-              "label": "Apr 27, 2026",
+              "label": "Apr 28, 2026",
               "type": "text",
               "value": "Apr 27, 2026",
-              "match": "Apr 27, 2026",
+              "match": "Apr 28, 2026",
               "elementType": "text"
             },
             {
@@ -6162,18 +6162,18 @@
             },
             {
               "key": "text-87",
-              "label": "Final Thoughts on C.H.E.S.S",
+              "label": "When Should You Use the C.H.E.S.S Model?",
               "type": "text",
               "value": "Final Thoughts on C.H.E.S.S",
-              "match": "Final Thoughts on C.H.E.S.S",
+              "match": "When Should You Use the C.H.E.S.S Model?",
               "elementType": "text"
             },
             {
               "key": "text-88",
-              "label": "C.H.E.S.S represents a shift from customer acquisition...",
+              "label": "C.H.E.S.S is best for builders who care about communit...",
               "type": "textarea",
               "value": "C.H.E.S.S represents a shift from customer acquisition toward durable ecosystems where people stay, engage, and grow over time.",
-              "match": "C.H.E.S.S represents a shift from customer acquisition toward durable ecosystems where people stay, engage, and grow over time.",
+              "match": "C.H.E.S.S is best for builders who care about community, knowledge products, personal brands, and long-term engagement.",
               "elementType": "text"
             },
             {
@@ -6186,34 +6186,34 @@
             },
             {
               "key": "text-90",
-              "label": "Jul 15, 2025",
+              "label": "Apr 27, 2026",
               "type": "text",
               "value": "Jul 15, 2025",
-              "match": "Jul 15, 2025",
+              "match": "Apr 27, 2026",
               "elementType": "text"
             },
             {
               "key": "text-91",
-              "label": "C.H.E.S.S",
+              "label": "Strategy",
               "type": "text",
               "value": "C.H.E.S.S",
-              "match": "C.H.E.S.S",
+              "match": "Strategy",
               "elementType": "text"
             },
             {
               "key": "text-92",
-              "label": "The C.H.E.S.S Model: A Complete Growth Framework",
+              "label": "Final Thoughts on C.H.E.S.S",
               "type": "text",
               "value": "The C.H.E.S.S Model: A Complete Growth Framework",
-              "match": "The C.H.E.S.S Model: A Complete Growth Framework",
+              "match": "Final Thoughts on C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-93",
-              "label": "In today's world, growth is not about hacks - it's abo...",
+              "label": "C.H.E.S.S represents a shift from customer acquisition...",
               "type": "textarea",
               "value": "In today's world, growth is not about hacks - it's about systems. C.H.E.S.S helps you attract, engage, and scale sustainably.",
-              "match": "In today's world, growth is not about hacks - it's about systems. C.H.E.S.S helps you attract, engage, and scale sustainably.",
+              "match": "C.H.E.S.S represents a shift from customer acquisition toward durable ecosystems where people stay, engage, and grow over time.",
               "elementType": "text"
             },
             {
@@ -6226,34 +6226,34 @@
             },
             {
               "key": "text-95",
-              "label": "Jul 14, 2025",
+              "label": "Jul 15, 2025",
               "type": "text",
               "value": "Jul 14, 2025",
-              "match": "Jul 14, 2025",
+              "match": "Jul 15, 2025",
               "elementType": "text"
             },
             {
               "key": "text-96",
-              "label": "Growth Systems",
+              "label": "C.H.E.S.S",
               "type": "text",
               "value": "Growth Systems",
-              "match": "Growth Systems",
+              "match": "C.H.E.S.S",
               "elementType": "text"
             },
             {
               "key": "text-97",
-              "label": "How to Build a Growth System from Scratch",
+              "label": "The C.H.E.S.S Model: A Complete Growth Framework",
               "type": "text",
               "value": "How to Build a Growth System from Scratch",
-              "match": "How to Build a Growth System from Scratch",
+              "match": "The C.H.E.S.S Model: A Complete Growth Framework",
               "elementType": "text"
             },
             {
               "key": "text-98",
-              "label": "Learn how to turn strategy into execution using struct...",
-              "type": "text",
+              "label": "In today's world, growth is not about hacks - it's abo...",
+              "type": "textarea",
               "value": "Learn how to turn strategy into execution using structured frameworks.",
-              "match": "Learn how to turn strategy into execution using structured frameworks.",
+              "match": "In today's world, growth is not about hacks - it's about systems. C.H.E.S.S helps you attract, engage, and scale sustainably.",
               "elementType": "text"
             },
             {
@@ -6266,34 +6266,34 @@
             },
             {
               "key": "text-100",
-              "label": "Jul 13, 2025",
+              "label": "Jul 14, 2025",
               "type": "text",
               "value": "Jul 13, 2025",
-              "match": "Jul 13, 2025",
+              "match": "Jul 14, 2025",
               "elementType": "text"
             },
             {
               "key": "text-101",
-              "label": "Operations",
+              "label": "Growth Systems",
               "type": "text",
               "value": "Operations",
-              "match": "Operations",
+              "match": "Growth Systems",
               "elementType": "text"
             },
             {
               "key": "text-102",
-              "label": "Tools & Systems for Modern Growth",
+              "label": "How to Build a Growth System from Scratch",
               "type": "text",
               "value": "Tools & Systems for Modern Growth",
-              "match": "Tools & Systems for Modern Growth",
+              "match": "How to Build a Growth System from Scratch",
               "elementType": "text"
             },
             {
               "key": "text-103",
-              "label": "Discover essential tools and workflows to build scalab...",
+              "label": "Learn how to turn strategy into execution using struct...",
               "type": "text",
               "value": "Discover essential tools and workflows to build scalable systems.",
-              "match": "Discover essential tools and workflows to build scalable systems.",
+              "match": "Learn how to turn strategy into execution using structured frameworks.",
               "elementType": "text"
             },
             {
@@ -6306,33 +6306,73 @@
             },
             {
               "key": "text-105",
-              "label": "Jul 12, 2025",
+              "label": "Jul 13, 2025",
               "type": "text",
               "value": "Jul 12, 2025",
-              "match": "Jul 12, 2025",
+              "match": "Jul 13, 2025",
               "elementType": "text"
             },
             {
               "key": "text-106",
-              "label": "Brand & Culture",
+              "label": "Operations",
               "type": "text",
               "value": "Brand & Culture",
-              "match": "Brand & Culture",
+              "match": "Operations",
               "elementType": "text"
             },
             {
               "key": "text-107",
-              "label": "Culture, Creativity & Growth",
+              "label": "Tools & Systems for Modern Growth",
               "type": "text",
               "value": "Culture, Creativity & Growth",
-              "match": "Culture, Creativity & Growth",
+              "match": "Tools & Systems for Modern Growth",
               "elementType": "text"
             },
             {
               "key": "text-108",
-              "label": "Growth is not just systems - it's also identity, creat...",
+              "label": "Discover essential tools and workflows to build scalab...",
               "type": "text",
               "value": "Growth is not just systems - it's also identity, creativity, and long-term vision.",
+              "match": "Discover essential tools and workflows to build scalable systems.",
+              "elementType": "text"
+            },
+            {
+              "key": "text-109",
+              "label": "Folks Team",
+              "type": "text",
+              "value": "Insights",
+              "match": "Folks Team",
+              "elementType": "text"
+            },
+            {
+              "key": "text-110",
+              "label": "Jul 12, 2025",
+              "type": "text",
+              "value": "Short perspectives for builders and operators designing clearer, more durable growth systems.",
+              "match": "Jul 12, 2025",
+              "elementType": "text"
+            },
+            {
+              "key": "text-111",
+              "label": "Brand & Culture",
+              "type": "text",
+              "value": "Clarity Comes Before Growth",
+              "match": "Brand & Culture",
+              "elementType": "text"
+            },
+            {
+              "key": "text-112",
+              "label": "Culture, Creativity & Growth",
+              "type": "text",
+              "value": "A growth system only works when the team knows who it serves, what value it creates, and what action should happen next.",
+              "match": "Culture, Creativity & Growth",
+              "elementType": "text"
+            },
+            {
+              "key": "text-113",
+              "label": "Growth is not just systems - it's also identity, creat...",
+              "type": "text",
+              "value": "Read more",
               "match": "Growth is not just systems - it's also identity, creativity, and long-term vision.",
               "elementType": "text"
             },
@@ -6341,159 +6381,167 @@
               "label": "Link: Folks Team May 4, 2026 C.H.E.S.S Float-er & Flow-er: T...",
               "type": "url",
               "value": "/blog/float-er-flow-er-two-types-of-talent-in-organizations-2/",
-              "match": "/blog/float-er-flow-er-two-types-of-talent-in-organizations-2/",
+              "match": "/blog/float-er-flow-er-two-types-of-talent-in-organizations/",
               "elementType": "link"
             },
             {
               "key": "link-11",
-              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S New Blog Post Draft b...",
+              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S Float-er & Flow-er: T...",
               "type": "url",
               "value": "/blog/new-blog-post/",
-              "match": "/blog/new-blog-post/",
+              "match": "/blog/float-er-flow-er-two-types-of-talent-in-organizations-2/",
               "elementType": "link"
             },
             {
               "key": "link-12",
-              "label": "Link: Folks Team May 4, 2026 Strategy test 22 test 22",
+              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S New Blog Post Draft b...",
               "type": "url",
               "value": "/blog/test-22/",
-              "match": "/blog/test-22/",
+              "match": "/blog/new-blog-post/",
               "elementType": "link"
             },
             {
               "key": "link-13",
-              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S test1",
+              "label": "Link: Folks Team May 4, 2026 Strategy test 22 test 22",
               "type": "url",
               "value": "/blog/test1/",
-              "match": "/blog/test1/",
+              "match": "/blog/test-22/",
               "elementType": "link"
             },
             {
               "key": "link-14",
-              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S The C.H.E.S.S Model: ...",
+              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S test1",
               "type": "url",
               "value": "/blog/the-c-h-e-s-s-model-a-complete-framework-for-modern-marketing-and-community-building/",
-              "match": "/blog/the-c-h-e-s-s-model-a-complete-framework-for-modern-marketing-and-community-building/",
+              "match": "/blog/test1/",
               "elementType": "link"
             },
             {
               "key": "link-15",
-              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S ok 1 ok 1",
+              "label": "Link: Folks Team May 4, 2026 C.H.E.S.S The C.H.E.S.S Model: ...",
               "type": "url",
               "value": "/blog/ok-1/",
-              "match": "/blog/ok-1/",
+              "match": "/blog/the-c-h-e-s-s-model-a-complete-framework-for-modern-marketing-and-community-building/",
               "elementType": "link"
             },
             {
               "key": "link-16",
-              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S ok 3 test 3",
+              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S ok 1 ok 1",
               "type": "url",
               "value": "/blog/ok-3/",
-              "match": "/blog/ok-3/",
+              "match": "/blog/ok-1/",
               "elementType": "link"
             },
             {
               "key": "link-17",
-              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S Understanding the Fiv...",
+              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S ok 3 test 3",
               "type": "url",
               "value": "/blog/post-5/",
-              "match": "/blog/post-5/",
+              "match": "/blog/ok-3/",
               "elementType": "link"
             },
             {
               "key": "link-18",
-              "label": "Link: Folks Team May 2, 2026 Growth Systems How the C.H.E.S....",
+              "label": "Link: Folks Team May 3, 2026 C.H.E.S.S Understanding the Fiv...",
               "type": "url",
               "value": "/blog/post-6/",
-              "match": "/blog/post-6/",
+              "match": "/blog/post-5/",
               "elementType": "link"
             },
             {
               "key": "link-19",
-              "label": "Link: Folks Team May 1, 2026 Marketing Models C.H.E.S.S vs. ...",
+              "label": "Link: Folks Team May 2, 2026 Growth Systems How the C.H.E.S....",
               "type": "url",
               "value": "/blog/post-7/",
-              "match": "/blog/post-7/",
+              "match": "/blog/post-6/",
               "elementType": "link"
             },
             {
               "key": "link-20",
-              "label": "Link: Folks Team Apr 30, 2026 C.H.E.S.S Strengths of the C.H...",
+              "label": "Link: Folks Team May 1, 2026 Marketing Models C.H.E.S.S vs. ...",
               "type": "url",
               "value": "/blog/post-8/",
-              "match": "/blog/post-8/",
+              "match": "/blog/post-7/",
               "elementType": "link"
             },
             {
               "key": "link-21",
-              "label": "Link: Folks Team Apr 29, 2026 Operations Weaknesses and Chal...",
+              "label": "Link: Folks Team Apr 30, 2026 C.H.E.S.S Strengths of the C.H...",
               "type": "url",
               "value": "/blog/post-9/",
-              "match": "/blog/post-9/",
+              "match": "/blog/post-8/",
               "elementType": "link"
             },
             {
               "key": "link-22",
-              "label": "Link: Folks Team Apr 28, 2026 Strategy When Should You Use t...",
+              "label": "Link: Folks Team Apr 29, 2026 Operations Weaknesses and Chal...",
               "type": "url",
               "value": "/blog/post-10/",
-              "match": "/blog/post-10/",
+              "match": "/blog/post-9/",
               "elementType": "link"
             },
             {
               "key": "link-23",
-              "label": "Link: Folks Team Apr 27, 2026 Strategy Final Thoughts on C.H...",
+              "label": "Link: Folks Team Apr 28, 2026 Strategy When Should You Use t...",
               "type": "url",
               "value": "/blog/post-11/",
-              "match": "/blog/post-11/",
+              "match": "/blog/post-10/",
               "elementType": "link"
             },
             {
               "key": "link-24",
-              "label": "Link: Folks Team Jul 15, 2025 C.H.E.S.S The C.H.E.S.S Model:...",
+              "label": "Link: Folks Team Apr 27, 2026 Strategy Final Thoughts on C.H...",
               "type": "url",
               "value": "/blog/post-1/",
-              "match": "/blog/post-1/",
+              "match": "/blog/post-11/",
               "elementType": "link"
             },
             {
               "key": "link-25",
-              "label": "Link: Folks Team Jul 14, 2025 Growth Systems How to Build a ...",
+              "label": "Link: Folks Team Jul 15, 2025 C.H.E.S.S The C.H.E.S.S Model:...",
               "type": "url",
               "value": "/blog/post-2/",
-              "match": "/blog/post-2/",
+              "match": "/blog/post-1/",
               "elementType": "link"
             },
             {
               "key": "link-26",
-              "label": "Link: Folks Team Jul 13, 2025 Operations Tools & Systems for...",
+              "label": "Link: Folks Team Jul 14, 2025 Growth Systems How to Build a ...",
               "type": "url",
               "value": "/blog/post-3/",
-              "match": "/blog/post-3/",
+              "match": "/blog/post-2/",
               "elementType": "link"
             },
             {
               "key": "link-27",
-              "label": "Link: Folks Team Jul 12, 2025 Brand & Culture Culture, Creat...",
+              "label": "Link: Folks Team Jul 13, 2025 Operations Tools & Systems for...",
               "type": "url",
               "value": "/blog/post-4/",
+              "match": "/blog/post-3/",
+              "elementType": "link"
+            },
+            {
+              "key": "link-28",
+              "label": "Link: Folks Team Jul 12, 2025 Brand & Culture Culture, Creat...",
+              "type": "url",
+              "value": "/insights/insight-1/",
               "match": "/blog/post-4/",
               "elementType": "link"
             },
             {
               "key": "image-3",
-              "label": "Ảnh: Float-er & Flow-er: Two Types of Talent in Organizatio...",
+              "label": "Ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "type": "image",
               "value": "/_astro/cardimage-float-er-flow-er-two-types-of-talent-in-organizations-2-1777924749221.DO5fWGQC_Za21UC.avif",
-              "match": "/_astro/cardimage-float-er-flow-er-two-types-of-talent-in-organizations-2-1777924749221.DO5fWGQC_Za21UC.avif",
+              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "elementType": "image"
             },
             {
               "key": "alt-3",
-              "label": "Mô tả ảnh: Float-er & Flow-er: Two Types of Talent in Organizatio...",
+              "label": "Mô tả ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "type": "text",
               "value": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
-              "match": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
+              "match": "",
               "elementType": "alt"
             },
             {
@@ -6501,7 +6549,7 @@
               "label": "Ảnh: Folks Team author",
               "type": "image",
               "value": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
-              "match": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
+              "match": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
               "elementType": "image"
             },
             {
@@ -6514,18 +6562,18 @@
             },
             {
               "key": "image-5",
-              "label": "Ảnh: Team planning a structured growth strategy",
+              "label": "Ảnh: Float-er & Flow-er: Two Types of Talent in Organizatio...",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
-              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "match": "/_astro/cardimage-float-er-flow-er-two-types-of-talent-in-organizations-2-1777924749221.DO5fWGQC_Za21UC.avif",
               "elementType": "image"
             },
             {
               "key": "alt-5",
-              "label": "Mô tả ảnh: Team planning a structured growth strategy",
+              "label": "Mô tả ảnh: Float-er & Flow-er: Two Types of Talent in Organizatio...",
               "type": "text",
               "value": "Team planning a structured growth strategy",
-              "match": "Team planning a structured growth strategy",
+              "match": "Float-er & Flow-er: Two Types of Talent in Organizations 2",
               "elementType": "alt"
             },
             {
@@ -6533,7 +6581,7 @@
               "label": "Ảnh: Folks Team author",
               "type": "image",
               "value": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
-              "match": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
+              "match": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
               "elementType": "image"
             },
             {
@@ -6546,7 +6594,7 @@
             },
             {
               "key": "image-7",
-              "label": "Ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "label": "Ảnh: Team planning a structured growth strategy",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
@@ -6554,10 +6602,10 @@
             },
             {
               "key": "alt-7",
-              "label": "Mô tả ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "label": "Mô tả ảnh: Team planning a structured growth strategy",
               "type": "text",
               "value": "",
-              "match": "",
+              "match": "Team planning a structured growth strategy",
               "elementType": "alt"
             },
             {
@@ -6642,7 +6690,7 @@
             },
             {
               "key": "image-13",
-              "label": "Ảnh: ok 1",
+              "label": "Ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
@@ -6650,10 +6698,10 @@
             },
             {
               "key": "alt-13",
-              "label": "Mô tả ảnh: ok 1",
+              "label": "Mô tả ảnh: /_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "type": "text",
               "value": "ok 1",
-              "match": "ok 1",
+              "match": "",
               "elementType": "alt"
             },
             {
@@ -6674,7 +6722,7 @@
             },
             {
               "key": "image-15",
-              "label": "Ảnh: test 3",
+              "label": "Ảnh: ok 1",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
@@ -6682,10 +6730,10 @@
             },
             {
               "key": "alt-15",
-              "label": "Mô tả ảnh: test 3",
+              "label": "Mô tả ảnh: ok 1",
               "type": "text",
               "value": "test 3",
-              "match": "test 3",
+              "match": "ok 1",
               "elementType": "alt"
             },
             {
@@ -6706,7 +6754,7 @@
             },
             {
               "key": "image-17",
-              "label": "Ảnh: Team mapping a community growth system",
+              "label": "Ảnh: test 3",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
@@ -6714,42 +6762,42 @@
             },
             {
               "key": "alt-17",
-              "label": "Mô tả ảnh: Team mapping a community growth system",
+              "label": "Mô tả ảnh: test 3",
               "type": "text",
               "value": "Team mapping a community growth system",
-              "match": "Team mapping a community growth system",
+              "match": "test 3",
               "elementType": "alt"
             },
             {
               "key": "image-18",
-              "label": "Ảnh: Folks logo",
+              "label": "Ảnh: Folks Team author",
               "type": "image",
               "value": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
-              "match": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
+              "match": "/_astro/anna.DKqT6LjU_1lW4T5.avif",
               "elementType": "image"
             },
             {
               "key": "alt-18",
-              "label": "Mô tả ảnh: Folks logo",
+              "label": "Mô tả ảnh: Folks Team author",
               "type": "text",
               "value": "Folks logo",
-              "match": "Folks logo",
+              "match": "Folks Team author",
               "elementType": "alt"
             },
             {
               "key": "image-19",
-              "label": "Ảnh: Workshop session for community engagement",
+              "label": "Ảnh: Team mapping a community growth system",
               "type": "image",
               "value": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
-              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
+              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "elementType": "image"
             },
             {
               "key": "alt-19",
-              "label": "Mô tả ảnh: Workshop session for community engagement",
+              "label": "Mô tả ảnh: Team mapping a community growth system",
               "type": "text",
               "value": "Workshop session for community engagement",
-              "match": "Workshop session for community engagement",
+              "match": "Team mapping a community growth system",
               "elementType": "alt"
             },
             {
@@ -6770,18 +6818,18 @@
             },
             {
               "key": "image-21",
-              "label": "Ảnh: Growth analytics dashboard",
+              "label": "Ảnh: Workshop session for community engagement",
               "type": "image",
               "value": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
-              "match": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
+              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
               "elementType": "image"
             },
             {
               "key": "alt-21",
-              "label": "Mô tả ảnh: Growth analytics dashboard",
+              "label": "Mô tả ảnh: Workshop session for community engagement",
               "type": "text",
               "value": "Growth analytics dashboard",
-              "match": "Growth analytics dashboard",
+              "match": "Workshop session for community engagement",
               "elementType": "alt"
             },
             {
@@ -6802,18 +6850,18 @@
             },
             {
               "key": "image-23",
-              "label": "Ảnh: Folks Team brand logo",
+              "label": "Ảnh: Growth analytics dashboard",
               "type": "image",
               "value": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
-              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
+              "match": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
               "elementType": "image"
             },
             {
               "key": "alt-23",
-              "label": "Mô tả ảnh: Folks Team brand logo",
+              "label": "Mô tả ảnh: Growth analytics dashboard",
               "type": "text",
               "value": "Folks Team brand logo",
-              "match": "Folks Team brand logo",
+              "match": "Growth analytics dashboard",
               "elementType": "alt"
             },
             {
@@ -6834,18 +6882,18 @@
             },
             {
               "key": "image-25",
-              "label": "Ảnh: Planning board for a complex growth system",
+              "label": "Ảnh: Folks Team brand logo",
               "type": "image",
               "value": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
-              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
+              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
               "elementType": "image"
             },
             {
               "key": "alt-25",
-              "label": "Mô tả ảnh: Planning board for a complex growth system",
+              "label": "Mô tả ảnh: Folks Team brand logo",
               "type": "text",
               "value": "Planning board for a complex growth system",
-              "match": "Planning board for a complex growth system",
+              "match": "Folks Team brand logo",
               "elementType": "alt"
             },
             {
@@ -6866,18 +6914,18 @@
             },
             {
               "key": "image-27",
-              "label": "Ảnh: Strategic planning session",
+              "label": "Ảnh: Planning board for a complex growth system",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
-              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
               "elementType": "image"
             },
             {
               "key": "alt-27",
-              "label": "Mô tả ảnh: Strategic planning session",
+              "label": "Mô tả ảnh: Planning board for a complex growth system",
               "type": "text",
               "value": "Strategic planning session",
-              "match": "Strategic planning session",
+              "match": "Planning board for a complex growth system",
               "elementType": "alt"
             },
             {
@@ -6898,18 +6946,18 @@
             },
             {
               "key": "image-29",
-              "label": "Ảnh: Folks Team logo",
+              "label": "Ảnh: Strategic planning session",
               "type": "image",
               "value": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
-              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
+              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "elementType": "image"
             },
             {
               "key": "alt-29",
-              "label": "Mô tả ảnh: Folks Team logo",
+              "label": "Mô tả ảnh: Strategic planning session",
               "type": "text",
               "value": "Folks Team logo",
-              "match": "Folks Team logo",
+              "match": "Strategic planning session",
               "elementType": "alt"
             },
             {
@@ -6930,18 +6978,18 @@
             },
             {
               "key": "image-31",
-              "label": "Ảnh: Team planning a structured growth strategy",
+              "label": "Ảnh: Folks Team logo",
               "type": "image",
               "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
-              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
               "elementType": "image"
             },
             {
               "key": "alt-31",
-              "label": "Mô tả ảnh: Team planning a structured growth strategy",
+              "label": "Mô tả ảnh: Folks Team logo",
               "type": "text",
               "value": "Team planning a structured growth strategy",
-              "match": "Team planning a structured growth strategy",
+              "match": "Folks Team logo",
               "elementType": "alt"
             },
             {
@@ -6962,18 +7010,18 @@
             },
             {
               "key": "image-33",
-              "label": "Ảnh: Workshop for building a structured growth system",
+              "label": "Ảnh: Team planning a structured growth strategy",
               "type": "image",
               "value": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
-              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
+              "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "elementType": "image"
             },
             {
               "key": "alt-33",
-              "label": "Mô tả ảnh: Workshop for building a structured growth system",
+              "label": "Mô tả ảnh: Team planning a structured growth strategy",
               "type": "text",
               "value": "Workshop for building a structured growth system",
-              "match": "Workshop for building a structured growth system",
+              "match": "Team planning a structured growth strategy",
               "elementType": "alt"
             },
             {
@@ -6994,18 +7042,18 @@
             },
             {
               "key": "image-35",
-              "label": "Ảnh: Analytics dashboard for modern growth workflows",
+              "label": "Ảnh: Workshop for building a structured growth system",
               "type": "image",
               "value": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
-              "match": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
+              "match": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
               "elementType": "image"
             },
             {
               "key": "alt-35",
-              "label": "Mô tả ảnh: Analytics dashboard for modern growth workflows",
+              "label": "Mô tả ảnh: Workshop for building a structured growth system",
               "type": "text",
               "value": "Analytics dashboard for modern growth workflows",
-              "match": "Analytics dashboard for modern growth workflows",
+              "match": "Workshop for building a structured growth system",
               "elementType": "alt"
             },
             {
@@ -7026,18 +7074,18 @@
             },
             {
               "key": "image-37",
-              "label": "Ảnh: Folks Team brand mark for growth culture",
+              "label": "Ảnh: Analytics dashboard for modern growth workflows",
               "type": "image",
               "value": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
-              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
+              "match": "/_astro/growth-analytics.DU9tE3VQ_ZWe42g.avif",
               "elementType": "image"
             },
             {
               "key": "alt-37",
-              "label": "Mô tả ảnh: Folks Team brand mark for growth culture",
+              "label": "Mô tả ảnh: Analytics dashboard for modern growth workflows",
               "type": "text",
               "value": "Folks Team brand mark for growth culture",
-              "match": "Folks Team brand mark for growth culture",
+              "match": "Analytics dashboard for modern growth workflows",
               "elementType": "alt"
             },
             {
@@ -7055,6 +7103,38 @@
               "value": "Folks logo",
               "match": "Folks logo",
               "elementType": "alt"
+            },
+            {
+              "key": "image-39",
+              "label": "Ảnh: Folks Team brand mark for growth culture",
+              "type": "image",
+              "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "match": "/_astro/folks-brand-logo.Ch4fm1hU_ZDgURu.avif",
+              "elementType": "image"
+            },
+            {
+              "key": "alt-39",
+              "label": "Mô tả ảnh: Folks Team brand mark for growth culture",
+              "type": "text",
+              "value": "Team mapping a clear growth strategy",
+              "match": "Folks Team brand mark for growth culture",
+              "elementType": "alt"
+            },
+            {
+              "key": "image-40",
+              "label": "Ảnh: Folks logo",
+              "type": "image",
+              "value": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
+              "match": "/_astro/folks-brand-mark.sAIZA2gl_sm8p6.avif",
+              "elementType": "image"
+            },
+            {
+              "key": "alt-40",
+              "label": "Mô tả ảnh: Folks logo",
+              "type": "text",
+              "value": "Community workshop and group discussion",
+              "match": "Folks logo",
+              "elementType": "alt"
             }
           ]
         },
@@ -7063,55 +7143,55 @@
           "title": "Insights",
           "fields": [
             {
-              "key": "text-109",
+              "key": "text-114",
               "label": "Insights",
               "type": "text",
-              "value": "Insights",
+              "value": "Community Is a Loop, Not a Channel",
               "match": "Insights",
               "elementType": "text"
             },
             {
-              "key": "text-110",
+              "key": "text-115",
               "label": "Short perspectives for builders and operators designin...",
               "type": "textarea",
-              "value": "Short perspectives for builders and operators designing clearer, more durable growth systems.",
+              "value": "A strong Hub is built from repeated touchpoints, useful prompts, shared memory, and clear reasons to return.",
               "match": "Short perspectives for builders and operators designing clearer, more durable growth systems.",
               "elementType": "text"
             },
             {
-              "key": "text-111",
+              "key": "text-116",
               "label": "Clarity Comes Before Growth",
               "type": "text",
-              "value": "Clarity Comes Before Growth",
+              "value": "Read more",
               "match": "Clarity Comes Before Growth",
               "elementType": "text"
             },
             {
-              "key": "text-112",
+              "key": "text-117",
               "label": "A growth system only works when the team knows who it ...",
               "type": "textarea",
-              "value": "A growth system only works when the team knows who it serves, what value it creates, and what action should happen next.",
+              "value": "Emotional Compass Makes Reflection Easier",
               "match": "A growth system only works when the team knows who it serves, what value it creates, and what action should happen next.",
               "elementType": "text"
             },
             {
-              "key": "text-113",
+              "key": "text-118",
               "label": "Read more",
               "type": "text",
-              "value": "Read more",
+              "value": "A small reflective tool can help groups name emotions, slow down reactions, and choose better next steps.",
               "match": "Read more",
               "elementType": "text"
             },
             {
-              "key": "text-114",
+              "key": "text-119",
               "label": "Community Is a Loop, Not a Channel",
               "type": "text",
-              "value": "Community Is a Loop, Not a Channel",
+              "value": "Read more",
               "match": "Community Is a Loop, Not a Channel",
               "elementType": "text"
             },
             {
-              "key": "text-115",
+              "key": "text-120",
               "label": "A strong Hub is built from repeated touchpoints, usefu...",
               "type": "textarea",
               "value": "A strong Hub is built from repeated touchpoints, useful prompts, shared memory, and clear reasons to return.",
@@ -7119,7 +7199,7 @@
               "elementType": "text"
             },
             {
-              "key": "text-116",
+              "key": "text-121",
               "label": "Read more",
               "type": "text",
               "value": "Read more",
@@ -7127,7 +7207,7 @@
               "elementType": "text"
             },
             {
-              "key": "text-117",
+              "key": "text-122",
               "label": "Emotional Compass Makes Reflection Easier",
               "type": "text",
               "value": "Emotional Compass Makes Reflection Easier",
@@ -7135,7 +7215,7 @@
               "elementType": "text"
             },
             {
-              "key": "text-118",
+              "key": "text-123",
               "label": "A small reflective tool can help groups name emotions,...",
               "type": "textarea",
               "value": "A small reflective tool can help groups name emotions, slow down reactions, and choose better next steps.",
@@ -7143,7 +7223,7 @@
               "elementType": "text"
             },
             {
-              "key": "text-119",
+              "key": "text-124",
               "label": "Read more",
               "type": "text",
               "value": "Read more",
@@ -7151,23 +7231,23 @@
               "elementType": "text"
             },
             {
-              "key": "link-28",
+              "key": "link-29",
               "label": "Link: Clarity Comes Before Growth A growth system only works...",
               "type": "url",
-              "value": "/insights/insight-1/",
+              "value": "/insights/insight-2/",
               "match": "/insights/insight-1/",
               "elementType": "link"
             },
             {
-              "key": "link-29",
+              "key": "link-30",
               "label": "Link: Community Is a Loop, Not a Channel A strong Hub is bui...",
               "type": "url",
-              "value": "/insights/insight-2/",
+              "value": "/insights/insight-3/",
               "match": "/insights/insight-2/",
               "elementType": "link"
             },
             {
-              "key": "link-30",
+              "key": "link-31",
               "label": "Link: Emotional Compass Makes Reflection Easier A small refl...",
               "type": "url",
               "value": "/insights/insight-3/",
@@ -7175,23 +7255,23 @@
               "elementType": "link"
             },
             {
-              "key": "image-39",
+              "key": "image-41",
               "label": "Ảnh: Team mapping a clear growth strategy",
               "type": "image",
-              "value": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
+              "value": "/_astro/emotion-compass.DjOGUhWV_Z2jrO2R.avif",
               "match": "/_astro/growth-brainstorm.UTWwIPAh_2aGpCy.avif",
               "elementType": "image"
             },
             {
-              "key": "alt-39",
+              "key": "alt-41",
               "label": "Mô tả ảnh: Team mapping a clear growth strategy",
               "type": "text",
-              "value": "Team mapping a clear growth strategy",
+              "value": "Emotional Compass reflective card deck",
               "match": "Team mapping a clear growth strategy",
               "elementType": "alt"
             },
             {
-              "key": "image-40",
+              "key": "image-42",
               "label": "Ảnh: Community workshop and group discussion",
               "type": "image",
               "value": "/_astro/growth-workshop.9kNpVNcd_15D6im.avif",
@@ -7199,7 +7279,7 @@
               "elementType": "image"
             },
             {
-              "key": "alt-40",
+              "key": "alt-42",
               "label": "Mô tả ảnh: Community workshop and group discussion",
               "type": "text",
               "value": "Community workshop and group discussion",
@@ -7207,7 +7287,7 @@
               "elementType": "alt"
             },
             {
-              "key": "image-41",
+              "key": "image-43",
               "label": "Ảnh: Emotional Compass reflective card deck",
               "type": "image",
               "value": "/_astro/emotion-compass.DjOGUhWV_Z2jrO2R.avif",
@@ -7215,7 +7295,7 @@
               "elementType": "image"
             },
             {
-              "key": "alt-41",
+              "key": "alt-43",
               "label": "Mô tả ảnh: Emotional Compass reflective card deck",
               "type": "text",
               "value": "Emotional Compass reflective card deck",
