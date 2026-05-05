@@ -1615,6 +1615,44 @@ ${bodyMarkdown || contents.join('\n\n')}
         `;
       }
 
+      function deployStatusLinks(response, publicUrl) {
+        return [
+          publicUrl ? { label: 'Mở bài viết', url: publicUrl } : null,
+          { label: 'Open commit', url: response.commitUrl },
+          { label: 'Open file', url: response.fileUrl },
+          response.deployment?.url ? { label: 'Open deployed site', url: response.deployment.url } : null,
+          response.deployment?.inspectorUrl ? { label: 'Open Vercel deploy', url: response.deployment.inspectorUrl } : null,
+        ].filter(Boolean);
+      }
+
+      async function waitForDeployStatus(response, branch, publicUrl) {
+        if (!response.commitSha) return;
+
+        updatePublishStatus('Committed. Checking the real Vercel deploy status...', deployStatusLinks(response, publicUrl));
+
+        for (let attempt = 0; attempt < 30; attempt += 1) {
+          await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
+          const params = new URLSearchParams({ sha: response.commitSha, branch });
+          const statusResponse = await fetch(`/api/admin-deploy-status?${params.toString()}`, {
+            credentials: 'same-origin',
+          });
+          const status = await statusResponse.json().catch(() => null);
+          if (!statusResponse.ok) {
+            updatePublishStatus(`Post is committed, but deploy status could not be checked: ${status?.message || statusResponse.status}`, deployStatusLinks(response, publicUrl));
+            return status;
+          }
+
+          response.deployment = status.deployment;
+          updatePublishStatus(status.message || `Deploy status: ${status.status}`, deployStatusLinks(response, publicUrl));
+
+          if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
+            return status;
+          }
+        }
+
+        updatePublishStatus('Deploy is still running or was not found after a few minutes. Open Vercel to keep checking.', deployStatusLinks(response, publicUrl));
+      }
+
       async function adminBlogRequest(payload) {
         const response = await fetch('/api/admin-blog', {
           method: 'POST',
@@ -1742,6 +1780,9 @@ ${bodyMarkdown || contents.join('\n\n')}
             { label: 'Open file', url: response.fileUrl },
           ].filter(Boolean);
           updatePublishStatus(`${verb}: ${response.target}. ${deployMessage}`, statusLinks);
+          if (action === 'publish') {
+            await waitForDeployStatus(response, branch, publicPostUrl(getValue('locale'), result.slug));
+          }
           const commitLink = response.commitUrl;
           showToast(
             commitLink

@@ -291,6 +291,44 @@
         `;
       }
 
+      function deployStatusLinks(result, deployment) {
+        return [
+          { label: 'Open commit', url: result.commitUrl },
+          { label: 'Open updated data', url: result.fileUrl },
+          deployment?.url ? { label: 'Open deployed site', url: deployment.url } : null,
+          deployment?.inspectorUrl ? { label: 'Open Vercel deploy', url: deployment.inspectorUrl } : null,
+        ].filter(Boolean);
+      }
+
+      async function waitForDeployStatus(result, branch) {
+        if (!result.commitSha) return;
+
+        const links = deployStatusLinks(result);
+        updatePublishStatus('Content committed. Checking the real Vercel deploy status...', links);
+
+        for (let attempt = 0; attempt < 30; attempt += 1) {
+          await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
+          const params = new URLSearchParams({ sha: result.commitSha, branch });
+          const response = await fetch(`/api/admin-deploy-status?${params.toString()}`, {
+            credentials: 'same-origin',
+          });
+          const status = await response.json().catch(() => null);
+          if (!response.ok) {
+            updatePublishStatus(`Content is committed, but deploy status could not be checked: ${status?.message || response.status}`, links);
+            return status;
+          }
+
+          const nextLinks = deployStatusLinks(result, status.deployment);
+          updatePublishStatus(status.message || `Deploy status: ${status.status}`, nextLinks);
+
+          if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
+            return status;
+          }
+        }
+
+        updatePublishStatus('Deploy is still running or was not found after a few minutes. Open Vercel to keep checking.', links);
+      }
+
       async function loadPublishedContent() {
         const response = await fetch('/api/admin-content?repo=xuanpv89/folksteam.com&branch=main', {
           method: 'GET',
@@ -813,6 +851,7 @@
             { label: 'Xem lần cập nhật', url: result.commitUrl },
             { label: 'Xem dữ liệu đã cập nhật', url: result.fileUrl },
           ]);
+          await waitForDeployStatus(result, 'main');
           showToast('Đã đăng nội dung.');
         } catch (error) {
           updatePublishStatus(`Đăng nội dung bị lỗi: ${error.message}`);

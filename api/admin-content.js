@@ -103,9 +103,11 @@ async function triggerDeployHook() {
   if (!hookUrl) return null;
 
   const response = await fetch(hookUrl, { method: 'POST' });
+  const data = await response.json().catch(() => null);
   return {
     ok: response.ok,
     status: response.status,
+    job: data?.job || null,
   };
 }
 
@@ -264,6 +266,7 @@ export default async function handler(request, response) {
       ok: true,
       target: TARGET_PATH,
       sha: commit?.content?.sha || sha || null,
+      commitSha: commit?.commit?.sha || null,
       commitUrl: commit?.commit?.html_url || null,
       fileUrl: commit?.content?.html_url || null,
       deploy:
