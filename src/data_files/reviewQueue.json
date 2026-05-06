@@ -1,17 +1,23 @@
 {
-  "updatedAt": "2026-05-06T20:30:14.749Z",
+  "updatedAt": "2026-05-06T20:32:31.905Z",
   "items": [
     {
       "id": "review-1778099414749",
       "title": "test 1test1test1test1test1test1 test1test1test1test1test1",
       "type": "blog",
       "target": "src/data_files/blogDrafts/en/test1.md",
-      "status": "review",
+      "status": "published",
       "owner": "Folks Team",
-      "note": "Blog EN chờ duyệt. Draft: src/data_files/blogDrafts/en/test1.md. Public URL: https://www.folksteam.com/blog/test1/",
+      "note": "Đánh dấu đã publish từ Review queue.",
       "createdAt": "2026-05-06T20:30:14.749Z",
-      "updatedAt": "2026-05-06T20:30:14.749Z",
+      "updatedAt": "2026-05-06T20:32:31.905Z",
       "history": [
+        {
+          "status": "published",
+          "actor": "admin",
+          "note": "Đánh dấu đã publish từ Review queue.",
+          "createdAt": "2026-05-06T20:32:31.905Z"
+        },
         {
           "status": "review",
           "actor": "admin",
