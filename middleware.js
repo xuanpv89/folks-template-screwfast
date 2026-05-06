@@ -76,7 +76,11 @@ async function isValidSession(token, secret) {
 export default async function middleware(request) {
   const pathname = request.nextUrl?.pathname || new URL(request.url).pathname;
 
-  if (pathname === '/admin/login.html') {
+  if (
+    pathname === '/admin/login.html' ||
+    pathname === '/admin/admin-ui.css' ||
+    pathname === '/admin/admin-session.js'
+  ) {
     return undefined;
   }
 
