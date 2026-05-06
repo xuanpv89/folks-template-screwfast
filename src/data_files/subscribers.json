@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-05-06T13:00:30.440Z",
+  "updatedAt": "2026-05-06T13:08:59.299Z",
   "subscribers": [
+    {
+      "id": "sub-1778072939298",
+      "email": "xuan@dancentervn.com",
+      "status": "active",
+      "locale": "en",
+      "source": "admin",
+      "tags": [],
+      "note": "tiềm năng",
+      "createdAt": "2026-05-06T13:08:59.298Z",
+      "updatedAt": "2026-05-06T13:08:59.298Z"
+    },
     {
       "id": "sub-1778072414700",
       "email": "xuanpv89@gmail.com",
