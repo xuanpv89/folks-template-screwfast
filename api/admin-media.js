@@ -1,4 +1,5 @@
 import { requireAdminSession } from './_admin-session.js';
+import { appendAuditEvent } from './_admin-data.js';
 
 const GITHUB_API = 'https://api.github.com';
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
@@ -205,6 +206,18 @@ export default async function handler(request, response) {
         branch,
       }),
     });
+
+    try {
+      await appendAuditEvent(githubToken, {
+        type: 'media-upload',
+        actor: requireAdminSession(request, adminSecret)?.username || 'admin',
+        target,
+        commitSha: commit?.commit?.sha || null,
+        commitUrl: commit?.commit?.html_url || null,
+      });
+    } catch (error) {
+      console.error('Could not record media audit event', error);
+    }
 
     return sendJson(response, 200, {
       ok: true,

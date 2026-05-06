@@ -126,8 +126,22 @@ Available modules:
 
 - `/admin/blog.html`: create blog Markdown, save drafts locally, copy/download Markdown, or publish to GitHub with a fine-grained token.
 - `/admin/content.html`: edit page/section content as JSON, save drafts locally, export/copy JSON, or publish to `src/data_files/cmsContent.json`.
+- `/admin/operations.html`: operational dashboard for health checks, products/pages, media library, newsletter subscribers, audit history, and SEO checklist.
+- `/admin/leads.html`: review contact leads, update status/owner, add internal notes, and open reply emails.
+- `/admin/text.html`: scan and edit site text in bulk.
 
 The CMS runs as static HTML in `public/admin`. It does not require a separate backend, but GitHub publishing requires a fine-grained GitHub token with `Contents: Read and write` permission for this repo.
+
+Production admin APIs require `ADMIN_SECRET` and `GITHUB_TOKEN`. Contact and newsletter email delivery require `RESEND_API_KEY` plus verified sender settings. Deploy verification requires `VERCEL_TOKEN` and `VERCEL_PROJECT_ID`.
+
+Operational data is stored in:
+
+```text
+src/data_files/leads.json
+src/data_files/subscribers.json
+src/data_files/reviewQueue.json
+src/data_files/adminAudit.json
+```
 
 ## Content Editing
 

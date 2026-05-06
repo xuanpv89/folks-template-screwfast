@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Operations | Folks Team CMS</title>
+    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-ops-1" />
+    <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
+    <style>
+      body { margin: 0; }
+      .shell { width: min(100%, 1500px); margin: 0 auto; padding: 18px; }
+      .topbar, .surface, .metric, .row-card, .editor, .toast {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+      .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; padding: 14px; }
+      .brand { display: flex; align-items: center; gap: 12px; }
+      .nav, .tabs, .toolbar, .actions, .metrics, .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+      .hero { display: grid; gap: 12px; margin-bottom: 14px; padding: 20px; }
+      .hero h2 { margin: 0; font-size: clamp(32px, 5vw, 58px); line-height: 1; }
+      .surface { padding: 16px; margin-bottom: 14px; }
+      .tabs { margin-bottom: 14px; }
+      .tab.active { border-color: #bde8cb !important; background: var(--brand-soft) !important; color: #20472f !important; }
+      .view { display: none; }
+      .view.active { display: block; }
+      .metrics { margin-top: 12px; }
+      .metric { min-width: 170px; padding: 14px; }
+      .metric span { color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+      .metric strong { display: block; margin-top: 4px; font-size: 30px; }
+      .grid { display: grid; gap: 12px; }
+      @media (min-width: 960px) { .grid.two { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); } }
+      @media (min-width: 1140px) { .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .row-card { display: grid; gap: 8px; padding: 12px; }
+      .row-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+      .row-head strong { overflow-wrap: anywhere; }
+      .muted { color: var(--muted); }
+      .pill { display: inline-flex; width: fit-content; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark); padding: 5px 9px; font-size: 12px; font-weight: 900; }
+      .pill.warn { background: #fffbeb; color: #854d0e; }
+      .pill.bad { background: #fef2f2; color: #991b1b; }
+      .list { display: grid; gap: 10px; }
+      .toolbar { justify-content: space-between; margin-bottom: 12px; }
+      label { display: grid; gap: 6px; color: #3f3f3f; font-size: 13px; font-weight: 850; }
+      input, select, textarea {
+        width: 100%;
+        border: 1px solid #d4d4d4;
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        font: inherit;
+        padding: 10px 12px;
+      }
+      textarea { min-height: 380px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.55; }
+      .compact textarea { min-height: 92px; font-family: inherit; }
+      .editor { display: grid; gap: 12px; padding: 14px; }
+      .media-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+      .media-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; }
+      .media-card code, .path { display: block; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 8px; font-size: 12px; }
+      .hidden { display: none !important; }
+      .toast { display: none; position: sticky; bottom: 12px; z-index: 5; margin-top: 12px; padding: 12px; }
+      .toast.show { display: block; }
+      .toast.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
+          <div>
+            <p class="eyebrow">Folks Team CMS</p>
+            <h1>Operations</h1>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Admin links">
+          <a href="/admin/">Admin Hub</a>
+          <a class="secondary" href="/admin/content.html">Content</a>
+          <a class="secondary" href="/admin/blog.html">Blog</a>
+          <a class="secondary" href="/admin/leads.html">Leads</a>
+          <a class="secondary" href="/admin/text.html">Text</a>
+          <a class="secondary" href="/">Website</a>
+          <button type="button" class="secondary" data-admin-logout>Log out</button>
+        </nav>
+      </header>
+
+      <section class="hero surface">
+        <p class="eyebrow">Website management</p>
+        <h2>Dashboard, health, content, media, subscribers, audit.</h2>
+        <p class="muted">
+          Man hinh nay gom cac muc quan ly van hanh can thiet ngoai blog/content editor hien co.
+        </p>
+      </section>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" type="button" data-view-tab="dashboard">Dashboard</button>
+        <button class="tab secondary" type="button" data-view-tab="health">Health</button>
+        <button class="tab secondary" type="button" data-view-tab="collections">Products/Pages</button>
+        <button class="tab secondary" type="button" data-view-tab="media">Media</button>
+        <button class="tab secondary" type="button" data-view-tab="subscribers">Subscribers</button>
+        <button class="tab secondary" type="button" data-view-tab="review">Review</button>
+        <button class="tab secondary" type="button" data-view-tab="audit">Audit</button>
+        <button class="tab secondary" type="button" data-view-tab="seo">SEO</button>
+      </div>
+
+      <section class="view active" id="view-dashboard">
+        <div class="surface">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h2>Trang tong quan</h2>
+            </div>
+            <button type="button" id="refresh-dashboard">Refresh</button>
+          </div>
+          <div class="metrics" id="dashboard-metrics"></div>
+        </div>
+        <div class="grid two">
+          <div class="surface">
+            <h3>Lead moi gan day</h3>
+            <div class="list" id="recent-leads"></div>
+          </div>
+          <div class="surface">
+            <h3>Lich su thao tac gan day</h3>
+            <div class="list" id="recent-events"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-health">
+        <div class="surface">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Health check</p>
+              <h2>Kiem tra cau hinh production</h2>
+            </div>
+            <button type="button" id="refresh-health">Run checks</button>
+          </div>
+          <div class="grid three" id="health-checks"></div>
+          <div class="surface" style="margin-top: 12px;">
+            <h3>Bien moi truong</h3>
+            <div class="list" id="health-env"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-collections">
+        <div class="grid two">
+          <div class="surface">
+            <div class="toolbar">
+              <div>
+                <p class="eyebrow">Collections</p>
+                <h2>Quan ly Products, Insights, Docs, Projects, Case Studies</h2>
+              </div>
+              <button type="button" id="reload-collection">Reload</button>
+            </div>
+            <div class="filters">
+              <label>
+                Nhom noi dung
+                <select id="collection-select">
+                  <option value="products">Products</option>
+                  <option value="insights">Insights</option>
+                  <option value="docs">Docs</option>
+                  <option value="projects">Projects</option>
+                  <option value="caseStudies">Case studies</option>
+                  <option value="pages">Website pages</option>
+                </select>
+              </label>
+              <label>
+                Tim file
+                <input id="collection-search" placeholder="Nhap ten file..." />
+              </label>
+            </div>
+            <div class="list" id="collection-list"></div>
+          </div>
+          <div class="editor">
+            <div class="toolbar">
+              <div>
+                <p class="eyebrow">Editor</p>
+                <h2 id="collection-editor-title">Chon file de sua</h2>
+              </div>
+              <div class="actions">
+                <button type="button" class="secondary" id="new-collection-file">New</button>
+                <button type="button" id="save-collection-file" disabled>Save</button>
+              </div>
+            </div>
+            <label>
+              Target path
+              <input id="collection-target" placeholder="src/content/products/en/new-item.md" />
+            </label>
+            <textarea id="collection-content" placeholder="---&#10;title: New item&#10;description: Short description&#10;---&#10;&#10;Body..."></textarea>
+            <p class="muted">Tip: voi Products/Insights nen giu dung schema frontmatter hien tai de build khong loi.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-media">
+        <div class="surface">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Media library</p>
+              <h2>Thu vien anh</h2>
+            </div>
+            <div class="actions">
+              <a class="button secondary" href="/admin/blog.html">Upload qua Blog Manager</a>
+              <button type="button" id="reload-media">Reload</button>
+            </div>
+          </div>
+          <label>
+            Tim media
+            <input id="media-search" placeholder="Nhap ten anh, folder, path..." />
+          </label>
+          <div class="media-grid" id="media-grid" style="margin-top: 12px;"></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-subscribers">
+        <div class="grid two">
+          <div class="surface">
+            <div class="toolbar">
+              <div>
+                <p class="eyebrow">Newsletter</p>
+                <h2>Subscribers</h2>
+              </div>
+              <div class="actions">
+                <button type="button" class="secondary" id="export-subscribers">Export CSV</button>
+                <button type="button" id="reload-subscribers">Reload</button>
+              </div>
+            </div>
+            <label>
+              Tim subscriber
+              <input id="subscriber-search" placeholder="Email, source, tag..." />
+            </label>
+            <div class="list" id="subscriber-list" style="margin-top: 12px;"></div>
+          </div>
+          <form class="editor compact" id="subscriber-form">
+            <p class="eyebrow">Add / update</p>
+            <h2>Subscriber detail</h2>
+            <input type="hidden" id="subscriber-id" />
+            <label>Email <input id="subscriber-email" type="email" required /></label>
+            <label>Status
+              <select id="subscriber-status">
+                <option value="active">active</option>
+                <option value="unsubscribed">unsubscribed</option>
+                <option value="bounced">bounced</option>
+                <option value="spam">spam</option>
+              </select>
+            </label>
+            <label>Locale <input id="subscriber-locale" value="en" /></label>
+            <label>Source <input id="subscriber-source" value="admin" /></label>
+            <label>Tags <input id="subscriber-tags" placeholder="growth, chess" /></label>
+            <label>Note <textarea id="subscriber-note"></textarea></label>
+            <button type="submit">Save subscriber</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="view" id="view-audit">
+        <div class="surface">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Audit log</p>
+              <h2>Lich su thao tac va rollback helper</h2>
+            </div>
+            <button type="button" id="reload-audit">Reload</button>
+          </div>
+          <div class="grid two">
+            <div>
+              <h3>Events</h3>
+              <div class="list" id="audit-list"></div>
+            </div>
+            <form class="editor compact" id="audit-note-form">
+              <p class="eyebrow">Manual note</p>
+              <h3>Ghi chu van hanh</h3>
+              <label>Target <input id="audit-target" placeholder="src/content/blog/en/post.md" /></label>
+              <label>Note <textarea id="audit-note"></textarea></label>
+              <button type="submit">Add note</button>
+              <p class="muted">Rollback tu dong can noi dung file cu. Man hinh nay luu audit va link commit de doi chieu nhanh.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-review">
+        <div class="grid two">
+          <div class="surface">
+            <div class="toolbar">
+              <div>
+                <p class="eyebrow">Draft -> Review -> Publish</p>
+                <h2>Review queue</h2>
+              </div>
+              <button type="button" id="reload-review">Reload</button>
+            </div>
+            <div class="list" id="review-list"></div>
+          </div>
+          <form class="editor compact" id="review-form">
+            <p class="eyebrow">Review item</p>
+            <h2>Them hoac cap nhat muc review</h2>
+            <input type="hidden" id="review-id" />
+            <label>Title <input id="review-title" required /></label>
+            <label>Type <input id="review-type" value="content" /></label>
+            <label>Target <input id="review-target" placeholder="src/content/blog/en/post.md" /></label>
+            <label>Status
+              <select id="review-status">
+                <option value="draft">draft</option>
+                <option value="review">review</option>
+                <option value="approved">approved</option>
+                <option value="published">published</option>
+                <option value="archived">archived</option>
+              </select>
+            </label>
+            <label>Owner <input id="review-owner" /></label>
+            <label>Note <textarea id="review-note"></textarea></label>
+            <button type="submit">Save review item</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="view" id="view-seo">
+        <div class="surface">
+          <p class="eyebrow">SEO manager</p>
+          <h2>Checklist SEO can xu ly trong Content Editor</h2>
+          <div class="grid three">
+            <div class="row-card">
+              <span class="pill">Priority 1</span>
+              <strong>Title / description tung trang</strong>
+              <p class="muted">Mo Content Editor, sua section "SEO cua trang" trong cmsContent.json.</p>
+              <a class="button" href="/admin/content.html">Open Content Editor</a>
+            </div>
+            <div class="row-card">
+              <span class="pill">Priority 2</span>
+              <strong>Social image</strong>
+              <p class="muted">Dung Media Library de lay path anh, sau do gan vao Meta/component hoac frontmatter bai viet.</p>
+              <button type="button" data-view-shortcut="media">Open Media</button>
+            </div>
+            <div class="row-card">
+              <span class="pill">Priority 3</span>
+              <strong>Schema va canonical</strong>
+              <p class="muted">Them field vao cmsContent hoac frontmatter, roi render trong src/components/Meta.astro.</p>
+              <button type="button" data-view-shortcut="collections">Open Collections</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="/admin/admin-session.js"></script>
+    <script>
+      const state = {
+        dashboard: null,
+        health: null,
+        collectionItems: [],
+        mediaItems: [],
+        subscribers: [],
+        review: [],
+        audit: [],
+        selectedCollection: 'products',
+        selectedCollectionSha: '',
+      };
+
+      const $ = selector => document.querySelector(selector);
+      const $$ = selector => Array.from(document.querySelectorAll(selector));
+
+      function escapeHtml(value) {
+        return String(value || '')
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#039;');
+      }
+
+      function toast(message, error = false) {
+        const el = $('#toast');
+        el.textContent = message;
+        el.classList.toggle('error', error);
+        el.classList.add('show');
+        window.clearTimeout(toast.timer);
+        toast.timer = window.setTimeout(() => el.classList.remove('show'), 5200);
+      }
+
+      async function api(url, options = {}) {
+        const response = await fetch(url, {
+          credentials: 'same-origin',
+          ...options,
+          headers: {
+            ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+            ...(options.headers || {}),
+          },
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || data.ok === false) {
+          throw new Error(data.message || `Request failed: ${response.status}`);
+        }
+        return data;
+      }
+
+      function setView(view) {
+        $$('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.viewTab === view));
+        $$('.view').forEach(panel => panel.classList.toggle('active', panel.id === `view-${view}`));
+        if (view === 'dashboard' && !state.dashboard) loadDashboard();
+        if (view === 'health' && !state.health) loadHealth();
+        if (view === 'collections' && !state.collectionItems.length) loadCollection();
+        if (view === 'media' && !state.mediaItems.length) loadMedia();
+        if (view === 'subscribers' && !state.subscribers.length) loadSubscribers();
+        if (view === 'review' && !state.review.length) loadReview();
+        if (view === 'audit' && !state.audit.length) loadAudit();
+      }
+
+      function renderMetrics(metrics = {}) {
+        const labels = {
+          leads: 'Leads',
+          newLeads: 'Lead moi',
+          subscribers: 'Subscribers',
+          contentItems: 'Content items',
+          mediaItems: 'Media',
+          pendingReviews: 'Pending review',
+          auditEvents: 'Audit events',
+        };
+        $('#dashboard-metrics').innerHTML = Object.entries(labels)
+          .map(([key, label]) => `<div class="metric"><span>${label}</span><strong>${metrics[key] ?? 0}</strong></div>`)
+          .join('');
+      }
+
+      function renderLeads(leads = []) {
+        $('#recent-leads').innerHTML = leads.length
+          ? leads.map(lead => `
+            <div class="row-card">
+              <div class="row-head">
+                <strong>${escapeHtml(lead.name || lead.email || 'Lead')}</strong>
+                <span class="pill">${escapeHtml(lead.status || 'new')}</span>
+              </div>
+              <span class="muted">${escapeHtml(lead.email || '')} ${escapeHtml(lead.phone || '')}</span>
+              <p>${escapeHtml(lead.message || '').slice(0, 180)}</p>
+            </div>`).join('')
+          : '<p class="muted">Chua co lead.</p>';
+      }
+
+      function renderEvents(events = [], target = '#recent-events') {
+        $(target).innerHTML = events.length
+          ? events.map(event => `
+            <div class="row-card">
+              <div class="row-head">
+                <strong>${escapeHtml(event.type || 'event')}</strong>
+                <span class="pill">${escapeHtml(event.actor || 'system')}</span>
+              </div>
+              <code class="path">${escapeHtml(event.target || '-')}</code>
+              <span class="muted">${escapeHtml(event.createdAt || '')}</span>
+              ${event.commitUrl ? `<a href="${event.commitUrl}" target="_blank" rel="noreferrer">Open commit</a>` : ''}
+              ${event.note ? `<p>${escapeHtml(event.note)}</p>` : ''}
+            </div>`).join('')
+          : '<p class="muted">Chua co audit event.</p>';
+      }
+
+      async function loadDashboard() {
+        $('#dashboard-metrics').innerHTML = '<p class="muted">Dang tai...</p>';
+        const data = await api('/api/admin-dashboard');
+        state.dashboard = data;
+        renderMetrics(data.metrics);
+        renderLeads(data.recentLeads);
+        renderEvents(data.recentEvents);
+      }
+
+      function renderHealth(data) {
+        const checks = Object.entries(data.checks || {});
+        $('#health-checks').innerHTML = checks.map(([key, check]) => `
+          <div class="row-card">
+            <span class="pill ${check.ok ? '' : check.status === 'optional' ? 'warn' : 'bad'}">${escapeHtml(check.status)}</span>
+            <strong>${escapeHtml(key)}</strong>
+            <p class="muted">${escapeHtml(check.message)}</p>
+          </div>`).join('');
+        $('#health-env').innerHTML = Object.entries(data.env || {}).map(([key, value]) => `
+          <div class="row-card">
+            <div class="row-head">
+              <strong>${escapeHtml(key)}</strong>
+              <span class="pill ${value ? '' : 'bad'}">${value ? 'configured' : 'missing'}</span>
+            </div>
+          </div>`).join('');
+      }
+
+      async function loadHealth() {
+        $('#health-checks').innerHTML = '<p class="muted">Dang kiem tra...</p>';
+        const data = await api('/api/admin-health');
+        state.health = data;
+        renderHealth(data);
+      }
+
+      function renderCollectionList() {
+        const query = $('#collection-search').value.trim().toLowerCase();
+        const items = state.collectionItems.filter(item => item.name.toLowerCase().includes(query) || item.path.toLowerCase().includes(query));
+        $('#collection-list').innerHTML = items.length
+          ? items.map(item => `
+            <button type="button" class="row-card" data-collection-path="${escapeHtml(item.path)}">
+              <div class="row-head">
+                <strong>${escapeHtml(item.name)}</strong>
+                <span class="pill">${Math.round((item.size || 0) / 1024)} KB</span>
+              </div>
+              <code class="path">${escapeHtml(item.path)}</code>
+            </button>`).join('')
+          : '<p class="muted">Khong co file phu hop.</p>';
+      }
+
+      async function loadCollection() {
+        state.selectedCollection = $('#collection-select').value;
+        $('#collection-list').innerHTML = '<p class="muted">Dang tai...</p>';
+        const data = await api(`/api/admin-collections?collection=${encodeURIComponent(state.selectedCollection)}`);
+        state.collectionItems = data.items || [];
+        renderCollectionList();
+      }
+
+      async function openCollectionFile(path) {
+        const data = await api(`/api/admin-collections?collection=${encodeURIComponent(state.selectedCollection)}&target=${encodeURIComponent(path)}`);
+        $('#collection-editor-title').textContent = data.summary?.title || path;
+        $('#collection-target').value = data.target;
+        $('#collection-content').value = data.content;
+        state.selectedCollectionSha = data.sha || '';
+        $('#save-collection-file').disabled = false;
+      }
+
+      async function saveCollectionFile() {
+        const target = $('#collection-target').value.trim();
+        const content = $('#collection-content').value;
+        const result = await api('/api/admin-collections', {
+          method: 'POST',
+          body: JSON.stringify({
+            collection: state.selectedCollection,
+            target,
+            content,
+            sha: state.selectedCollectionSha,
+          }),
+        });
+        state.selectedCollectionSha = result.result?.sha || '';
+        toast('Da luu content file.');
+        await loadCollection();
+      }
+
+      function renderMedia() {
+        const query = $('#media-search').value.trim().toLowerCase();
+        const items = state.mediaItems.filter(item => item.path.toLowerCase().includes(query));
+        $('#media-grid').innerHTML = items.length
+          ? items.map(item => `
+            <div class="row-card media-card">
+              <img src="${item.rawUrl}" alt="" loading="lazy" />
+              <strong>${escapeHtml(item.name)}</strong>
+              <code>${escapeHtml(item.displayPath)}</code>
+              <span class="muted">${escapeHtml(item.folder)} / ${Math.round((item.size || 0) / 1024)} KB</span>
+            </div>`).join('')
+          : '<p class="muted">Khong tim thay media.</p>';
+      }
+
+      async function loadMedia() {
+        $('#media-grid').innerHTML = '<p class="muted">Dang tai media...</p>';
+        const data = await api('/api/admin-library');
+        state.mediaItems = data.items || [];
+        renderMedia();
+      }
+
+      function renderSubscribers() {
+        const query = $('#subscriber-search').value.trim().toLowerCase();
+        const items = state.subscribers.filter(subscriber => JSON.stringify(subscriber).toLowerCase().includes(query));
+        $('#subscriber-list').innerHTML = items.length
+          ? items.map(subscriber => `
+            <button type="button" class="row-card" data-subscriber-id="${escapeHtml(subscriber.id)}">
+              <div class="row-head">
+                <strong>${escapeHtml(subscriber.email)}</strong>
+                <span class="pill">${escapeHtml(subscriber.status || 'active')}</span>
+              </div>
+              <span class="muted">${escapeHtml(subscriber.locale || '')} / ${escapeHtml(subscriber.source || '')}</span>
+              <span>${escapeHtml((subscriber.tags || []).join(', '))}</span>
+            </button>`).join('')
+          : '<p class="muted">Chua co subscriber.</p>';
+      }
+
+      async function loadSubscribers() {
+        $('#subscriber-list').innerHTML = '<p class="muted">Dang tai...</p>';
+        const data = await api('/api/admin-subscribers');
+        state.subscribers = data.subscribers || [];
+        renderSubscribers();
+      }
+
+      function fillSubscriber(id) {
+        const subscriber = state.subscribers.find(item => item.id === id);
+        if (!subscriber) return;
+        $('#subscriber-id').value = subscriber.id || '';
+        $('#subscriber-email').value = subscriber.email || '';
+        $('#subscriber-status').value = subscriber.status || 'active';
+        $('#subscriber-locale').value = subscriber.locale || 'en';
+        $('#subscriber-source').value = subscriber.source || 'admin';
+        $('#subscriber-tags').value = (subscriber.tags || []).join(', ');
+        $('#subscriber-note').value = subscriber.note || '';
+      }
+
+      async function saveSubscriber(event) {
+        event.preventDefault();
+        await api('/api/admin-subscribers', {
+          method: 'POST',
+          body: JSON.stringify({
+            id: $('#subscriber-id').value,
+            email: $('#subscriber-email').value,
+            status: $('#subscriber-status').value,
+            locale: $('#subscriber-locale').value,
+            source: $('#subscriber-source').value,
+            tags: $('#subscriber-tags').value,
+            note: $('#subscriber-note').value,
+          }),
+        });
+        toast('Da luu subscriber.');
+        event.target.reset();
+        $('#subscriber-locale').value = 'en';
+        $('#subscriber-source').value = 'admin';
+        await loadSubscribers();
+      }
+
+      function exportSubscribers() {
+        const rows = [['email', 'status', 'locale', 'source', 'tags', 'createdAt', 'updatedAt']];
+        state.subscribers.forEach(item => rows.push([
+          item.email,
+          item.status,
+          item.locale,
+          item.source,
+          (item.tags || []).join('|'),
+          item.createdAt,
+          item.updatedAt,
+        ]));
+        const csv = rows.map(row => row.map(value => `"${String(value || '').replaceAll('"', '""')}"`).join(',')).join('\n');
+        navigator.clipboard.writeText(csv).then(() => toast('CSV da copy vao clipboard.'));
+      }
+
+      async function loadAudit() {
+        $('#audit-list').innerHTML = '<p class="muted">Dang tai audit...</p>';
+        const data = await api('/api/admin-audit');
+        state.audit = data.events || [];
+        renderEvents(state.audit, '#audit-list');
+      }
+
+      function renderReview() {
+        $('#review-list').innerHTML = state.review.length
+          ? state.review.map(item => `
+            <button type="button" class="row-card" data-review-id="${escapeHtml(item.id)}">
+              <div class="row-head">
+                <strong>${escapeHtml(item.title)}</strong>
+                <span class="pill">${escapeHtml(item.status || 'draft')}</span>
+              </div>
+              <code class="path">${escapeHtml(item.target || '-')}</code>
+              <span class="muted">${escapeHtml(item.type || 'content')} / ${escapeHtml(item.owner || 'unassigned')}</span>
+              ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}
+            </button>`).join('')
+          : '<p class="muted">Chua co muc review.</p>';
+      }
+
+      async function loadReview() {
+        $('#review-list').innerHTML = '<p class="muted">Dang tai review queue...</p>';
+        const data = await api('/api/admin-review');
+        state.review = data.items || [];
+        renderReview();
+      }
+
+      function fillReview(id) {
+        const item = state.review.find(entry => entry.id === id);
+        if (!item) return;
+        $('#review-id').value = item.id || '';
+        $('#review-title').value = item.title || '';
+        $('#review-type').value = item.type || 'content';
+        $('#review-target').value = item.target || '';
+        $('#review-status').value = item.status || 'draft';
+        $('#review-owner').value = item.owner || '';
+        $('#review-note').value = item.note || '';
+      }
+
+      async function saveReview(event) {
+        event.preventDefault();
+        await api('/api/admin-review', {
+          method: 'POST',
+          body: JSON.stringify({
+            id: $('#review-id').value,
+            title: $('#review-title').value,
+            type: $('#review-type').value,
+            target: $('#review-target').value,
+            status: $('#review-status').value,
+            owner: $('#review-owner').value,
+            note: $('#review-note').value,
+          }),
+        });
+        toast('Da luu review item.');
+        event.target.reset();
+        $('#review-type').value = 'content';
+        await loadReview();
+      }
+
+      async function saveAuditNote(event) {
+        event.preventDefault();
+        await api('/api/admin-audit', {
+          method: 'POST',
+          body: JSON.stringify({
+            type: 'manual-note',
+            target: $('#audit-target').value,
+            note: $('#audit-note').value,
+          }),
+        });
+        toast('Da them audit note.');
+        event.target.reset();
+        await loadAudit();
+      }
+
+      document.addEventListener('click', event => {
+        const tab = event.target.closest('[data-view-tab]');
+        if (tab) setView(tab.dataset.viewTab);
+
+        const shortcut = event.target.closest('[data-view-shortcut]');
+        if (shortcut) setView(shortcut.dataset.viewShortcut);
+
+        const collectionButton = event.target.closest('[data-collection-path]');
+        if (collectionButton) openCollectionFile(collectionButton.dataset.collectionPath).catch(error => toast(error.message, true));
+
+        const subscriberButton = event.target.closest('[data-subscriber-id]');
+        if (subscriberButton) fillSubscriber(subscriberButton.dataset.subscriberId);
+
+        const reviewButton = event.target.closest('[data-review-id]');
+        if (reviewButton) fillReview(reviewButton.dataset.reviewId);
+      });
+
+      $('#refresh-dashboard').addEventListener('click', () => loadDashboard().catch(error => toast(error.message, true)));
+      $('#refresh-health').addEventListener('click', () => loadHealth().catch(error => toast(error.message, true)));
+      $('#reload-collection').addEventListener('click', () => loadCollection().catch(error => toast(error.message, true)));
+      $('#collection-select').addEventListener('change', () => loadCollection().catch(error => toast(error.message, true)));
+      $('#collection-search').addEventListener('input', renderCollectionList);
+      $('#save-collection-file').addEventListener('click', () => saveCollectionFile().catch(error => toast(error.message, true)));
+      $('#new-collection-file').addEventListener('click', () => {
+        state.selectedCollectionSha = '';
+        $('#collection-editor-title').textContent = 'New file';
+        $('#collection-target').value = '';
+        $('#collection-content').value = '---\ntitle: New item\ndescription: Short description\n---\n\nBody content...';
+        $('#save-collection-file').disabled = false;
+      });
+      $('#reload-media').addEventListener('click', () => loadMedia().catch(error => toast(error.message, true)));
+      $('#media-search').addEventListener('input', renderMedia);
+      $('#reload-subscribers').addEventListener('click', () => loadSubscribers().catch(error => toast(error.message, true)));
+      $('#subscriber-search').addEventListener('input', renderSubscribers);
+      $('#subscriber-form').addEventListener('submit', event => saveSubscriber(event).catch(error => toast(error.message, true)));
+      $('#export-subscribers').addEventListener('click', exportSubscribers);
+      $('#reload-audit').addEventListener('click', () => loadAudit().catch(error => toast(error.message, true)));
+      $('#audit-note-form').addEventListener('submit', event => saveAuditNote(event).catch(error => toast(error.message, true)));
+      $('#reload-review').addEventListener('click', () => loadReview().catch(error => toast(error.message, true)));
+      $('#review-form').addEventListener('submit', event => saveReview(event).catch(error => toast(error.message, true)));
+
+      loadDashboard().catch(error => toast(error.message, true));
+    </script>
+  </body>
+</html>

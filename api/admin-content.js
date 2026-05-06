@@ -1,4 +1,5 @@
 import { requireAdminSession } from './_admin-session.js';
+import { appendAuditEvent } from './_admin-data.js';
 
 const GITHUB_API = 'https://api.github.com';
 const TARGET_PATH = 'src/data_files/cmsContent.json';
@@ -270,6 +271,18 @@ export default async function handler(request, response) {
       }),
     });
     const deployHook = await triggerDeployHook();
+
+    try {
+      await appendAuditEvent(githubToken, {
+        type: 'content-publish',
+        actor: requireAdminSession(request, adminSecret)?.username || 'admin',
+        target: TARGET_PATH,
+        commitSha: commit?.commit?.sha || null,
+        commitUrl: commit?.commit?.html_url || null,
+      });
+    } catch (error) {
+      console.error('Could not record content audit event', error);
+    }
 
     return sendJson(response, 200, {
       ok: true,

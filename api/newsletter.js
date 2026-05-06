@@ -1,4 +1,6 @@
 const RESEND_API_URL = 'https://api.resend.com/emails';
+const GITHUB_API = 'https://api.github.com';
+const SUBSCRIBERS_TARGET_PATH = 'src/data_files/subscribers.json';
 
 function escapeHtml(value) {
   return String(value || '')
@@ -12,6 +14,83 @@ function escapeHtml(value) {
 function sendJson(response, status, body) {
   response.status(status).setHeader('content-type', 'application/json; charset=utf-8');
   response.end(JSON.stringify(body));
+}
+
+function targetRepo() {
+  return String(process.env.GITHUB_REPO || 'xuanpv89/folksteam.com').trim();
+}
+
+function targetBranch() {
+  return String(process.env.GITHUB_BRANCH || 'main').trim();
+}
+
+async function githubRequest(path, token, options = {}) {
+  const githubResponse = await fetch(`${GITHUB_API}${path}`, {
+    ...options,
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers || {}),
+    },
+  });
+  const text = await githubResponse.text();
+  const data = text ? JSON.parse(text) : null;
+  if (!githubResponse.ok) {
+    const error = new Error(data?.message || `GitHub API error ${githubResponse.status}`);
+    error.status = githubResponse.status;
+    throw error;
+  }
+  return data;
+}
+
+async function saveSubscriber(email, source, locale) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return false;
+
+  const repo = targetRepo();
+  const branch = targetBranch();
+  const apiPath = encodeURIComponent(SUBSCRIBERS_TARGET_PATH).replace(/%2F/g, '/');
+  let sha = null;
+  let content = { updatedAt: null, subscribers: [] };
+
+  try {
+    const file = await githubRequest(`/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`, token);
+    sha = file.sha;
+    content = JSON.parse(Buffer.from(file.content || '', 'base64').toString('utf8'));
+  } catch (error) {
+    if (error.status !== 404) throw error;
+  }
+
+  const now = new Date().toISOString();
+  const subscribers = Array.isArray(content.subscribers) ? content.subscribers.slice() : [];
+  const existingIndex = subscribers.findIndex(subscriber => subscriber.email === email.toLowerCase());
+  const subscriber = {
+    id: existingIndex >= 0 ? subscribers[existingIndex].id : `sub-${Date.now()}`,
+    email: email.toLowerCase(),
+    status: 'active',
+    source,
+    locale,
+    tags: subscribers[existingIndex]?.tags || [],
+    note: subscribers[existingIndex]?.note || '',
+    createdAt: subscribers[existingIndex]?.createdAt || now,
+    updatedAt: now,
+  };
+  if (existingIndex >= 0) subscribers[existingIndex] = subscriber;
+  else subscribers.unshift(subscriber);
+
+  await githubRequest(`/repos/${repo}/contents/${apiPath}`, token, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: `Capture newsletter signup: ${email}`,
+      content: Buffer.from(JSON.stringify({ updatedAt: now, subscribers }, null, 2), 'utf8').toString('base64'),
+      branch,
+      ...(sha ? { sha } : {}),
+    }),
+  });
+
+  return true;
 }
 
 export default async function handler(request, response) {
@@ -49,13 +128,25 @@ export default async function handler(request, response) {
     process.env.CONTACT_FROM_EMAIL ||
     'Folks Team Website <onboarding@resend.dev>';
 
+  let subscriberSaved = false;
+  try {
+    subscriberSaved = await saveSubscriber(email, source, locale);
+  } catch (error) {
+    console.error('Could not save newsletter subscriber', error);
+  }
+
   if (!apiKey) {
-    return sendJson(response, 500, {
-      ok: false,
+    return sendJson(response, subscriberSaved ? 200 : 500, {
+      ok: subscriberSaved,
+      subscriberSaved,
       message:
         locale === 'vi'
-          ? 'May chu chua cau hinh RESEND_API_KEY.'
-          : 'Server is missing RESEND_API_KEY.',
+          ? subscriberSaved
+            ? 'Da luu dang ky. May chu chua cau hinh RESEND_API_KEY de gui email thong bao.'
+            : 'May chu chua cau hinh RESEND_API_KEY.'
+          : subscriberSaved
+            ? 'Subscription saved. Server is missing RESEND_API_KEY for email notification.'
+            : 'Server is missing RESEND_API_KEY.',
     });
   }
 
@@ -97,6 +188,7 @@ export default async function handler(request, response) {
 
   return sendJson(response, 200, {
     ok: true,
+    subscriberSaved,
     message:
       locale === 'vi'
         ? 'Da dang ky. Cam on ban!'

@@ -1,4 +1,5 @@
 import { requireAdminSession } from './_admin-session.js';
+import { appendAuditEvent } from './_admin-data.js';
 import { loadLeadStore, readJson, saveLeadStore, sendJson } from './_lead-store.js';
 
 const STATUSES = new Set(['new', 'contacted', 'working', 'done', 'ignored']);
@@ -128,6 +129,19 @@ export default async function handler(request, response) {
       store.sha,
       `Update lead: ${leadLabel(next)}`
     );
+
+    try {
+      await appendAuditEvent(githubToken, {
+        type: 'lead-update',
+        actor: requireAdminSession(request, adminSecret)?.username || 'admin',
+        target: id,
+        status: next.status,
+        commitSha: saved.commitSha,
+        commitUrl: saved.commitUrl,
+      });
+    } catch (error) {
+      console.error('Could not record lead audit event', error);
+    }
 
     return sendJson(response, 200, {
       ok: true,
