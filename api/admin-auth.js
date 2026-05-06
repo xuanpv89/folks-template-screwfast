@@ -1,4 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+import { getAdminSession } from './_admin-session.js';
 
 const DEFAULT_SESSION_DAYS = 7;
 const MAX_LOGIN_ATTEMPTS = 8;
@@ -134,6 +135,31 @@ function clearFailedLogin(key) {
 }
 
 export default async function handler(request, response) {
+  if (request.method === 'GET') {
+    const adminSecret = process.env.ADMIN_SECRET;
+    if (!adminSecret) {
+      return sendJson(response, 500, {
+        ok: false,
+        message: 'Admin is not configured.',
+      });
+    }
+
+    const session = getAdminSession(request, adminSecret);
+    if (!session) {
+      return sendJson(response, 401, {
+        ok: false,
+        message: 'Admin session is missing or expired. Please sign in again.',
+      });
+    }
+
+    return sendJson(response, 200, {
+      ok: true,
+      username: session.username || '',
+      role: session.role || 'editor',
+      exp: session.exp || 0,
+    });
+  }
+
   if (request.method !== 'POST') {
     return sendJson(response, 405, {
       ok: false,

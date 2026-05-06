@@ -83,10 +83,28 @@
     loginUrl: loginUrl
   };
 
+  function checkSessionEarly() {
+    if (window.location.pathname.endsWith('/admin/login.html')) return;
+    nativeFetch('/api/admin-auth?check=session', {
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(function (response) {
+        if (response.status === 401) showSessionExpired();
+      })
+      .catch(function () {
+        // Network or configuration errors should not trap the editor on login.
+      });
+  }
+
   function addLogoutButtons() {
     document.querySelectorAll('[data-admin-logout]').forEach(function (button) {
       button.addEventListener('click', signOut);
     });
+    checkSessionEarly();
   }
 
   if (document.readyState === 'loading') {
