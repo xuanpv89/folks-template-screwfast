@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>Control Center | Folks Team CMS</title>
-    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-ops-1" />
+    <title>Vận hành | Folks Team CMS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
     <style>
       body { margin: 0; }
@@ -112,15 +115,15 @@
           <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team CMS</p>
-            <h1>Control Center</h1>
+            <h1>Vận hành</h1>
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
           <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/content.html">Visual Editor</a>
-          <a class="secondary" href="/admin/blog.html">Blog Manager</a>
-          <a class="secondary" href="/admin/leads.html">Lead Inbox</a>
-          <a class="secondary" href="/admin/text.html">Bulk Text Editor</a>
+          <a class="secondary" href="/admin/content.html">Sửa trang</a>
+          <a class="secondary" href="/admin/blog.html">Viết blog</a>
+          <a class="secondary" href="/admin/leads.html">Lead</a>
+          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a class="secondary" href="/">Xem website</a>
           <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
         </nav>
@@ -130,24 +133,24 @@
         <p class="eyebrow">Trung tâm vận hành</p>
         <h2>Quản trị vận hành website trong một màn hình.</h2>
         <p class="muted">
-          Theo dõi lead mới, kiểm tra cấu hình production, rà soát nội dung, media, newsletter và lịch sử thao tác trước khi xuất bản.
+          Theo dõi liên hệ mới, kiểm tra trước khi đăng, rà soát nội dung, ảnh, email đăng ký và lịch sử thao tác.
         </p>
         <div class="actions quick-actions">
           <button type="button" data-view-shortcut="health">Kiểm tra hệ thống</button>
-          <a class="button secondary" href="/admin/leads.html">Mở Lead Inbox</a>
-          <button class="secondary" type="button" data-view-shortcut="audit">Xem audit</button>
+          <a class="button secondary" href="/admin/leads.html">Mở Lead</a>
+          <button class="secondary" type="button" data-view-shortcut="audit">Xem lịch sử</button>
         </div>
       </section>
 
       <div class="tabs" role="tablist">
         <button class="tab active" type="button" data-view-tab="dashboard" data-tab-label="Tổng quan">Tổng quan</button>
-        <button class="tab secondary" type="button" data-view-tab="health" data-tab-label="Sức khỏe">Sức khỏe</button>
+        <button class="tab secondary" type="button" data-view-tab="health" data-tab-label="Kiểm tra">Kiểm tra</button>
         <button class="tab secondary" type="button" data-view-tab="collections" data-tab-label="Kho nội dung">Kho nội dung</button>
         <button class="tab secondary" type="button" data-view-tab="media" data-tab-label="Thư viện ảnh">Thư viện ảnh</button>
         <button class="tab secondary" type="button" data-view-tab="subscribers" data-tab-label="Đăng ký email">Đăng ký email</button>
         <button class="tab secondary" type="button" data-view-tab="review" data-tab-label="Duyệt nội dung">Duyệt nội dung</button>
-        <button class="tab secondary" type="button" data-view-tab="audit" data-tab-label="Audit">Audit</button>
-        <button class="tab secondary" type="button" data-view-tab="seo" data-tab-label="SEO">SEO</button>
+        <button class="tab secondary" type="button" data-view-tab="audit" data-tab-label="Lịch sử">Lịch sử</button>
+        <button class="tab secondary" type="button" data-view-tab="seo" data-tab-label="Hiển thị Google">Hiển thị Google</button>
       </div>
 
       <section class="view active" id="view-dashboard">
@@ -181,8 +184,8 @@
           <div class="toolbar">
             <div>
               <p class="eyebrow">Kiểm tra sức khỏe</p>
-              <h2>Kiểm tra cấu hình production</h2>
-              <p class="section-note">Xác nhận các kết nối quan trọng trước khi publish: GitHub, Vercel, email và biến môi trường.</p>
+              <h2>Kiểm tra trước khi đăng</h2>
+              <p class="section-note">Xác nhận các kết nối quan trọng trước khi đăng: nơi lưu website, dịch vụ đăng website, email và phần cấu hình.</p>
             </div>
             <button type="button" id="refresh-health">Chạy kiểm tra</button>
           </div>
@@ -250,12 +253,12 @@
         <div class="surface">
           <div class="toolbar">
             <div>
-              <p class="eyebrow">Media library</p>
+                <p class="eyebrow">Thư viện ảnh</p>
               <h2>Thư viện ảnh</h2>
             </div>
             <div class="actions">
-              <a class="button secondary" href="/admin/console.html#media">Upload ảnh</a>
-              <a class="button secondary" href="/admin/blog.html">Dùng trong Blog</a>
+              <a class="button secondary" href="/admin/console.html#media">Tải ảnh lên</a>
+              <a class="button secondary" href="/admin/blog.html">Dùng trong blog</a>
               <button type="button" id="reload-media">Tải lại</button>
             </div>
           </div>
@@ -272,11 +275,11 @@
           <div class="surface">
             <div class="toolbar">
               <div>
-                <p class="eyebrow">Newsletter</p>
+                <p class="eyebrow">Email đăng ký</p>
                 <h2>Người đăng ký</h2>
               </div>
               <div class="actions">
-                <button type="button" class="secondary" id="export-subscribers">Xuất CSV</button>
+                <button type="button" class="secondary" id="export-subscribers">Xuất danh sách</button>
                 <button type="button" id="reload-subscribers">Tải lại</button>
               </div>
             </div>
@@ -312,8 +315,8 @@
         <div class="surface">
           <div class="toolbar">
             <div>
-              <p class="eyebrow">Audit log</p>
-              <h2>Lịch sử thao tác và rollback</h2>
+              <p class="eyebrow">Lịch sử thao tác</p>
+              <h2>Lịch sử thao tác và khôi phục</h2>
             </div>
             <button type="button" id="reload-audit">Tải lại</button>
           </div>
@@ -328,7 +331,7 @@
               <label>Đối tượng <input id="audit-target" placeholder="src/content/blog/en/post.md" /></label>
               <label>Ghi chú <textarea id="audit-note"></textarea></label>
               <button type="submit">Thêm ghi chú</button>
-              <p class="muted">Rollback sẽ tạo commit khôi phục file về trước commit đã chọn. Audit giữ link commit để đối chiếu nhanh.</p>
+              <p class="muted">Khôi phục sẽ tạo một bản ghi đưa nội dung về trạng thái trước đó. Lịch sử giữ mốc đối chiếu nhanh.</p>
             </form>
           </div>
         </div>
@@ -339,15 +342,15 @@
           <div class="surface">
             <div class="toolbar">
               <div>
-                <p class="eyebrow">Draft -> Review -> Publish</p>
-                <h2>Review queue</h2>
+                <p class="eyebrow">Nháp -> Duyệt -> Đăng</p>
+                <h2>Hàng chờ duyệt</h2>
               </div>
               <button type="button" id="reload-review">Tải lại</button>
             </div>
             <div class="list" id="review-list"></div>
           </div>
           <form class="editor compact" id="review-form">
-            <p class="eyebrow">Review item</p>
+            <p class="eyebrow">Mục cần duyệt</p>
             <h2>Thêm hoặc cập nhật mục review</h2>
             <input type="hidden" id="review-id" />
             <label>Tiêu đề <input id="review-title" required /></label>
@@ -373,11 +376,11 @@
         <div class="surface">
           <div class="toolbar">
             <div>
-              <p class="eyebrow">SEO manager</p>
-              <h2>Kiểm tra SEO từ nội dung thật</h2>
-              <p class="section-note">Rà soát title, description, alt ảnh và draft blog đang chờ xử lý để biết việc cần làm tiếp.</p>
+              <p class="eyebrow">Kiểm tra nội dung</p>
+              <h2>Kiểm tra cách hiển thị trên Google</h2>
+              <p class="section-note">Rà soát tiêu đề, mô tả, mô tả ảnh và bài nháp đang chờ xử lý để biết việc cần làm tiếp.</p>
             </div>
-            <button type="button" id="refresh-seo">Chạy kiểm tra SEO</button>
+            <button type="button" id="refresh-seo">Chạy kiểm tra nội dung</button>
           </div>
           <div class="metrics" id="seo-summary"></div>
           <div class="list" id="seo-issues"></div>
@@ -564,7 +567,7 @@
               <span class="muted">${escapeHtml(lead.email || '')}${lead.phone ? ` / ${escapeHtml(lead.phone)}` : ''}</span>
               <p class="lead-message">${escapeHtml(lead.message || '').slice(0, 240)}</p>
               <div class="actions">
-                <a class="button secondary" href="/admin/leads.html">Mở trong Lead Inbox</a>
+                <a class="button secondary" href="/admin/leads.html">Mở trong Lead</a>
               </div>
             </div>`).join('')
           : '<p class="muted">Chưa có lead.</p>';

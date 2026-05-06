@@ -173,11 +173,11 @@
         </div>
         <nav class="nav" aria-label="Admin links">
           <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/operations.html">Control Center</a>
-          <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
-          <a class="secondary" href="/admin/blog.html">Blog Manager</a>
-          <a class="secondary" href="/admin/content.html">Visual Editor</a>
-          <a class="secondary" href="/admin/text.html">Bulk Text Editor</a>
+          <a class="secondary" href="/admin/operations.html">Vận hành</a>
+          <a class="secondary" href="/admin/console.html">Kỹ thuật</a>
+          <a class="secondary" href="/admin/blog.html">Viết blog</a>
+          <a class="secondary" href="/admin/content.html">Sửa trang</a>
+          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a class="secondary" href="/">Xem website</a>
           <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
         </nav>
@@ -199,7 +199,7 @@
           <a href="#dang-nhap">2. Đăng nhập</a>
           <a href="#content-cms">3. Sửa nội dung trang</a>
           <a href="#blog-manager">4. Quản lý blog</a>
-          <a href="#text-manager">5. Bulk Text Editor</a>
+          <a href="#text-manager">5. Sửa chữ hàng loạt</a>
           <a href="#publish">6. Đăng lên website</a>
           <a href="#roles">7. Phân quyền</a>
           <a href="#luu-y">8. Lưu ý vận hành</a>
@@ -214,20 +214,20 @@
             </p>
             <div class="quick-grid">
               <article class="guide-card">
-                <strong>Blog Manager</strong>
+                <strong>Viết blog</strong>
                 <p>Tạo bài viết mới, lưu nháp, xem trước và đăng bài blog lên website.</p>
               </article>
               <article class="guide-card">
-                <strong>Visual Editor</strong>
+                <strong>Sửa trang</strong>
                 <p>Mở preview thật của website, click vào phần chữ hoặc ảnh cần sửa rồi đăng.</p>
               </article>
               <article class="guide-card">
-                <strong>Bulk Text Editor</strong>
+                <strong>Sửa chữ hàng loạt</strong>
                 <p>Tìm, thay thế có kiểm tra và sửa nội dung theo danh sách trang.</p>
               </article>
               <article class="guide-card">
-                <strong>Control Center</strong>
-                <p>Theo dõi lead, review queue, SEO, health check, subscribers và audit.</p>
+                <strong>Vận hành</strong>
+                <p>Theo dõi lead, hàng chờ duyệt, nội dung cần sửa, kiểm tra, email đăng ký và lịch sử.</p>
               </article>
             </div>
           </section>
@@ -243,7 +243,7 @@
           </section>
 
           <section class="guide-section" id="content-cms">
-            <h2>3. Sửa nội dung trang bằng Visual Editor</h2>
+            <h2>3. Sửa nội dung trang bằng Sửa trang</h2>
             <ol>
               <li>Vào <code>/admin/content.html</code>.</li>
               <li>Chọn trang ở cột bên trái hoặc dùng ô tìm kiếm để lọc nhanh.</li>
@@ -253,19 +253,19 @@
               <li>Kiểm tra cả <strong>Desktop</strong> và <strong>Mobile</strong> trước khi đăng.</li>
               <li>Khi đã chắc chắn, bấm <strong>Đăng lên website</strong>.</li>
             </ol>
-            <h3>Khi nào nên dùng Visual Editor?</h3>
+            <h3>Khi nào nên dùng Sửa trang?</h3>
             <p>Dùng khi cần sửa nội dung đang hiển thị trên các trang như Home, About, Services, Contact, Projects hoặc các trang tiếng Việt.</p>
           </section>
 
           <section class="guide-section" id="blog-manager">
-            <h2>4. Quản lý blog bằng Blog Manager</h2>
+            <h2>4. Quản lý blog bằng Viết blog</h2>
             <ol>
               <li>Vào <code>/admin/blog.html</code>.</li>
               <li>Chọn ngôn ngữ bài viết: English hoặc Tiếng Việt.</li>
               <li>Nhập tiêu đề, mô tả ngắn, slug và nội dung chính.</li>
               <li>Thêm ảnh, trích dẫn, danh sách hoặc CTA nếu bài cần cấu trúc phong phú.</li>
               <li>Xem khung preview để kiểm tra tiêu đề, mô tả, ảnh và nội dung.</li>
-              <li>Hoàn tất checklist SEO: title 20-70 ký tự, description 70-170 ký tự, ảnh có alt.</li>
+              <li>Hoàn tất kiểm tra hiển thị: tiêu đề 20-70 ký tự, mô tả 70-170 ký tự, ảnh có mô tả.</li>
               <li>Bấm <strong>Lưu nháp</strong> nếu chưa muốn đăng ngay.</li>
               <li>Bấm <strong>Gửi review</strong> nếu cần người khác duyệt trước khi publish.</li>
               <li>Khi bảng kiểm đã đủ, bấm <strong>Đăng bài lên website</strong>.</li>
@@ -274,7 +274,7 @@
           </section>
 
           <section class="guide-section" id="text-manager">
-            <h2>5. Sử dụng Bulk Text Editor</h2>
+            <h2>5. Sử dụng Sửa chữ hàng loạt</h2>
             <ol>
               <li>Vào <code>/admin/text.html</code>.</li>
               <li>Chọn trang và mục nội dung cần sửa trong danh sách.</li>
@@ -283,7 +283,7 @@
               <li>Có thể lưu trên máy này nếu cần tạm dừng trước khi đăng.</li>
               <li>Bấm <strong>Đăng nội dung</strong> khi muốn đưa toàn bộ thay đổi lên website.</li>
             </ol>
-            <h3>Khi nào nên dùng Bulk Text Editor?</h3>
+            <h3>Khi nào nên dùng Sửa chữ hàng loạt?</h3>
             <p>Dùng khi muốn rà soát nội dung dạng danh sách, xuất JSON hoặc sửa nhiều mục liên tiếp mà không cần preview trực quan.</p>
           </section>
 
@@ -309,7 +309,7 @@
               <li><strong>Editor</strong>: sửa nội dung và lưu nháp/review.</li>
               <li><strong>Publisher</strong>: được đăng nội dung lên website live.</li>
               <li><strong>Admin</strong>: được xử lý cấu hình, rollback, xóa và thao tác kỹ thuật.</li>
-              <li>Luồng chuẩn nên là <strong>Draft -> Review -> Approved -> Publish</strong>. Theo dõi queue trong Control Center.</li>
+              <li>Luồng chuẩn nên là <strong>Nháp -> Duyệt -> Đã duyệt -> Đăng</strong>. Theo dõi hàng chờ trong Vận hành.</li>
             </ul>
           </section>
 
@@ -317,9 +317,9 @@
             <h2>8. Lưu ý vận hành</h2>
             <ul>
               <li>Luôn lưu nháp khi bài hoặc nội dung chưa sẵn sàng công khai.</li>
-              <li>Dùng Control Center để kiểm tra lead mới, SEO issue, review queue và audit mỗi ngày.</li>
+              <li>Dùng Vận hành để kiểm tra lead mới, nội dung cần sửa, hàng chờ duyệt và lịch sử mỗi ngày.</li>
               <li>Không dán nội dung từ Word/Google Docs quá dài mà chưa đọc lại định dạng.</li>
-              <li>Ảnh nên có mô tả alt rõ ràng để tốt cho SEO và khả năng truy cập.</li>
+              <li>Ảnh nên có mô tả rõ ràng để tốt cho Google và khả năng truy cập.</li>
               <li>Nếu gặp lỗi xung đột dữ liệu, tải lại nội dung online rồi kiểm tra lại thay đổi trước khi đăng lần nữa.</li>
               <li>Sau khi đăng, kiểm tra phiên bản desktop và mobile của trang quan trọng.</li>
             </ul>

@@ -6,8 +6,10 @@
     <meta name="robots" content="noindex" />
     <title>Folks Team CMS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=admin-2" />
-    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-2" />
-    <link rel="shortcut icon" href="/admin-favicon.png?v=admin-2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=admin-2" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
@@ -913,15 +915,15 @@
           <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team CMS</p>
-            <h1>Blog Manager</h1>
+            <h1>Viết blog</h1>
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
           <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/operations.html">Control Center</a>
+          <a class="secondary" href="/admin/operations.html">Vận hành</a>
           <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
-          <a href="/admin/content.html">Visual Editor</a>
-          <a class="secondary" href="/admin/text.html">Bulk Text Editor</a>
+          <a href="/admin/content.html">Sửa trang</a>
+          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a href="/blog">Blog EN</a>
           <a href="/vi/blog">Blog VI</a>
           <a class="secondary" href="/">Xem website</a>
@@ -1157,8 +1159,8 @@
           <div data-tab-panel="write">
             <div class="section-title">
               <div>
-                <p class="eyebrow">Drafts</p>
-                <h3>Draft đã lưu</h3>
+                <p class="eyebrow">Nháp</p>
+                <h3>Nháp đã lưu</h3>
               </div>
             </div>
             <div class="drafts" id="drafts"></div>
@@ -1204,11 +1206,11 @@
               <summary>Cài đặt kỹ thuật nâng cao</summary>
               <div class="row">
                 <label>
-                  Repository
+                  Kho lưu dữ liệu
                   <input id="githubRepo" value="xuanpv89/folksteam.com" />
                 </label>
                 <label>
-                  Branch
+                  Nhánh dữ liệu
                   <input id="githubBranch" value="main" />
                 </label>
               </div>
@@ -1222,7 +1224,7 @@
           <div class="form-section" data-tab-panel="publish" hidden>
             <h3>Công cụ nâng cao</h3>
             <div class="button-row">
-              <button type="button" class="primary-action" id="generate">Cập nhật preview</button>
+              <button type="button" class="primary-action" id="generate">Cập nhật xem trước</button>
               <button type="button" id="download">Tải file dự phòng</button>
               <button type="button" class="utility-action" id="copy">Copy mã kỹ thuật</button>
             </div>
@@ -1237,12 +1239,12 @@
         <section class="card preview-card">
           <div class="section-title">
             <div>
-              <p class="eyebrow">Preview</p>
+              <p class="eyebrow">Xem trước</p>
               <h2>Xem trước bài viết</h2>
             </div>
             <div class="preview-tabs" aria-label="Preview mode">
               <button type="button" class="active" id="tab-live">Xem trước</button>
-              <button type="button" id="tab-markdown">Mã Markdown</button>
+              <button type="button" id="tab-markdown">Mã bài viết (kỹ thuật)</button>
             </div>
           </div>
           <p class="hint">

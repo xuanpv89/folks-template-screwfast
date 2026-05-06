@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>Visual Content Editor | Folks Team CMS</title>
-    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-4" />
+    <title>Sửa trang | Folks Team CMS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
     <style>
       :root {
         --ink: #262626;
@@ -309,15 +312,15 @@
           <img src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team CMS</p>
-            <h1>Visual Content Editor</h1>
+            <h1>Sửa trang</h1>
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
           <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/operations.html">Control Center</a>
+          <a class="secondary" href="/admin/operations.html">Vận hành</a>
           <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
-          <a class="secondary" href="/admin/blog.html">Blog Manager</a>
-          <a class="secondary" href="/admin/text.html">Bulk Text Editor</a>
+          <a class="secondary" href="/admin/blog.html">Viết blog</a>
+          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a class="secondary" href="/">Xem website</a>
           <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
           <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
@@ -356,12 +359,12 @@
         <section class="panel preview-panel">
           <div class="actions" style="justify-content:space-between;margin-bottom:12px">
             <div>
-              <p class="eyebrow">Preview thật</p>
+              <p class="eyebrow">Xem trực tiếp</p>
               <h2 id="preview-title">Chọn trang để sửa</h2>
             </div>
             <div class="actions">
-              <button type="button" class="secondary active" data-preview-mode="desktop">Desktop</button>
-              <button type="button" class="secondary" data-preview-mode="mobile">Mobile</button>
+              <button type="button" class="secondary active" data-preview-mode="desktop">Máy tính</button>
+              <button type="button" class="secondary" data-preview-mode="mobile">Điện thoại</button>
               <button type="button" class="secondary" id="open-page">Mở trang</button>
             </div>
           </div>
@@ -370,9 +373,9 @@
 
         <aside class="panel editor">
           <p class="eyebrow">Nội dung đang chọn</p>
-          <h2 id="editor-title">Click vào chữ trong preview</h2>
+          <h2 id="editor-title">Click vào chữ trong khung xem trước</h2>
           <p class="hint" id="editor-hint">
-            Những vùng có thể sửa sẽ được viền xanh trong preview. Click trực tiếp vào chữ để sửa.
+            Những vùng có thể sửa sẽ được viền xanh. Click trực tiếp vào chữ để sửa.
           </p>
           <div id="field-editor" class="empty">Chưa chọn nội dung.</div>
           <div class="actions sticky-actions" style="margin-top:14px">

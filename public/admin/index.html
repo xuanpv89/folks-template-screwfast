@@ -6,8 +6,10 @@
     <meta name="robots" content="noindex" />
     <title>Folks Team CMS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=admin-2" />
-    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-2" />
-    <link rel="shortcut icon" href="/admin-favicon.png?v=admin-2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=admin-2" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
@@ -437,7 +439,7 @@
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
-          <a href="/">Trang live</a>
+          <a href="/">Xem website</a>
           <a class="secondary" href="/admin/operations.html">Control Center</a>
           <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
           <a class="secondary" href="/blog">Blog EN</a>
@@ -462,9 +464,9 @@
       <section class="global-search" aria-label="Global admin search">
         <div>
           <p class="eyebrow">Global search</p>
-          <h2>Tìm nhanh trong toàn bộ admin</h2>
+          <h2>Tìm nhanh việc cần làm</h2>
         </div>
-        <input id="global-search" placeholder="Ví dụ: lead, review, SEO, ảnh, rollback, blog..." />
+        <input id="global-search" placeholder="Ví dụ: lead mới, sửa trang, viết blog, ảnh, kiểm tra..." />
         <div class="search-results" id="global-search-results"></div>
       </section>
 
@@ -489,15 +491,15 @@
           <span>Click vào chữ trên preview, xem diff, rồi đăng lên website.</span>
         </a>
         <a class="task-link" href="/admin/leads.html">
-          <strong>Quản lý lead mới</strong>
+          <strong>Xử lý lead mới</strong>
           <span>Xem liên hệ từ form, đổi trạng thái xử lý, ghi chú và trả lời email.</span>
         </a>
         <a class="task-link" href="/admin/blog.html">
-          <strong>Viết hoặc cập nhật blog</strong>
+          <strong>Viết bài blog</strong>
           <span>Soạn bài, lưu nháp, kiểm tra preview và publish.</span>
         </a>
         <a class="task-link" href="/admin/console.html#media">
-          <strong>Upload ảnh</strong>
+          <strong>Tải ảnh lên</strong>
           <span>Đưa ảnh vào repo và lấy đường dẫn dùng cho bài/trang.</span>
         </a>
         <a class="task-link" href="/admin/operations.html#audit">
@@ -505,7 +507,7 @@
           <span>Xem audit, health check và trạng thái vận hành sau publish.</span>
         </a>
         <a class="task-link primary" href="/admin/operations.html">
-          <strong>Control Center</strong>
+          <strong>Vận hành</strong>
           <span>Dashboard vận hành, health check, review queue, media, subscribers, SEO và audit.</span>
         </a>
       </section>
@@ -514,7 +516,7 @@
         <a class="card" href="/admin/console.html">
           <div>
             <div class="icon">A</div>
-            <h2>Console kỹ thuật</h2>
+            <h2>Kỹ thuật</h2>
             <p>
               Khu vực kỹ thuật cho media upload, deploy checklist, bảo mật và công cụ
               kiểm tra nâng cao.
@@ -526,10 +528,9 @@
         <a class="card" href="/admin/operations.html">
           <div>
             <div class="icon">O</div>
-            <h2>Control Center</h2>
+            <h2>Vận hành</h2>
             <p>
-              Bảng điều khiển vận hành: dashboard, cấu hình server, collections,
-              media library, newsletter subscribers, review queue, audit và SEO center.
+              Theo dõi lead, ảnh, người đăng ký, hàng chờ duyệt, lịch sử thao tác và các mục cần kiểm tra.
             </p>
           </div>
           <span class="status ready" data-module-status="operations">Đang tải</span>
@@ -538,7 +539,7 @@
         <a class="card" href="/admin/leads.html">
           <div>
             <div class="icon">L</div>
-            <h2>Lead Inbox</h2>
+            <h2>Lead</h2>
             <p>
               Quản lý liên hệ từ website theo trạng thái Mới, Đã liên hệ, Đang xử lý,
               Đã xong. Thêm ghi chú nội bộ và mở email trả lời trong một bước.
@@ -550,10 +551,9 @@
         <a class="card" href="/admin/blog.html">
           <div>
             <div class="icon">B</div>
-            <h2>Blog Manager</h2>
+            <h2>Viết blog</h2>
             <p>
-              Tạo bài blog theo schema hiện tại, lưu draft, copy/download
-              Markdown và publish lên GitHub.
+              Tạo bài mới, lưu nháp, xem trước, gửi duyệt và đăng lên website.
             </p>
           </div>
           <span class="status ready" data-module-status="blog">Draft/Review</span>
@@ -562,7 +562,7 @@
         <a class="card" href="/admin/content.html">
           <div>
             <div class="icon">C</div>
-            <h2>Visual Content Editor</h2>
+            <h2>Sửa trang</h2>
             <p>
               Chỉnh nội dung bằng cách mở trang thật, click vào chữ cần sửa,
               kiểm tra preview rồi đăng lên website.
@@ -574,10 +574,9 @@
         <a class="card" href="/admin/text.html">
           <div>
             <div class="icon">T</div>
-            <h2>Bulk Text Editor</h2>
+            <h2>Sửa chữ hàng loạt</h2>
             <p>
-              Bulk Text Editor để quét và sửa text hàng loạt theo trang. Phù hợp khi cần rà
-              nhanh nhiều dòng chữ hoặc xuất/copy dữ liệu CMS.
+              Tìm và sửa nhiều dòng chữ cùng lúc. Phù hợp khi cần rà nhanh nội dung trên nhiều trang.
             </p>
           </div>
           <span class="status ready" data-module-status="text">Bulk editor</span>
@@ -612,17 +611,17 @@
       const globalSearchResults = document.getElementById('global-search-results');
 
       const adminSearchItems = [
-        { title: 'Lead Inbox', keywords: 'lead khách contact email sla tag priority duplicate', url: '/admin/leads.html' },
-        { title: 'Visual Content Editor', keywords: 'content cms sửa trang preview mobile autosave publish', url: '/admin/content.html' },
-        { title: 'Bulk Text Editor', keywords: 'text manager bulk search replace json copy', url: '/admin/text.html' },
-        { title: 'Blog Manager', keywords: 'blog draft review seo image alt calendar publish', url: '/admin/blog.html' },
-        { title: 'Control Center', keywords: 'operations health audit rollback subscribers media seo review', url: '/admin/operations.html' },
-        { title: 'SEO Center', keywords: 'seo title description alt draft blog issue', url: '/admin/operations.html#seo' },
-        { title: 'Review Queue', keywords: 'draft review approved publish duyệt', url: '/admin/operations.html#review' },
-        { title: 'Media Library', keywords: 'ảnh image upload copy url alt crop resize', url: '/admin/operations.html#media' },
-        { title: 'Audit & Rollback', keywords: 'audit log rollback commit snapshot restore', url: '/admin/operations.html#audit' },
-        { title: 'Console kỹ thuật', keywords: 'console deploy security upload config kỹ thuật', url: '/admin/console.html' },
-        { title: 'Hướng dẫn', keywords: 'guide quy trình role publisher editor admin', url: '/admin/guide.html' },
+        { title: 'Lead', keywords: 'lead khách contact email sla tag priority duplicate', description: 'Xem người liên hệ, phản hồi email, ghi chú và đánh dấu đã xử lý.', url: '/admin/leads.html' },
+        { title: 'Sửa trang', keywords: 'content cms sửa trang preview mobile autosave publish', description: 'Mở website thật, click vào chữ hoặc ảnh cần sửa, xem lại rồi đăng.', url: '/admin/content.html' },
+        { title: 'Sửa chữ hàng loạt', keywords: 'text manager bulk search replace json copy', description: 'Tìm nhiều dòng chữ cùng lúc và thay đổi theo danh sách trang.', url: '/admin/text.html' },
+        { title: 'Viết blog', keywords: 'blog draft review seo image alt calendar publish', description: 'Soạn bài, xem trước, lưu nháp, gửi duyệt hoặc đăng bài.', url: '/admin/blog.html' },
+        { title: 'Vận hành', keywords: 'operations health audit rollback subscribers media seo review', description: 'Theo dõi lead, ảnh, người đăng ký, hàng chờ duyệt và lịch sử thao tác.', url: '/admin/operations.html' },
+        { title: 'Kiểm tra nội dung', keywords: 'seo title description alt draft blog issue', description: 'Tìm tiêu đề, mô tả hoặc ảnh cần chỉnh trước khi đăng.', url: '/admin/operations.html#seo' },
+        { title: 'Duyệt nội dung', keywords: 'draft review approved publish duyệt', description: 'Xem các mục đang chờ duyệt trước khi công khai.', url: '/admin/operations.html#review' },
+        { title: 'Thư viện ảnh', keywords: 'ảnh image upload copy url alt crop resize', description: 'Tải ảnh lên, xem ảnh đã có và lấy đường dẫn dùng trong bài/trang.', url: '/admin/operations.html#media' },
+        { title: 'Lịch sử và khôi phục', keywords: 'audit log rollback commit snapshot restore', description: 'Xem lịch sử thay đổi và khôi phục khi cần.', url: '/admin/operations.html#audit' },
+        { title: 'Kỹ thuật', keywords: 'console deploy security upload config kỹ thuật', description: 'Khu vực dành cho cấu hình, bảo mật và thao tác nâng cao.', url: '/admin/console.html' },
+        { title: 'Hướng dẫn', keywords: 'guide quy trình role publisher editor admin', description: 'Quy trình thao tác chuẩn cho người quản trị nội dung.', url: '/admin/guide.html' },
       ];
 
       function escapeHtml(value) {
@@ -682,7 +681,7 @@
         const keyword = globalSearch.value.trim().toLowerCase();
         const items = adminSearchItems.filter(item => !keyword || `${item.title} ${item.keywords}`.toLowerCase().includes(keyword)).slice(0, 7);
         globalSearchResults.innerHTML = items
-          .map(item => `<a class="search-result" href="${escapeHtml(item.url)}"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.keywords)}</p></a>`)
+          .map(item => `<a class="search-result" href="${escapeHtml(item.url)}"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description || item.keywords)}</p></a>`)
           .join('');
       }
 
