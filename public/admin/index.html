@@ -154,7 +154,7 @@
 
       @media (min-width: 820px) {
         .grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         }
       }
 
@@ -247,6 +247,7 @@
         </div>
         <nav class="nav" aria-label="Admin links">
           <a href="/">Home</a>
+          <a class="secondary" href="/admin/console.html">Admin Console</a>
           <a class="secondary" href="/blog">Blog EN</a>
           <a class="secondary" href="/vi/blog">Blog VI</a>
           <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
@@ -268,6 +269,18 @@
       </section>
 
       <section class="grid" aria-label="CMS modules">
+        <a class="card" href="/admin/console.html">
+          <div>
+            <div class="icon">A</div>
+            <h2>Admin Console</h2>
+            <p>
+              Phiên bản mục tiêu cho workflow Draft, Preview, Review, Publish,
+              bảo mật, media, deploy, audit và rollback.
+            </p>
+          </div>
+          <span class="status ready">New</span>
+        </a>
+
         <a class="card" href="/admin/blog.html">
           <div>
             <div class="icon">B</div>
