@@ -585,20 +585,24 @@ export default async function handler(request, response) {
     }
   }
 
-  if (module === 'health') return handleHealth(request, response);
-
   const adminOnlyAction =
     request.method === 'POST' &&
     ((module === 'library' && body.action === 'delete') ||
       (module === 'subscribers' && body.action === 'delete') ||
       (module === 'review' && body.action === 'delete') ||
-      (module === 'audit' && body.action === 'restore-file'));
+      (module === 'audit' && ['restore-file', 'rollback-commit-file'].includes(body.action)));
+  const roles = adminOnlyAction
+    ? ['admin']
+    : request.method === 'GET'
+      ? ['viewer', 'editor', 'publisher', 'admin']
+      : ['editor', 'publisher', 'admin'];
   const admin = requireAdmin(request, response, {
-    roles: adminOnlyAction ? ['admin'] : ['editor', 'publisher', 'admin'],
+    roles,
   });
   if (!admin) return;
 
   try {
+    if (module === 'health') return handleHealth(request, response);
     if (module === 'dashboard') return await handleDashboard(admin, response);
     if (module === 'collections') return await handleCollections(request, response, admin, body);
     if (module === 'library') return await handleLibrary(request, response, admin, body);
