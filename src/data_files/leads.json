@@ -1,6 +1,30 @@
 {
-  "updatedAt": "2026-05-06T13:34:53.140Z",
+  "updatedAt": "2026-05-06T14:22:52.482Z",
   "leads": [
+    {
+      "id": "lead-1778077372272-zbcez3",
+      "createdAt": "2026-05-06T14:22:52.270Z",
+      "updatedAt": "2026-05-06T14:22:52.270Z",
+      "status": "new",
+      "priority": "normal",
+      "source": "contact-form",
+      "locale": "en",
+      "page": "https://www.folksteam.com/contact",
+      "name": "Ruby White",
+      "firstName": "Ruby",
+      "lastName": "White",
+      "email": "ruby@digieexperts.com",
+      "phone": "+1 804 715 1479",
+      "message": "Hi Team folksteam.com,\r\n\r\nI noticed your website has strong potential but is not ranking well on search engines like Google.\r\n\r\nWe specialize in result-driven SEO services that help businesses:\r\n\r\n✔ Increase organic traffic\r\n✔ Improve keyword rankings\r\n✔ Generate quality leads\r\n✔ Beat competitors\r\n\r\nI would love to share a customized SEO strategy for your business.\r\n\r\nPlease let me know a suitable time to discuss further.\r\n\r\nBest Regards,\r\nRuby White",
+      "owner": "",
+      "notes": [],
+      "events": [
+        {
+          "type": "submitted",
+          "createdAt": "2026-05-06T14:22:52.270Z"
+        }
+      ]
+    },
     {
       "id": "lead-1778071075913-up5z9n",
       "createdAt": "2026-05-06T12:37:55.913Z",
