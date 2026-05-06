@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-05-06T13:31:44.367Z",
+  "updatedAt": "2026-05-06T13:32:22.399Z",
   "events": [
+    {
+      "id": "audit-1778074342399-vn2l8b",
+      "createdAt": "2026-05-06T13:32:22.399Z",
+      "type": "collection-update",
+      "actor": "admin",
+      "target": "src/pages/case-studies/dancenter-chess.astro",
+      "commitSha": "c6deb3623c2894d0d58059ac132b50507969e8e9",
+      "commitUrl": "https://github.com/xuanpv89/folksteam.com/commit/c6deb3623c2894d0d58059ac132b50507969e8e9"
+    },
     {
       "id": "audit-1778074304367-2nj6p5",
       "createdAt": "2026-05-06T13:31:44.367Z",
