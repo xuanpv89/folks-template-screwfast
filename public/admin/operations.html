@@ -21,9 +21,13 @@
       .nav, .tabs, .toolbar, .actions, .metrics, .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
       .hero { display: grid; gap: 12px; margin-bottom: 14px; padding: 20px; }
       .hero h2 { max-width: 980px; margin: 0; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.05; }
+      .hero p { max-width: 780px; }
       .surface { padding: 16px; margin-bottom: 14px; }
       .tabs { margin-bottom: 14px; }
+      .tabs .tab { border-color: #d4d4d4 !important; background: #fff !important; color: var(--ink) !important; }
       .tab.active { border-color: #bde8cb !important; background: var(--brand-soft) !important; color: #20472f !important; }
+      .tab-count { display: inline-flex; min-width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 999px; background: #f5f5f5; color: var(--muted); padding: 0 7px; font-size: 12px; font-weight: 900; }
+      .tab.active .tab-count { background: #dff4e7; color: var(--brand-dark); }
       .view { display: none; }
       .view.active { display: block; }
       .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 12px; }
@@ -59,7 +63,21 @@
       .media-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; }
       .media-card code, .path { display: block; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 8px; font-size: 12px; }
       .row-card p, .row-card span, .row-card code { min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
+      button.row-card {
+        width: 100%;
+        justify-content: stretch;
+        border-color: var(--line) !important;
+        background: #fff !important;
+        color: var(--ink) !important;
+        box-shadow: var(--shadow) !important;
+      }
+      button.row-card:hover,
+      button.row-card.active {
+        border-color: #bde8cb !important;
+        background: #fbfffc !important;
+      }
       .lead-message { max-height: 4.8em; overflow: hidden; color: var(--ink); }
+      .section-note { max-width: 720px; margin-top: -4px; color: var(--muted); }
       .status-strip { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-top: 12px; }
       .status-item { border: 1px solid #bde8cb; border-radius: 8px; background: var(--brand-soft); padding: 10px 12px; }
       .status-item span { display: block; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
@@ -67,6 +85,14 @@
       .quick-actions { margin-top: 12px; }
       .split-title { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px; }
       .recommendations { margin-top: 12px; }
+      .attention-grid { display: grid; gap: 10px; margin-top: 12px; }
+      @media (min-width: 920px) { .attention-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      .attention-card { border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 12px; }
+      .attention-card.urgent { border-color: #fecaca; background: #fff7f7; }
+      .attention-card.warn { border-color: #fde68a; background: #fffbeb; }
+      .attention-card strong { display: block; font-size: 22px; }
+      .attention-card span { display: block; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+      .editor-helper { border: 1px solid #fde68a; border-radius: 8px; background: #fffbeb; color: #854d0e; padding: 10px 12px; }
       .hidden { display: none !important; }
       .toast { display: none; position: sticky; bottom: 12px; z-index: 5; margin-top: 12px; padding: 12px; }
       .toast.show { display: block; }
@@ -86,7 +112,7 @@
           <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team CMS</p>
-            <h1>Operations</h1>
+            <h1>Website Operations</h1>
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
@@ -95,33 +121,33 @@
           <a class="secondary" href="/admin/blog.html">Blog</a>
           <a class="secondary" href="/admin/leads.html">Leads</a>
           <a class="secondary" href="/admin/text.html">Text</a>
-          <a class="secondary" href="/">Website</a>
-          <button type="button" class="secondary" data-admin-logout>Log out</button>
+          <a class="secondary" href="/">Xem website</a>
+          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
         </nav>
       </header>
 
       <section class="hero surface">
-        <p class="eyebrow">Website management</p>
-        <h2>Manage health, content, media, subscribers, audit.</h2>
+        <p class="eyebrow">Control room</p>
+        <h2>Quản trị vận hành website trong một màn hình.</h2>
         <p class="muted">
-          Trung tam van hanh gom cac muc can xem hang ngay: lead, cau hinh production, noi dung, media, newsletter va audit.
+          Theo dõi lead mới, kiểm tra cấu hình production, rà soát nội dung, media, newsletter và lịch sử thao tác trước khi xuất bản.
         </p>
         <div class="actions quick-actions">
-          <button type="button" data-view-shortcut="health">Run health check</button>
-          <a class="button secondary" href="/admin/leads.html">Open leads</a>
-          <button class="secondary" type="button" data-view-shortcut="audit">View audit</button>
+          <button type="button" data-view-shortcut="health">Kiểm tra hệ thống</button>
+          <a class="button secondary" href="/admin/leads.html">Mở Lead Inbox</a>
+          <button class="secondary" type="button" data-view-shortcut="audit">Xem audit</button>
         </div>
       </section>
 
       <div class="tabs" role="tablist">
-        <button class="tab active" type="button" data-view-tab="dashboard">Dashboard</button>
-        <button class="tab secondary" type="button" data-view-tab="health">Health</button>
-        <button class="tab secondary" type="button" data-view-tab="collections">Products/Pages</button>
-        <button class="tab secondary" type="button" data-view-tab="media">Media</button>
-        <button class="tab secondary" type="button" data-view-tab="subscribers">Subscribers</button>
-        <button class="tab secondary" type="button" data-view-tab="review">Review</button>
-        <button class="tab secondary" type="button" data-view-tab="audit">Audit</button>
-        <button class="tab secondary" type="button" data-view-tab="seo">SEO</button>
+        <button class="tab active" type="button" data-view-tab="dashboard" data-tab-label="Dashboard">Dashboard</button>
+        <button class="tab secondary" type="button" data-view-tab="health" data-tab-label="Health">Health</button>
+        <button class="tab secondary" type="button" data-view-tab="collections" data-tab-label="Products/Pages">Products/Pages</button>
+        <button class="tab secondary" type="button" data-view-tab="media" data-tab-label="Media">Media</button>
+        <button class="tab secondary" type="button" data-view-tab="subscribers" data-tab-label="Subscribers">Subscribers</button>
+        <button class="tab secondary" type="button" data-view-tab="review" data-tab-label="Review">Review</button>
+        <button class="tab secondary" type="button" data-view-tab="audit" data-tab-label="Audit">Audit</button>
+        <button class="tab secondary" type="button" data-view-tab="seo" data-tab-label="SEO">SEO</button>
       </div>
 
       <section class="view active" id="view-dashboard">
@@ -129,20 +155,22 @@
           <div class="toolbar">
             <div>
               <p class="eyebrow">Overview</p>
-              <h2>Trang tong quan</h2>
+              <h2>Việc cần chú ý hôm nay</h2>
+              <p class="section-note">Các con số này giúp quyết định nên xử lý lead, review, nội dung hay cấu hình trước.</p>
             </div>
-            <button type="button" id="refresh-dashboard">Refresh</button>
+            <button type="button" id="refresh-dashboard">Làm mới</button>
           </div>
           <div class="metrics" id="dashboard-metrics"></div>
           <div class="status-strip" id="dashboard-status"></div>
+          <div class="attention-grid" id="action-queue"></div>
         </div>
         <div class="grid two">
           <div class="surface">
-            <h3>Lead moi gan day</h3>
+            <h3>Lead mới gần đây</h3>
             <div class="list" id="recent-leads"></div>
           </div>
           <div class="surface">
-            <h3>Lich su thao tac gan day</h3>
+            <h3>Lịch sử thao tác gần đây</h3>
             <div class="list" id="recent-events"></div>
           </div>
         </div>
@@ -153,14 +181,15 @@
           <div class="toolbar">
             <div>
               <p class="eyebrow">Health check</p>
-              <h2>Kiem tra cau hinh production</h2>
+              <h2>Kiểm tra cấu hình production</h2>
+              <p class="section-note">Xác nhận các kết nối quan trọng trước khi publish: GitHub, Vercel, email và biến môi trường.</p>
             </div>
-            <button type="button" id="refresh-health">Run checks</button>
+            <button type="button" id="refresh-health">Chạy kiểm tra</button>
           </div>
           <div class="grid three" id="health-checks"></div>
           <div class="recommendations list" id="health-recommendations"></div>
           <div class="surface" style="margin-top: 12px;">
-            <h3>Bien moi truong</h3>
+            <h3>Biến môi trường</h3>
             <div class="list" id="health-env"></div>
           </div>
         </div>
@@ -171,14 +200,15 @@
           <div class="surface">
             <div class="toolbar">
               <div>
-                <p class="eyebrow">Collections</p>
-                <h2>Quan ly Products, Insights, Docs, Projects, Case Studies</h2>
+                <p class="eyebrow">Content library</p>
+                <h2>Kho nội dung sản phẩm, insight, docs và trang tĩnh</h2>
+                <p class="section-note">Dùng cho chỉnh nhanh file nội dung. Với thay đổi lớn, nên đưa vào Review trước khi publish.</p>
               </div>
-              <button type="button" id="reload-collection">Reload</button>
+              <button type="button" id="reload-collection">Tải lại</button>
             </div>
             <div class="filters">
               <label>
-                Nhom noi dung
+                Nhóm nội dung
                 <select id="collection-select">
                   <option value="products">Products</option>
                   <option value="insights">Insights</option>
@@ -189,8 +219,8 @@
                 </select>
               </label>
               <label>
-                Tim file
-                <input id="collection-search" placeholder="Nhap ten file..." />
+                Tìm file
+                <input id="collection-search" placeholder="Nhập tên file, ngôn ngữ hoặc path..." />
               </label>
             </div>
             <div class="list" id="collection-list"></div>
@@ -198,12 +228,12 @@
           <div class="editor">
             <div class="toolbar">
               <div>
-                <p class="eyebrow">Editor</p>
-                <h2 id="collection-editor-title">Chon file de sua</h2>
+                <p class="eyebrow">Safe editor</p>
+                <h2 id="collection-editor-title">Chọn file để sửa</h2>
               </div>
               <div class="actions">
-                <button type="button" class="secondary" id="new-collection-file">New</button>
-                <button type="button" id="save-collection-file" disabled>Save</button>
+                <button type="button" class="secondary" id="new-collection-file">Tạo file</button>
+                <button type="button" id="save-collection-file" disabled>Lưu file</button>
               </div>
             </div>
             <label>
@@ -211,7 +241,7 @@
               <input id="collection-target" placeholder="src/content/products/en/new-item.md" />
             </label>
             <textarea id="collection-content" placeholder="---&#10;title: New item&#10;description: Short description&#10;---&#10;&#10;Body..."></textarea>
-            <p class="muted">Tip: voi Products/Insights nen giu dung schema frontmatter hien tai de build khong loi.</p>
+            <p class="editor-helper">Giữ đúng frontmatter hiện có để tránh lỗi build. Nếu chưa chắc, tạo review item trước khi sửa file production.</p>
           </div>
         </div>
       </section>
@@ -426,6 +456,10 @@
           },
         });
         const data = await response.json().catch(() => ({}));
+        if (response.status === 401) {
+          window.location.assign('/admin/login.html');
+          throw new Error('Session expired. Redirecting to login.');
+        }
         if (!response.ok || data.ok === false) {
           throw new Error(data.message || `Request failed: ${response.status}`);
         }
@@ -435,6 +469,7 @@
       function setView(view) {
         $$('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.viewTab === view));
         $$('.view').forEach(panel => panel.classList.toggle('active', panel.id === `view-${view}`));
+        if (location.hash !== `#${view}`) history.replaceState(null, '', `#${view}`);
         if (view === 'dashboard' && !state.dashboard) loadDashboard();
         if (view === 'health' && !state.health) loadHealth();
         if (view === 'collections' && !state.collectionItems.length) loadCollection();
@@ -459,6 +494,22 @@
           .join('');
       }
 
+      function setTabCount(view, count) {
+        const tab = $(`[data-view-tab="${view}"]`);
+        if (!tab) return;
+        const label = tab.dataset.tabLabel || view;
+        tab.innerHTML = `${escapeHtml(label)}${Number.isFinite(count) && count > 0 ? ` <span class="tab-count">${count}</span>` : ''}`;
+      }
+
+      function updateTabCounts(data = {}) {
+        const metrics = data.metrics || {};
+        setTabCount('dashboard', metrics.newLeads || 0);
+        setTabCount('media', metrics.mediaItems || 0);
+        setTabCount('subscribers', metrics.subscribers || 0);
+        setTabCount('review', metrics.pendingReviews || 0);
+        setTabCount('audit', metrics.auditEvents || 0);
+      }
+
       function renderDashboardStatus(data = {}) {
         const contentCounts = data.contentCounts || {};
         $('#dashboard-status').innerHTML = `
@@ -467,6 +518,48 @@
           <div class="status-item"><span>Last refresh</span><strong>${escapeHtml(compactDate(data.updatedAt))}</strong></div>
           <div class="status-item"><span>Docs / Admin pages</span><strong>${contentCounts.docs ?? 0} / ${contentCounts.adminPages ?? 0}</strong></div>
         `;
+      }
+
+      function renderActionQueue(data = {}) {
+        const metrics = data.metrics || {};
+        const items = [
+          {
+            label: 'New leads',
+            value: metrics.newLeads || 0,
+            className: metrics.newLeads ? 'urgent' : '',
+            note: metrics.staleNewLeads ? `${metrics.staleNewLeads} older than 24h` : 'No stale lead',
+            action: '<a class="button secondary" href="/admin/leads.html">Open</a>',
+          },
+          {
+            label: 'Review pending',
+            value: metrics.pendingReviews || 0,
+            className: metrics.pendingReviews ? 'warn' : '',
+            note: compactDate(data.latest?.reviewAt),
+            action: '<button class="secondary" type="button" data-view-shortcut="review">Open</button>',
+          },
+          {
+            label: 'Subscribers',
+            value: metrics.subscribers || 0,
+            className: metrics.subscribers ? '' : 'warn',
+            note: metrics.subscribers ? 'Newsletter list active' : 'No subscriber yet',
+            action: '<button class="secondary" type="button" data-view-shortcut="subscribers">Open</button>',
+          },
+          {
+            label: 'Audit events',
+            value: metrics.auditEvents || 0,
+            className: metrics.auditEvents ? '' : 'warn',
+            note: metrics.auditEvents ? compactDate(data.latest?.auditAt) : 'No operation trail yet',
+            action: '<button class="secondary" type="button" data-view-shortcut="audit">Open</button>',
+          },
+        ];
+        $('#action-queue').innerHTML = items.map(item => `
+          <div class="attention-card ${item.className}">
+            <span>${escapeHtml(item.label)}</span>
+            <strong>${escapeHtml(item.value)}</strong>
+            <p class="muted">${escapeHtml(item.note)}</p>
+            <div class="actions">${item.action}</div>
+          </div>
+        `).join('');
       }
 
       function renderLeads(leads = []) {
@@ -508,6 +601,8 @@
         state.dashboard = data;
         renderMetrics(data.metrics);
         renderDashboardStatus(data);
+        renderActionQueue(data);
+        updateTabCounts(data);
         renderLeads(data.recentLeads);
         renderEvents(data.recentEvents);
       }
@@ -811,7 +906,8 @@
       $('#reload-review').addEventListener('click', () => loadReview().catch(error => toast(error.message, true)));
       $('#review-form').addEventListener('submit', event => saveReview(event).catch(error => toast(error.message, true)));
 
-      loadDashboard().catch(error => toast(error.message, true));
+      const initialView = location.hash ? location.hash.slice(1) : 'dashboard';
+      setView($(`[data-view-tab="${initialView}"]`) ? initialView : 'dashboard');
     </script>
   </body>
 </html>

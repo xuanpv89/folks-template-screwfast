@@ -127,6 +127,10 @@ async function handleDashboard(admin, response) {
       leads: leads.length,
       newLeads: leads.filter(lead => (lead.status || 'new') === 'new').length,
       workingLeads: leads.filter(lead => lead.status === 'working').length,
+      staleNewLeads: leads.filter(lead => {
+        if ((lead.status || 'new') !== 'new' || !lead.createdAt) return false;
+        return Date.now() - new Date(lead.createdAt).getTime() > 24 * 60 * 60 * 1000;
+      }).length,
       subscribers: subscribers.length,
       auditEvents: events.length,
       reviewItems: reviewItems.length,
@@ -142,6 +146,23 @@ async function handleDashboard(admin, response) {
       .sort((left, right) => String(right.createdAt || '').localeCompare(String(left.createdAt || '')))
       .slice(0, 8),
     recentEvents: events.slice(0, 10),
+    latest: {
+      leadAt: leads
+        .map(lead => lead.createdAt)
+        .filter(Boolean)
+        .sort()
+        .at(-1) || null,
+      auditAt: events
+        .map(event => event.createdAt)
+        .filter(Boolean)
+        .sort()
+        .at(-1) || null,
+      reviewAt: reviewItems
+        .map(item => item.updatedAt || item.createdAt)
+        .filter(Boolean)
+        .sort()
+        .at(-1) || null,
+    },
     updatedAt: new Date().toISOString(),
   });
 }
