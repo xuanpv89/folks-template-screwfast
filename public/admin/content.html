@@ -111,12 +111,18 @@
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        color: var(--brand-dark);
+        width: 100%;
+        border: 0;
+        background: transparent !important;
+        padding: 0 !important;
+        color: var(--brand-dark) !important;
+        box-shadow: none !important;
         font-size: 12px;
         font-weight: 950;
         letter-spacing: .05em;
         text-transform: uppercase;
       }
+      .page-group.collapsed .item { display: none; }
       .page-group-title small {
         color: var(--muted);
         font-size: 11px;
@@ -396,6 +402,8 @@
       let pageIndex = 0;
       let selectedField = null;
       let pageFilterMode = 'all';
+      const collapsedGroups = new Set();
+      let pageGroupsInitialized = false;
       let hasUnsavedChanges = false;
 
       const pageList = document.getElementById('page-list');
@@ -429,6 +437,14 @@
 
       function normalizeText(value) {
         return String(value || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function normalizeSearch(value) {
+        return normalizeText(value).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function liveUrl(path = '/') {
+        return new URL(path || '/', window.location.origin).href;
       }
 
       function showToast(message, type = 'success') {
@@ -499,6 +515,10 @@
         return changes.slice(0, limit);
       }
 
+      function changedPageCount(changes = collectChanges()) {
+        return new Set(changes.map(change => change.pagePath)).size;
+      }
+
       function showDeployBanner(message, type = 'info', link = null) {
         deployBanner.className = `deploy-banner show ${type === 'warning' ? 'warning' : type === 'error' ? 'error' : ''}`;
         deployBannerText.textContent = message;
@@ -523,7 +543,7 @@
       function deployStatusLinks(result, deployment) {
         const page = currentPage();
         return [
-          page?.path ? { label: 'Mở trang live', url: page.path } : null,
+          page?.path ? { label: 'Mở trang live', url: liveUrl(page.path) } : null,
           deployment?.url ? { label: 'Mở bản website vừa cập nhật', url: deployment.url } : null,
           { label: 'Xem lịch sử cập nhật', url: result.commitUrl },
         ].filter(Boolean);
@@ -544,10 +564,23 @@
         }
       }
 
-      async function waitForDeployStatus(result, branch) {
-        if (!result.commitSha) return;
+      async function waitForLiveContent(expectedUpdatedAt, links = []) {
+        if (!expectedUpdatedAt) return false;
+        for (let attempt = 0; attempt < 60; attempt += 1) {
+          await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 2000 : 5000));
+          updatePublishStatus(`Đã lưu nội dung. Đang kiểm tra website live... (${attempt + 1}/60)`, links);
+          if (await verifyLiveContent(expectedUpdatedAt)) {
+            updatePublishStatus('Website live đã nhận đúng nội dung mới.', links, 'success');
+            return true;
+          }
+        }
+        updatePublishStatus('Đã lưu nội dung, nhưng sau 5 phút CMS vẫn chưa thấy bản live khớp. Hãy mở trang live hoặc xem lịch sử deploy.', links, 'warning');
+        return false;
+      }
 
+      async function waitForDeployStatus(result, branch) {
         const links = deployStatusLinks(result);
+        if (!result.commitSha) return waitForLiveContent(result.updatedAt, links);
         updatePublishStatus('Đã gửi nội dung. Đang chờ website cập nhật bản mới...', links);
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
@@ -557,33 +590,16 @@
             credentials: 'same-origin',
           });
           const status = await response.json().catch(() => null);
-          if (!response.ok) {
-            updatePublishStatus(`Đã lưu nội dung, nhưng chưa kiểm tra được website live. Bạn có thể mở trang để kiểm tra lại sau ít phút.`, links, 'warning');
-            return status;
-          }
+          if (!response.ok) return waitForLiveContent(result.updatedAt, links);
 
           const nextLinks = deployStatusLinks(result, status.deployment);
           if (status.status === 'READY') {
-            const isLive = await verifyLiveContent(result.updatedAt);
-            updatePublishStatus(
-              isLive
-                ? 'Website đã nhận nội dung mới và đang hiển thị bản vừa đăng.'
-                : 'Website đã cập nhật xong, nhưng nội dung live chưa khớp bản vừa đăng. Hãy mở trang live để kiểm tra lại.',
-              nextLinks,
-              isLive ? 'success' : 'warning'
-            );
+            await waitForLiveContent(result.updatedAt, nextLinks);
             return status;
           }
 
           if (status.status === 'unconfigured') {
-            const isLive = await verifyLiveContent(result.updatedAt);
-            updatePublishStatus(
-              isLive
-                ? 'Website đã nhận nội dung mới và đang hiển thị bản vừa đăng.'
-                : status.message || 'Đã lưu nội dung mới. Website thường sẽ tự cập nhật trong ít phút.',
-              nextLinks,
-              isLive ? 'success' : 'warning'
-            );
+            await waitForLiveContent(result.updatedAt, nextLinks);
             return status;
           }
 
@@ -594,7 +610,7 @@
           }
         }
 
-        updatePublishStatus('Website vẫn đang cập nhật. Hãy mở trang live để kiểm tra lại sau ít phút.', links, 'warning');
+        await waitForLiveContent(result.updatedAt, links);
       }
 
       async function loadPublishedContent() {
@@ -891,13 +907,13 @@
       }
 
       function renderPages() {
-        const query = pageSearch.value.trim().toLowerCase();
+        const query = normalizeSearch(pageSearch.value);
         const allPages = state.pages || [];
         renderPageFilters(allPages);
         const visiblePages = sortPages(allPages
           .map((page, index) => ({ page, index }))
-          .filter(({ page }) => pageFilterMode === 'all' || pageLanguage(page) === pageFilterMode || pageGroupLabel(page) === pageFilterMode)
-          .filter(({ page }) => !query || `${page.title} ${page.path} ${languageLabel(pageLanguage(page))} ${pageGroupLabel(page)}`.toLowerCase().includes(query)));
+          .filter(({ page }) => query || pageFilterMode === 'all' || pageLanguage(page) === pageFilterMode || pageGroupLabel(page) === pageFilterMode)
+          .filter(({ page }) => !query || normalizeSearch(`${page.title} ${page.path} ${languageLabel(pageLanguage(page))} ${pageGroupLabel(page)}`).includes(query)));
 
         const languageCounts = allPages.reduce((counts, page) => {
           const language = pageLanguage(page);
@@ -925,10 +941,26 @@
           groups.get(key).items.push(item);
         });
 
+        if (!pageGroupsInitialized && !query) {
+          const page = currentPage() || {};
+          const activeGroupKey = `${pageLanguage(page)}-${pageGroupLabel(page)}`;
+          groups.forEach((group, key) => {
+            if (key !== activeGroupKey) collapsedGroups.add(group.title);
+          });
+          pageGroupsInitialized = true;
+        }
+
         groups.forEach(group => {
           const groupElement = document.createElement('div');
-          groupElement.className = 'page-group';
-          groupElement.innerHTML = `<div class="page-group-title"><span>${escapeHtml(group.title)}</span><small>${group.items.length} trang</small></div>`;
+          const groupKey = group.title;
+          const isCollapsed = !query && collapsedGroups.has(groupKey);
+          groupElement.className = `page-group ${isCollapsed ? 'collapsed' : ''}`;
+          groupElement.innerHTML = `<button type="button" class="page-group-title"><span>${escapeHtml(group.title)}</span><small>${isCollapsed ? 'Mở' : 'Thu gọn'} · ${group.items.length} trang</small></button>`;
+          groupElement.querySelector('.page-group-title').addEventListener('click', () => {
+            if (collapsedGroups.has(groupKey)) collapsedGroups.delete(groupKey);
+            else collapsedGroups.add(groupKey);
+            renderPages();
+          });
 
           group.items.forEach(({ page, index }) => {
           const button = document.createElement('button');
@@ -1227,7 +1259,12 @@
       }
 
       function originalValueForField(page, section, field) {
-        return serverFieldMap().get(fieldIdentity(page, section, field))?.field?.value;
+        const direct = serverFieldMap().get(fieldIdentity(page, section, field))?.field?.value;
+        if (direct !== undefined) return direct;
+        const serverPage = (serverContent?.pages || []).find(candidate => candidate.path === page?.path);
+        const sameKey = allFields(serverPage).find(candidate => candidate.field.key === field?.key)?.field?.value;
+        if (sameKey !== undefined) return sameKey;
+        return allFields(serverPage).find(candidate => normalizeText(candidate.field.match || candidate.field.original || '') === normalizeText(field?.match || field?.original || ''))?.field?.value;
       }
 
       function updateChangeStatus() {
@@ -1296,14 +1333,14 @@
       }
 
       function showPublishDialog(summary) {
-        publishDialogIntro.textContent = `Bạn sắp đăng ${summary.pageCount} trang lên website. Trang đang kiểm tra: ${summary.currentTitle} ${summary.currentPath ? `(${summary.currentPath})` : ''}.`;
+        const pageChanges = changedPageCount(summary.changes);
+        publishDialogIntro.textContent = summary.changes.length
+          ? `Bạn sắp đăng ${summary.changes.length} thay đổi trên ${pageChanges} trang. Hãy kiểm tra trước/sau bên dưới.`
+          : 'Không có thay đổi nội dung so với bản online.';
         publishDialogSummary.innerHTML = [
-          ['Tổng số trang', `${summary.pageCount} trang`],
-          ['Ngôn ngữ', summary.languageSummary || 'Chưa có dữ liệu'],
-          ['Nội dung chữ', `${summary.textCount} mục`],
-          ['Link', `${summary.linkCount} link`],
-          ['Thay đổi sẽ đăng', `${summary.changes.length} mục`],
-          ['Ảnh và mô tả ảnh', `${summary.imageCount} mục`],
+          ['Trang đang kiểm tra', `${summary.currentTitle} ${summary.currentPath ? `(${summary.currentPath})` : ''}`],
+          ['Trang có thay đổi', `${pageChanges} trang`],
+          ['Mục sẽ đăng', `${summary.changes.length} mục`],
         ]
           .map(([label, value]) => `<div class="summary-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`)
           .join('');
@@ -1371,6 +1408,10 @@
             }),
           });
           const result = await response.json().catch(() => null);
+          if (response.status === 401) {
+            updatePublishStatus('Phiên đăng nhập admin đã hết hạn. Hãy đăng nhập lại rồi đăng tiếp.', [{ label: 'Đăng nhập lại', url: '/admin/login.html' }], 'error');
+            return;
+          }
           if (!response.ok) throw new Error(result?.message || `Đăng lỗi ${response.status}`);
 
           localStorage.removeItem(draftKey);
@@ -1379,7 +1420,7 @@
           baseSha = result.sha || baseSha;
           hasUnsavedChanges = false;
           updatePublishStatus('Đã lưu nội dung mới. Website đang cập nhật...', [
-            { label: 'Mở trang live', url: currentPage()?.path },
+            { label: 'Mở trang live', url: liveUrl(currentPage()?.path) },
             { label: 'Xem lịch sử cập nhật', url: result.commitUrl },
           ]);
           result.updatedAt = nextContent.updatedAt;
@@ -1411,8 +1452,7 @@
 
           if (
             !state.pages?.length ||
-            !state.pages.some(page => allFields(page).some(({ field }) => field.match)) ||
-            missingKnownPaths().length
+            !state.pages.some(page => allFields(page).some(({ field }) => field.match))
           ) {
             await scanSite();
             return;
@@ -1448,7 +1488,7 @@
       document.getElementById('publish-github').addEventListener('click', publishContent);
       document.getElementById('open-page').addEventListener('click', () => {
         const page = currentPage();
-        if (page) window.open(page.path, '_blank', 'noreferrer');
+        if (page) window.open(liveUrl(page.path), '_blank');
       });
 
       initialize();
