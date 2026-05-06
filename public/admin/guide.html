@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Hướng dẫn sử dụng | Folks Team CMS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <meta name="theme-color" content="#4fb16f" />
+    <style>
+      .shell {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px 18px 56px;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+        padding: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .guide-hero,
+      .guide-section,
+      .guide-card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .guide-hero {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .guide-hero p {
+        max-width: 820px;
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .guide-layout {
+        display: grid;
+        gap: 16px;
+      }
+
+      @media (min-width: 980px) {
+        .guide-layout {
+          grid-template-columns: 280px minmax(0, 1fr);
+          align-items: start;
+        }
+
+        .guide-toc {
+          position: sticky;
+          top: 18px;
+        }
+      }
+
+      .guide-toc {
+        display: grid;
+        gap: 8px;
+      }
+
+      .guide-toc a {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 10px 12px;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .guide-content {
+        display: grid;
+        gap: 16px;
+      }
+
+      .guide-section h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .guide-section h3 {
+        margin: 18px 0 8px;
+        font-size: 17px;
+      }
+
+      .guide-section p,
+      .guide-section li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .guide-section ol,
+      .guide-section ul {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .quick-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      @media (min-width: 760px) {
+        .quick-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .guide-card {
+        display: grid;
+        gap: 8px;
+      }
+
+      .guide-card strong {
+        font-size: 16px;
+      }
+
+      .guide-card p {
+        margin: 0;
+      }
+
+      .callout {
+        border: 1px solid #bde8cb;
+        border-radius: 8px;
+        background: var(--brand-soft);
+        padding: 14px;
+        color: #244f34;
+        font-weight: 700;
+      }
+
+      code {
+        border-radius: 6px;
+        background: #f5f5f5;
+        padding: 2px 5px;
+        color: var(--ink);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.92em;
+      }
+    </style>
+    <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
+          <div>
+            <p class="eyebrow">Folks Team CMS</p>
+            <h1>Hướng dẫn</h1>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Admin links">
+          <a href="/admin/">Admin Hub</a>
+          <a class="secondary" href="/admin/blog.html">Blog Manager</a>
+          <a class="secondary" href="/admin/content.html">Content CMS</a>
+          <a class="secondary" href="/admin/text.html">Text Manager</a>
+          <a class="secondary" href="/">Home</a>
+          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+        </nav>
+      </header>
+
+      <section class="guide-hero">
+        <p class="eyebrow">Tài liệu sơ bộ</p>
+        <h2>Quy trình quản trị nội dung website Folks Team</h2>
+        <p>
+          Trang này tóm tắt các thao tác thường dùng trong khu vực admin: đăng nhập,
+          sửa nội dung trang, tạo bài blog, lưu nháp, đăng nội dung và kiểm tra website
+          sau khi cập nhật.
+        </p>
+      </section>
+
+      <section class="guide-layout">
+        <aside class="guide-toc" aria-label="Mục lục hướng dẫn">
+          <a href="#tong-quan">1. Tổng quan</a>
+          <a href="#dang-nhap">2. Đăng nhập</a>
+          <a href="#content-cms">3. Sửa nội dung trang</a>
+          <a href="#blog-manager">4. Quản lý blog</a>
+          <a href="#text-manager">5. Text Manager</a>
+          <a href="#publish">6. Đăng lên website</a>
+          <a href="#luu-y">7. Lưu ý vận hành</a>
+        </aside>
+
+        <div class="guide-content">
+          <section class="guide-section" id="tong-quan">
+            <h2>1. Tổng quan</h2>
+            <p>
+              Từ <code>/admin/</code>, chọn module phù hợp với việc cần làm. Mỗi module
+              có nút quay lại Admin Hub, nút xem website và nút đăng xuất.
+            </p>
+            <div class="quick-grid">
+              <article class="guide-card">
+                <strong>Blog Manager</strong>
+                <p>Tạo bài viết mới, lưu nháp, xem trước và đăng bài blog lên website.</p>
+              </article>
+              <article class="guide-card">
+                <strong>Content CMS</strong>
+                <p>Mở preview thật của website, click vào phần chữ hoặc ảnh cần sửa rồi đăng.</p>
+              </article>
+              <article class="guide-card">
+                <strong>Text Manager</strong>
+                <p>Sửa nội dung theo danh sách trang, phù hợp khi cần rà nhiều dòng chữ.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="guide-section" id="dang-nhap">
+            <h2>2. Đăng nhập</h2>
+            <ol>
+              <li>Mở <code>/admin/</code>. Nếu chưa đăng nhập, hệ thống sẽ chuyển tới trang login.</li>
+              <li>Nhập tên đăng nhập và mật khẩu được cấp cho người quản trị.</li>
+              <li>Sau khi đăng nhập thành công, chọn module cần sử dụng từ Admin Hub.</li>
+            </ol>
+            <p class="callout">Nếu quên mật khẩu, không thử nhiều lần liên tục. Hãy liên hệ người quản trị kỹ thuật để cấp lại.</p>
+          </section>
+
+          <section class="guide-section" id="content-cms">
+            <h2>3. Sửa nội dung trang bằng Content CMS</h2>
+            <ol>
+              <li>Vào <code>/admin/content.html</code>.</li>
+              <li>Chọn trang ở cột bên trái hoặc dùng ô tìm kiếm để lọc nhanh.</li>
+              <li>Trong khung preview, click trực tiếp vào phần nội dung có viền xanh.</li>
+              <li>Sửa chữ, đường dẫn ảnh hoặc mô tả ảnh ở khung bên phải.</li>
+              <li>Bấm <strong>Cập nhật preview</strong> để kiểm tra nội dung mới ngay trên màn hình.</li>
+              <li>Khi đã chắc chắn, bấm <strong>Đăng lên website</strong>.</li>
+            </ol>
+            <h3>Khi nào nên dùng Content CMS?</h3>
+            <p>Dùng khi cần sửa nội dung đang hiển thị trên các trang như Home, About, Services, Contact, Projects hoặc các trang tiếng Việt.</p>
+          </section>
+
+          <section class="guide-section" id="blog-manager">
+            <h2>4. Quản lý blog bằng Blog Manager</h2>
+            <ol>
+              <li>Vào <code>/admin/blog.html</code>.</li>
+              <li>Chọn ngôn ngữ bài viết: English hoặc Tiếng Việt.</li>
+              <li>Nhập tiêu đề, mô tả ngắn, slug và nội dung chính.</li>
+              <li>Thêm ảnh, trích dẫn, danh sách hoặc CTA nếu bài cần cấu trúc phong phú.</li>
+              <li>Xem khung preview để kiểm tra tiêu đề, mô tả, ảnh và nội dung.</li>
+              <li>Bấm <strong>Lưu nháp</strong> nếu chưa muốn đăng ngay.</li>
+              <li>Khi bảng kiểm đã đủ, bấm <strong>Đăng bài lên website</strong>.</li>
+            </ol>
+            <p class="callout">Slug nên dùng chữ thường, số và dấu gạch ngang. Không đổi slug sau khi bài đã được chia sẻ nếu không thật cần thiết.</p>
+          </section>
+
+          <section class="guide-section" id="text-manager">
+            <h2>5. Sử dụng Text Manager</h2>
+            <ol>
+              <li>Vào <code>/admin/text.html</code>.</li>
+              <li>Chọn trang và mục nội dung cần sửa trong danh sách.</li>
+              <li>Sửa các trường chữ trong form, sau đó xem phần preview dữ liệu.</li>
+              <li>Có thể lưu trên máy này nếu cần tạm dừng trước khi đăng.</li>
+              <li>Bấm <strong>Đăng nội dung</strong> khi muốn đưa toàn bộ thay đổi lên website.</li>
+            </ol>
+            <h3>Khi nào nên dùng Text Manager?</h3>
+            <p>Dùng khi muốn rà soát nội dung dạng danh sách, xuất JSON hoặc sửa nhiều mục liên tiếp mà không cần preview trực quan.</p>
+          </section>
+
+          <section class="guide-section" id="publish">
+            <h2>6. Đăng lên website</h2>
+            <ol>
+              <li>Trước khi đăng, đọc lại nội dung trong preview và kiểm tra đúng ngôn ngữ/trang.</li>
+              <li>Bấm nút đăng trong module đang dùng.</li>
+              <li>Xác nhận trong hộp thoại nếu hệ thống yêu cầu.</li>
+              <li>Giữ tab admin mở cho tới khi có thông báo website đã cập nhật hoặc hệ thống báo đang chờ.</li>
+              <li>Mở link trang live để kiểm tra lại nội dung sau vài phút.</li>
+            </ol>
+            <p>
+              Khi đăng, CMS lưu thay đổi vào GitHub và website sẽ tự deploy lại qua Vercel.
+              Nếu trạng thái deploy chưa kiểm tra được, nội dung vẫn có thể đã được lưu; hãy mở trang live để xác nhận sau ít phút.
+            </p>
+          </section>
+
+          <section class="guide-section" id="luu-y">
+            <h2>7. Lưu ý vận hành</h2>
+            <ul>
+              <li>Luôn lưu nháp khi bài hoặc nội dung chưa sẵn sàng công khai.</li>
+              <li>Không dán nội dung từ Word/Google Docs quá dài mà chưa đọc lại định dạng.</li>
+              <li>Ảnh nên có mô tả alt rõ ràng để tốt cho SEO và khả năng truy cập.</li>
+              <li>Nếu gặp lỗi xung đột dữ liệu, tải lại nội dung online rồi kiểm tra lại thay đổi trước khi đăng lần nữa.</li>
+              <li>Sau khi đăng, kiểm tra phiên bản desktop và mobile của trang quan trọng.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/admin/admin-session.js"></script>
+  </body>
+</html>

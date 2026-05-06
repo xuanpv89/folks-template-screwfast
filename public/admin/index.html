@@ -228,6 +228,12 @@
         font-size: 13px;
       }
     </style>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
+    <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <meta name="theme-color" content="#4fb16f" />
+    <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
   <body>
     <main class="shell">
@@ -243,6 +249,7 @@
           <a href="/">Home</a>
           <a class="secondary" href="/blog">Blog EN</a>
           <a class="secondary" href="/vi/blog">Blog VI</a>
+          <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
           <button type="button" class="button secondary" data-admin-logout>Log out</button>
         </nav>
       </header>
@@ -297,17 +304,17 @@
           <span class="status ready">Ready</span>
         </a>
 
-        <article class="card disabled">
+        <a class="card" href="/admin/guide.html">
           <div>
-            <div class="icon">+</div>
-            <h2>Coming next</h2>
+            <div class="icon">?</div>
+            <h2>Hướng dẫn</h2>
             <p>
-              Chỗ trống cho các module tiếp theo: media library, case studies,
-              newsletter list, member content hoặc SEO checklist.
+              Xem quy trình sử dụng sơ bộ cho admin: đăng nhập, sửa nội dung,
+              quản lý blog, lưu nháp và đăng lên website.
             </p>
           </div>
-          <span class="status">Planned</span>
-        </article>
+          <span class="status ready">Ready</span>
+        </a>
       </section>
 
       <p class="footer-note">
