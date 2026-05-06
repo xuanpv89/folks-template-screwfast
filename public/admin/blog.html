@@ -1264,6 +1264,7 @@
       const blockList = document.getElementById('block-list');
       const articlePreview = document.getElementById('article-preview');
       const publishStatus = document.getElementById('publish-status');
+      const publishButton = document.getElementById('publish-github');
       const githubRepo = document.getElementById('githubRepo');
       const githubBranch = document.getElementById('githubBranch');
       const allowUpdate = document.getElementById('allowUpdate');
@@ -1273,6 +1274,16 @@
       const editorialCalendar = document.getElementById('editorial-calendar');
       let autosaveTimer;
       let lastAutosaveAt = null;
+      let publishCheckTimer;
+      let publishCheckRequest = 0;
+      let publishedPostState = {
+        target: '',
+        exists: false,
+        markdown: '',
+        fileUrl: null,
+        checking: false,
+        error: '',
+      };
 
       const fields = [
         'locale',
@@ -1843,6 +1854,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         updateMediaPreviews();
         updateEditorialCalendar();
         updateReadiness(result);
+        updatePublishButtonState(result);
         return result;
       }
 
@@ -1915,6 +1927,101 @@ ${bodyMarkdown || contents.join('\n\n')}
             )
             .join('')}
         `;
+      }
+
+      function normalizeMarkdown(value) {
+        return String(value || '').replace(/\r\n/g, '\n').trim();
+      }
+
+      function currentPublishDiff(result = buildMarkdown()) {
+        const sameTarget = publishedPostState.target === result.target;
+        const exists = sameTarget && publishedPostState.exists;
+        const unchanged = exists && normalizeMarkdown(publishedPostState.markdown) === normalizeMarkdown(result.markdown);
+        return { exists, unchanged, sameTarget };
+      }
+
+      function updatePublishButtonState(result = buildMarkdown()) {
+        const diff = currentPublishDiff(result);
+        const mustEnableUpdate = diff.exists && !allowUpdate.checked;
+        publishButton.disabled = publishedPostState.checking || diff.unchanged || mustEnableUpdate;
+      }
+
+      function updateBlogChangeStatus(result = buildMarkdown()) {
+        const diff = currentPublishDiff(result);
+        updatePublishButtonState(result);
+
+        if (publishedPostState.checking) {
+          updatePublishStatus('Đang kiểm tra bài hiện có trên GitHub...');
+          return;
+        }
+        if (publishedPostState.error) {
+          updatePublishStatus(`Chưa kiểm tra được bài hiện có: ${publishedPostState.error}`);
+          return;
+        }
+        if (diff.unchanged) {
+          updatePublishStatus('Bài hiện giống bản trên GitHub. Chưa có thay đổi nào để đăng.', [
+            { label: 'Mở file bài viết', url: publishedPostState.fileUrl },
+          ]);
+          return;
+        }
+        if (diff.exists && !allowUpdate.checked) {
+          updatePublishStatus('Đường dẫn này đã có bài. Bật “Cập nhật bài cũ” nếu muốn đăng bản sửa.', [
+            { label: 'Mở file bài viết', url: publishedPostState.fileUrl },
+          ]);
+          return;
+        }
+        updatePublishStatus(diff.exists ? 'Bài đã có thay đổi so với bản trên GitHub. Có thể kiểm tra rồi đăng.' : 'Đường dẫn này chưa có bài trên GitHub. Có thể tạo bài mới.');
+      }
+
+      async function checkPublishedPost() {
+        const result = buildMarkdown();
+        if (!result.slug) return;
+        const requestId = publishCheckRequest + 1;
+        publishCheckRequest = requestId;
+        publishedPostState = {
+          ...publishedPostState,
+          target: result.target,
+          checking: true,
+          error: '',
+        };
+        updateBlogChangeStatus(result);
+
+        try {
+          const params = new URLSearchParams({
+            locale: getValue('locale'),
+            slug: result.slug,
+          });
+          const response = await fetch(`/api/admin-blog?${params.toString()}`, {
+            credentials: 'same-origin',
+          });
+          const data = await response.json().catch(() => null);
+          if (requestId !== publishCheckRequest) return;
+          if (!response.ok || data?.ok === false) {
+            throw new Error(data?.message || `Admin API error ${response.status}`);
+          }
+          publishedPostState = {
+            target: data.target || result.target,
+            exists: Boolean(data.exists),
+            markdown: data.markdown || '',
+            fileUrl: data.fileUrl || null,
+            checking: false,
+            error: '',
+          };
+        } catch (error) {
+          if (requestId !== publishCheckRequest) return;
+          publishedPostState = {
+            ...publishedPostState,
+            target: result.target,
+            checking: false,
+            error: error.message,
+          };
+        }
+        updateBlogChangeStatus(buildMarkdown());
+      }
+
+      function schedulePublishedPostCheck() {
+        window.clearTimeout(publishCheckTimer);
+        publishCheckTimer = window.setTimeout(checkPublishedPost, 600);
       }
 
       function deployStatusLinks(response, publicUrl) {
@@ -2079,10 +2186,24 @@ ${bodyMarkdown || contents.join('\n\n')}
         }
         clearFieldErrors();
 
+        if (action === 'publish') {
+          const diff = currentPublishDiff(result);
+          if (diff.unchanged) {
+            updateBlogChangeStatus(result);
+            showToast('Chưa có thay đổi nào để đăng.', 'error');
+            return;
+          }
+          if (diff.exists && !allowUpdate.checked) {
+            updateBlogChangeStatus(result);
+            showToast('Bật chế độ cập nhật bài cũ trước khi đăng bản sửa.', 'error');
+            return;
+          }
+        }
+
         const button =
           action === 'draft'
             ? document.getElementById('save-cloud-draft')
-            : document.getElementById('publish-github');
+            : publishButton;
         button.disabled = true;
         button.textContent = action === 'draft' ? 'Đang lưu...' : 'Đang đăng...';
         updatePublishStatus(
@@ -2127,6 +2248,9 @@ ${bodyMarkdown || contents.join('\n\n')}
         } finally {
           button.disabled = false;
           button.textContent = action === 'draft' ? 'Lưu nháp' : 'Đăng bài lên website';
+          if (action === 'publish') {
+            await checkPublishedPost();
+          }
         }
       }
 
@@ -2268,6 +2392,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         contentBlocks = Array.isArray(draft.blocks) && draft.blocks.length ? draft.blocks : [defaultBlock('paragraph')];
         renderBlocks();
         updatePreview();
+        schedulePublishedPostCheck();
         showToast('Đã load draft.');
       }
 
@@ -2295,6 +2420,7 @@ ${bodyMarkdown || contents.join('\n\n')}
       form.addEventListener('input', () => {
         updatePreview();
         scheduleAutosave();
+        schedulePublishedPostCheck();
       });
       document.querySelectorAll('[data-add-block]').forEach(button => {
         button.addEventListener('click', () => addBlock(button.dataset.addBlock));
@@ -2315,6 +2441,7 @@ ${bodyMarkdown || contents.join('\n\n')}
           renderBlocks();
           updatePreview();
           scheduleAutosave();
+          schedulePublishedPostCheck();
         }
 
         if (moveIndex !== undefined) {
@@ -2328,6 +2455,7 @@ ${bodyMarkdown || contents.join('\n\n')}
             renderBlocks();
             updatePreview();
             scheduleAutosave();
+            schedulePublishedPostCheck();
           }
         }
       });
@@ -2362,6 +2490,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         renderBlocks();
         updatePreview();
         scheduleAutosave();
+        schedulePublishedPostCheck();
       }));
       draftsEl.addEventListener('click', event => {
         const loadIndex = event.target.dataset.load;
@@ -2380,6 +2509,9 @@ ${bodyMarkdown || contents.join('\n\n')}
       });
       document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
       document.getElementById('submit-review').addEventListener('click', submitForReview);
+      allowUpdate.addEventListener('change', () => {
+        updateBlogChangeStatus(buildMarkdown());
+      });
       document.getElementById('tab-live').addEventListener('click', () => {
         articlePreview.classList.remove('hidden');
         preview.classList.add('hidden');
@@ -2417,6 +2549,7 @@ ${bodyMarkdown || contents.join('\n\n')}
       renderBlocks();
       renderDrafts();
       updatePreview();
+      schedulePublishedPostCheck();
     </script>
     <script src="/admin/admin-session.js"></script>
   </body>

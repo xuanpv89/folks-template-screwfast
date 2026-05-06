@@ -98,21 +98,15 @@ async function triggerDeployHook() {
   };
 }
 
+function decodeGithubContent(file) {
+  return Buffer.from(String(file?.content || '').replace(/\s/g, ''), file?.encoding || 'base64').toString('utf8');
+}
+
 export default async function handler(request, response) {
-  if (request.method !== 'POST') {
+  if (!['GET', 'POST'].includes(request.method)) {
     return sendJson(response, 405, {
       ok: false,
       message: 'Method not allowed.',
-    });
-  }
-
-  let body;
-  try {
-    body = await readJson(request);
-  } catch {
-    return sendJson(response, 400, {
-      ok: false,
-      message: 'Invalid JSON body.',
     });
   }
 
@@ -126,11 +120,77 @@ export default async function handler(request, response) {
     });
   }
 
-  const session = requireAdminSession(request, adminSecret, { csrf: true });
+  const session = requireAdminSession(request, adminSecret, { csrf: request.method === 'POST' });
   if (!session) {
     return sendJson(response, 401, {
       ok: false,
       message: 'Admin session is missing or expired. Please sign in again.',
+    });
+  }
+
+  if (request.method === 'GET') {
+    const params = new URL(request.url, 'https://admin.local').searchParams;
+    const repo = targetRepo();
+    const branch = targetBranch();
+    const slug = slugify(params.get('slug'));
+    const locale = String(params.get('locale') || 'en').trim();
+
+    if (!isSafeRepo(repo) || !isSafeBranch(branch)) {
+      return sendJson(response, 400, {
+        ok: false,
+        message: 'Invalid repository or branch.',
+      });
+    }
+
+    let target;
+    try {
+      target = getTargetPath('publish', locale, slug);
+    } catch (error) {
+      return sendJson(response, 400, {
+        ok: false,
+        message: error.message,
+      });
+    }
+
+    const apiPath = encodeURIComponent(target).replace(/%2F/g, '/');
+    try {
+      const existing = await githubRequest(
+        `/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`,
+        githubToken
+      );
+      return sendJson(response, 200, {
+        ok: true,
+        exists: true,
+        target,
+        sha: existing.sha || null,
+        fileUrl: existing.html_url || null,
+        markdown: decodeGithubContent(existing),
+      });
+    } catch (error) {
+      if (error.status === 404) {
+        return sendJson(response, 200, {
+          ok: true,
+          exists: false,
+          target,
+          sha: null,
+          fileUrl: null,
+          markdown: '',
+        });
+      }
+      return sendJson(response, error.status || 502, {
+        ok: false,
+        message: error.message,
+      });
+    }
+  }
+
+  let body;
+  try {
+    body = await readJson(request);
+  } catch {
+    return sendJson(response, 400, {
+      ok: false,
+      message: 'Invalid JSON body.',
     });
   }
 
