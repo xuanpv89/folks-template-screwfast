@@ -568,18 +568,47 @@
 
       function deployStatusLinks(result, deployment) {
         return [
-          { label: 'Open commit', url: result.commitUrl },
-          { label: 'Open updated data', url: result.fileUrl },
-          deployment?.url ? { label: 'Open deployed site', url: deployment.url } : null,
-          deployment?.inspectorUrl ? { label: 'Open Vercel deploy', url: deployment.inspectorUrl } : null,
+          { label: 'Xem lần cập nhật', url: result.commitUrl },
+          { label: 'Xem dữ liệu đã cập nhật', url: result.fileUrl },
+          deployment?.url ? { label: 'Mở bản website vừa deploy', url: deployment.url } : null,
+          deployment?.inspectorUrl ? { label: 'Xem trạng thái Vercel', url: deployment.inspectorUrl } : null,
         ].filter(Boolean);
       }
 
-      async function waitForDeployStatus(result, branch) {
-        if (!result.commitSha) return;
+      async function verifyLiveContent(expectedUpdatedAt) {
+        if (!expectedUpdatedAt) return false;
+        try {
+          const response = await fetch(`/cms-content.json?text_live_check=${Date.now()}`, {
+            cache: 'no-store',
+            credentials: 'same-origin',
+          });
+          if (!response.ok) return false;
+          const live = await response.json();
+          return live?.updatedAt === expectedUpdatedAt;
+        } catch {
+          return false;
+        }
+      }
 
+      async function waitForLiveContent(result, links = []) {
+        if (!result.updatedAt) return false;
+        for (let attempt = 0; attempt < 60; attempt += 1) {
+          await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 2000 : 5000));
+          updatePublishStatus(`Đã lưu nội dung. Đang xác nhận website live... (${attempt + 1}/60)`, links);
+          if (await verifyLiveContent(result.updatedAt)) {
+            updatePublishStatus('Website live đã nhận đúng nội dung mới.', links);
+            return true;
+          }
+        }
+        updatePublishStatus('Đã lưu nội dung, nhưng CMS chưa xác nhận được bản live sau vài phút. Hãy mở Vercel hoặc dữ liệu live để kiểm tra tiếp.', links);
+        return false;
+      }
+
+      async function waitForDeployStatus(result, branch) {
         const links = deployStatusLinks(result);
-        updatePublishStatus('Content committed. Checking the real Vercel deploy status...', links);
+        if (!result.commitSha) return waitForLiveContent(result, links);
+
+        updatePublishStatus('Đã lưu nội dung. CMS đang kiểm tra trạng thái deploy thật...', links);
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
           await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
@@ -589,19 +618,23 @@
           });
           const status = await response.json().catch(() => null);
           if (!response.ok) {
-            updatePublishStatus(`Content is committed, but deploy status could not be checked: ${status?.message || response.status}`, links);
+            await waitForLiveContent(result, links);
             return status;
           }
 
           const nextLinks = deployStatusLinks(result, status.deployment);
-          updatePublishStatus(status.message || `Deploy status: ${status.status}`, nextLinks);
+          updatePublishStatus(status.message || `Website đang cập nhật: ${status.status}`, nextLinks);
 
-          if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
+          if (status.status === 'READY' || status.status === 'unconfigured') {
+            await waitForLiveContent(result, nextLinks);
+            return status;
+          }
+          if (['ERROR', 'CANCELED'].includes(status.status)) {
             return status;
           }
         }
 
-        updatePublishStatus('Deploy is still running or was not found after a few minutes. Open Vercel to keep checking.', links);
+        await waitForLiveContent(result, links);
       }
 
       function getSavedDraft() {
@@ -1085,11 +1118,15 @@
         updatePublishStatus('Đang đăng nội dung lên website...');
 
         try {
+          const nextContent = {
+            ...state,
+            updatedAt: new Date().toISOString(),
+          };
           const result = await adminContentRequest({
             repo,
             branch,
             baseSha,
-            content: state,
+            content: nextContent,
           });
           updatePublishStatus(`Đã gửi nội dung mới. ${result.deploy?.message || ''}`, [
             { label: 'Xem lần cập nhật', url: result.commitUrl },
@@ -1097,7 +1134,8 @@
           ]);
           await waitForDeployStatus(result, branch);
           localStorage.removeItem(DRAFT_KEY);
-          serverContent = structuredClone(state);
+          state = structuredClone(nextContent);
+          serverContent = structuredClone(nextContent);
           baseSha = result.sha || baseSha;
           setDirty(false);
           setSourceStatus('Đã đăng nội dung', 'Nội dung đã được gửi lên hệ thống. Website sẽ cập nhật sau khi deploy xong.');
@@ -1229,7 +1267,7 @@
             savedAt: new Date().toISOString(),
           })
         );
-        setDirty(false);
+        setDirty(true);
         setSourceStatus('Đã lưu trên máy này', 'Bản lưu này chưa xuất hiện trên website cho đến khi bạn bấm "Đăng nội dung".', 'warning');
         showToast('Đã lưu trên máy này.');
       });

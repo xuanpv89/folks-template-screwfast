@@ -1163,6 +1163,7 @@
               <div class="button-row">
                 <button type="button" class="primary-action" id="publish-github">Đăng bài lên website</button>
                 <button type="button" class="utility-action" id="save-cloud-draft">Lưu nháp</button>
+                <button type="button" class="utility-action" id="submit-review">Gửi review</button>
               </div>
             </div>
             <details class="advanced-box">
@@ -1914,6 +1915,23 @@ ${bodyMarkdown || contents.join('\n\n')}
         return data;
       }
 
+      async function adminOperationsRequest(module, payload) {
+        const response = await fetch(`/api/admin-operations?module=${encodeURIComponent(module)}`, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json().catch(() => null);
+        if (!response.ok || data?.ok === false) {
+          throw new Error(data?.message || `Operations API error ${response.status}`);
+        }
+        return data;
+      }
+
       function readFileAsDataUrl(file) {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
@@ -2038,6 +2056,56 @@ ${bodyMarkdown || contents.join('\n\n')}
 
       async function saveCloudDraft() {
         return submitToAdminApi('draft');
+      }
+
+      async function submitForReview() {
+        const result = updatePreview();
+        const validationErrors = validatePost(result);
+        if (validationErrors.length) {
+          showFieldErrors(validationErrors);
+          showToast(`Chưa thể gửi review. Bạn cần bổ sung: ${validationErrors.map(error => error.label).join(', ')}.`, 'error');
+          return;
+        }
+        clearFieldErrors();
+
+        const button = document.getElementById('submit-review');
+        button.disabled = true;
+        button.textContent = 'Đang gửi...';
+        updatePublishStatus('Đang lưu draft và đưa bài vào review queue...');
+        try {
+          const repo = githubRepo.value.trim();
+          const branch = githubBranch.value.trim() || 'main';
+          if (!repo.includes('/')) throw new Error('Repository phải có dạng owner/repo.');
+          const draftResponse = await adminBlogRequest({
+            action: 'draft',
+            repo,
+            branch,
+            locale: getValue('locale'),
+            slug: result.slug,
+            markdown: result.markdown,
+            allowUpdate: true,
+          });
+          const response = await adminOperationsRequest('review', {
+            title: result.data.title || result.slug,
+            type: 'blog',
+            target: draftResponse.target || result.target,
+            status: 'review',
+            owner: result.data.author || '',
+            note: `Blog ${String(result.data.locale || 'en').toUpperCase()} chờ duyệt. Draft: ${draftResponse.target || result.target}. Public URL: ${publicPostUrl(result.data.locale, result.slug)}`,
+          });
+          updatePublishStatus('Đã lưu draft và gửi bài vào review queue.', [
+            { label: 'Mở Review queue', url: '/admin/operations.html#review' },
+            { label: 'Xem commit draft', url: draftResponse.commitUrl },
+            { label: 'Xem commit review', url: response.commitUrl },
+          ]);
+          showToast('Đã gửi review.');
+        } catch (error) {
+          showToast(`Gửi review lỗi: ${error.message}`, 'error');
+          updatePublishStatus(`Chưa gửi được review: ${error.message}`);
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Gửi review';
+        }
       }
 
       function currentDraft() {
@@ -2225,6 +2293,7 @@ ${bodyMarkdown || contents.join('\n\n')}
         setEditorTab('publish');
       });
       document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
+      document.getElementById('submit-review').addEventListener('click', submitForReview);
       document.getElementById('tab-live').addEventListener('click', () => {
         articlePreview.classList.remove('hidden');
         preview.classList.add('hidden');
