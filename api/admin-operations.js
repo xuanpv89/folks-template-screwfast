@@ -1,5 +1,5 @@
 import { getAdminSession } from './_admin-session.js';
-import { loadLeadStore } from './_lead-store.js';
+import { githubRequest, loadLeadStore, targetBranch, targetRepo } from './_lead-store.js';
 import {
   AUDIT_TARGET_PATH,
   REVIEW_QUEUE_TARGET_PATH,
@@ -153,12 +153,48 @@ async function handleHealth(request, response) {
     return sendJson(response, 401, { ok: false, message: 'Admin session is missing or expired.' });
   }
 
+  async function checkGithub(token) {
+    if (!token) return { ok: false, status: 'missing', message: 'Missing GITHUB_TOKEN.' };
+    try {
+      await githubRequest(`/repos/${targetRepo()}`, token);
+      return { ok: true, status: 'ready', message: `GitHub token can access ${targetRepo()}.` };
+    } catch (error) {
+      return { ok: false, status: 'error', message: error.message };
+    }
+  }
+
+  async function checkVercel(token) {
+    if (!token) return { ok: false, status: 'optional', message: 'Missing VERCEL_TOKEN; deploy checks rely on GitHub status.' };
+    try {
+      const result = await fetch('https://api.vercel.com/v2/user', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!result.ok) return { ok: false, status: 'error', message: `Vercel API returned HTTP ${result.status}.` };
+      return { ok: true, status: 'ready', message: 'Vercel token is valid.' };
+    } catch (error) {
+      return { ok: false, status: 'error', message: error.message };
+    }
+  }
+
+  async function checkResend(apiKey) {
+    if (!apiKey) return { ok: false, status: 'missing', message: 'Missing RESEND_API_KEY.' };
+    try {
+      const result = await fetch('https://api.resend.com/domains', {
+        headers: { Authorization: `Bearer ${apiKey}` },
+      });
+      if (!result.ok) return { ok: false, status: 'error', message: `Resend API returned HTTP ${result.status}.` };
+      return { ok: true, status: 'ready', message: 'Resend API key responds.' };
+    } catch (error) {
+      return { ok: false, status: 'error', message: error.message };
+    }
+  }
+
   const env = {
     ADMIN_SECRET: Boolean(process.env.ADMIN_SECRET),
     ADMIN_USER: Boolean(process.env.ADMIN_USER || process.env.ADMIN_USERS),
     GITHUB_TOKEN: Boolean(process.env.GITHUB_TOKEN),
-    GITHUB_REPO: process.env.GITHUB_REPO || 'xuanpv89/folksteam.com',
-    GITHUB_BRANCH: process.env.GITHUB_BRANCH || 'main',
+    GITHUB_REPO: targetRepo(),
+    GITHUB_BRANCH: targetBranch(),
     RESEND_API_KEY: Boolean(process.env.RESEND_API_KEY),
     CONTACT_TO_EMAIL: Boolean(process.env.CONTACT_TO_EMAIL),
     CONTACT_FROM_EMAIL: Boolean(process.env.CONTACT_FROM_EMAIL),
@@ -167,14 +203,16 @@ async function handleHealth(request, response) {
     VERCEL_DEPLOY_HOOK_URL: Boolean(process.env.VERCEL_DEPLOY_HOOK_URL),
   };
 
+  const [github, vercel, resend] = await Promise.all([
+    checkGithub(process.env.GITHUB_TOKEN),
+    checkVercel(process.env.VERCEL_TOKEN),
+    checkResend(process.env.RESEND_API_KEY),
+  ]);
+
   return sendJson(response, 200, {
     ok: true,
     env,
-    checks: {
-      github: { ok: env.GITHUB_TOKEN, status: env.GITHUB_TOKEN ? 'ready' : 'missing' },
-      vercel: { ok: env.VERCEL_TOKEN, status: env.VERCEL_TOKEN ? 'ready' : 'optional' },
-      resend: { ok: env.RESEND_API_KEY, status: env.RESEND_API_KEY ? 'ready' : 'missing' },
-    },
+    checks: { github, vercel, resend },
     recommendations: [
       !env.RESEND_API_KEY ? 'Add RESEND_API_KEY so contact/newsletter forms can send email.' : null,
       !env.CONTACT_FROM_EMAIL ? 'Set CONTACT_FROM_EMAIL to a verified Resend sender.' : null,

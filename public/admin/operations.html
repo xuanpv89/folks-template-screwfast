@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
     <style>
       body { margin: 0; }
-      .shell { width: min(100%, 1500px); margin: 0 auto; padding: 18px; }
+      .shell { width: min(100%, 1360px); margin: 0 auto; padding: 18px; }
       .topbar, .surface, .metric, .row-card, .editor, .toast {
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -20,20 +20,20 @@
       .brand { display: flex; align-items: center; gap: 12px; }
       .nav, .tabs, .toolbar, .actions, .metrics, .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
       .hero { display: grid; gap: 12px; margin-bottom: 14px; padding: 20px; }
-      .hero h2 { margin: 0; font-size: clamp(32px, 5vw, 58px); line-height: 1; }
+      .hero h2 { max-width: 980px; margin: 0; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.05; }
       .surface { padding: 16px; margin-bottom: 14px; }
       .tabs { margin-bottom: 14px; }
       .tab.active { border-color: #bde8cb !important; background: var(--brand-soft) !important; color: #20472f !important; }
       .view { display: none; }
       .view.active { display: block; }
-      .metrics { margin-top: 12px; }
-      .metric { min-width: 170px; padding: 14px; }
+      .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 12px; }
+      .metric { min-width: 0; padding: 14px; }
       .metric span { color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
       .metric strong { display: block; margin-top: 4px; font-size: 30px; }
       .grid { display: grid; gap: 12px; }
       @media (min-width: 960px) { .grid.two { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); } }
       @media (min-width: 1140px) { .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-      .row-card { display: grid; gap: 8px; padding: 12px; }
+      .row-card { display: grid; min-width: 0; gap: 8px; padding: 12px; text-align: left; }
       .row-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
       .row-head strong { overflow-wrap: anywhere; }
       .muted { color: var(--muted); }
@@ -58,10 +58,25 @@
       .media-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
       .media-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; }
       .media-card code, .path { display: block; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: 8px; background: #fafafa; padding: 8px; font-size: 12px; }
+      .row-card p, .row-card span, .row-card code { min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
+      .lead-message { max-height: 4.8em; overflow: hidden; color: var(--ink); }
+      .status-strip { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-top: 12px; }
+      .status-item { border: 1px solid #bde8cb; border-radius: 8px; background: var(--brand-soft); padding: 10px 12px; }
+      .status-item span { display: block; color: var(--muted); font-size: 12px; font-weight: 850; text-transform: uppercase; }
+      .status-item strong { display: block; margin-top: 2px; overflow-wrap: anywhere; }
+      .quick-actions { margin-top: 12px; }
+      .split-title { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px; }
+      .recommendations { margin-top: 12px; }
       .hidden { display: none !important; }
       .toast { display: none; position: sticky; bottom: 12px; z-index: 5; margin-top: 12px; padding: 12px; }
       .toast.show { display: block; }
       .toast.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+      @media (max-width: 760px) {
+        .hero h2 { font-size: clamp(28px, 10vw, 38px); }
+        .metric strong { font-size: 26px; }
+        .topbar { align-items: stretch; }
+        .brand { width: 100%; }
+      }
     </style>
   </head>
   <body>
@@ -87,10 +102,15 @@
 
       <section class="hero surface">
         <p class="eyebrow">Website management</p>
-        <h2>Dashboard, health, content, media, subscribers, audit.</h2>
+        <h2>Manage health, content, media, subscribers, audit.</h2>
         <p class="muted">
-          Man hinh nay gom cac muc quan ly van hanh can thiet ngoai blog/content editor hien co.
+          Trung tam van hanh gom cac muc can xem hang ngay: lead, cau hinh production, noi dung, media, newsletter va audit.
         </p>
+        <div class="actions quick-actions">
+          <button type="button" data-view-shortcut="health">Run health check</button>
+          <a class="button secondary" href="/admin/leads.html">Open leads</a>
+          <button class="secondary" type="button" data-view-shortcut="audit">View audit</button>
+        </div>
       </section>
 
       <div class="tabs" role="tablist">
@@ -114,6 +134,7 @@
             <button type="button" id="refresh-dashboard">Refresh</button>
           </div>
           <div class="metrics" id="dashboard-metrics"></div>
+          <div class="status-strip" id="dashboard-status"></div>
         </div>
         <div class="grid two">
           <div class="surface">
@@ -137,6 +158,7 @@
             <button type="button" id="refresh-health">Run checks</button>
           </div>
           <div class="grid three" id="health-checks"></div>
+          <div class="recommendations list" id="health-recommendations"></div>
           <div class="surface" style="margin-top: 12px;">
             <h3>Bien moi truong</h3>
             <div class="list" id="health-env"></div>
@@ -381,6 +403,19 @@
         toast.timer = window.setTimeout(() => el.classList.remove('show'), 5200);
       }
 
+      function compactDate(value) {
+        if (!value) return '-';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleString('vi-VN', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+      }
+
       async function api(url, options = {}) {
         const response = await fetch(url, {
           credentials: 'same-origin',
@@ -424,6 +459,16 @@
           .join('');
       }
 
+      function renderDashboardStatus(data = {}) {
+        const contentCounts = data.contentCounts || {};
+        $('#dashboard-status').innerHTML = `
+          <div class="status-item"><span>Repo</span><strong>${escapeHtml(data.repo || '-')}</strong></div>
+          <div class="status-item"><span>Branch</span><strong>${escapeHtml(data.branch || '-')}</strong></div>
+          <div class="status-item"><span>Last refresh</span><strong>${escapeHtml(compactDate(data.updatedAt))}</strong></div>
+          <div class="status-item"><span>Docs / Admin pages</span><strong>${contentCounts.docs ?? 0} / ${contentCounts.adminPages ?? 0}</strong></div>
+        `;
+      }
+
       function renderLeads(leads = []) {
         $('#recent-leads').innerHTML = leads.length
           ? leads.map(lead => `
@@ -432,8 +477,11 @@
                 <strong>${escapeHtml(lead.name || lead.email || 'Lead')}</strong>
                 <span class="pill">${escapeHtml(lead.status || 'new')}</span>
               </div>
-              <span class="muted">${escapeHtml(lead.email || '')} ${escapeHtml(lead.phone || '')}</span>
-              <p>${escapeHtml(lead.message || '').slice(0, 180)}</p>
+              <span class="muted">${escapeHtml(lead.email || '')}${lead.phone ? ` / ${escapeHtml(lead.phone)}` : ''}</span>
+              <p class="lead-message">${escapeHtml(lead.message || '').slice(0, 240)}</p>
+              <div class="actions">
+                <a class="button secondary" href="/admin/leads.html">Open in Leads</a>
+              </div>
             </div>`).join('')
           : '<p class="muted">Chua co lead.</p>';
       }
@@ -459,6 +507,7 @@
         const data = await api('/api/admin-operations?module=dashboard');
         state.dashboard = data;
         renderMetrics(data.metrics);
+        renderDashboardStatus(data);
         renderLeads(data.recentLeads);
         renderEvents(data.recentEvents);
       }
@@ -478,6 +527,23 @@
               <span class="pill ${value ? '' : 'bad'}">${value ? 'configured' : 'missing'}</span>
             </div>
           </div>`).join('');
+        $('#health-recommendations').innerHTML = (data.recommendations || []).length
+          ? `
+            <div class="row-card">
+              <div class="row-head">
+                <strong>Recommended fixes</strong>
+                <span class="pill warn">${data.recommendations.length}</span>
+              </div>
+              ${(data.recommendations || []).map(item => `<p class="muted">${escapeHtml(item)}</p>`).join('')}
+            </div>`
+          : `
+            <div class="row-card">
+              <div class="row-head">
+                <strong>Production config looks ready</strong>
+                <span class="pill">ready</span>
+              </div>
+              <p class="muted">Khong co recommendation moi tu health check.</p>
+            </div>`;
       }
 
       async function loadHealth() {
