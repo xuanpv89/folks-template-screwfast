@@ -1,6 +1,30 @@
 {
-  "updatedAt": "2026-05-06T14:25:06.460Z",
+  "updatedAt": "2026-05-06T16:47:28.078Z",
   "leads": [
+    {
+      "id": "lead-1778086047898-1morpw",
+      "createdAt": "2026-05-06T16:47:27.896Z",
+      "updatedAt": "2026-05-06T16:47:27.896Z",
+      "status": "new",
+      "priority": "normal",
+      "source": "contact-form",
+      "locale": "en",
+      "page": "https://www.folksteam.com/contact",
+      "name": "Ashwani Sharma",
+      "firstName": "Ashwani",
+      "lastName": "Sharma",
+      "email": "ashwani@rocketdigitaltech.com",
+      "phone": "7532833829",
+      "message": "Hello http://folksteam.com,\r\n \r\nIf you’re looking to boost your website’s visibility, I can help you achieve top Google rankings.\r\n \r\nI’ll prepare a complete SEO plan with actionable steps and potential growth insights for your products or services.\r\n \r\nOnce you share your target keywords and target market, I’ll send a full proposal.\r\n \r\nBest Regards,\r\nAshwani",
+      "owner": "",
+      "notes": [],
+      "events": [
+        {
+          "type": "submitted",
+          "createdAt": "2026-05-06T16:47:27.896Z"
+        }
+      ]
+    },
     {
       "id": "lead-1778077372272-zbcez3",
       "createdAt": "2026-05-06T14:22:52.270Z",
