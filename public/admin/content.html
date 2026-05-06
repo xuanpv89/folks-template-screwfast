@@ -713,8 +713,13 @@
           sections: scannedPage.sections.map(section => ({
             ...section,
             fields: section.fields.map(field => {
-              const existing = existingByKey.get(field.key) || existingByMatch.get(normalizeText(field.match));
-              return existing ? { ...field, value: existing.value ?? field.value } : field;
+              const liveMatch = normalizeText(field.match || field.original || field.value);
+              const existing = existingByMatch.get(liveMatch);
+              const keyedExisting = existingByKey.get(field.key);
+              const keyedMatch = normalizeText(keyedExisting?.match || keyedExisting?.original || keyedExisting?.value);
+              const shouldKeepKeyedValue = keyedExisting && keyedMatch === liveMatch;
+              const source = existing || (shouldKeepKeyedValue ? keyedExisting : null);
+              return source ? { ...field, value: source.value ?? field.value } : field;
             }),
           })),
         };
@@ -915,7 +920,24 @@
         doc.querySelectorAll('.visual-cms-active').forEach(element => element.classList.remove('visual-cms-active'));
         target.classList.add('visual-cms-active');
         selectedField = { page: currentPage(), ...findField(currentPage(), field.key), target };
+        syncSelectedFieldFromTarget();
         renderFieldEditor();
+      }
+
+      function syncSelectedFieldFromTarget() {
+        const field = selectedField?.field;
+        const target = selectedField?.target;
+        if (!field || !target || field.elementType === 'image') return;
+
+        let visibleValue = '';
+        if (field.elementType === 'link') visibleValue = target.getAttribute('href') || '';
+        else if (field.elementType === 'alt') visibleValue = target.getAttribute('alt') || '';
+        else visibleValue = target.textContent || '';
+
+        if (visibleValue && visibleValue !== field.value) {
+          field.value = visibleValue;
+          hasUnsavedChanges = true;
+        }
       }
 
       function injectElementEditors(doc, page) {
@@ -1009,6 +1031,7 @@
             doc.querySelectorAll('.visual-cms-active').forEach(element => element.classList.remove('visual-cms-active'));
             wrapper.classList.add('visual-cms-active');
             selectedField = { page, ...findField(page, field.key), target: wrapper };
+            syncSelectedFieldFromTarget();
             renderFieldEditor();
           });
         });
