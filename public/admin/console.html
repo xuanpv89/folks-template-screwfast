@@ -426,6 +426,7 @@
           </p>
           <div class="hero-actions">
             <button type="button" class="button" data-open-task="pages">Sửa chữ trên trang</button>
+            <button type="button" class="button secondary" data-open-task="leads">Quản lý lead</button>
             <button type="button" class="button secondary" data-open-task="blog">Viết bài blog</button>
             <button type="button" class="button secondary" data-open-task="deployments">Kiểm tra trước khi đăng</button>
           </div>
@@ -456,6 +457,7 @@
 
       <nav class="mode-tabs" aria-label="Các khu vực admin">
         <button type="button" class="mode-tab active" data-view-target="home">Việc cần làm</button>
+        <button type="button" class="mode-tab" data-view-target="leads">Lead Inbox</button>
         <button type="button" class="mode-tab" data-view-target="pages">Sửa trang</button>
         <button type="button" class="mode-tab" data-view-target="blog">Viết blog</button>
         <button type="button" class="mode-tab" data-view-target="media">Thư viện ảnh</button>
@@ -506,6 +508,24 @@
             </div>
             <button type="button" class="button" data-open-task="deployments">Mở bước kiểm tra</button>
           </article>
+        </div>
+      </section>
+
+      <section class="view" id="leads" data-view>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Lead Inbox</p>
+            <h2>Quản lý liên hệ mới từ website</h2>
+          </div>
+          <div class="button-row">
+            <button type="button" class="button secondary" data-frame-reload="leads-frame">Tải lại công cụ</button>
+            <a class="button secondary" href="/admin/leads.html" target="_blank" rel="noreferrer">Mở tab riêng</a>
+          </div>
+        </div>
+        <div class="workbench">
+          <div class="frame-shell">
+            <iframe id="leads-frame" class="mode-frame" src="/admin/leads.html" title="Lead Inbox"></iframe>
+          </div>
         </div>
       </section>
 

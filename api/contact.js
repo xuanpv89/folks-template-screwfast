@@ -1,4 +1,6 @@
 const RESEND_API_URL = 'https://api.resend.com/emails';
+const GITHUB_API = 'https://api.github.com';
+const LEADS_TARGET_PATH = 'src/data_files/leads.json';
 
 function escapeHtml(value) {
   return String(value || '')
@@ -12,6 +14,110 @@ function escapeHtml(value) {
 function sendJson(response, status, body) {
   response.status(status).setHeader('content-type', 'application/json; charset=utf-8');
   response.end(JSON.stringify(body));
+}
+
+function targetRepo() {
+  return String(process.env.GITHUB_REPO || 'xuanpv89/folksteam.com').trim();
+}
+
+function targetBranch() {
+  return String(process.env.GITHUB_BRANCH || 'main').trim();
+}
+
+function isSafeRepo(value) {
+  return /^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(String(value || ''));
+}
+
+function isSafeBranch(value) {
+  return /^[a-zA-Z0-9._/-]+$/.test(String(value || ''));
+}
+
+async function githubRequest(path, token, options = {}) {
+  const githubResponse = await fetch(`${GITHUB_API}${path}`, {
+    ...options,
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers || {}),
+    },
+  });
+
+  const text = await githubResponse.text();
+  const data = text ? JSON.parse(text) : null;
+
+  if (!githubResponse.ok) {
+    const error = new Error(data?.message || `GitHub API error ${githubResponse.status}`);
+    error.status = githubResponse.status;
+    throw error;
+  }
+
+  return data;
+}
+
+function normalizeLeadStore(content) {
+  return {
+    updatedAt: content?.updatedAt || null,
+    leads: Array.isArray(content?.leads) ? content.leads : [],
+  };
+}
+
+async function loadLeadStore(token) {
+  const repo = targetRepo();
+  const branch = targetBranch();
+  if (!isSafeRepo(repo) || !isSafeBranch(branch)) throw new Error('Invalid repository or branch.');
+
+  const apiPath = encodeURIComponent(LEADS_TARGET_PATH).replace(/%2F/g, '/');
+
+  try {
+    const file = await githubRequest(
+      `/repos/${repo}/contents/${apiPath}?ref=${encodeURIComponent(branch)}`,
+      token
+    );
+    const json = Buffer.from(file.content || '', 'base64').toString('utf8');
+    return {
+      repo,
+      branch,
+      sha: file.sha,
+      content: normalizeLeadStore(JSON.parse(json)),
+    };
+  } catch (error) {
+    if (error.status !== 404) throw error;
+    return {
+      repo,
+      branch,
+      sha: null,
+      content: normalizeLeadStore({ leads: [] }),
+    };
+  }
+}
+
+async function saveLeadSubmission(lead) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return null;
+
+  const store = await loadLeadStore(token);
+  const nextContent = {
+    ...store.content,
+    updatedAt: new Date().toISOString(),
+    leads: [lead, ...store.content.leads].slice(0, 500),
+  };
+  const apiPath = encodeURIComponent(LEADS_TARGET_PATH).replace(/%2F/g, '/');
+  const commit = await githubRequest(`/repos/${store.repo}/contents/${apiPath}`, token, {
+    method: 'PUT',
+    body: JSON.stringify({
+      message: `Capture contact lead: ${lead.name || lead.email}`,
+      content: Buffer.from(JSON.stringify(nextContent, null, 2), 'utf8').toString('base64'),
+      branch: store.branch,
+      ...(store.sha ? { sha: store.sha } : {}),
+    }),
+  });
+
+  return {
+    sha: commit?.content?.sha || null,
+    commitSha: commit?.commit?.sha || null,
+  };
 }
 
 export default async function handler(request, response) {
@@ -63,6 +169,32 @@ export default async function handler(request, response) {
   }
 
   const fullName = [firstName, lastName].filter(Boolean).join(' ');
+  const now = new Date().toISOString();
+  const referer = String(request.headers.referer || request.headers.referrer || '').trim();
+  const lead = {
+    id: `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    createdAt: now,
+    updatedAt: now,
+    status: 'new',
+    priority: 'normal',
+    source: 'contact-form',
+    locale,
+    page: referer,
+    name: fullName,
+    firstName,
+    lastName,
+    email,
+    phone,
+    message,
+    owner: '',
+    notes: [],
+    events: [
+      {
+        type: 'submitted',
+        createdAt: now,
+      },
+    ],
+  };
   const subject = `New contact form submission from ${fullName}`;
   const html = `
     <h2>New Folks Team contact form submission</h2>
@@ -103,8 +235,16 @@ export default async function handler(request, response) {
     });
   }
 
+  let leadSaved = false;
+  try {
+    leadSaved = Boolean(await saveLeadSubmission(lead));
+  } catch (error) {
+    console.error('Could not save contact lead', error);
+  }
+
   return sendJson(response, 200, {
     ok: true,
+    leadSaved,
     message:
       locale === 'vi'
         ? 'Đã gửi thông tin. Chúng tôi sẽ phản hồi sớm.'

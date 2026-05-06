@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Lead Inbox | Folks Team CMS</title>
+    <link rel="icon" type="image/png" href="/admin-favicon.png?v=admin-2" />
+    <style>
+      .shell {
+        width: min(100%, 1380px);
+        margin: 0 auto;
+        padding: 18px;
+      }
+
+      .topbar,
+      .surface,
+      .lead-item,
+      .detail-panel,
+      .metric,
+      .empty {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 14px;
+        padding: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav,
+      .toolbar,
+      .button-row,
+      .filters,
+      .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .hero {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding: 20px;
+      }
+
+      .hero h2 {
+        max-width: 860px;
+        margin: 0;
+        font-size: clamp(32px, 5vw, 58px);
+        line-height: 1;
+      }
+
+      .hero p,
+      .muted,
+      .lead-meta,
+      .note-time {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .metrics {
+        margin: 14px 0;
+      }
+
+      .metric {
+        min-width: 150px;
+        padding: 12px;
+      }
+
+      .metric strong {
+        display: block;
+        font-size: 28px;
+      }
+
+      .toolbar {
+        justify-content: space-between;
+        margin-bottom: 14px;
+        padding: 12px;
+      }
+
+      .filters button.active {
+        border-color: #bde8cb !important;
+        background: var(--brand-soft) !important;
+        color: #20472f !important;
+      }
+
+      .search {
+        min-width: min(100%, 340px);
+      }
+
+      .search input,
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 10px 12px;
+        font: inherit;
+      }
+
+      .layout {
+        display: grid;
+        gap: 14px;
+      }
+
+      @media (min-width: 1040px) {
+        .layout {
+          grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1.1fr);
+          align-items: start;
+        }
+      }
+
+      .lead-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .lead-item {
+        display: grid;
+        gap: 8px;
+        width: 100%;
+        padding: 14px;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .lead-item:hover,
+      .lead-item.active {
+        border-color: #bde8cb;
+        background: #fbfffc;
+      }
+
+      .lead-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .lead-title {
+        display: grid;
+        gap: 3px;
+      }
+
+      .lead-title strong {
+        font-size: 17px;
+      }
+
+      .lead-message {
+        display: -webkit-box;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .badge {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .badge.new {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .badge.working {
+        background: #fffbeb;
+        color: #854d0e;
+      }
+
+      .badge.done {
+        background: #e0f2fe;
+        color: #075985;
+      }
+
+      .badge.ignored {
+        background: #f5f5f5;
+        color: #525252;
+      }
+
+      .detail-panel {
+        position: sticky;
+        top: 12px;
+        display: grid;
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .detail-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .detail-head h2 {
+        margin: 0 0 6px;
+        font-size: clamp(24px, 3vw, 34px);
+      }
+
+      .info-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      @media (min-width: 720px) {
+        .info-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .info-card,
+      .message-box,
+      .note-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fafafa;
+        padding: 12px;
+      }
+
+      .info-card span,
+      .field label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .message-box {
+        white-space: pre-wrap;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      @media (min-width: 720px) {
+        .form-grid {
+          grid-template-columns: 180px minmax(0, 1fr);
+        }
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .notes {
+        display: grid;
+        gap: 8px;
+      }
+
+      .empty {
+        padding: 18px;
+        color: var(--muted);
+      }
+
+      .toast {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        display: none;
+        max-width: min(420px, calc(100vw - 32px));
+        border-radius: 8px;
+        padding: 12px 14px;
+        font-weight: 850;
+      }
+
+      .toast.show {
+        display: block;
+      }
+    </style>
+    <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
+          <div>
+            <p class="eyebrow">Folks Team CMS</p>
+            <h1>Lead Inbox</h1>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Admin links">
+          <a href="/admin/">Admin Hub</a>
+          <a class="secondary" href="/admin/console.html">Admin Console</a>
+          <a class="secondary" href="/contact" target="_blank" rel="noreferrer">Mở form</a>
+          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+        </nav>
+      </header>
+
+      <section class="surface hero">
+        <p class="eyebrow">Không bỏ sót liên hệ mới</p>
+        <h2>Nhận lead từ form contact và xử lý ngay trong admin.</h2>
+        <p>
+          Danh sách này dành cho follow-up hằng ngày: xem người liên hệ, đổi trạng thái, ghi chú nội bộ,
+          rồi mở email trả lời. Không cần CRM nặng.
+        </p>
+      </section>
+
+      <section class="metrics" aria-label="Lead metrics">
+        <article class="metric"><span class="muted">Tổng lead</span><strong id="metric-total">0</strong></article>
+        <article class="metric"><span class="muted">Mới</span><strong id="metric-new">0</strong></article>
+        <article class="metric"><span class="muted">Đang xử lý</span><strong id="metric-open">0</strong></article>
+        <article class="metric"><span class="muted">Hoàn tất</span><strong id="metric-done">0</strong></article>
+      </section>
+
+      <section class="surface toolbar">
+        <div class="filters" aria-label="Bộ lọc lead">
+          <button type="button" class="secondary active" data-filter="all">Tất cả</button>
+          <button type="button" class="secondary" data-filter="new">Mới</button>
+          <button type="button" class="secondary" data-filter="contacted">Đã liên hệ</button>
+          <button type="button" class="secondary" data-filter="working">Đang xử lý</button>
+          <button type="button" class="secondary" data-filter="done">Đã xong</button>
+        </div>
+        <label class="search">
+          <span class="muted">Tìm tên, email, nội dung</span>
+          <input id="search" placeholder="Ví dụ: workshop, gmail, tên khách..." />
+        </label>
+      </section>
+
+      <section class="layout">
+        <div class="lead-list" id="lead-list">
+          <div class="empty">Đang tải lead...</div>
+        </div>
+        <aside class="detail-panel" id="lead-detail">
+          <div class="empty">Chọn một lead để xem chi tiết và xử lý.</div>
+        </aside>
+      </section>
+
+      <div class="toast" id="toast"></div>
+    </main>
+
+    <script src="/admin/admin-session.js"></script>
+    <script>
+      const statusLabels = {
+        new: 'Mới',
+        contacted: 'Đã liên hệ',
+        working: 'Đang xử lý',
+        done: 'Đã xong',
+        ignored: 'Bỏ qua',
+      };
+
+      let leads = [];
+      let selectedId = null;
+      let activeFilter = 'all';
+
+      const leadList = document.getElementById('lead-list');
+      const leadDetail = document.getElementById('lead-detail');
+      const searchInput = document.getElementById('search');
+      const toast = document.getElementById('toast');
+
+      function escapeHtml(value) {
+        return String(value || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function formatDate(value) {
+        if (!value) return '-';
+        return new Intl.DateTimeFormat('vi-VN', {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        }).format(new Date(value));
+      }
+
+      function showToast(message, type = 'ready') {
+        toast.textContent = message;
+        toast.className = `toast show ${type}`;
+        setTimeout(() => {
+          toast.className = 'toast';
+        }, 3200);
+      }
+
+      function mailto(lead) {
+        const subject = encodeURIComponent(`Re: Folks Team - ${lead.name || 'your message'}`);
+        return `mailto:${encodeURIComponent(lead.email || '')}?subject=${subject}`;
+      }
+
+      function filteredLeads() {
+        const keyword = searchInput.value.trim().toLowerCase();
+        return leads.filter(lead => {
+          const statusMatch = activeFilter === 'all' || lead.status === activeFilter;
+          const text = [lead.name, lead.email, lead.phone, lead.message, lead.locale, lead.owner]
+            .join(' ')
+            .toLowerCase();
+          return statusMatch && (!keyword || text.includes(keyword));
+        });
+      }
+
+      function updateMetrics() {
+        const total = leads.length;
+        const fresh = leads.filter(lead => lead.status === 'new').length;
+        const open = leads.filter(lead => ['new', 'contacted', 'working'].includes(lead.status)).length;
+        const done = leads.filter(lead => lead.status === 'done').length;
+        document.getElementById('metric-total').textContent = total;
+        document.getElementById('metric-new').textContent = fresh;
+        document.getElementById('metric-open').textContent = open;
+        document.getElementById('metric-done').textContent = done;
+      }
+
+      function renderList() {
+        const items = filteredLeads();
+        updateMetrics();
+
+        if (!items.length) {
+          leadList.innerHTML = '<div class="empty">Không có lead phù hợp bộ lọc hiện tại.</div>';
+          renderDetail();
+          return;
+        }
+
+        if (!selectedId || !items.some(lead => lead.id === selectedId)) selectedId = items[0].id;
+
+        leadList.innerHTML = items
+          .map(
+            lead => `
+              <button type="button" class="lead-item ${lead.id === selectedId ? 'active' : ''}" data-lead="${escapeHtml(lead.id)}">
+                <span class="lead-top">
+                  <span class="lead-title">
+                    <strong>${escapeHtml(lead.name || 'Chưa có tên')}</strong>
+                    <span class="lead-meta">${escapeHtml(lead.email || '-')} · ${formatDate(lead.createdAt)}</span>
+                  </span>
+                  <span class="badge ${escapeHtml(lead.status || 'new')}">${escapeHtml(statusLabels[lead.status] || lead.status || 'Mới')}</span>
+                </span>
+                <span class="lead-message">${escapeHtml(lead.message || '')}</span>
+              </button>
+            `
+          )
+          .join('');
+
+        document.querySelectorAll('[data-lead]').forEach(button => {
+          button.addEventListener('click', () => {
+            selectedId = button.dataset.lead;
+            renderList();
+            renderDetail();
+          });
+        });
+
+        renderDetail();
+      }
+
+      function selectedLead() {
+        return leads.find(lead => lead.id === selectedId) || null;
+      }
+
+      function renderDetail() {
+        const lead = selectedLead();
+        if (!lead) {
+          leadDetail.innerHTML = '<div class="empty">Chọn một lead để xem chi tiết và xử lý.</div>';
+          return;
+        }
+
+        const notes = Array.isArray(lead.notes) ? lead.notes : [];
+        leadDetail.innerHTML = `
+          <div class="detail-head">
+            <div>
+              <p class="eyebrow">Chi tiết lead</p>
+              <h2>${escapeHtml(lead.name || 'Chưa có tên')}</h2>
+              <div class="lead-meta">${escapeHtml(lead.email || '-')} · ${formatDate(lead.createdAt)}</div>
+            </div>
+            <span class="badge ${escapeHtml(lead.status || 'new')}">${escapeHtml(statusLabels[lead.status] || lead.status || 'Mới')}</span>
+          </div>
+
+          <div class="button-row">
+            <a class="button" href="${mailto(lead)}">Trả lời email</a>
+            <button type="button" class="secondary" id="copy-email">Copy email</button>
+            ${lead.page ? `<a class="button secondary" href="${escapeHtml(lead.page)}" target="_blank" rel="noreferrer">Nguồn gửi</a>` : ''}
+          </div>
+
+          <div class="info-grid">
+            <div class="info-card"><span>Điện thoại</span><strong>${escapeHtml(lead.phone || '-')}</strong></div>
+            <div class="info-card"><span>Ngôn ngữ</span><strong>${escapeHtml((lead.locale || 'en').toUpperCase())}</strong></div>
+            <div class="info-card"><span>Người phụ trách</span><strong>${escapeHtml(lead.owner || 'Chưa gán')}</strong></div>
+            <div class="info-card"><span>Cập nhật</span><strong>${formatDate(lead.updatedAt)}</strong></div>
+          </div>
+
+          <div>
+            <p class="eyebrow">Nội dung khách gửi</p>
+            <div class="message-box">${escapeHtml(lead.message || '-')}</div>
+          </div>
+
+          <form class="form-grid" id="lead-form">
+            <label class="field">
+              <span>Trạng thái</span>
+              <select id="lead-status">
+                ${Object.entries(statusLabels)
+                  .map(([value, label]) => `<option value="${value}" ${lead.status === value ? 'selected' : ''}>${label}</option>`)
+                  .join('')}
+              </select>
+            </label>
+            <label class="field">
+              <span>Người phụ trách</span>
+              <input id="lead-owner" value="${escapeHtml(lead.owner || '')}" placeholder="Ví dụ: Xuân, Marketing..." />
+            </label>
+            <label class="field full">
+              <span>Ghi chú nội bộ mới</span>
+              <textarea id="lead-note" rows="4" placeholder="Ví dụ: đã gửi email, hẹn call thứ Sáu, khách quan tâm workshop..."></textarea>
+            </label>
+            <div class="button-row field full">
+              <button type="submit">Lưu xử lý</button>
+              <button type="button" class="secondary" id="mark-done">Đánh dấu đã xong</button>
+            </div>
+          </form>
+
+          <div>
+            <p class="eyebrow">Ghi chú gần đây</p>
+            <div class="notes">
+              ${
+                notes.length
+                  ? notes
+                      .map(
+                        note => `
+                          <article class="note-card">
+                            <div>${escapeHtml(note.body)}</div>
+                            <div class="note-time">${formatDate(note.createdAt)}</div>
+                          </article>
+                        `
+                      )
+                      .join('')
+                  : '<div class="empty">Chưa có ghi chú nội bộ.</div>'
+              }
+            </div>
+          </div>
+        `;
+
+        document.getElementById('copy-email')?.addEventListener('click', async () => {
+          await navigator.clipboard.writeText(lead.email || '');
+          showToast('Đã copy email.');
+        });
+
+        document.getElementById('mark-done')?.addEventListener('click', () => {
+          document.getElementById('lead-status').value = 'done';
+          document.getElementById('lead-form').requestSubmit();
+        });
+
+        document.getElementById('lead-form')?.addEventListener('submit', async event => {
+          event.preventDefault();
+          await updateLead(lead.id);
+        });
+      }
+
+      async function updateLead(id) {
+        const status = document.getElementById('lead-status').value;
+        const owner = document.getElementById('lead-owner').value;
+        const note = document.getElementById('lead-note').value;
+
+        try {
+          const response = await fetch('/api/admin-leads', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id, status, owner, note }),
+          });
+          const result = await response.json();
+          if (!response.ok || !result.ok) throw new Error(result.message || 'Không lưu được lead.');
+
+          leads = leads.map(lead => (lead.id === id ? result.lead : lead));
+          selectedId = id;
+          showToast('Đã lưu xử lý lead.');
+          renderList();
+        } catch (error) {
+          showToast(error instanceof Error ? error.message : 'Không lưu được lead.', 'error');
+        }
+      }
+
+      async function loadLeads() {
+        try {
+          const response = await fetch('/api/admin-leads', { credentials: 'same-origin' });
+          const result = await response.json();
+          if (!response.ok || !result.ok) throw new Error(result.message || 'Không tải được lead.');
+          leads = Array.isArray(result.leads) ? result.leads : [];
+          selectedId = leads[0]?.id || null;
+          renderList();
+        } catch (error) {
+          leadList.innerHTML = `<div class="empty">${escapeHtml(error instanceof Error ? error.message : 'Không tải được lead.')}</div>`;
+        }
+      }
+
+      document.querySelectorAll('[data-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+          activeFilter = button.dataset.filter;
+          document.querySelectorAll('[data-filter]').forEach(item => {
+            item.classList.toggle('active', item === button);
+          });
+          renderList();
+        });
+      });
+
+      searchInput.addEventListener('input', renderList);
+      loadLeads();
+    </script>
+  </body>
+</html>
