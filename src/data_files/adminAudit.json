@@ -1,6 +1,13 @@
 {
-  "updatedAt": "2026-05-07T05:28:12.725Z",
+  "updatedAt": "2026-05-07T05:28:17.835Z",
   "events": [
+    {
+      "id": "audit-1778131697835-x7k6wg",
+      "createdAt": "2026-05-07T05:28:17.835Z",
+      "type": "media-delete",
+      "actor": "admin",
+      "target": "src/images/construction-workers.avif"
+    },
     {
       "id": "audit-1778131692725-ipqsez",
       "createdAt": "2026-05-07T05:28:12.725Z",
