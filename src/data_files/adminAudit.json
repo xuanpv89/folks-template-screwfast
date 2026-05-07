@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-05-07T05:39:42.979Z",
+  "updatedAt": "2026-05-07T05:39:59.789Z",
   "events": [
+    {
+      "id": "audit-1778132399788-trlk9r",
+      "createdAt": "2026-05-07T05:39:59.788Z",
+      "type": "lead-update",
+      "actor": "admin",
+      "target": "lead-1778071075913-up5z9n",
+      "status": "done",
+      "priority": "normal",
+      "commitSha": "05e82d16ae5cb0bee1bd8a3a2a3a1525328e2092",
+      "commitUrl": "https://github.com/xuanpv89/folksteam.com/commit/05e82d16ae5cb0bee1bd8a3a2a3a1525328e2092"
+    },
     {
       "id": "audit-1778132382979-2itzay",
       "createdAt": "2026-05-07T05:39:42.979Z",
