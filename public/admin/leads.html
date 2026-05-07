@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Lead | Folks Team CMS</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <style>
       .shell {
         width: min(100%, 1380px);
@@ -333,7 +340,7 @@
     </style>
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
-  <body>
+  <body class="admin-page admin-leads">
     <main class="shell">
       <header class="topbar">
         <div class="brand">
@@ -347,8 +354,12 @@
           <a href="/admin/">Admin Hub</a>
           <a class="secondary" href="/admin/operations.html">Vận hành</a>
           <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
-          <a class="secondary" href="/contact" target="_blank" rel="noreferrer">Mở form</a>
-          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+          <a class="secondary" href="/contact" target="_blank" rel="noreferrer"
+            >Mở form</a
+          >
+          <button type="button" class="secondary" data-admin-logout>
+            Đăng xuất
+          </button>
         </nav>
       </header>
 
@@ -356,32 +367,59 @@
         <p class="eyebrow">Không bỏ sót liên hệ mới</p>
         <h2>Nhận lead từ form contact và xử lý ngay trong admin.</h2>
         <p>
-          Danh sách này dành cho follow-up hằng ngày: xem người liên hệ, đổi trạng thái, ghi chú nội bộ,
-          rồi mở email trả lời. Không cần CRM nặng.
+          Danh sách này dành cho follow-up hằng ngày: xem người liên hệ, đổi
+          trạng thái, ghi chú nội bộ, rồi mở email trả lời. Không cần CRM nặng.
         </p>
       </section>
 
       <section class="metrics" aria-label="Lead metrics">
-        <article class="metric"><span class="muted">Tổng lead</span><strong id="metric-total">0</strong></article>
-        <article class="metric"><span class="muted">Mới</span><strong id="metric-new">0</strong></article>
-        <article class="metric"><span class="muted">Đang xử lý</span><strong id="metric-open">0</strong></article>
-        <article class="metric"><span class="muted">Hoàn tất</span><strong id="metric-done">0</strong></article>
+        <article class="metric">
+          <span class="muted">Tổng lead</span
+          ><strong id="metric-total">0</strong>
+        </article>
+        <article class="metric">
+          <span class="muted">Mới</span><strong id="metric-new">0</strong>
+        </article>
+        <article class="metric">
+          <span class="muted">Đang xử lý</span
+          ><strong id="metric-open">0</strong>
+        </article>
+        <article class="metric">
+          <span class="muted">Hoàn tất</span><strong id="metric-done">0</strong>
+        </article>
       </section>
 
       <section class="surface toolbar">
         <div class="filters" aria-label="Bộ lọc lead">
-          <button type="button" class="secondary active" data-filter="all">Tất cả</button>
-          <button type="button" class="secondary" data-filter="urgent">Cần xử lý</button>
+          <button type="button" class="secondary active" data-filter="all">
+            Tất cả
+          </button>
+          <button type="button" class="secondary" data-filter="urgent">
+            Cần xử lý
+          </button>
           <button type="button" class="secondary" data-filter="new">Mới</button>
-          <button type="button" class="secondary" data-filter="contacted">Đã liên hệ</button>
-          <button type="button" class="secondary" data-filter="working">Đang xử lý</button>
-          <button type="button" class="secondary" data-filter="done">Đã xong</button>
-          <button type="button" class="secondary" data-filter="duplicate">Trùng lặp</button>
-          <button type="button" class="secondary" id="export-leads">Xuất danh sách</button>
+          <button type="button" class="secondary" data-filter="contacted">
+            Đã liên hệ
+          </button>
+          <button type="button" class="secondary" data-filter="working">
+            Đang xử lý
+          </button>
+          <button type="button" class="secondary" data-filter="done">
+            Đã xong
+          </button>
+          <button type="button" class="secondary" data-filter="duplicate">
+            Trùng lặp
+          </button>
+          <button type="button" class="secondary" id="export-leads">
+            Xuất danh sách
+          </button>
         </div>
         <label class="search">
           <span class="muted">Tìm tên, email, nội dung</span>
-          <input id="search" placeholder="Ví dụ: workshop, gmail, tên khách..." />
+          <input
+            id="search"
+            placeholder="Ví dụ: workshop, gmail, tên khách..."
+          />
         </label>
       </section>
 
@@ -448,12 +486,16 @@
       }
 
       function mailto(lead) {
-        const subject = encodeURIComponent(`Re: Folks Team - ${lead.name || 'your message'}`);
+        const subject = encodeURIComponent(
+          `Re: Folks Team - ${lead.name || 'your message'}`
+        );
         return `mailto:${encodeURIComponent(lead.email || '')}?subject=${subject}`;
       }
 
       function duplicateKey(lead) {
-        return String(lead.email || lead.phone || '').trim().toLowerCase();
+        return String(lead.email || lead.phone || '')
+          .trim()
+          .toLowerCase();
       }
 
       function duplicateCount(lead) {
@@ -472,12 +514,16 @@
           '',
           'Best,',
           'Folks Team',
-        ].filter(line => line !== '').join('\n');
+        ]
+          .filter(line => line !== '')
+          .join('\n');
       }
 
       function isStaleLead(lead) {
         if ((lead.status || 'new') !== 'new' || !lead.createdAt) return false;
-        return Date.now() - new Date(lead.createdAt).getTime() > 24 * 60 * 60 * 1000;
+        return (
+          Date.now() - new Date(lead.createdAt).getTime() > 24 * 60 * 60 * 1000
+        );
       }
 
       function filteredLeads() {
@@ -486,9 +532,19 @@
           const statusMatch =
             activeFilter === 'all' ||
             lead.status === activeFilter ||
-            (activeFilter === 'urgent' && (lead.priority === 'urgent' || isStaleLead(lead))) ||
+            (activeFilter === 'urgent' &&
+              (lead.priority === 'urgent' || isStaleLead(lead))) ||
             (activeFilter === 'duplicate' && duplicateCount(lead) > 1);
-          const text = [lead.name, lead.email, lead.phone, lead.message, lead.locale, lead.owner, lead.priority, ...(lead.tags || [])]
+          const text = [
+            lead.name,
+            lead.email,
+            lead.phone,
+            lead.message,
+            lead.locale,
+            lead.owner,
+            lead.priority,
+            ...(lead.tags || []),
+          ]
             .join(' ')
             .toLowerCase();
           return statusMatch && (!keyword || text.includes(keyword));
@@ -498,7 +554,9 @@
       function updateMetrics() {
         const total = leads.length;
         const fresh = leads.filter(lead => lead.status === 'new').length;
-        const open = leads.filter(lead => ['new', 'contacted', 'working'].includes(lead.status)).length;
+        const open = leads.filter(lead =>
+          ['new', 'contacted', 'working'].includes(lead.status)
+        ).length;
         const done = leads.filter(lead => lead.status === 'done').length;
         document.getElementById('metric-total').textContent = total;
         document.getElementById('metric-new').textContent = fresh;
@@ -511,12 +569,14 @@
         updateMetrics();
 
         if (!items.length) {
-          leadList.innerHTML = '<div class="empty">Không có lead phù hợp bộ lọc hiện tại.</div>';
+          leadList.innerHTML =
+            '<div class="empty">Không có lead phù hợp bộ lọc hiện tại.</div>';
           renderDetail();
           return;
         }
 
-        if (!selectedId || !items.some(lead => lead.id === selectedId)) selectedId = items[0].id;
+        if (!selectedId || !items.some(lead => lead.id === selectedId))
+          selectedId = items[0].id;
 
         leadList.innerHTML = items
           .map(
@@ -558,7 +618,8 @@
       function renderDetail() {
         const lead = selectedLead();
         if (!lead) {
-          leadDetail.innerHTML = '<div class="empty">Chọn một lead để xem chi tiết và xử lý.</div>';
+          leadDetail.innerHTML =
+            '<div class="empty">Chọn một lead để xem chi tiết và xử lý.</div>';
           return;
         }
 
@@ -608,7 +669,10 @@
               <span>Trạng thái</span>
               <select id="lead-status">
                 ${Object.entries(statusLabels)
-                  .map(([value, label]) => `<option value="${value}" ${lead.status === value ? 'selected' : ''}>${label}</option>`)
+                  .map(
+                    ([value, label]) =>
+                      `<option value="${value}" ${lead.status === value ? 'selected' : ''}>${label}</option>`
+                  )
                   .join('')}
               </select>
             </label>
@@ -620,7 +684,10 @@
               <span>Ưu tiên</span>
               <select id="lead-priority">
                 ${Object.entries(priorityLabels)
-                  .map(([value, label]) => `<option value="${value}" ${(lead.priority || 'normal') === value ? 'selected' : ''}>${label}</option>`)
+                  .map(
+                    ([value, label]) =>
+                      `<option value="${value}" ${(lead.priority || 'normal') === value ? 'selected' : ''}>${label}</option>`
+                  )
                   .join('')}
               </select>
             </label>
@@ -659,25 +726,31 @@
           </div>
         `;
 
-        document.getElementById('copy-email')?.addEventListener('click', async () => {
-          await navigator.clipboard.writeText(lead.email || '');
-          showToast('Đã copy email.');
-        });
+        document
+          .getElementById('copy-email')
+          ?.addEventListener('click', async () => {
+            await navigator.clipboard.writeText(lead.email || '');
+            showToast('Đã copy email.');
+          });
 
-        document.getElementById('copy-reply-template')?.addEventListener('click', async () => {
-          await navigator.clipboard.writeText(replyTemplate(lead));
-          showToast('Đã copy mẫu trả lời.');
-        });
+        document
+          .getElementById('copy-reply-template')
+          ?.addEventListener('click', async () => {
+            await navigator.clipboard.writeText(replyTemplate(lead));
+            showToast('Đã copy mẫu trả lời.');
+          });
 
         document.getElementById('mark-done')?.addEventListener('click', () => {
           document.getElementById('lead-status').value = 'done';
           document.getElementById('lead-form').requestSubmit();
         });
 
-        document.getElementById('lead-form')?.addEventListener('submit', async event => {
-          event.preventDefault();
-          await updateLead(lead.id);
-        });
+        document
+          .getElementById('lead-form')
+          ?.addEventListener('submit', async event => {
+            event.preventDefault();
+            await updateLead(lead.id);
+          });
       }
 
       async function updateLead(id) {
@@ -701,22 +774,29 @@
             body: JSON.stringify({ id, status, owner, priority, tags, note }),
           });
           const result = await response.json();
-          if (!response.ok || !result.ok) throw new Error(result.message || 'Không lưu được lead.');
+          if (!response.ok || !result.ok)
+            throw new Error(result.message || 'Không lưu được lead.');
 
           leads = leads.map(lead => (lead.id === id ? result.lead : lead));
           selectedId = id;
           showToast('Đã lưu xử lý lead.');
           renderList();
         } catch (error) {
-          showToast(error instanceof Error ? error.message : 'Không lưu được lead.', 'error');
+          showToast(
+            error instanceof Error ? error.message : 'Không lưu được lead.',
+            'error'
+          );
         }
       }
 
       async function loadLeads() {
         try {
-          const response = await fetch('/api/admin-leads', { credentials: 'same-origin' });
+          const response = await fetch('/api/admin-leads', {
+            credentials: 'same-origin',
+          });
           const result = await response.json();
-          if (!response.ok || !result.ok) throw new Error(result.message || 'Không tải được lead.');
+          if (!response.ok || !result.ok)
+            throw new Error(result.message || 'Không tải được lead.');
           leads = Array.isArray(result.leads) ? result.leads : [];
           selectedId = leads[0]?.id || null;
           renderList();
@@ -726,21 +806,44 @@
       }
 
       function exportLeads() {
-        const rows = [['name', 'email', 'phone', 'status', 'priority', 'owner', 'tags', 'createdAt', 'updatedAt', 'message']];
-        filteredLeads().forEach(lead => rows.push([
-          lead.name,
-          lead.email,
-          lead.phone,
-          lead.status,
-          lead.priority,
-          lead.owner,
-          (lead.tags || []).join('|'),
-          lead.createdAt,
-          lead.updatedAt,
-          lead.message,
-        ]));
-        const csv = rows.map(row => row.map(value => `"${String(value || '').replace(/"/g, '""')}"`).join(',')).join('\n');
-        navigator.clipboard.writeText(csv).then(() => showToast('Đã copy CSV theo bộ lọc hiện tại.'));
+        const rows = [
+          [
+            'name',
+            'email',
+            'phone',
+            'status',
+            'priority',
+            'owner',
+            'tags',
+            'createdAt',
+            'updatedAt',
+            'message',
+          ],
+        ];
+        filteredLeads().forEach(lead =>
+          rows.push([
+            lead.name,
+            lead.email,
+            lead.phone,
+            lead.status,
+            lead.priority,
+            lead.owner,
+            (lead.tags || []).join('|'),
+            lead.createdAt,
+            lead.updatedAt,
+            lead.message,
+          ])
+        );
+        const csv = rows
+          .map(row =>
+            row
+              .map(value => `"${String(value || '').replace(/"/g, '""')}"`)
+              .join(',')
+          )
+          .join('\n');
+        navigator.clipboard
+          .writeText(csv)
+          .then(() => showToast('Đã copy CSV theo bộ lọc hiện tại.'));
       }
 
       document.querySelectorAll('[data-filter]').forEach(button => {
@@ -754,7 +857,9 @@
       });
 
       searchInput.addEventListener('input', renderList);
-      document.getElementById('export-leads').addEventListener('click', exportLeads);
+      document
+        .getElementById('export-leads')
+        .addEventListener('click', exportLeads);
       loadLeads();
     </script>
   </body>

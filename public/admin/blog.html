@@ -6,10 +6,17 @@
     <meta name="robots" content="noindex" />
     <title>Folks Team CMS</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=admin-2" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=admin-2" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
@@ -26,8 +33,14 @@
         --brand-dark: #3f965c;
         --brand-soft: #dcf4e4;
         font-family:
-          'Be Vietnam Pro', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
+          'Be Vietnam Pro',
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
         line-height: 1.5;
       }
 
@@ -901,14 +914,21 @@
         margin-top: 12px;
       }
     </style>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <meta name="theme-color" content="#4fb16f" />
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
-  <body>
+  <body class="admin-page admin-blog">
     <main class="shell">
       <header class="topbar">
         <div class="brand">
@@ -928,7 +948,9 @@
           <a href="/vi/blog">Blog VI</a>
           <a class="secondary" href="/">Xem website</a>
           <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
-          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+          <button type="button" class="secondary" data-admin-logout>
+            Đăng xuất
+          </button>
         </nav>
       </header>
 
@@ -938,8 +960,8 @@
             <p class="eyebrow">Không cần biết kỹ thuật</p>
             <h2>Viết bài, xem trước và đăng lên website trong 3 bước.</h2>
             <p class="hint">
-              Chỉ cần nhập tiêu đề, nội dung, kiểm tra bản xem trước rồi bấm đăng.
-              Các phần kỹ thuật đã được đưa vào mục nâng cao.
+              Chỉ cần nhập tiêu đề, nội dung, kiểm tra bản xem trước rồi bấm
+              đăng. Các phần kỹ thuật đã được đưa vào mục nâng cao.
             </p>
             <div class="toolbar">
               <a class="secondary" href="/blog">Xem blog tiếng Anh</a>
@@ -967,9 +989,21 @@
         <div class="notice">
           <h2>Cách dùng nhanh</h2>
           <ol class="steps">
-            <li><span>1</span><strong>Viết tiêu đề, mô tả và nội dung chính của bài.</strong></li>
-            <li><span>2</span><strong>Nhìn khung xem trước bên phải để kiểm tra bài đọc ổn chưa.</strong></li>
-            <li><span>3</span><strong>Khi bảng kiểm đã xanh, bấm Đăng bài lên website.</strong></li>
+            <li>
+              <span>1</span
+              ><strong>Viết tiêu đề, mô tả và nội dung chính của bài.</strong>
+            </li>
+            <li>
+              <span>2</span
+              ><strong
+                >Nhìn khung xem trước bên phải để kiểm tra bài đọc ổn
+                chưa.</strong
+              >
+            </li>
+            <li>
+              <span>3</span
+              ><strong>Khi bảng kiểm đã xanh, bấm Đăng bài lên website.</strong>
+            </li>
           </ol>
         </div>
       </section>
@@ -982,18 +1016,31 @@
               <h2>Tạo bài blog mới</h2>
             </div>
             <div class="quick-actions">
-              <button type="button" class="utility-action" id="quick-save-draft">Lưu nháp</button>
-              <button type="button" class="primary-action" id="quick-publish">Kiểm tra để đăng</button>
+              <button
+                type="button"
+                class="utility-action"
+                id="quick-save-draft"
+              >
+                Lưu nháp
+              </button>
+              <button type="button" class="primary-action" id="quick-publish">
+                Kiểm tra để đăng
+              </button>
             </div>
           </div>
           <div class="tab-nav" aria-label="Blog editor sections">
-            <button type="button" class="active" data-editor-tab="write">1. Viết bài</button>
+            <button type="button" class="active" data-editor-tab="write">
+              1. Viết bài
+            </button>
             <button type="button" data-editor-tab="settings">2. Cài đặt</button>
             <button type="button" data-editor-tab="publish">3. Đăng bài</button>
           </div>
 
           <div class="next-step">
-            <p id="next-step-text">Bắt đầu bằng tiêu đề và mô tả ngắn. CMS sẽ tự lưu nháp trên máy này.</p>
+            <p id="next-step-text">
+              Bắt đầu bằng tiêu đề và mô tả ngắn. CMS sẽ tự lưu nháp trên máy
+              này.
+            </p>
             <span class="autosave" id="autosave-status">Chưa có thay đổi</span>
           </div>
 
@@ -1006,27 +1053,52 @@
                   <option value="en">English</option>
                   <option value="vi">Tiếng Việt</option>
                 </select>
-                <span class="field-note">Chọn đúng nơi bài sẽ xuất hiện trên website.</span>
+                <span class="field-note"
+                  >Chọn đúng nơi bài sẽ xuất hiện trên website.</span
+                >
               </label>
               <label>
                 Đường dẫn bài viết
-                <input id="slug" name="slug" placeholder="vi-du-bai-viet" required />
-                <span class="field-note">Tự tạo từ tiêu đề. Chỉ dùng chữ thường, số và dấu gạch ngang.</span>
+                <input
+                  id="slug"
+                  name="slug"
+                  placeholder="vi-du-bai-viet"
+                  required
+                />
+                <span class="field-note"
+                  >Tự tạo từ tiêu đề. Chỉ dùng chữ thường, số và dấu gạch
+                  ngang.</span
+                >
                 <span class="field-error" data-error-for="slug"></span>
               </label>
             </div>
 
             <label>
               Tiêu đề bài viết
-              <input id="title" name="title" placeholder="Tiêu đề bài viết" required />
-              <span class="field-note">Nên rõ ý, người đọc nhìn là biết bài nói về gì.</span>
+              <input
+                id="title"
+                name="title"
+                placeholder="Tiêu đề bài viết"
+                required
+              />
+              <span class="field-note"
+                >Nên rõ ý, người đọc nhìn là biết bài nói về gì.</span
+              >
               <span class="field-error" data-error-for="title"></span>
             </label>
 
             <label>
               Mô tả ngắn
-              <textarea id="description" name="description" placeholder="Mô tả ngắn cho SEO và card blog" required></textarea>
-              <span class="field-note">1-2 câu tóm tắt. Phần này hiện trên thẻ bài viết và Google.</span>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Mô tả ngắn cho SEO và card blog"
+                required
+              ></textarea>
+              <span class="field-note"
+                >1-2 câu tóm tắt. Phần này hiện trên thẻ bài viết và
+                Google.</span
+              >
               <span class="field-error" data-error-for="description"></span>
             </label>
           </div>
@@ -1055,7 +1127,14 @@
               </label>
               <label>
                 Thời gian đọc
-                <input id="readTime" name="readTime" type="number" min="1" value="4" required />
+                <input
+                  id="readTime"
+                  name="readTime"
+                  type="number"
+                  min="1"
+                  value="4"
+                  required
+                />
               </label>
             </div>
 
@@ -1073,23 +1152,39 @@
               </label>
               <label>
                 Từ khóa
-                <input id="tags" name="tags" placeholder="marketing, cộng đồng, chiến lược" />
+                <input
+                  id="tags"
+                  name="tags"
+                  placeholder="marketing, cộng đồng, chiến lược"
+                />
               </label>
             </div>
             <h3>Liên kết bài đa ngôn ngữ</h3>
             <div class="row">
               <label>
                 Bản EN liên quan
-                <input id="linkedEn" name="linkedEn" placeholder="/blog/example-post/" />
+                <input
+                  id="linkedEn"
+                  name="linkedEn"
+                  placeholder="/blog/example-post/"
+                />
               </label>
               <label>
                 Bản VI liên quan
-                <input id="linkedVi" name="linkedVi" placeholder="/vi/blog/vi-du-bai-viet/" />
+                <input
+                  id="linkedVi"
+                  name="linkedVi"
+                  placeholder="/vi/blog/vi-du-bai-viet/"
+                />
               </label>
             </div>
             <label>
               Bản ZH liên quan
-              <input id="linkedZh" name="linkedZh" placeholder="/zh/blog/example-post/" />
+              <input
+                id="linkedZh"
+                name="linkedZh"
+                placeholder="/zh/blog/example-post/"
+              />
             </label>
           </div>
 
@@ -1098,30 +1193,56 @@
             <div class="row">
               <label>
                 Ảnh bìa bài viết
-                <input id="cardImage" name="cardImage" placeholder="Dán link ảnh hoặc upload bên dưới" />
+                <input
+                  id="cardImage"
+                  name="cardImage"
+                  placeholder="Dán link ảnh hoặc upload bên dưới"
+                />
               </label>
               <label>
                 Mô tả ảnh bìa
-                <input id="cardImageAlt" name="cardImageAlt" placeholder="Không bắt buộc, tự lấy theo tiêu đề nếu để trống" />
+                <input
+                  id="cardImageAlt"
+                  name="cardImageAlt"
+                  placeholder="Không bắt buộc, tự lấy theo tiêu đề nếu để trống"
+                />
               </label>
             </div>
 
             <div class="row">
               <label>
                 Ảnh tác giả
-                <input id="authorImage" name="authorImage" placeholder="Dán link ảnh hoặc upload bên dưới" />
+                <input
+                  id="authorImage"
+                  name="authorImage"
+                  placeholder="Dán link ảnh hoặc upload bên dưới"
+                />
               </label>
               <label>
                 Mô tả ảnh tác giả
-                <input id="authorImageAlt" name="authorImageAlt" placeholder="Không bắt buộc, tự lấy theo tên tác giả nếu để trống" />
+                <input
+                  id="authorImageAlt"
+                  name="authorImageAlt"
+                  placeholder="Không bắt buộc, tự lấy theo tên tác giả nếu để trống"
+                />
               </label>
             </div>
             <div class="media-actions">
-              <label>Upload ảnh bài viết
-                <input type="file" accept="image/avif,image/jpeg,image/png,image/webp,image/gif" data-upload-field="cardImage" />
+              <label
+                >Upload ảnh bài viết
+                <input
+                  type="file"
+                  accept="image/avif,image/jpeg,image/png,image/webp,image/gif"
+                  data-upload-field="cardImage"
+                />
               </label>
-              <label>Upload ảnh tác giả
-                <input type="file" accept="image/avif,image/jpeg,image/png,image/webp,image/gif" data-upload-field="authorImage" />
+              <label
+                >Upload ảnh tác giả
+                <input
+                  type="file"
+                  accept="image/avif,image/jpeg,image/png,image/webp,image/gif"
+                  data-upload-field="authorImage"
+                />
               </label>
             </div>
             <div class="image-preview" data-image-preview="cardImage">
@@ -1136,20 +1257,33 @@
 
           <div class="form-section" data-tab-panel="write">
             <h3>Nội dung</h3>
-            <p class="hint">Viết từng khối nhỏ cho dễ sửa. Nếu chỉ cần bài đơn giản, dùng “Đoạn văn” là đủ.</p>
+            <p class="hint">
+              Viết từng khối nhỏ cho dễ sửa. Nếu chỉ cần bài đơn giản, dùng
+              “Đoạn văn” là đủ.
+            </p>
             <div class="block-toolbar" aria-label="Add content block">
-              <button type="button" data-add-block="paragraph">+ Đoạn văn</button>
+              <button type="button" data-add-block="paragraph">
+                + Đoạn văn
+              </button>
               <button type="button" data-add-block="image">+ Hình ảnh</button>
               <button type="button" data-add-block="video">+ Video</button>
               <button type="button" data-add-block="quote">+ Trích dẫn</button>
               <details class="advanced-box">
                 <summary>Thêm định dạng</summary>
                 <div class="button-row">
-                  <button type="button" data-add-block="heading">+ Tiêu đề phụ</button>
-                  <button type="button" data-add-block="bullets">+ Danh sách chấm</button>
-                  <button type="button" data-add-block="numbers">+ Danh sách số</button>
+                  <button type="button" data-add-block="heading">
+                    + Tiêu đề phụ
+                  </button>
+                  <button type="button" data-add-block="bullets">
+                    + Danh sách chấm
+                  </button>
+                  <button type="button" data-add-block="numbers">
+                    + Danh sách số
+                  </button>
                   <button type="button" data-add-block="link">+ Link</button>
-                  <button type="button" data-add-block="divider">+ Đường kẻ</button>
+                  <button type="button" data-add-block="divider">
+                    + Đường kẻ
+                  </button>
                 </div>
               </details>
             </div>
@@ -1168,14 +1302,19 @@
 
           <div data-tab-panel="publish" hidden>
             <p class="hint">Đường dẫn lưu file:</p>
-            <div class="path" id="target-path">src/content/blog/en/my-new-post.md</div>
+            <div class="path" id="target-path">
+              src/content/blog/en/my-new-post.md
+            </div>
           </div>
 
           <a id="download-link" class="hidden" download="new-blog-post.md"></a>
 
           <div class="publish-box" data-tab-panel="publish" hidden>
             <h3>Sẵn sàng đăng?</h3>
-            <p>Kiểm tra các mục dưới đây. Khi đủ, bạn có thể đăng bài lên website.</p>
+            <p>
+              Kiểm tra các mục dưới đây. Khi đủ, bạn có thể đăng bài lên
+              website.
+            </p>
             <ul class="readiness" id="readiness-list">
               <li data-check="title">Có tiêu đề bài viết</li>
               <li data-check="seoTitle">Tiêu đề SEO khoảng 20-70 ký tự</li>
@@ -1186,7 +1325,8 @@
               <li data-check="slug">Có đường dẫn hợp lệ</li>
             </ul>
             <div class="safe-note">
-              Mẹo an toàn: nếu chưa chắc, bấm “Lưu nháp” trước. Nút “Đăng bài lên website” chỉ dùng khi bài đã sẵn sàng công khai.
+              Mẹo an toàn: nếu chưa chắc, bấm “Lưu nháp” trước. Nút “Đăng bài
+              lên website” chỉ dùng khi bài đã sẵn sàng công khai.
             </div>
             <label class="check-row">
               <input id="allowUpdate" type="checkbox" />
@@ -1197,9 +1337,23 @@
             </div>
             <div class="actions">
               <div class="button-row">
-                <button type="button" class="primary-action" id="publish-github">Đăng bài lên website</button>
-                <button type="button" class="utility-action" id="save-cloud-draft">Lưu nháp</button>
-                <button type="button" class="utility-action" id="submit-review">Gửi review</button>
+                <button
+                  type="button"
+                  class="primary-action"
+                  id="publish-github"
+                >
+                  Đăng bài lên website
+                </button>
+                <button
+                  type="button"
+                  class="utility-action"
+                  id="save-cloud-draft"
+                >
+                  Lưu nháp
+                </button>
+                <button type="button" class="utility-action" id="submit-review">
+                  Gửi review
+                </button>
               </div>
             </div>
             <details class="advanced-box">
@@ -1216,7 +1370,11 @@
               </div>
               <label>
                 Tóm tắt nội dung
-                <textarea id="contents" name="contents" placeholder="Tự tạo từ đoạn văn nếu để trống."></textarea>
+                <textarea
+                  id="contents"
+                  name="contents"
+                  placeholder="Tự tạo từ đoạn văn nếu để trống."
+                ></textarea>
               </label>
             </details>
           </div>
@@ -1224,12 +1382,18 @@
           <div class="form-section" data-tab-panel="publish" hidden>
             <h3>Công cụ nâng cao</h3>
             <div class="button-row">
-              <button type="button" class="primary-action" id="generate">Cập nhật xem trước</button>
+              <button type="button" class="primary-action" id="generate">
+                Cập nhật xem trước
+              </button>
               <button type="button" id="download">Tải file dự phòng</button>
-              <button type="button" class="utility-action" id="copy">Copy mã kỹ thuật</button>
+              <button type="button" class="utility-action" id="copy">
+                Copy mã kỹ thuật
+              </button>
             </div>
             <div class="button-row">
-              <button type="button" class="utility-action" id="save-draft">Lưu nháp</button>
+              <button type="button" class="utility-action" id="save-draft">
+                Lưu nháp
+              </button>
               <button type="reset" class="utility-action">Làm lại</button>
             </div>
           </div>
@@ -1243,12 +1407,17 @@
               <h2>Xem trước bài viết</h2>
             </div>
             <div class="preview-tabs" aria-label="Preview mode">
-              <button type="button" class="active" id="tab-live">Xem trước</button>
-              <button type="button" id="tab-markdown">Mã bài viết (kỹ thuật)</button>
+              <button type="button" class="active" id="tab-live">
+                Xem trước
+              </button>
+              <button type="button" id="tab-markdown">
+                Mã bài viết (kỹ thuật)
+              </button>
             </div>
           </div>
           <p class="hint">
-            Đây là bản mô phỏng để bạn đọc lại tiêu đề, mô tả, ảnh và nội dung trước khi đăng.
+            Đây là bản mô phỏng để bạn đọc lại tiêu đề, mô tả, ảnh và nội dung
+            trước khi đăng.
           </p>
           <article class="article-preview" id="article-preview"></article>
           <pre id="preview" class="hidden"></pre>
@@ -1346,7 +1515,9 @@
         syncBlocksFromDom();
         return contentBlocks.some(block => {
           if (block.type === 'divider') return false;
-          return ['value', 'src', 'url', 'label'].some(key => String(block[key] || '').trim());
+          return ['value', 'src', 'url', 'label'].some(key =>
+            String(block[key] || '').trim()
+          );
         });
       }
 
@@ -1362,24 +1533,27 @@
         if (type === 'image') return { type, src: '', alt: '', caption: '' };
         if (type === 'video') return { type, url: '', title: '', caption: '' };
         if (type === 'quote') return { type, value: '', cite: '' };
-        if (type === 'bullets' || type === 'numbers') return { type, value: '' };
+        if (type === 'bullets' || type === 'numbers')
+          return { type, value: '' };
         if (type === 'link') return { type, label: '', url: '' };
         if (type === 'divider') return { type };
         return { type: 'paragraph', value: '' };
       }
 
       function blockTitle(type) {
-        return {
-          heading: 'Tiêu đề phụ',
-          paragraph: 'Đoạn văn',
-          image: 'Hình ảnh',
-          video: 'Video',
-          quote: 'Trích dẫn',
-          bullets: 'Danh sách chấm',
-          numbers: 'Danh sách số',
-          link: 'Link',
-          divider: 'Đường kẻ',
-        }[type] || 'Đoạn văn';
+        return (
+          {
+            heading: 'Tiêu đề phụ',
+            paragraph: 'Đoạn văn',
+            image: 'Hình ảnh',
+            video: 'Video',
+            quote: 'Trích dẫn',
+            bullets: 'Danh sách chấm',
+            numbers: 'Danh sách số',
+            link: 'Link',
+            divider: 'Đường kẻ',
+          }[type] || 'Đoạn văn'
+        );
       }
 
       function renderBlockFields(block, index) {
@@ -1541,7 +1715,9 @@
 
       function updateMediaPreviews() {
         ['cardImage', 'authorImage'].forEach(fieldId => {
-          const wrapper = document.querySelector(`[data-image-preview="${fieldId}"]`);
+          const wrapper = document.querySelector(
+            `[data-image-preview="${fieldId}"]`
+          );
           if (!wrapper) return;
           const value = document.getElementById(fieldId).value.trim();
           const src = imagePreviewSrc(value);
@@ -1558,12 +1734,14 @@
         const locale = getValue('locale').toUpperCase();
         const title = getValue('title') || 'Bài chưa có tiêu đề';
         const date = new Date(`${pubDate}T09:00:00`);
-        const weekday = Number.isNaN(date.getTime()) ? '-' : date.toLocaleDateString('vi-VN', {
-          weekday: 'long',
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-        });
+        const weekday = Number.isNaN(date.getTime())
+          ? '-'
+          : date.toLocaleDateString('vi-VN', {
+              weekday: 'long',
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+            });
         editorialCalendar.innerHTML = `
           <strong>${escapeHtml(weekday)}</strong>
           <span>${escapeHtml(locale)} · ${escapeHtml(title)}</span>
@@ -1605,10 +1783,19 @@
                 .join('\n');
               return block.cite ? `${quote}\n>\n> -- ${block.cite}` : quote;
             }
-            if ((block.type === 'bullets' || block.type === 'numbers') && block.value) {
+            if (
+              (block.type === 'bullets' || block.type === 'numbers') &&
+              block.value
+            ) {
               return block.value
                 .split('\n')
-                .map((line, index) => line.trim() && (block.type === 'bullets' ? `- ${line.trim()}` : `${index + 1}. ${line.trim()}`))
+                .map(
+                  (line, index) =>
+                    line.trim() &&
+                    (block.type === 'bullets'
+                      ? `- ${line.trim()}`
+                      : `${index + 1}. ${line.trim()}`)
+                )
                 .filter(Boolean)
                 .join('\n');
             }
@@ -1627,7 +1814,9 @@
       function summaryFromBlocks() {
         syncBlocksFromDom();
         return contentBlocks
-          .filter(block => ['paragraph', 'quote'].includes(block.type) && block.value)
+          .filter(
+            block => ['paragraph', 'quote'].includes(block.type) && block.value
+          )
           .map(block => block.value.trim())
           .slice(0, 6);
       }
@@ -1643,12 +1832,24 @@
         const errors = [];
 
         if (!title) errors.push({ field: 'title', label: 'tiêu đề bài viết' });
-        if (!description) errors.push({ field: 'description', label: 'mô tả ngắn' });
-        if (title && (title.length < 20 || title.length > 70)) errors.push({ field: 'title', label: 'tiêu đề SEO 20-70 ký tự' });
-        if (description && (description.length < 70 || description.length > 170)) errors.push({ field: 'description', label: 'mô tả SEO 70-170 ký tự' });
-        if (!imageAlt) errors.push({ field: 'cardImageAlt', label: 'alt text cho ảnh bìa' });
-        if (!contents.length && !bodyContent) errors.push({ field: 'content', label: 'nội dung bài viết' });
-        if (!result.slug) errors.push({ field: 'slug', label: 'đường dẫn bài viết' });
+        if (!description)
+          errors.push({ field: 'description', label: 'mô tả ngắn' });
+        if (title && (title.length < 20 || title.length > 70))
+          errors.push({ field: 'title', label: 'tiêu đề SEO 20-70 ký tự' });
+        if (
+          description &&
+          (description.length < 70 || description.length > 170)
+        )
+          errors.push({
+            field: 'description',
+            label: 'mô tả SEO 70-170 ký tự',
+          });
+        if (!imageAlt)
+          errors.push({ field: 'cardImageAlt', label: 'alt text cho ảnh bìa' });
+        if (!contents.length && !bodyContent)
+          errors.push({ field: 'content', label: 'nội dung bài viết' });
+        if (!result.slug)
+          errors.push({ field: 'slug', label: 'đường dẫn bài viết' });
 
         return errors;
       }
@@ -1668,7 +1869,9 @@
         errors.forEach(error => {
           if (!['title', 'description', 'slug'].includes(error.field)) return;
           const field = document.getElementById(error.field);
-          const message = document.querySelector(`[data-error-for="${error.field}"]`);
+          const message = document.querySelector(
+            `[data-error-for="${error.field}"]`
+          );
           if (field) field.setAttribute('aria-invalid', 'true');
           if (message) {
             message.textContent = `Vui lòng nhập ${error.label}.`;
@@ -1703,18 +1906,22 @@
           return;
         }
         if (!state.description) {
-          nextStepText.textContent = 'Thêm mô tả ngắn để người đọc biết bài viết nói về gì.';
+          nextStepText.textContent =
+            'Thêm mô tả ngắn để người đọc biết bài viết nói về gì.';
           return;
         }
         if (!state.seoTitle || !state.seoDescription || !state.imageAlt) {
-          nextStepText.textContent = 'Hoàn tất checklist SEO trước khi đăng: độ dài title/description và alt ảnh.';
+          nextStepText.textContent =
+            'Hoàn tất checklist SEO trước khi đăng: độ dài title/description và alt ảnh.';
           return;
         }
         if (!state.content) {
-          nextStepText.textContent = 'Thêm ít nhất một đoạn nội dung trong phần Nội dung.';
+          nextStepText.textContent =
+            'Thêm ít nhất một đoạn nội dung trong phần Nội dung.';
           return;
         }
-        nextStepText.textContent = 'Bài đã đủ thông tin cơ bản. Bạn có thể kiểm tra bản xem trước rồi đăng.';
+        nextStepText.textContent =
+          'Bài đã đủ thông tin cơ bản. Bạn có thể kiểm tra bản xem trước rồi đăng.';
       }
 
       function escapeHtml(value) {
@@ -1743,7 +1950,11 @@
         const slug = slugify(data.slug || data.title || 'new-blog-post');
         const tags = tagList(data.tags);
         const bodyMarkdown = buildBodyMarkdown();
-        const cardImageAlt = data.cardImageAlt || data.title || data.description || 'Blog cover image';
+        const cardImageAlt =
+          data.cardImageAlt ||
+          data.title ||
+          data.description ||
+          'Blog cover image';
         const translations = Object.entries({
           en: data.linkedEn,
           vi: data.linkedVi,
@@ -1810,11 +2021,16 @@ ${bodyMarkdown || contents.join('\n\n')}
             if (block.type === 'quote' && block.value) {
               return `<blockquote>${escapeHtmlWithBreaks(block.value)}${block.cite ? `<br><strong>${escapeHtml(block.cite)}</strong>` : ''}</blockquote>`;
             }
-            if ((block.type === 'bullets' || block.type === 'numbers') && block.value) {
+            if (
+              (block.type === 'bullets' || block.type === 'numbers') &&
+              block.value
+            ) {
               const tag = block.type === 'bullets' ? 'ul' : 'ol';
               return `<${tag}>${block.value
                 .split('\n')
-                .map(item => item.trim() && `<li>${escapeHtml(item.trim())}</li>`)
+                .map(
+                  item => item.trim() && `<li>${escapeHtml(item.trim())}</li>`
+                )
                 .filter(Boolean)
                 .join('')}</${tag}>`;
             }
@@ -1868,10 +2084,13 @@ ${bodyMarkdown || contents.join('\n\n')}
             JSON.stringify({ ...draft, savedAt: new Date().toISOString() })
           );
           lastAutosaveAt = new Date();
-          autosaveStatus.textContent = `Đã tự lưu ${lastAutosaveAt.toLocaleTimeString('vi-VN', {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}`;
+          autosaveStatus.textContent = `Đã tự lưu ${lastAutosaveAt.toLocaleTimeString(
+            'vi-VN',
+            {
+              hour: '2-digit',
+              minute: '2-digit',
+            }
+          )}`;
         } catch {
           autosaveStatus.textContent = 'Không thể tự lưu trên trình duyệt này';
         }
@@ -1907,7 +2126,9 @@ ${bodyMarkdown || contents.join('\n\n')}
           range.selectNodeContents(preview);
           selection.removeAllRanges();
           selection.addRange(range);
-          showToast('Browser chặn copy tự động. Markdown đã được chọn để copy thủ công.');
+          showToast(
+            'Browser chặn copy tự động. Markdown đã được chọn để copy thủ công.'
+          );
         }
       }
 
@@ -1915,7 +2136,10 @@ ${bodyMarkdown || contents.join('\n\n')}
         toast.textContent = message;
         toast.classList.toggle('error', type === 'error');
         toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), type === 'error' ? 5200 : 2600);
+        setTimeout(
+          () => toast.classList.remove('show'),
+          type === 'error' ? 5200 : 2600
+        );
       }
 
       function updatePublishStatus(message, links = []) {
@@ -1932,20 +2156,26 @@ ${bodyMarkdown || contents.join('\n\n')}
       }
 
       function normalizeMarkdown(value) {
-        return String(value || '').replace(/\r\n/g, '\n').trim();
+        return String(value || '')
+          .replace(/\r\n/g, '\n')
+          .trim();
       }
 
       function currentPublishDiff(result = buildMarkdown()) {
         const sameTarget = publishedPostState.target === result.target;
         const exists = sameTarget && publishedPostState.exists;
-        const unchanged = exists && normalizeMarkdown(publishedPostState.markdown) === normalizeMarkdown(result.markdown);
+        const unchanged =
+          exists &&
+          normalizeMarkdown(publishedPostState.markdown) ===
+            normalizeMarkdown(result.markdown);
         return { exists, unchanged, sameTarget };
       }
 
       function updatePublishButtonState(result = buildMarkdown()) {
         const diff = currentPublishDiff(result);
         const mustEnableUpdate = diff.exists && !allowUpdate.checked;
-        publishButton.disabled = publishedPostState.checking || diff.unchanged || mustEnableUpdate;
+        publishButton.disabled =
+          publishedPostState.checking || diff.unchanged || mustEnableUpdate;
       }
 
       function updateBlogChangeStatus(result = buildMarkdown()) {
@@ -1957,22 +2187,30 @@ ${bodyMarkdown || contents.join('\n\n')}
           return;
         }
         if (publishedPostState.error) {
-          updatePublishStatus(`Chưa kiểm tra được bài hiện có: ${publishedPostState.error}`);
+          updatePublishStatus(
+            `Chưa kiểm tra được bài hiện có: ${publishedPostState.error}`
+          );
           return;
         }
         if (diff.unchanged) {
-          updatePublishStatus('Bài hiện giống bản trên GitHub. Chưa có thay đổi nào để đăng.', [
-            { label: 'Mở file bài viết', url: publishedPostState.fileUrl },
-          ]);
+          updatePublishStatus(
+            'Bài hiện giống bản trên GitHub. Chưa có thay đổi nào để đăng.',
+            [{ label: 'Mở file bài viết', url: publishedPostState.fileUrl }]
+          );
           return;
         }
         if (diff.exists && !allowUpdate.checked) {
-          updatePublishStatus('Đường dẫn này đã có bài. Bật “Cập nhật bài cũ” nếu muốn đăng bản sửa.', [
-            { label: 'Mở file bài viết', url: publishedPostState.fileUrl },
-          ]);
+          updatePublishStatus(
+            'Đường dẫn này đã có bài. Bật “Cập nhật bài cũ” nếu muốn đăng bản sửa.',
+            [{ label: 'Mở file bài viết', url: publishedPostState.fileUrl }]
+          );
           return;
         }
-        updatePublishStatus(diff.exists ? 'Bài đã có thay đổi so với bản trên GitHub. Có thể kiểm tra rồi đăng.' : 'Đường dẫn này chưa có bài trên GitHub. Có thể tạo bài mới.');
+        updatePublishStatus(
+          diff.exists
+            ? 'Bài đã có thay đổi so với bản trên GitHub. Có thể kiểm tra rồi đăng.'
+            : 'Đường dẫn này chưa có bài trên GitHub. Có thể tạo bài mới.'
+        );
       }
 
       async function checkPublishedPost() {
@@ -1999,7 +2237,9 @@ ${bodyMarkdown || contents.join('\n\n')}
           const data = await response.json().catch(() => null);
           if (requestId !== publishCheckRequest) return;
           if (!response.ok || data?.ok === false) {
-            throw new Error(data?.message || `Admin API error ${response.status}`);
+            throw new Error(
+              data?.message || `Admin API error ${response.status}`
+            );
           }
           publishedPostState = {
             target: data.target || result.target,
@@ -2031,40 +2271,73 @@ ${bodyMarkdown || contents.join('\n\n')}
           publicUrl ? { label: 'Mở bài viết', url: publicUrl } : null,
           { label: 'Xem thay đổi kỹ thuật', url: response.commitUrl },
           { label: 'Xem file bài viết', url: response.fileUrl },
-          response.deployment?.url ? { label: 'Mở website đã deploy', url: response.deployment.url } : null,
-          response.deployment?.inspectorUrl ? { label: 'Xem trạng thái Vercel', url: response.deployment.inspectorUrl } : null,
+          response.deployment?.url
+            ? { label: 'Mở website đã deploy', url: response.deployment.url }
+            : null,
+          response.deployment?.inspectorUrl
+            ? {
+                label: 'Xem trạng thái Vercel',
+                url: response.deployment.inspectorUrl,
+              }
+            : null,
         ].filter(Boolean);
       }
 
       async function waitForDeployStatus(response, branch, publicUrl) {
         if (!response.commitSha) return;
 
-        updatePublishStatus('Đang deploy. CMS đang kiểm tra website cập nhật xong chưa...', deployStatusLinks(response, publicUrl));
+        updatePublishStatus(
+          'Đang deploy. CMS đang kiểm tra website cập nhật xong chưa...',
+          deployStatusLinks(response, publicUrl)
+        );
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
-          await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
-          const params = new URLSearchParams({ sha: response.commitSha, branch });
-          const statusResponse = await fetch(`/api/admin-deploy-status?${params.toString()}`, {
-            credentials: 'same-origin',
+          await new Promise(resolve =>
+            setTimeout(resolve, attempt < 3 ? 3000 : 6000)
+          );
+          const params = new URLSearchParams({
+            sha: response.commitSha,
+            branch,
           });
+          const statusResponse = await fetch(
+            `/api/admin-deploy-status?${params.toString()}`,
+            {
+              credentials: 'same-origin',
+            }
+          );
           const status = await statusResponse.json().catch(() => null);
           if (!statusResponse.ok) {
-            updatePublishStatus(`Bài đã được lưu, nhưng CMS chưa kiểm tra được deploy: ${status?.message || statusResponse.status}`, deployStatusLinks(response, publicUrl));
+            updatePublishStatus(
+              `Bài đã được lưu, nhưng CMS chưa kiểm tra được deploy: ${status?.message || statusResponse.status}`,
+              deployStatusLinks(response, publicUrl)
+            );
             return status;
           }
 
           response.deployment = status.deployment;
-          const statusMessage = status.status === 'READY'
-            ? 'Đã live. Website đã deploy xong, hãy mở bài viết để kiểm tra lại.'
-            : status.message || `Trạng thái cập nhật website: ${status.status}`;
-          updatePublishStatus(statusMessage, deployStatusLinks(response, publicUrl));
+          const statusMessage =
+            status.status === 'READY'
+              ? 'Đã live. Website đã deploy xong, hãy mở bài viết để kiểm tra lại.'
+              : status.message ||
+                `Trạng thái cập nhật website: ${status.status}`;
+          updatePublishStatus(
+            statusMessage,
+            deployStatusLinks(response, publicUrl)
+          );
 
-          if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
+          if (
+            ['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(
+              status.status
+            )
+          ) {
             return status;
           }
         }
 
-        updatePublishStatus('Website vẫn đang cập nhật hoặc chưa tìm thấy deploy sau vài phút. Mở Vercel để kiểm tra tiếp.', deployStatusLinks(response, publicUrl));
+        updatePublishStatus(
+          'Website vẫn đang cập nhật hoặc chưa tìm thấy deploy sau vài phút. Mở Vercel để kiểm tra tiếp.',
+          deployStatusLinks(response, publicUrl)
+        );
       }
 
       async function adminBlogRequest(payload) {
@@ -2099,24 +2372,31 @@ ${bodyMarkdown || contents.join('\n\n')}
 
         const data = await response.json().catch(() => null);
         if (!response.ok) {
-          throw new Error(data?.message || `Media API error ${response.status}`);
+          throw new Error(
+            data?.message || `Media API error ${response.status}`
+          );
         }
         return data;
       }
 
       async function adminOperationsRequest(module, payload) {
-        const response = await fetch(`/api/admin-operations?module=${encodeURIComponent(module)}`, {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        });
+        const response = await fetch(
+          `/api/admin-operations?module=${encodeURIComponent(module)}`,
+          {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          }
+        );
 
         const data = await response.json().catch(() => null);
         if (!response.ok || data?.ok === false) {
-          throw new Error(data?.message || `Control Center API error ${response.status}`);
+          throw new Error(
+            data?.message || `Control Center API error ${response.status}`
+          );
         }
         return data;
       }
@@ -2137,7 +2417,8 @@ ${bodyMarkdown || contents.join('\n\n')}
         const response = await adminMediaRequest({
           repo: githubRepo.value.trim(),
           branch: githubBranch.value.trim() || 'main',
-          name: block.alt || block.caption || getValue('slug') || getValue('title'),
+          name:
+            block.alt || block.caption || getValue('slug') || getValue('title'),
           ...payload,
         });
         block.src = response.imagePath;
@@ -2181,7 +2462,11 @@ ${bodyMarkdown || contents.join('\n\n')}
           showFieldErrors(validationErrors);
           const labels = validationErrors.map(error => error.label).join(', ');
           showToast(`Chưa thể đăng. Bạn cần bổ sung: ${labels}.`, 'error');
-          if (validationErrors.some(error => ['title', 'description', 'slug'].includes(error.field))) {
+          if (
+            validationErrors.some(error =>
+              ['title', 'description', 'slug'].includes(error.field)
+            )
+          ) {
             setEditorTab('write');
           }
           return;
@@ -2197,7 +2482,10 @@ ${bodyMarkdown || contents.join('\n\n')}
           }
           if (diff.exists && !allowUpdate.checked) {
             updateBlogChangeStatus(result);
-            showToast('Bật chế độ cập nhật bài cũ trước khi đăng bản sửa.', 'error');
+            showToast(
+              'Bật chế độ cập nhật bài cũ trước khi đăng bản sửa.',
+              'error'
+            );
             return;
           }
         }
@@ -2207,7 +2495,8 @@ ${bodyMarkdown || contents.join('\n\n')}
             ? document.getElementById('save-cloud-draft')
             : publishButton;
         button.disabled = true;
-        button.textContent = action === 'draft' ? 'Đang lưu...' : 'Đang đăng...';
+        button.textContent =
+          action === 'draft' ? 'Đang lưu...' : 'Đang đăng...';
         updatePublishStatus(
           action === 'draft'
             ? 'Đang lưu nháp lên hệ thống...'
@@ -2227,17 +2516,28 @@ ${bodyMarkdown || contents.join('\n\n')}
 
           const verb = action === 'draft' ? 'Đã lưu nháp' : 'Đã gửi bài';
           const deployMessage =
-            response.deploy?.message || 'CMS đang kiểm tra quá trình cập nhật website.';
+            response.deploy?.message ||
+            'CMS đang kiểm tra quá trình cập nhật website.';
           const statusLinks = [
             action === 'publish'
-              ? { label: 'Mở bài viết', url: publicPostUrl(getValue('locale'), result.slug) }
+              ? {
+                  label: 'Mở bài viết',
+                  url: publicPostUrl(getValue('locale'), result.slug),
+                }
               : null,
             { label: 'Xem thay đổi kỹ thuật', url: response.commitUrl },
             { label: 'Xem file bài viết', url: response.fileUrl },
           ].filter(Boolean);
-          updatePublishStatus(`${verb}: ${response.target}. ${deployMessage}`, statusLinks);
+          updatePublishStatus(
+            `${verb}: ${response.target}. ${deployMessage}`,
+            statusLinks
+          );
           if (action === 'publish') {
-            await waitForDeployStatus(response, branch, publicPostUrl(getValue('locale'), result.slug));
+            await waitForDeployStatus(
+              response,
+              branch,
+              publicPostUrl(getValue('locale'), result.slug)
+            );
           }
           const commitLink = response.commitUrl;
           showToast(
@@ -2249,7 +2549,8 @@ ${bodyMarkdown || contents.join('\n\n')}
           showToast(`Đăng bài lỗi: ${error.message}`, 'error');
         } finally {
           button.disabled = false;
-          button.textContent = action === 'draft' ? 'Lưu nháp' : 'Đăng bài lên website';
+          button.textContent =
+            action === 'draft' ? 'Lưu nháp' : 'Đăng bài lên website';
           if (action === 'publish') {
             await checkPublishedPost();
           }
@@ -2269,7 +2570,10 @@ ${bodyMarkdown || contents.join('\n\n')}
         const validationErrors = validatePost(result);
         if (validationErrors.length) {
           showFieldErrors(validationErrors);
-          showToast(`Chưa thể gửi review. Bạn cần bổ sung: ${validationErrors.map(error => error.label).join(', ')}.`, 'error');
+          showToast(
+            `Chưa thể gửi review. Bạn cần bổ sung: ${validationErrors.map(error => error.label).join(', ')}.`,
+            'error'
+          );
           return;
         }
         clearFieldErrors();
@@ -2281,7 +2585,8 @@ ${bodyMarkdown || contents.join('\n\n')}
         try {
           const repo = githubRepo.value.trim();
           const branch = githubBranch.value.trim() || 'main';
-          if (!repo.includes('/')) throw new Error('Repository phải có dạng owner/repo.');
+          if (!repo.includes('/'))
+            throw new Error('Repository phải có dạng owner/repo.');
           const draftResponse = await adminBlogRequest({
             action: 'draft',
             repo,
@@ -2338,7 +2643,8 @@ ${bodyMarkdown || contents.join('\n\n')}
         const drafts = readDrafts();
         draftsEl.innerHTML = '';
         if (!drafts.length) {
-          draftsEl.innerHTML = '<p class="hint">Chưa có nháp đã lưu. Khi viết, CMS vẫn tự lưu tạm trên máy này.</p>';
+          draftsEl.innerHTML =
+            '<p class="hint">Chưa có nháp đã lưu. Khi viết, CMS vẫn tự lưu tạm trên máy này.</p>';
           return;
         }
 
@@ -2391,7 +2697,10 @@ ${bodyMarkdown || contents.join('\n\n')}
           const element = document.getElementById(id);
           if (element && draft[id] !== undefined) element.value = draft[id];
         });
-        contentBlocks = Array.isArray(draft.blocks) && draft.blocks.length ? draft.blocks : [defaultBlock('paragraph')];
+        contentBlocks =
+          Array.isArray(draft.blocks) && draft.blocks.length
+            ? draft.blocks
+            : [defaultBlock('paragraph')];
         renderBlocks();
         updatePreview();
         schedulePublishedPostCheck();
@@ -2425,7 +2734,9 @@ ${bodyMarkdown || contents.join('\n\n')}
         schedulePublishedPostCheck();
       });
       document.querySelectorAll('[data-add-block]').forEach(button => {
-        button.addEventListener('click', () => addBlock(button.dataset.addBlock));
+        button.addEventListener('click', () =>
+          addBlock(button.dataset.addBlock)
+        );
       });
       blockList.addEventListener('input', event => {
         syncBlocksFromDom();
@@ -2439,7 +2750,8 @@ ${bodyMarkdown || contents.join('\n\n')}
         if (removeIndex !== undefined) {
           syncBlocksFromDom();
           contentBlocks.splice(Number(removeIndex), 1);
-          if (!contentBlocks.length) contentBlocks.push(defaultBlock('paragraph'));
+          if (!contentBlocks.length)
+            contentBlocks.push(defaultBlock('paragraph'));
           renderBlocks();
           updatePreview();
           scheduleAutosave();
@@ -2467,10 +2779,17 @@ ${bodyMarkdown || contents.join('\n\n')}
         const file = event.target.files?.[0];
         if (!file) return;
         if (file.size > 1024 * 1024) {
-          updatePublishStatus(`Cảnh báo: ảnh "${file.name}" nặng ${Math.round(file.size / 1024)} KB. Nên resize/crop trước khi đăng nếu không cần ảnh lớn.`);
+          updatePublishStatus(
+            `Cảnh báo: ảnh "${file.name}" nặng ${Math.round(file.size / 1024)} KB. Nên resize/crop trước khi đăng nếu không cần ảnh lớn.`
+          );
         }
         readFileAsDataUrl(file)
-          .then(dataUrl => uploadImageBlock(Number(uploadIndex), { dataUrl, fileName: file.name }))
+          .then(dataUrl =>
+            uploadImageBlock(Number(uploadIndex), {
+              dataUrl,
+              fileName: file.name,
+            })
+          )
           .catch(error => showToast(`Upload lỗi: ${error.message}`, 'error'));
       });
       document.querySelectorAll('[data-upload-field]').forEach(input => {
@@ -2478,39 +2797,62 @@ ${bodyMarkdown || contents.join('\n\n')}
           const file = event.target.files?.[0];
           if (!file) return;
           if (file.size > 1024 * 1024) {
-            updatePublishStatus(`Cảnh báo: ảnh "${file.name}" nặng ${Math.round(file.size / 1024)} KB. Nên resize/crop trước khi đăng nếu không cần ảnh lớn.`);
+            updatePublishStatus(
+              `Cảnh báo: ảnh "${file.name}" nặng ${Math.round(file.size / 1024)} KB. Nên resize/crop trước khi đăng nếu không cần ảnh lớn.`
+            );
           }
           readFileAsDataUrl(file)
-            .then(dataUrl => uploadImageField(event.target.dataset.uploadField, { dataUrl, fileName: file.name }))
+            .then(dataUrl =>
+              uploadImageField(event.target.dataset.uploadField, {
+                dataUrl,
+                fileName: file.name,
+              })
+            )
             .catch(error => showToast(`Upload lỗi: ${error.message}`, 'error'));
         });
       });
-      form.addEventListener('reset', () => setTimeout(() => {
-        document.getElementById('pubDate').value = today();
-        document.getElementById('slug').value = 'new-blog-post';
-        contentBlocks = [defaultBlock('paragraph')];
-        renderBlocks();
-        updatePreview();
-        scheduleAutosave();
-        schedulePublishedPostCheck();
-      }));
+      form.addEventListener('reset', () =>
+        setTimeout(() => {
+          document.getElementById('pubDate').value = today();
+          document.getElementById('slug').value = 'new-blog-post';
+          contentBlocks = [defaultBlock('paragraph')];
+          renderBlocks();
+          updatePreview();
+          scheduleAutosave();
+          schedulePublishedPostCheck();
+        })
+      );
       draftsEl.addEventListener('click', event => {
         const loadIndex = event.target.dataset.load;
         const deleteIndex = event.target.dataset.delete;
         if (loadIndex !== undefined) loadDraft(Number(loadIndex));
         if (deleteIndex !== undefined) deleteDraft(Number(deleteIndex));
       });
-      document.getElementById('generate').addEventListener('click', updatePreview);
-      document.getElementById('download').addEventListener('click', downloadFile);
+      document
+        .getElementById('generate')
+        .addEventListener('click', updatePreview);
+      document
+        .getElementById('download')
+        .addEventListener('click', downloadFile);
       document.getElementById('copy').addEventListener('click', copyMarkdown);
-      document.getElementById('save-draft').addEventListener('click', saveDraft);
-      document.getElementById('publish-github').addEventListener('click', publishToGithub);
-      document.getElementById('quick-save-draft').addEventListener('click', saveDraft);
+      document
+        .getElementById('save-draft')
+        .addEventListener('click', saveDraft);
+      document
+        .getElementById('publish-github')
+        .addEventListener('click', publishToGithub);
+      document
+        .getElementById('quick-save-draft')
+        .addEventListener('click', saveDraft);
       document.getElementById('quick-publish').addEventListener('click', () => {
         setEditorTab('publish');
       });
-      document.getElementById('save-cloud-draft').addEventListener('click', saveCloudDraft);
-      document.getElementById('submit-review').addEventListener('click', submitForReview);
+      document
+        .getElementById('save-cloud-draft')
+        .addEventListener('click', saveCloudDraft);
+      document
+        .getElementById('submit-review')
+        .addEventListener('click', submitForReview);
       allowUpdate.addEventListener('change', () => {
         updateBlogChangeStatus(buildMarkdown());
       });
@@ -2535,17 +2877,21 @@ ${bodyMarkdown || contents.join('\n\n')}
         });
       }
       document.querySelectorAll('[data-editor-tab]').forEach(button => {
-        button.addEventListener('click', () => setEditorTab(button.dataset.editorTab));
+        button.addEventListener('click', () =>
+          setEditorTab(button.dataset.editorTab)
+        );
       });
       const savedGithubRepo = localStorage.getItem('folksGithubRepo');
       githubRepo.value =
-        !savedGithubRepo || savedGithubRepo === 'xuanpv89/folks-template-screwfast'
+        !savedGithubRepo ||
+        savedGithubRepo === 'xuanpv89/folks-template-screwfast'
           ? 'xuanpv89/folksteam.com'
           : savedGithubRepo;
       if (savedGithubRepo === 'xuanpv89/folks-template-screwfast') {
         localStorage.setItem('folksGithubRepo', 'xuanpv89/folksteam.com');
       }
-      githubBranch.value = localStorage.getItem('folksGithubBranch') || githubBranch.value;
+      githubBranch.value =
+        localStorage.getItem('folksGithubBranch') || githubBranch.value;
       localStorage.removeItem('folksGithubToken');
       localStorage.removeItem('folksAdminSecret');
       renderBlocks();

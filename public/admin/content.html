@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Sửa trang | Folks Team CMS</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <style>
       :root {
         --ink: #262626;
@@ -21,15 +28,35 @@
         --brand-soft: #edf8f1;
         --warn-soft: #fffbeb;
         --danger: #b91c1c;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
       }
 
-      * { box-sizing: border-box; }
-      body { margin: 0; background: var(--paper); color: var(--ink); }
-      a { color: inherit; text-decoration: none; }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-      .shell { max-width: 1500px; margin: 0 auto; padding: 18px; }
-      .topbar, .panel {
+      .shell {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 18px;
+      }
+      .topbar,
+      .panel {
         border: 1px solid var(--line);
         border-radius: 10px;
         background: var(--panel);
@@ -44,15 +71,50 @@
         margin-bottom: 16px;
         padding: 12px 14px;
       }
-      .brand { display: flex; align-items: center; gap: 12px; }
-      .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
-      .eyebrow { margin: 0; color: var(--brand-dark); font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
-      h1, h2, h3, p { margin-top: 0; }
-      h1 { margin-bottom: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1; }
-      h2 { margin-bottom: 10px; font-size: 22px; }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand img {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--brand-dark);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+      h1 {
+        margin-bottom: 0;
+        font-size: clamp(26px, 3vw, 36px);
+        line-height: 1;
+      }
+      h2 {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
 
-      .nav, .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-      button, .nav a {
+      .nav,
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      button,
+      .nav a {
         min-height: 40px;
         border: 0;
         border-radius: 8px;
@@ -67,19 +129,45 @@
         font-size: 13px;
         font-weight: 850;
       }
-      .nav a { background: var(--ink); }
-      button.secondary, .nav a.secondary { border: 1px solid #d4d4d4; background: #fff; color: var(--ink); }
-      button.danger { border: 1px solid #fecaca; background: #fff; color: var(--danger); }
-      button:disabled { cursor: not-allowed; opacity: .5; }
-      button.full { width: 100%; }
-
-      .layout { display: grid; gap: 14px; }
-      @media (min-width: 1120px) {
-        .layout { grid-template-columns: 330px minmax(0, 1fr) 390px; align-items: start; }
+      .nav a {
+        background: var(--ink);
       }
-      .panel { padding: 16px; }
+      button.secondary,
+      .nav a.secondary {
+        border: 1px solid #d4d4d4;
+        background: #fff;
+        color: var(--ink);
+      }
+      button.danger {
+        border: 1px solid #fecaca;
+        background: #fff;
+        color: var(--danger);
+      }
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      button.full {
+        width: 100%;
+      }
+
+      .layout {
+        display: grid;
+        gap: 14px;
+      }
       @media (min-width: 1120px) {
-        .sidebar, .editor, .preview-panel {
+        .layout {
+          grid-template-columns: 330px minmax(0, 1fr) 390px;
+          align-items: start;
+        }
+      }
+      .panel {
+        padding: 16px;
+      }
+      @media (min-width: 1120px) {
+        .sidebar,
+        .editor,
+        .preview-panel {
           position: sticky;
           top: 14px;
           max-height: calc(100vh - 28px);
@@ -91,7 +179,10 @@
           overflow: hidden;
         }
       }
-      .list { display: grid; gap: 8px; }
+      .list {
+        display: grid;
+        gap: 8px;
+      }
       .page-summary {
         display: flex;
         gap: 8px;
@@ -101,9 +192,20 @@
         font-size: 12px;
         font-weight: 800;
       }
-      .page-summary span { border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 5px 8px; }
-      .search-row { position: relative; display: grid; gap: 6px; }
-      .search-row input { padding-right: 44px; }
+      .page-summary span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        padding: 5px 8px;
+      }
+      .search-row {
+        position: relative;
+        display: grid;
+        gap: 6px;
+      }
+      .search-row input {
+        padding-right: 44px;
+      }
       .search-clear {
         display: none;
         position: absolute;
@@ -115,14 +217,22 @@
         border-radius: 999px;
         line-height: 1;
       }
-      .search-meta { min-height: 18px; color: var(--muted); font-size: 12px; font-weight: 800; }
+      .search-meta {
+        min-height: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
       .page-group {
         display: grid;
         gap: 8px;
         border-top: 1px solid var(--line);
         padding-top: 10px;
       }
-      .page-group:first-child { border-top: 0; padding-top: 0; }
+      .page-group:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
       .page-group-title {
         display: flex;
         align-items: center;
@@ -136,10 +246,12 @@
         box-shadow: none !important;
         font-size: 12px;
         font-weight: 950;
-        letter-spacing: .05em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
       }
-      .page-group.collapsed .item { display: none; }
+      .page-group.collapsed .item {
+        display: none;
+      }
       .page-group-title small {
         color: var(--muted);
         font-size: 11px;
@@ -154,12 +266,32 @@
         color: var(--ink);
         text-align: left;
       }
-      .item.active { border-color: #bde8cb; background: var(--brand-soft); color: #20472f; }
-      .item span { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
-      .item small { display: block; color: var(--muted); font-weight: 650; }
+      .item.active {
+        border-color: #bde8cb;
+        background: var(--brand-soft);
+        color: #20472f;
+      }
+      .item span {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .item small {
+        display: block;
+        color: var(--muted);
+        font-weight: 650;
+      }
 
-      label { display: grid; gap: 7px; font-size: 13px; font-weight: 850; color: #3f3f3f; }
-      input, textarea {
+      label {
+        display: grid;
+        gap: 7px;
+        font-size: 13px;
+        font-weight: 850;
+        color: #3f3f3f;
+      }
+      input,
+      textarea {
         width: 100%;
         border: 1px solid #d4d4d4;
         border-radius: 8px;
@@ -170,8 +302,17 @@
         padding: 12px 13px;
         outline: none;
       }
-      textarea { min-height: 160px; resize: vertical; line-height: 1.6; }
-      input:focus, textarea:focus { border-color: var(--brand); background: #fff; box-shadow: 0 0 0 3px rgb(79 177 111 / 18%); }
+      textarea {
+        min-height: 160px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--brand);
+        background: #fff;
+        box-shadow: 0 0 0 3px rgb(79 177 111 / 18%);
+      }
 
       .status {
         display: grid;
@@ -182,10 +323,22 @@
         background: var(--brand-soft);
         padding: 12px;
       }
-      .status.warning { border-color: #fde68a; background: var(--warn-soft); }
-      .status.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
-      .status strong { font-size: 14px; }
-      .status small { color: var(--muted); line-height: 1.45; }
+      .status.warning {
+        border-color: #fde68a;
+        background: var(--warn-soft);
+      }
+      .status.error {
+        border-color: #fecaca;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .status strong {
+        font-size: 14px;
+      }
+      .status small {
+        color: var(--muted);
+        line-height: 1.45;
+      }
 
       .preview-frame {
         width: 100%;
@@ -203,15 +356,55 @@
         margin: 0 auto;
       }
       @media (max-width: 1119px) {
-        .preview-frame { height: 70vh; min-height: 520px; }
+        .preview-frame {
+          height: 70vh;
+          min-height: 520px;
+        }
       }
-      .hint { color: var(--muted); font-size: 13px; line-height: 1.55; }
-      .field-meta { display: grid; gap: 6px; margin: 10px 0 14px; color: var(--muted); font-size: 13px; }
-      .change-pill { display: inline-flex; width: fit-content; border-radius: 999px; background: #f5f5f5; color: var(--muted); padding: 5px 9px; font-size: 12px; font-weight: 900; }
-      .change-pill.changed { background: #fffbeb; color: #854d0e; }
-      .field-diff { display: grid; gap: 6px; margin-top: 10px; }
-      .field-diff.empty { display: none; }
-      .field-diff code { display: block; white-space: pre-wrap; word-break: break-word; border-radius: 6px; padding: 8px; font-family: inherit; font-size: 12px; line-height: 1.45; }
+      .hint {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .field-meta {
+        display: grid;
+        gap: 6px;
+        margin: 10px 0 14px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .change-pill {
+        display: inline-flex;
+        width: fit-content;
+        border-radius: 999px;
+        background: #f5f5f5;
+        color: var(--muted);
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+      .change-pill.changed {
+        background: #fffbeb;
+        color: #854d0e;
+      }
+      .field-diff {
+        display: grid;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .field-diff.empty {
+        display: none;
+      }
+      .field-diff code {
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-word;
+        border-radius: 6px;
+        padding: 8px;
+        font-family: inherit;
+        font-size: 12px;
+        line-height: 1.45;
+      }
       .mini-preview {
         display: block;
         max-width: 100%;
@@ -232,16 +425,64 @@
         color: var(--muted);
         font-size: 13px;
       }
-      .publish-log a { color: var(--brand-dark); font-weight: 850; }
-      .publish-log.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
-      .publish-log.warning { border-color: #fde68a; background: var(--warn-soft); color: #854d0e; }
-      .empty { border: 1px dashed #cbd5c9; border-radius: 8px; background: #fbfcfa; color: var(--muted); padding: 14px; line-height: 1.6; }
-      .type-pill { display: inline-flex; width: fit-content; border-radius: 999px; background: var(--brand-soft); color: var(--brand-dark); padding: 5px 9px; font-size: 12px; font-weight: 900; }
-      .tools { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
-      details summary { cursor: pointer; font-weight: 900; }
-      .toast { display: none; margin-top: 10px; border-radius: 8px; background: #ecfdf5; color: #065f46; padding: 10px 12px; font-size: 13px; font-weight: 800; }
-      .toast.error { background: #fef2f2; color: #991b1b; }
-      .toast.show { display: block; }
+      .publish-log a {
+        color: var(--brand-dark);
+        font-weight: 850;
+      }
+      .publish-log.error {
+        border-color: #fecaca;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .publish-log.warning {
+        border-color: #fde68a;
+        background: var(--warn-soft);
+        color: #854d0e;
+      }
+      .empty {
+        border: 1px dashed #cbd5c9;
+        border-radius: 8px;
+        background: #fbfcfa;
+        color: var(--muted);
+        padding: 14px;
+        line-height: 1.6;
+      }
+      .type-pill {
+        display: inline-flex;
+        width: fit-content;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+      .tools {
+        margin-top: 14px;
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
+      details summary {
+        cursor: pointer;
+        font-weight: 900;
+      }
+      .toast {
+        display: none;
+        margin-top: 10px;
+        border-radius: 8px;
+        background: #ecfdf5;
+        color: #065f46;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .toast.error {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .toast.show {
+        display: block;
+      }
       .modal-backdrop {
         border: 0;
         border-radius: 12px;
@@ -250,9 +491,18 @@
         color: var(--ink);
         box-shadow: 0 28px 80px rgb(0 0 0 / 24%);
       }
-      .modal-backdrop::backdrop { background: rgb(0 0 0 / 45%); }
-      .modal-content { display: grid; gap: 16px; padding: 22px; }
-      .modal-content h2 { margin: 0; font-size: 24px; }
+      .modal-backdrop::backdrop {
+        background: rgb(0 0 0 / 45%);
+      }
+      .modal-content {
+        display: grid;
+        gap: 16px;
+        padding: 22px;
+      }
+      .modal-content h2 {
+        margin: 0;
+        font-size: 24px;
+      }
       .summary-list {
         display: grid;
         gap: 8px;
@@ -261,9 +511,21 @@
         background: #fafafa;
         padding: 12px;
       }
-      .summary-row { display: flex; justify-content: space-between; gap: 14px; font-size: 13px; }
-      .summary-row strong { text-align: right; }
-      .modal-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        font-size: 13px;
+      }
+      .summary-row strong {
+        text-align: right;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
       .deploy-banner {
         display: none;
         position: sticky;
@@ -278,34 +540,117 @@
         font-size: 13px;
         font-weight: 850;
       }
-      .deploy-banner.show { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-      .deploy-banner.warning { border-color: #fde68a; background: #fffbeb; color: #854d0e; }
-      .deploy-banner.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
-      .page-filter { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-      .page-filter button { min-height: 32px; padding: 6px 10px !important; font-size: 12px !important; }
-      .page-filter button.active { border-color: #bde8cb !important; background: var(--brand-soft) !important; color: #20472f !important; }
-      .filter-panel { margin-top: 12px; }
-      .filter-panel summary { color: var(--brand-dark); font-size: 13px; }
-      .diff-list { display: grid; gap: 8px; max-height: 320px; overflow: auto; }
-      .diff-item { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 10px; }
-      .diff-item strong { display: block; margin-bottom: 6px; font-size: 13px; }
-      .diff-item code { display: block; white-space: pre-wrap; word-break: break-word; border-radius: 6px; padding: 8px; font-family: inherit; font-size: 12px; line-height: 1.45; }
-      .diff-before { background: #fef2f2; color: #991b1b; }
-      .diff-after { margin-top: 6px; background: #ecfdf5; color: #065f46; }
-      .sticky-actions { position: sticky; bottom: 0; z-index: 5; border-top: 1px solid var(--line); background: rgb(255 255 255 / 92%); padding-top: 12px; backdrop-filter: blur(12px); }
+      .deploy-banner.show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .deploy-banner.warning {
+        border-color: #fde68a;
+        background: #fffbeb;
+        color: #854d0e;
+      }
+      .deploy-banner.error {
+        border-color: #fecaca;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .page-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .page-filter button {
+        min-height: 32px;
+        padding: 6px 10px !important;
+        font-size: 12px !important;
+      }
+      .page-filter button.active {
+        border-color: #bde8cb !important;
+        background: var(--brand-soft) !important;
+        color: #20472f !important;
+      }
+      .filter-panel {
+        margin-top: 12px;
+      }
+      .filter-panel summary {
+        color: var(--brand-dark);
+        font-size: 13px;
+      }
+      .diff-list {
+        display: grid;
+        gap: 8px;
+        max-height: 320px;
+        overflow: auto;
+      }
+      .diff-item {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 10px;
+      }
+      .diff-item strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+      }
+      .diff-item code {
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-word;
+        border-radius: 6px;
+        padding: 8px;
+        font-family: inherit;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .diff-before {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .diff-after {
+        margin-top: 6px;
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .sticky-actions {
+        position: sticky;
+        bottom: 0;
+        z-index: 5;
+        border-top: 1px solid var(--line);
+        background: rgb(255 255 255 / 92%);
+        padding-top: 12px;
+        backdrop-filter: blur(12px);
+      }
     </style>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <meta name="theme-color" content="#4fb16f" />
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
-  <body>
+  <body class="admin-page admin-content">
     <main class="shell">
       <div id="deploy-banner" class="deploy-banner" aria-live="polite">
         <span id="deploy-banner-text">Ready.</span>
-        <a id="deploy-banner-link" href="/" target="_blank" rel="noreferrer" style="display:none">Open</a>
+        <a
+          id="deploy-banner-link"
+          href="/"
+          target="_blank"
+          rel="noreferrer"
+          style="display: none"
+          >Open</a
+        >
       </div>
       <header class="topbar">
         <div class="brand">
@@ -323,7 +668,9 @@
           <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a class="secondary" href="/">Xem website</a>
           <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
-          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+          <button type="button" class="secondary" data-admin-logout>
+            Đăng xuất
+          </button>
         </nav>
       </header>
 
@@ -336,55 +683,104 @@
           <label class="search-row">
             Tìm trang
             <input id="page-search" placeholder="Home, About, Services..." />
-            <button type="button" class="secondary search-clear" id="page-search-clear" aria-label="Xóa tìm kiếm">x</button>
+            <button
+              type="button"
+              class="secondary search-clear"
+              id="page-search-clear"
+              aria-label="Xóa tìm kiếm"
+            >
+              x
+            </button>
             <span class="search-meta" id="page-search-meta"></span>
           </label>
           <div id="page-summary" class="page-summary"></div>
           <details class="filter-panel">
             <summary>Bộ lọc trang</summary>
-            <div id="page-filter" class="page-filter" aria-label="Page filters"></div>
+            <div
+              id="page-filter"
+              class="page-filter"
+              aria-label="Page filters"
+            ></div>
           </details>
-          <div class="list" id="page-list" style="margin-top:12px"></div>
+          <div class="list" id="page-list" style="margin-top: 12px"></div>
           <details class="tools">
             <summary>Công cụ nâng cao</summary>
-            <div class="actions" style="margin-top:12px">
-              <button type="button" class="secondary" id="scan-site">Quét lại website</button>
-              <button type="button" class="secondary" id="reload-live">Tải lại online</button>
-              <button type="button" class="secondary" id="save-local">Lưu trên máy này</button>
-              <button type="button" class="secondary" id="clear-draft">Bỏ bản lưu</button>
+            <div class="actions" style="margin-top: 12px">
+              <button type="button" class="secondary" id="scan-site">
+                Quét lại website
+              </button>
+              <button type="button" class="secondary" id="reload-live">
+                Tải lại online
+              </button>
+              <button type="button" class="secondary" id="save-local">
+                Lưu trên máy này
+              </button>
+              <button type="button" class="secondary" id="clear-draft">
+                Bỏ bản lưu
+              </button>
             </div>
           </details>
         </aside>
 
         <section class="panel preview-panel">
-          <div class="actions" style="justify-content:space-between;margin-bottom:12px">
+          <div
+            class="actions"
+            style="justify-content: space-between; margin-bottom: 12px"
+          >
             <div>
               <p class="eyebrow">Xem trực tiếp</p>
               <h2 id="preview-title">Chọn trang để sửa</h2>
             </div>
             <div class="actions">
-              <button type="button" class="secondary active" data-preview-mode="desktop">Máy tính</button>
-              <button type="button" class="secondary" data-preview-mode="mobile">Điện thoại</button>
-              <button type="button" class="secondary" id="open-page">Mở trang</button>
+              <button
+                type="button"
+                class="secondary active"
+                data-preview-mode="desktop"
+              >
+                Máy tính
+              </button>
+              <button
+                type="button"
+                class="secondary"
+                data-preview-mode="mobile"
+              >
+                Điện thoại
+              </button>
+              <button type="button" class="secondary" id="open-page">
+                Mở trang
+              </button>
             </div>
           </div>
-          <iframe id="page-frame" class="preview-frame" title="Website preview"></iframe>
+          <iframe
+            id="page-frame"
+            class="preview-frame"
+            title="Website preview"
+          ></iframe>
         </section>
 
         <aside class="panel editor">
           <p class="eyebrow">Nội dung đang chọn</p>
           <h2 id="editor-title">Click vào chữ trong khung xem trước</h2>
           <p class="hint" id="editor-hint">
-            Những vùng có thể sửa sẽ được viền xanh. Click trực tiếp vào chữ để sửa.
+            Những vùng có thể sửa sẽ được viền xanh. Click trực tiếp vào chữ để
+            sửa.
           </p>
           <div id="field-editor" class="empty">Chưa chọn nội dung.</div>
-          <div class="actions sticky-actions" style="margin-top:14px">
-            <button type="button" class="secondary" id="undo-field" disabled>Hoàn tác mục này</button>
-            <button type="button" class="secondary" id="undo-page">Hoàn tác trang</button>
-            <button type="button" class="secondary" id="save-field" disabled>Lưu nháp</button>
+          <div class="actions sticky-actions" style="margin-top: 14px">
+            <button type="button" class="secondary" id="undo-field" disabled>
+              Hoàn tác mục này
+            </button>
+            <button type="button" class="secondary" id="undo-page">
+              Hoàn tác trang
+            </button>
+            <button type="button" class="secondary" id="save-field" disabled>
+              Lưu nháp
+            </button>
             <button type="button" id="publish-github">Đăng lên website</button>
           </div>
-          <div id="publish-status" class="publish-log">Chưa có thay đổi nào để đăng.</div>
+          <div id="publish-status" class="publish-log">
+            Chưa có thay đổi nào để đăng.
+          </div>
           <div id="toast" class="toast">Done.</div>
         </aside>
       </section>
@@ -399,9 +795,14 @@
         <p class="hint" id="publish-dialog-intro"></p>
         <div class="summary-list" id="publish-dialog-summary"></div>
         <div class="diff-list" id="publish-dialog-diff"></div>
-        <p class="hint">Sau khi đăng, website cần hoàn tất cập nhật trước khi khách truy cập nhìn thấy nội dung mới.</p>
+        <p class="hint">
+          Sau khi đăng, website cần hoàn tất cập nhật trước khi khách truy cập
+          nhìn thấy nội dung mới.
+        </p>
         <div class="modal-actions">
-          <button type="button" class="secondary" id="publish-cancel">Kiểm tra lại</button>
+          <button type="button" class="secondary" id="publish-cancel">
+            Kiểm tra lại
+          </button>
           <button type="button" id="publish-confirm">Đăng lên website</button>
         </div>
       </form>
@@ -471,22 +872,36 @@
       const publishButton = document.getElementById('publish-github');
       const toast = document.getElementById('toast');
       const publishDialog = document.getElementById('publish-dialog');
-      const publishDialogIntro = document.getElementById('publish-dialog-intro');
-      const publishDialogSummary = document.getElementById('publish-dialog-summary');
+      const publishDialogIntro = document.getElementById(
+        'publish-dialog-intro'
+      );
+      const publishDialogSummary = document.getElementById(
+        'publish-dialog-summary'
+      );
       const publishDialogDiff = document.getElementById('publish-dialog-diff');
       const publishCancelButton = document.getElementById('publish-cancel');
       const publishConfirmButton = document.getElementById('publish-confirm');
 
       function slugify(value) {
-        return String(value || 'item').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        return String(value || 'item')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
       }
 
       function normalizeText(value) {
-        return String(value || '').replace(/\s+/g, ' ').trim();
+        return String(value || '')
+          .replace(/\s+/g, ' ')
+          .trim();
       }
 
       function normalizeSearch(value) {
-        return normalizeText(value).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return normalizeText(value)
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
       }
 
       function liveUrl(path = '/') {
@@ -497,7 +912,10 @@
         toast.textContent = message;
         toast.classList.toggle('error', type === 'error');
         toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), type === 'error' ? 5200 : 2400);
+        setTimeout(
+          () => toast.classList.remove('show'),
+          type === 'error' ? 5200 : 2400
+        );
       }
 
       function setSourceStatus(title, detail, type = 'success') {
@@ -519,7 +937,9 @@
       }
 
       function allFields(page = currentPage()) {
-        return (page?.sections || []).flatMap(section => (section.fields || []).map(field => ({ section, field })));
+        return (page?.sections || []).flatMap(section =>
+          (section.fields || []).map(field => ({ section, field }))
+        );
       }
 
       function fieldIdentity(page, section, field) {
@@ -531,7 +951,11 @@
         (serverContent?.pages || []).forEach(page => {
           (page.sections || []).forEach(section => {
             (section.fields || []).forEach(field => {
-              map.set(fieldIdentity(page, section, field), { page, section, field });
+              map.set(fieldIdentity(page, section, field), {
+                page,
+                section,
+                field,
+              });
             });
           });
         });
@@ -544,7 +968,9 @@
         (state.pages || []).forEach(page => {
           (page.sections || []).forEach(section => {
             (section.fields || []).forEach(field => {
-              const before = original.get(fieldIdentity(page, section, field))?.field?.value ?? '';
+              const before =
+                original.get(fieldIdentity(page, section, field))?.field
+                  ?.value ?? '';
               const after = field.value ?? '';
               if (String(before) === String(after)) return;
               changes.push({
@@ -571,19 +997,30 @@
 
       function fieldHasChanges(field) {
         if (!field) return false;
-        const original = originalValueForField(currentPage(), selectedField?.section, field);
-        return original !== undefined && String(original) !== String(field.value ?? '');
+        const original = originalValueForField(
+          currentPage(),
+          selectedField?.section,
+          field
+        );
+        return (
+          original !== undefined &&
+          String(original) !== String(field.value ?? '')
+        );
       }
 
       function currentPageHasChanges() {
         const page = currentPage();
         if (!page) return false;
-        return collectChanges(10000).some(change => change.pagePath === page.path);
+        return collectChanges(10000).some(
+          change => change.pagePath === page.path
+        );
       }
 
       function pageHasChanges(page) {
         if (!page) return false;
-        return collectChanges(10000).some(change => change.pagePath === page.path);
+        return collectChanges(10000).some(
+          change => change.pagePath === page.path
+        );
       }
 
       function hideDeployBanner() {
@@ -607,7 +1044,13 @@
         publishStatus.className = `publish-log ${type === 'error' ? 'error' : type === 'warning' ? 'warning' : ''}`;
         publishStatus.innerHTML = `
           <div>${escapeHtml(message)}</div>
-          ${links.filter(link => link.url).map(link => `<div><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></div>`).join('')}
+          ${links
+            .filter(link => link.url)
+            .map(
+              link =>
+                `<div><a href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a></div>`
+            )
+            .join('')}
         `;
         const primaryLink = links.find(link => link.url);
         if (type === 'info' && !primaryLink) hideDeployBanner();
@@ -618,8 +1061,12 @@
       function deployStatusLinks(result, deployment) {
         const page = currentPage();
         return [
-          page?.path ? { label: 'Mở trang live', url: liveUrl(page.path) } : null,
-          deployment?.url ? { label: 'Mở bản website vừa cập nhật', url: deployment.url } : null,
+          page?.path
+            ? { label: 'Mở trang live', url: liveUrl(page.path) }
+            : null,
+          deployment?.url
+            ? { label: 'Mở bản website vừa cập nhật', url: deployment.url }
+            : null,
           { label: 'Xem lịch sử cập nhật', url: result.commitUrl },
         ].filter(Boolean);
       }
@@ -627,10 +1074,13 @@
       async function verifyLiveContent(expectedUpdatedAt) {
         if (!expectedUpdatedAt) return false;
         try {
-          const response = await fetch(`/cms-content.json?live_check=${Date.now()}`, {
-            cache: 'no-store',
-            credentials: 'same-origin',
-          });
+          const response = await fetch(
+            `/cms-content.json?live_check=${Date.now()}`,
+            {
+              cache: 'no-store',
+              credentials: 'same-origin',
+            }
+          );
           if (!response.ok) return false;
           const live = await response.json();
           return live?.updatedAt === expectedUpdatedAt;
@@ -642,28 +1092,50 @@
       async function waitForLiveContent(expectedUpdatedAt, links = []) {
         if (!expectedUpdatedAt) return false;
         for (let attempt = 0; attempt < 60; attempt += 1) {
-          await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 2000 : 5000));
-          updatePublishStatus(`Đã lưu nội dung. Đang kiểm tra website live... (${attempt + 1}/60)`, links);
+          await new Promise(resolve =>
+            setTimeout(resolve, attempt === 0 ? 2000 : 5000)
+          );
+          updatePublishStatus(
+            `Đã lưu nội dung. Đang kiểm tra website live... (${attempt + 1}/60)`,
+            links
+          );
           if (await verifyLiveContent(expectedUpdatedAt)) {
-            updatePublishStatus('Website live đã nhận đúng nội dung mới.', links, 'success');
+            updatePublishStatus(
+              'Website live đã nhận đúng nội dung mới.',
+              links,
+              'success'
+            );
             return true;
           }
         }
-        updatePublishStatus('Đã lưu nội dung, nhưng sau 5 phút CMS vẫn chưa thấy bản live khớp. Hãy mở trang live hoặc xem lịch sử deploy.', links, 'warning');
+        updatePublishStatus(
+          'Đã lưu nội dung, nhưng sau 5 phút CMS vẫn chưa thấy bản live khớp. Hãy mở trang live hoặc xem lịch sử deploy.',
+          links,
+          'warning'
+        );
         return false;
       }
 
       async function waitForDeployStatus(result, branch) {
         const links = deployStatusLinks(result);
-        if (!result.commitSha) return waitForLiveContent(result.updatedAt, links);
-        updatePublishStatus('Đã gửi nội dung. Đang chờ website cập nhật bản mới...', links);
+        if (!result.commitSha)
+          return waitForLiveContent(result.updatedAt, links);
+        updatePublishStatus(
+          'Đã gửi nội dung. Đang chờ website cập nhật bản mới...',
+          links
+        );
 
         for (let attempt = 0; attempt < 30; attempt += 1) {
-          await new Promise(resolve => setTimeout(resolve, attempt < 3 ? 3000 : 6000));
+          await new Promise(resolve =>
+            setTimeout(resolve, attempt < 3 ? 3000 : 6000)
+          );
           const params = new URLSearchParams({ sha: result.commitSha, branch });
-          const response = await fetch(`/api/admin-deploy-status?${params.toString()}`, {
-            credentials: 'same-origin',
-          });
+          const response = await fetch(
+            `/api/admin-deploy-status?${params.toString()}`,
+            {
+              credentials: 'same-origin',
+            }
+          );
           const status = await response.json().catch(() => null);
           if (!response.ok) return waitForLiveContent(result.updatedAt, links);
 
@@ -678,9 +1150,16 @@
             return status;
           }
 
-          updatePublishStatus(status.message || 'Website đang cập nhật bản mới...', nextLinks);
+          updatePublishStatus(
+            status.message || 'Website đang cập nhật bản mới...',
+            nextLinks
+          );
 
-          if (['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(status.status)) {
+          if (
+            ['READY', 'ERROR', 'CANCELED', 'unconfigured'].includes(
+              status.status
+            )
+          ) {
             return status;
           }
         }
@@ -689,12 +1168,19 @@
       }
 
       async function loadPublishedContent() {
-        const response = await fetch('/api/admin-content?repo=xuanpv89/folksteam.com&branch=main', {
-          method: 'GET',
-          credentials: 'same-origin',
-        });
+        const response = await fetch(
+          '/api/admin-content?repo=xuanpv89/folksteam.com&branch=main',
+          {
+            method: 'GET',
+            credentials: 'same-origin',
+          }
+        );
         const data = await response.json().catch(() => null);
-        if (!response.ok) throw new Error(data?.message || `Không tải được nội dung online (${response.status}).`);
+        if (!response.ok)
+          throw new Error(
+            data?.message ||
+              `Không tải được nội dung online (${response.status}).`
+          );
         return { content: data.content, sha: data.sha || '' };
       }
 
@@ -708,19 +1194,38 @@
       }
 
       function saveDraft() {
-        localStorage.setItem(draftKey, JSON.stringify({ content: state, baseSha, savedAt: new Date().toISOString() }));
+        localStorage.setItem(
+          draftKey,
+          JSON.stringify({
+            content: state,
+            baseSha,
+            savedAt: new Date().toISOString(),
+          })
+        );
         showToast('Đã lưu trên máy này.');
       }
 
       function autosaveDraft() {
-        localStorage.setItem(draftKey, JSON.stringify({ content: state, baseSha, savedAt: new Date().toISOString(), autosaved: true }));
+        localStorage.setItem(
+          draftKey,
+          JSON.stringify({
+            content: state,
+            baseSha,
+            savedAt: new Date().toISOString(),
+            autosaved: true,
+          })
+        );
       }
 
       function scheduleAutosave() {
         window.clearTimeout(autosaveTimer);
         autosaveTimer = window.setTimeout(() => {
           autosaveDraft();
-          setSourceStatus('Đã tự lưu nháp', 'Bản nháp được lưu trên máy này trong khi bạn sửa.', 'warning');
+          setSourceStatus(
+            'Đã tự lưu nháp',
+            'Bản nháp được lưu trên máy này trong khi bạn sửa.',
+            'warning'
+          );
         }, 900);
       }
 
@@ -728,7 +1233,8 @@
         state = draft.content;
         baseSha = latestSha || draft.baseSha || baseSha;
 
-        const isStaleDraft = draft.baseSha && latestSha && draft.baseSha !== latestSha;
+        const isStaleDraft =
+          draft.baseSha && latestSha && draft.baseSha !== latestSha;
         if (isStaleDraft) {
           localStorage.setItem(draftKey, JSON.stringify({ ...draft, baseSha }));
           setSourceStatus(
@@ -739,25 +1245,41 @@
           return;
         }
 
-        setSourceStatus('Đang dùng bản lưu trên máy này', 'Bạn có thể đăng hoặc tải lại nội dung online.', 'warning');
+        setSourceStatus(
+          'Đang dùng bản lưu trên máy này',
+          'Bạn có thể đăng hoặc tải lại nội dung online.',
+          'warning'
+        );
       }
 
       function isEditableTextNode(node) {
         const parent = node.parentElement;
         if (!parent) return false;
-        if (['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'CANVAS', 'IFRAME'].includes(parent.tagName)) return false;
+        if (
+          ['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'CANVAS', 'IFRAME'].includes(
+            parent.tagName
+          )
+        )
+          return false;
         if (parent.closest('[data-cms-ignore], nav, footer')) return false;
         return normalizeText(node.nodeValue).length > 1;
       }
 
       function labelForElementField(type, value, fallback) {
         const text = normalizeText(value || fallback || '');
-        if (!text) return type === 'image' ? 'Ảnh' : type === 'link' ? 'Đường dẫn' : 'Nội dung';
+        if (!text)
+          return type === 'image'
+            ? 'Ảnh'
+            : type === 'link'
+              ? 'Đường dẫn'
+              : 'Nội dung';
         return text.length > 54 ? `${text.slice(0, 54)}...` : text;
       }
 
       function pageKey(path) {
-        return path === '/' ? 'home' : slugify(path.replace(/^\/+/, '') || 'home');
+        return path === '/'
+          ? 'home'
+          : slugify(path.replace(/^\/+/, '') || 'home');
       }
 
       function sectionTitleFromElement(element, fallback) {
@@ -768,9 +1290,18 @@
       function extractPage(path, html) {
         const doc = new DOMParser().parseFromString(html, 'text/html');
         const pageTitle = doc.title || path;
-        const pageDescription = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-        doc.querySelectorAll('script,style,noscript,svg,canvas,iframe,nav,footer').forEach(element => element.remove());
-        const containers = [...doc.body.querySelectorAll('section,article,main')];
+        const pageDescription =
+          doc
+            .querySelector('meta[name="description"]')
+            ?.getAttribute('content') || '';
+        doc
+          .querySelectorAll(
+            'script,style,noscript,svg,canvas,iframe,nav,footer'
+          )
+          .forEach(element => element.remove());
+        const containers = [
+          ...doc.body.querySelectorAll('section,article,main'),
+        ];
         const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
         const groups = new Map();
         let index = 0;
@@ -805,14 +1336,19 @@
           if (!isEditableTextNode(node)) continue;
 
           const text = normalizeText(node.nodeValue);
-          const sectionElement = node.parentElement.closest('section,article,main') || doc.body;
+          const sectionElement =
+            node.parentElement.closest('section,article,main') || doc.body;
           const sectionIndex = containers.indexOf(sectionElement);
-          const sectionKey = sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
+          const sectionKey =
+            sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
 
           if (!groups.has(sectionKey)) {
             groups.set(sectionKey, {
               id: sectionKey,
-              title: sectionTitleFromElement(sectionElement, sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'),
+              title: sectionTitleFromElement(
+                sectionElement,
+                sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'
+              ),
               fields: [],
             });
           }
@@ -830,14 +1366,20 @@
 
         doc.body.querySelectorAll('a[href]').forEach(link => {
           const href = link.getAttribute('href') || '';
-          if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
-          const sectionElement = link.closest('section,article,main') || doc.body;
+          if (!href || href.startsWith('#') || href.startsWith('javascript:'))
+            return;
+          const sectionElement =
+            link.closest('section,article,main') || doc.body;
           const sectionIndex = containers.indexOf(sectionElement);
-          const sectionKey = sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
+          const sectionKey =
+            sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
           if (!groups.has(sectionKey)) {
             groups.set(sectionKey, {
               id: sectionKey,
-              title: sectionTitleFromElement(sectionElement, sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'),
+              title: sectionTitleFromElement(
+                sectionElement,
+                sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'
+              ),
               fields: [],
             });
           }
@@ -855,13 +1397,18 @@
         doc.body.querySelectorAll('img').forEach(image => {
           const src = image.getAttribute('src') || '';
           const alt = image.getAttribute('alt') || '';
-          const sectionElement = image.closest('section,article,main') || doc.body;
+          const sectionElement =
+            image.closest('section,article,main') || doc.body;
           const sectionIndex = containers.indexOf(sectionElement);
-          const sectionKey = sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
+          const sectionKey =
+            sectionIndex >= 0 ? `section-${sectionIndex + 1}` : 'page-content';
           if (!groups.has(sectionKey)) {
             groups.set(sectionKey, {
               id: sectionKey,
-              title: sectionTitleFromElement(sectionElement, sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'),
+              title: sectionTitleFromElement(
+                sectionElement,
+                sectionIndex >= 0 ? `Mục ${sectionIndex + 1}` : 'Nội dung trang'
+              ),
               fields: [],
             });
           }
@@ -890,7 +1437,9 @@
           id: pageKey(path),
           title: pageTitle,
           path,
-          sections: [...groups.values()].filter(section => section.fields.length),
+          sections: [...groups.values()].filter(
+            section => section.fields.length
+          ),
         };
       }
 
@@ -900,7 +1449,9 @@
         const existingByKey = new Map();
         (existingPage.sections || []).forEach(section => {
           (section.fields || []).forEach(field => {
-            const match = normalizeText(field.match || field.original || field.value);
+            const match = normalizeText(
+              field.match || field.original || field.value
+            );
             if (match) existingByMatch.set(match, field);
             if (field.key) existingByKey.set(field.key, field);
           });
@@ -911,13 +1462,23 @@
           sections: scannedPage.sections.map(section => ({
             ...section,
             fields: section.fields.map(field => {
-              const liveMatch = normalizeText(field.match || field.original || field.value);
+              const liveMatch = normalizeText(
+                field.match || field.original || field.value
+              );
               const existing = existingByMatch.get(liveMatch);
               const keyedExisting = existingByKey.get(field.key);
-              const keyedMatch = normalizeText(keyedExisting?.match || keyedExisting?.original || keyedExisting?.value);
-              const shouldKeepKeyedValue = keyedExisting && keyedMatch === liveMatch;
-              const source = existing || (shouldKeepKeyedValue ? keyedExisting : null);
-              return source ? { ...field, value: source.value ?? field.value } : field;
+              const keyedMatch = normalizeText(
+                keyedExisting?.match ||
+                  keyedExisting?.original ||
+                  keyedExisting?.value
+              );
+              const shouldKeepKeyedValue =
+                keyedExisting && keyedMatch === liveMatch;
+              const source =
+                existing || (shouldKeepKeyedValue ? keyedExisting : null);
+              return source
+                ? { ...field, value: source.value ?? field.value }
+                : field;
             }),
           })),
         };
@@ -929,7 +1490,12 @@
 
         function addPath(path) {
           const normalizedPath = String(path || '/').replace(/\/$/, '') || '/';
-          if (normalizedPath.startsWith('/admin') || normalizedPath.startsWith('/api') || normalizedPath.includes('/docs/')) return;
+          if (
+            normalizedPath.startsWith('/admin') ||
+            normalizedPath.startsWith('/api') ||
+            normalizedPath.includes('/docs/')
+          )
+            return;
           if (!seen.has(normalizedPath)) {
             seen.add(normalizedPath);
             paths.push(normalizedPath);
@@ -939,7 +1505,10 @@
         async function collect(path) {
           const response = await fetch(path, { credentials: 'same-origin' });
           if (!response.ok) return;
-          const doc = new DOMParser().parseFromString(await response.text(), 'application/xml');
+          const doc = new DOMParser().parseFromString(
+            await response.text(),
+            'application/xml'
+          );
           for (const loc of [...doc.querySelectorAll('loc')]) {
             const url = new URL(loc.textContent.trim(), window.location.origin);
             if (url.origin !== window.location.origin) continue;
@@ -963,23 +1532,35 @@
         const button = document.getElementById('scan-site');
         button.disabled = true;
         button.textContent = 'Đang quét...';
-        setSourceStatus('Đang quét website', 'Editor đang tìm nội dung có thể click để sửa.', 'warning');
+        setSourceStatus(
+          'Đang quét website',
+          'Editor đang tìm nội dung có thể click để sửa.',
+          'warning'
+        );
 
         try {
-          const existingByPath = new Map((state.pages || []).map(page => [page.path, page]));
+          const existingByPath = new Map(
+            (state.pages || []).map(page => [page.path, page])
+          );
           const pages = [];
           for (const path of await fetchSitemapPaths()) {
             const response = await fetch(path, { credentials: 'same-origin' });
             if (!response.ok) continue;
             const scanned = extractPage(path, await response.text());
-            if (scanned.sections.length) pages.push(mergeScannedPage(scanned, existingByPath.get(path)));
+            if (scanned.sections.length)
+              pages.push(mergeScannedPage(scanned, existingByPath.get(path)));
           }
-          if (!pages.length) throw new Error('Không tìm thấy nội dung có thể sửa.');
+          if (!pages.length)
+            throw new Error('Không tìm thấy nội dung có thể sửa.');
           state.pages = pages;
           pageIndex = 0;
           selectedField = null;
           hasUnsavedChanges = true;
-          setSourceStatus('Đã quét website', `Tìm thấy ${pages.length} trang có thể sửa.`, 'warning');
+          setSourceStatus(
+            'Đã quét website',
+            `Tìm thấy ${pages.length} trang có thể sửa.`,
+            'warning'
+          );
           renderPages();
           loadCurrentPage();
           updateChangeStatus();
@@ -996,11 +1577,28 @@
         const query = normalizeSearch(pageSearch.value);
         const allPages = state.pages || [];
         renderPageFilters(allPages);
-        const visiblePages = sortPages(allPages
-          .map((page, index) => ({ page, index }))
-          .filter(({ page }) => query || pageFilterMode === 'all' || pageFilterMode === 'changed' || pageLanguage(page) === pageFilterMode || pageGroupLabel(page) === pageFilterMode)
-          .filter(({ page }) => pageFilterMode !== 'changed' || pageHasChanges(page))
-          .filter(({ page }) => !query || normalizeSearch(`${page.title} ${page.path} ${languageLabel(pageLanguage(page))} ${pageGroupLabel(page)}`).includes(query)));
+        const visiblePages = sortPages(
+          allPages
+            .map((page, index) => ({ page, index }))
+            .filter(
+              ({ page }) =>
+                query ||
+                pageFilterMode === 'all' ||
+                pageFilterMode === 'changed' ||
+                pageLanguage(page) === pageFilterMode ||
+                pageGroupLabel(page) === pageFilterMode
+            )
+            .filter(
+              ({ page }) => pageFilterMode !== 'changed' || pageHasChanges(page)
+            )
+            .filter(
+              ({ page }) =>
+                !query ||
+                normalizeSearch(
+                  `${page.title} ${page.path} ${languageLabel(pageLanguage(page))} ${pageGroupLabel(page)}`
+                ).includes(query)
+            )
+        );
 
         pageSearchClear.style.display = query ? 'inline-flex' : 'none';
         pageSearchMeta.textContent = query
@@ -1014,7 +1612,10 @@
         }, {});
         pageSummary.innerHTML = [
           `<span>${allPages.length} trang</span>`,
-          ...Object.entries(languageCounts).map(([language, count]) => `<span>${escapeHtml(languageLabel(language))}: ${count}</span>`),
+          ...Object.entries(languageCounts).map(
+            ([language, count]) =>
+              `<span>${escapeHtml(languageLabel(language))}: ${count}</span>`
+          ),
         ].join('');
 
         pageList.innerHTML = visiblePages.length
@@ -1048,24 +1649,27 @@
           const isCollapsed = !query && collapsedGroups.has(groupKey);
           groupElement.className = `page-group ${isCollapsed ? 'collapsed' : ''}`;
           groupElement.innerHTML = `<button type="button" class="page-group-title"><span>${escapeHtml(group.title)}</span><small>${isCollapsed ? 'Mở' : 'Thu gọn'} · ${group.items.length} trang</small></button>`;
-          groupElement.querySelector('.page-group-title').addEventListener('click', () => {
-            if (collapsedGroups.has(groupKey)) collapsedGroups.delete(groupKey);
-            else collapsedGroups.add(groupKey);
-            renderPages();
-          });
+          groupElement
+            .querySelector('.page-group-title')
+            .addEventListener('click', () => {
+              if (collapsedGroups.has(groupKey))
+                collapsedGroups.delete(groupKey);
+              else collapsedGroups.add(groupKey);
+              renderPages();
+            });
 
           group.items.forEach(({ page, index }) => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = `item ${index === pageIndex ? 'active' : ''}`;
-          button.innerHTML = `<span>${escapeHtml(page.title || page.path)}</span><small>${escapeHtml(page.path)}</small>`;
-          button.addEventListener('click', () => {
-            pageIndex = index;
-            selectedField = null;
-            renderPages();
-            loadCurrentPage();
-            updateActionStates();
-          });
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = `item ${index === pageIndex ? 'active' : ''}`;
+            button.innerHTML = `<span>${escapeHtml(page.title || page.path)}</span><small>${escapeHtml(page.path)}</small>`;
+            button.addEventListener('click', () => {
+              pageIndex = index;
+              selectedField = null;
+              renderPages();
+              loadCurrentPage();
+              updateActionStates();
+            });
             groupElement.appendChild(button);
           });
 
@@ -1077,9 +1681,18 @@
         const filters = [
           ['all', `Tất cả ${pages.length}`],
           ['changed', `Đã đổi ${pages.filter(pageHasChanges).length}`],
-          ['en', `EN ${pages.filter(page => pageLanguage(page) === 'en').length}`],
-          ['vi', `VI ${pages.filter(page => pageLanguage(page) === 'vi').length}`],
-          ['zh', `ZH ${pages.filter(page => pageLanguage(page) === 'zh').length}`],
+          [
+            'en',
+            `EN ${pages.filter(page => pageLanguage(page) === 'en').length}`,
+          ],
+          [
+            'vi',
+            `VI ${pages.filter(page => pageLanguage(page) === 'vi').length}`,
+          ],
+          [
+            'zh',
+            `ZH ${pages.filter(page => pageLanguage(page) === 'zh').length}`,
+          ],
           ['Trang chính', 'Trang chính'],
           ['Trang giới thiệu', 'Giới thiệu'],
           ['Blog', 'Blog'],
@@ -1088,7 +1701,15 @@
         ];
         pageFilter.innerHTML = '';
         filters
-          .filter(([key]) => key === 'all' || key === 'changed' || pages.some(page => pageLanguage(page) === key || pageGroupLabel(page) === key))
+          .filter(
+            ([key]) =>
+              key === 'all' ||
+              key === 'changed' ||
+              pages.some(
+                page =>
+                  pageLanguage(page) === key || pageGroupLabel(page) === key
+              )
+          )
           .forEach(([key, label]) => {
             const button = document.createElement('button');
             button.type = 'button';
@@ -1104,7 +1725,9 @@
 
       function findField(page, key) {
         for (const section of page.sections || []) {
-          const field = (section.fields || []).find(candidate => candidate.key === key);
+          const field = (section.fields || []).find(
+            candidate => candidate.key === key
+          );
           if (field) return { section, field };
         }
         return null;
@@ -1156,11 +1779,17 @@
           'Case studies': 6,
         };
         return items.sort((a, b) => {
-          const langDiff = (languageOrder[pageLanguage(a.page)] ?? 9) - (languageOrder[pageLanguage(b.page)] ?? 9);
+          const langDiff =
+            (languageOrder[pageLanguage(a.page)] ?? 9) -
+            (languageOrder[pageLanguage(b.page)] ?? 9);
           if (langDiff) return langDiff;
-          const groupDiff = (groupOrder[pageGroupLabel(a.page)] ?? 9) - (groupOrder[pageGroupLabel(b.page)] ?? 9);
+          const groupDiff =
+            (groupOrder[pageGroupLabel(a.page)] ?? 9) -
+            (groupOrder[pageGroupLabel(b.page)] ?? 9);
           if (groupDiff) return groupDiff;
-          return String(a.page.path || '').localeCompare(String(b.page.path || ''));
+          return String(a.page.path || '').localeCompare(
+            String(b.page.path || '')
+          );
         });
       }
 
@@ -1170,9 +1799,15 @@
       }
 
       function selectPreviewField(doc, field, target) {
-        doc.querySelectorAll('.visual-cms-active').forEach(element => element.classList.remove('visual-cms-active'));
+        doc
+          .querySelectorAll('.visual-cms-active')
+          .forEach(element => element.classList.remove('visual-cms-active'));
         target.classList.add('visual-cms-active');
-        selectedField = { page: currentPage(), ...findField(currentPage(), field.key), target };
+        selectedField = {
+          page: currentPage(),
+          ...findField(currentPage(), field.key),
+          target,
+        };
         syncSelectedFieldFromTarget();
         renderFieldEditor();
       }
@@ -1183,8 +1818,10 @@
         if (!field || !target || field.elementType === 'image') return;
 
         let visibleValue = '';
-        if (field.elementType === 'link') visibleValue = target.getAttribute('href') || '';
-        else if (field.elementType === 'alt') visibleValue = target.getAttribute('alt') || '';
+        if (field.elementType === 'link')
+          visibleValue = target.getAttribute('href') || '';
+        else if (field.elementType === 'alt')
+          visibleValue = target.getAttribute('alt') || '';
         else visibleValue = target.textContent || '';
 
         if (visibleValue && visibleValue !== field.value) {
@@ -1194,8 +1831,13 @@
       }
 
       function injectElementEditors(doc, page) {
-        const linkFields = allFields(page).filter(({ field }) => field.elementType === 'link');
-        const imageFields = allFields(page).filter(({ field }) => field.elementType === 'image' || field.elementType === 'alt');
+        const linkFields = allFields(page).filter(
+          ({ field }) => field.elementType === 'link'
+        );
+        const imageFields = allFields(page).filter(
+          ({ field }) =>
+            field.elementType === 'image' || field.elementType === 'alt'
+        );
         const links = [...doc.querySelectorAll('main a[href]')];
         const images = [...doc.querySelectorAll('main img')];
 
@@ -1205,7 +1847,10 @@
           if (!link) return;
           link.dataset.visualCmsKey = field.key;
           link.dataset.visualCmsType = 'link';
-          link.setAttribute('href', field.value || link.getAttribute('href') || '#');
+          link.setAttribute(
+            'href',
+            field.value || link.getAttribute('href') || '#'
+          );
           link.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
@@ -1214,7 +1859,8 @@
         });
 
         imageFields.forEach(({ field }) => {
-          const index = Number(String(field.key).replace(/^(image|alt)-/, '')) - 1;
+          const index =
+            Number(String(field.key).replace(/^(image|alt)-/, '')) - 1;
           const image = images[index];
           if (!image) return;
           image.dataset.visualCmsKey = field.key;
@@ -1223,7 +1869,8 @@
             image.setAttribute('src', field.value);
             image.removeAttribute('srcset');
           }
-          if (field.elementType === 'alt') image.setAttribute('alt', field.value || '');
+          if (field.elementType === 'alt')
+            image.setAttribute('alt', field.value || '');
           image.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
@@ -1237,9 +1884,13 @@
         const doc = pageFrame.contentDocument;
         if (!page || !doc) return;
 
-        doc.querySelectorAll('script,style,noscript,svg,canvas,iframe,nav,footer').forEach(element => {
-          if (element.tagName !== 'SCRIPT') return;
-        });
+        doc
+          .querySelectorAll(
+            'script,style,noscript,svg,canvas,iframe,nav,footer'
+          )
+          .forEach(element => {
+            if (element.tagName !== 'SCRIPT') return;
+          });
 
         const style = doc.createElement('style');
         style.textContent = `
@@ -1254,7 +1905,8 @@
         const nodes = [];
         const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
         while (walker.nextNode()) {
-          if (isEditableTextNode(walker.currentNode)) nodes.push(walker.currentNode);
+          if (isEditableTextNode(walker.currentNode))
+            nodes.push(walker.currentNode);
         }
 
         const used = new Set();
@@ -1263,11 +1915,15 @@
           const original = normalizeText(field.match || field.original || '');
           let nodeIndex = -1;
           if (original) {
-            nodeIndex = nodes.findIndex((node, index) => !used.has(index) && normalizeText(node.nodeValue) === original);
+            nodeIndex = nodes.findIndex(
+              (node, index) =>
+                !used.has(index) && normalizeText(node.nodeValue) === original
+            );
           }
           if (nodeIndex === -1 && /^text-\d+$/.test(field.key || '')) {
             const fallbackIndex = Number(field.key.replace('text-', '')) - 1;
-            if (!used.has(fallbackIndex) && nodes[fallbackIndex]) nodeIndex = fallbackIndex;
+            if (!used.has(fallbackIndex) && nodes[fallbackIndex])
+              nodeIndex = fallbackIndex;
           }
           if (nodeIndex === -1) return;
 
@@ -1281,9 +1937,17 @@
           wrapper.addEventListener('click', event => {
             event.preventDefault();
             event.stopPropagation();
-            doc.querySelectorAll('.visual-cms-active').forEach(element => element.classList.remove('visual-cms-active'));
+            doc
+              .querySelectorAll('.visual-cms-active')
+              .forEach(element =>
+                element.classList.remove('visual-cms-active')
+              );
             wrapper.classList.add('visual-cms-active');
-            selectedField = { page, ...findField(page, field.key), target: wrapper };
+            selectedField = {
+              page,
+              ...findField(page, field.key),
+              target: wrapper,
+            };
             syncSelectedFieldFromTarget();
             renderFieldEditor();
           });
@@ -1303,7 +1967,8 @@
       function renderFieldEditor() {
         if (!selectedField?.field) {
           editorTitle.textContent = 'Click vào chữ trong preview';
-          editorHint.textContent = 'Những vùng có thể sửa sẽ được viền xanh trong preview.';
+          editorHint.textContent =
+            'Những vùng có thể sửa sẽ được viền xanh trong preview.';
           fieldEditor.className = 'empty';
           fieldEditor.innerHTML = 'Chưa chọn nội dung.';
           updateActionStates();
@@ -1314,7 +1979,8 @@
         editorTitle.textContent = field.label || 'Nội dung đang chọn';
         editorHint.textContent = currentPage()?.path || '';
         fieldEditor.className = '';
-        const inputType = field.type === 'url' || field.type === 'image' ? 'url' : 'text';
+        const inputType =
+          field.type === 'url' || field.type === 'image' ? 'url' : 'text';
         const control =
           field.type === 'textarea'
             ? `<textarea id="field-value">${escapeHtml(field.value || '')}</textarea>`
@@ -1323,11 +1989,16 @@
           field.elementType === 'image' && field.value
             ? `<img class="mini-preview" src="${escapeHtml(field.value)}" alt="" />`
             : '';
-        const original = originalValueForField(currentPage(), selectedField.section, field);
+        const original = originalValueForField(
+          currentPage(),
+          selectedField.section,
+          field
+        );
         const changed = fieldHasChanges(field);
-        const changeState = original === undefined
-          ? '<span class="change-pill" id="field-change-state">Không có bản gốc để so sánh</span>'
-          : `<span class="change-pill ${changed ? 'changed' : ''}" id="field-change-state">${changed ? 'Đã thay đổi' : 'Chưa thay đổi'}</span>`;
+        const changeState =
+          original === undefined
+            ? '<span class="change-pill" id="field-change-state">Không có bản gốc để so sánh</span>'
+            : `<span class="change-pill ${changed ? 'changed' : ''}" id="field-change-state">${changed ? 'Đã thay đổi' : 'Chưa thay đổi'}</span>`;
         const diff = `
             <div class="field-diff ${changed ? '' : 'empty'}" id="field-diff">
               <code class="diff-before">Trước: ${escapeHtml(original || '(trống)')}</code>
@@ -1346,23 +2017,27 @@
             <span>Mục: ${escapeHtml(selectedField.section?.title || 'Nội dung trang')}</span>
           </div>
         `;
-        document.getElementById('field-value').addEventListener('input', event => {
-          field.value = event.target.value;
-          const target = selectedField.target;
-          if (target) {
-            if (field.elementType === 'link') target.setAttribute('href', field.value || '#');
-            else if (field.elementType === 'image') {
-              target.setAttribute('src', field.value || '');
-              target.removeAttribute('srcset');
-            } else if (field.elementType === 'alt') target.setAttribute('alt', field.value || '');
-            else target.textContent = field.value;
-          }
-          hasUnsavedChanges = true;
-          scheduleAutosave();
-          updateChangeStatus();
-          renderInlineFieldChangeState();
-          updateActionStates();
-        });
+        document
+          .getElementById('field-value')
+          .addEventListener('input', event => {
+            field.value = event.target.value;
+            const target = selectedField.target;
+            if (target) {
+              if (field.elementType === 'link')
+                target.setAttribute('href', field.value || '#');
+              else if (field.elementType === 'image') {
+                target.setAttribute('src', field.value || '');
+                target.removeAttribute('srcset');
+              } else if (field.elementType === 'alt')
+                target.setAttribute('alt', field.value || '');
+              else target.textContent = field.value;
+            }
+            hasUnsavedChanges = true;
+            scheduleAutosave();
+            updateChangeStatus();
+            renderInlineFieldChangeState();
+            updateActionStates();
+          });
         updateActionStates();
       }
 
@@ -1371,7 +2046,11 @@
         const pill = document.getElementById('field-change-state');
         const diff = document.getElementById('field-diff');
         if (!field || !pill || !diff) return;
-        const original = originalValueForField(currentPage(), selectedField.section, field);
+        const original = originalValueForField(
+          currentPage(),
+          selectedField.section,
+          field
+        );
         if (original === undefined) {
           pill.className = 'change-pill';
           pill.textContent = 'Không có bản gốc để so sánh';
@@ -1389,12 +2068,22 @@
       }
 
       function originalValueForField(page, section, field) {
-        const direct = serverFieldMap().get(fieldIdentity(page, section, field))?.field?.value;
+        const direct = serverFieldMap().get(fieldIdentity(page, section, field))
+          ?.field?.value;
         if (direct !== undefined) return direct;
-        const serverPage = (serverContent?.pages || []).find(candidate => candidate.path === page?.path);
-        const sameKey = allFields(serverPage).find(candidate => candidate.field.key === field?.key)?.field?.value;
+        const serverPage = (serverContent?.pages || []).find(
+          candidate => candidate.path === page?.path
+        );
+        const sameKey = allFields(serverPage).find(
+          candidate => candidate.field.key === field?.key
+        )?.field?.value;
         if (sameKey !== undefined) return sameKey;
-        return allFields(serverPage).find(candidate => normalizeText(candidate.field.match || candidate.field.original || '') === normalizeText(field?.match || field?.original || ''))?.field?.value;
+        return allFields(serverPage).find(
+          candidate =>
+            normalizeText(
+              candidate.field.match || candidate.field.original || ''
+            ) === normalizeText(field?.match || field?.original || '')
+        )?.field?.value;
       }
 
       function updateActionStates() {
@@ -1402,27 +2091,40 @@
         saveFieldButton.disabled = !field;
         undoFieldButton.disabled = !field || !fieldHasChanges(field);
         undoPageButton.disabled = !currentPageHasChanges();
-        publishButton.disabled = isPublishing || !baseSha || !hasContentChanges();
+        publishButton.disabled =
+          isPublishing || !baseSha || !hasContentChanges();
       }
 
       function updateChangeStatus() {
         const count = collectChanges().length;
-        updatePublishStatus(count ? `${count} mục đã thay đổi. Hãy xem lại trước khi đăng.` : 'Chưa có thay đổi nào để đăng.', [], count ? 'warning' : 'info');
+        updatePublishStatus(
+          count
+            ? `${count} mục đã thay đổi. Hãy xem lại trước khi đăng.`
+            : 'Chưa có thay đổi nào để đăng.',
+          [],
+          count ? 'warning' : 'info'
+        );
       }
 
       function undoSelectedField() {
         const field = selectedField?.field;
         if (!field) return;
-        const original = originalValueForField(currentPage(), selectedField.section, field);
+        const original = originalValueForField(
+          currentPage(),
+          selectedField.section,
+          field
+        );
         if (original === undefined) return;
         field.value = original;
         const target = selectedField.target;
         if (target) {
-          if (field.elementType === 'link') target.setAttribute('href', field.value || '#');
+          if (field.elementType === 'link')
+            target.setAttribute('href', field.value || '#');
           else if (field.elementType === 'image') {
             target.setAttribute('src', field.value || '');
             target.removeAttribute('srcset');
-          } else if (field.elementType === 'alt') target.setAttribute('alt', field.value || '');
+          } else if (field.elementType === 'alt')
+            target.setAttribute('alt', field.value || '');
           else target.textContent = field.value;
         }
         hasUnsavedChanges = true;
@@ -1434,9 +2136,16 @@
 
       function undoCurrentPage() {
         const page = currentPage();
-        const original = (serverContent?.pages || []).find(candidate => candidate.path === page?.path);
+        const original = (serverContent?.pages || []).find(
+          candidate => candidate.path === page?.path
+        );
         if (!page || !original) return;
-        if (!window.confirm(`Hoàn tác tất cả thay đổi trên trang "${page.title || page.path}"?`)) return;
+        if (
+          !window.confirm(
+            `Hoàn tác tất cả thay đổi trên trang "${page.title || page.path}"?`
+          )
+        )
+          return;
         state.pages[pageIndex] = structuredClone(original);
         selectedField = null;
         hasUnsavedChanges = true;
@@ -1449,10 +2158,18 @@
 
       function buildPublishSummary() {
         const pageCount = state.pages?.length || 0;
-        const fields = (state.pages || []).flatMap(page => allFields(page).map(({ field }) => field));
-        const textCount = fields.filter(field => !field.elementType || field.elementType === 'text').length;
-        const linkCount = fields.filter(field => field.elementType === 'link').length;
-        const imageCount = fields.filter(field => field.elementType === 'image' || field.elementType === 'alt').length;
+        const fields = (state.pages || []).flatMap(page =>
+          allFields(page).map(({ field }) => field)
+        );
+        const textCount = fields.filter(
+          field => !field.elementType || field.elementType === 'text'
+        ).length;
+        const linkCount = fields.filter(
+          field => field.elementType === 'link'
+        ).length;
+        const imageCount = fields.filter(
+          field => field.elementType === 'image' || field.elementType === 'alt'
+        ).length;
         const languageCounts = (state.pages || []).reduce((counts, page) => {
           const language = pageLanguage(page);
           counts[language] = (counts[language] || 0) + 1;
@@ -1464,7 +2181,8 @@
           linkCount,
           imageCount,
           changes: collectChanges(),
-          currentTitle: currentPage()?.title || currentPage()?.path || 'Chưa chọn trang',
+          currentTitle:
+            currentPage()?.title || currentPage()?.path || 'Chưa chọn trang',
           currentPath: currentPage()?.path || '',
           languageSummary: Object.entries(languageCounts)
             .map(([language, count]) => `${languageLabel(language)}: ${count}`)
@@ -1478,22 +2196,30 @@
           ? `Bạn sắp đăng ${summary.changes.length} thay đổi trên ${pageChanges} trang. Hãy kiểm tra trước/sau bên dưới.`
           : 'Không có thay đổi nội dung so với bản online.';
         publishDialogSummary.innerHTML = [
-          ['Trang đang kiểm tra', `${summary.currentTitle} ${summary.currentPath ? `(${summary.currentPath})` : ''}`],
+          [
+            'Trang đang kiểm tra',
+            `${summary.currentTitle} ${summary.currentPath ? `(${summary.currentPath})` : ''}`,
+          ],
           ['Trang có thay đổi', `${pageChanges} trang`],
           ['Mục sẽ đăng', `${summary.changes.length} mục`],
         ]
-          .map(([label, value]) => `<div class="summary-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`)
+          .map(
+            ([label, value]) =>
+              `<div class="summary-row"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`
+          )
           .join('');
 
         publishDialogDiff.innerHTML = summary.changes.length
           ? summary.changes
-              .map(change => `
+              .map(
+                change => `
                 <article class="diff-item">
                   <strong>${escapeHtml(change.pageTitle)} ${change.pagePath ? `(${escapeHtml(change.pagePath)})` : ''}<br>${escapeHtml(change.sectionTitle)} / ${escapeHtml(change.fieldLabel)}</strong>
                   <code class="diff-before">Trước: ${escapeHtml(change.before || '(trống)')}</code>
                   <code class="diff-after">Sau: ${escapeHtml(change.after || '(trống)')}</code>
                 </article>
-              `)
+              `
+              )
               .join('')
           : '<div class="empty">Không có thay đổi nội dung so với bản online.</div>';
 
@@ -1535,7 +2261,9 @@
         isPublishing = true;
         updateActionStates();
         button.textContent = 'Đang đăng...';
-        updatePublishStatus('Đang gửi nội dung mới. Vui lòng giữ trang này mở để CMS kiểm tra website live...');
+        updatePublishStatus(
+          'Đang gửi nội dung mới. Vui lòng giữ trang này mở để CMS kiểm tra website live...'
+        );
 
         try {
           const nextContent = {
@@ -1555,10 +2283,15 @@
           });
           const result = await response.json().catch(() => null);
           if (response.status === 401) {
-            updatePublishStatus('Phiên đăng nhập admin đã hết hạn. Hãy đăng nhập lại rồi đăng tiếp.', [{ label: 'Đăng nhập lại', url: '/admin/login.html' }], 'error');
+            updatePublishStatus(
+              'Phiên đăng nhập admin đã hết hạn. Hãy đăng nhập lại rồi đăng tiếp.',
+              [{ label: 'Đăng nhập lại', url: '/admin/login.html' }],
+              'error'
+            );
             return;
           }
-          if (!response.ok) throw new Error(result?.message || `Đăng lỗi ${response.status}`);
+          if (!response.ok)
+            throw new Error(result?.message || `Đăng lỗi ${response.status}`);
 
           localStorage.removeItem(draftKey);
           state = structuredClone(nextContent);
@@ -1573,7 +2306,11 @@
           await waitForDeployStatus(result, 'main');
           showToast('Đã gửi nội dung mới.');
         } catch (error) {
-          updatePublishStatus(`Chưa đăng được nội dung: ${error.message}`, [], 'error');
+          updatePublishStatus(
+            `Chưa đăng được nội dung: ${error.message}`,
+            [],
+            'error'
+          );
           showToast(error.message, 'error');
         } finally {
           isPublishing = false;
@@ -1583,7 +2320,10 @@
       }
 
       async function initialize() {
-        setSourceStatus('Đang tải nội dung...', 'Editor đang lấy nội dung online.');
+        setSourceStatus(
+          'Đang tải nội dung...',
+          'Editor đang lấy nội dung online.'
+        );
         try {
           const published = await loadPublishedContent();
           serverContent = published.content;
@@ -1594,12 +2334,17 @@
           if (draft?.content?.pages?.length) {
             applySavedDraft(draft, published.sha);
           } else {
-            setSourceStatus('Đã tải nội dung CMS', 'Click vào chữ trong preview để sửa.');
+            setSourceStatus(
+              'Đã tải nội dung CMS',
+              'Click vào chữ trong preview để sửa.'
+            );
           }
 
           if (
             !state.pages?.length ||
-            !state.pages.some(page => allFields(page).some(({ field }) => field.match))
+            !state.pages.some(page =>
+              allFields(page).some(({ field }) => field.match)
+            )
           ) {
             await scanSite();
             return;
@@ -1622,15 +2367,26 @@
       });
       document.getElementById('scan-site').addEventListener('click', scanSite);
       document.getElementById('reload-live').addEventListener('click', () => {
-        if (hasUnsavedChanges && !window.confirm('Bạn có thay đổi chưa đăng. Tải lại sẽ bỏ các thay đổi trên màn hình.')) return;
+        if (
+          hasUnsavedChanges &&
+          !window.confirm(
+            'Bạn có thay đổi chưa đăng. Tải lại sẽ bỏ các thay đổi trên màn hình.'
+          )
+        )
+          return;
         localStorage.removeItem(draftKey);
         initialize();
       });
-      document.getElementById('save-local').addEventListener('click', saveDraft);
+      document
+        .getElementById('save-local')
+        .addEventListener('click', saveDraft);
       document.getElementById('clear-draft').addEventListener('click', () => {
         localStorage.removeItem(draftKey);
         showToast('Đã bỏ bản lưu trên máy này.');
-        setSourceStatus('Đã bỏ bản lưu', 'Nội dung trên màn hình vẫn giữ nguyên. Tải lại online nếu muốn lấy bản live.');
+        setSourceStatus(
+          'Đã bỏ bản lưu',
+          'Nội dung trên màn hình vẫn giữ nguyên. Tải lại online nếu muốn lấy bản live.'
+        );
       });
       undoFieldButton.addEventListener('click', undoSelectedField);
       undoPageButton.addEventListener('click', undoCurrentPage);
@@ -1638,7 +2394,9 @@
         saveDraft();
         showToast('Đã lưu bản nháp trên máy này.');
       });
-      document.getElementById('publish-github').addEventListener('click', publishContent);
+      document
+        .getElementById('publish-github')
+        .addEventListener('click', publishContent);
       document.getElementById('open-page').addEventListener('click', () => {
         const page = currentPage();
         if (page) window.open(liveUrl(page.path), '_blank');
@@ -1647,7 +2405,9 @@
         button.addEventListener('click', () => {
           const mode = button.dataset.previewMode;
           previewPanel.classList.toggle('mobile-preview', mode === 'mobile');
-          document.querySelectorAll('[data-preview-mode]').forEach(item => item.classList.toggle('active', item === button));
+          document
+            .querySelectorAll('[data-preview-mode]')
+            .forEach(item => item.classList.toggle('active', item === button));
         });
       });
 

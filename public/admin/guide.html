@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Hướng dẫn sử dụng | Folks Team CMS</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=folks-official-1" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg?v=folks-official-1"
+    />
     <link rel="icon" type="image/png" href="/favicon.png?v=folks-official-1" />
     <link rel="shortcut icon" href="/favicon.png?v=folks-official-1" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=folks-official-1" />
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png?v=folks-official-1"
+    />
     <meta name="theme-color" content="#4fb16f" />
     <style>
       .shell {
@@ -161,7 +168,7 @@
     </style>
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
   </head>
-  <body>
+  <body class="admin-page admin-guide">
     <main class="shell">
       <header class="topbar">
         <div class="brand">
@@ -179,7 +186,9 @@
           <a class="secondary" href="/admin/content.html">Sửa trang</a>
           <a class="secondary" href="/admin/text.html">Sửa chữ</a>
           <a class="secondary" href="/">Xem website</a>
-          <button type="button" class="secondary" data-admin-logout>Đăng xuất</button>
+          <button type="button" class="secondary" data-admin-logout>
+            Đăng xuất
+          </button>
         </nav>
       </header>
 
@@ -187,9 +196,9 @@
         <p class="eyebrow">Tài liệu sơ bộ</p>
         <h2>Quy trình quản trị nội dung website Folks Team</h2>
         <p>
-          Trang này tóm tắt các thao tác thường dùng trong khu vực admin: đăng nhập,
-          sửa nội dung trang, tạo bài blog, lưu nháp, đăng nội dung và kiểm tra website
-          sau khi cập nhật.
+          Trang này tóm tắt các thao tác thường dùng trong khu vực admin: đăng
+          nhập, sửa nội dung trang, tạo bài blog, lưu nháp, đăng nội dung và
+          kiểm tra website sau khi cập nhật.
         </p>
       </section>
 
@@ -209,25 +218,38 @@
           <section class="guide-section" id="tong-quan">
             <h2>1. Tổng quan</h2>
             <p>
-              Từ <code>/admin/</code>, chọn module phù hợp với việc cần làm. Mỗi module
-              có nút quay lại Admin Hub, nút xem website và nút đăng xuất.
+              Từ <code>/admin/</code>, chọn module phù hợp với việc cần làm. Mỗi
+              module có nút quay lại Admin Hub, nút xem website và nút đăng
+              xuất.
             </p>
             <div class="quick-grid">
               <article class="guide-card">
                 <strong>Viết blog</strong>
-                <p>Tạo bài viết mới, lưu nháp, xem trước và đăng bài blog lên website.</p>
+                <p>
+                  Tạo bài viết mới, lưu nháp, xem trước và đăng bài blog lên
+                  website.
+                </p>
               </article>
               <article class="guide-card">
                 <strong>Sửa trang</strong>
-                <p>Mở preview thật của website, click vào phần chữ hoặc ảnh cần sửa rồi đăng.</p>
+                <p>
+                  Mở preview thật của website, click vào phần chữ hoặc ảnh cần
+                  sửa rồi đăng.
+                </p>
               </article>
               <article class="guide-card">
                 <strong>Sửa chữ hàng loạt</strong>
-                <p>Tìm, thay thế có kiểm tra và sửa nội dung theo danh sách trang.</p>
+                <p>
+                  Tìm, thay thế có kiểm tra và sửa nội dung theo danh sách
+                  trang.
+                </p>
               </article>
               <article class="guide-card">
                 <strong>Vận hành</strong>
-                <p>Theo dõi lead, hàng chờ duyệt, nội dung cần sửa, kiểm tra, email đăng ký và lịch sử.</p>
+                <p>
+                  Theo dõi lead, hàng chờ duyệt, nội dung cần sửa, kiểm tra,
+                  email đăng ký và lịch sử.
+                </p>
               </article>
             </div>
           </section>
@@ -235,26 +257,51 @@
           <section class="guide-section" id="dang-nhap">
             <h2>2. Đăng nhập</h2>
             <ol>
-              <li>Mở <code>/admin/</code>. Nếu chưa đăng nhập, hệ thống sẽ chuyển tới trang login.</li>
-              <li>Nhập tên đăng nhập và mật khẩu được cấp cho người quản trị.</li>
-              <li>Sau khi đăng nhập thành công, chọn module cần sử dụng từ Admin Hub.</li>
+              <li>
+                Mở <code>/admin/</code>. Nếu chưa đăng nhập, hệ thống sẽ chuyển
+                tới trang login.
+              </li>
+              <li>
+                Nhập tên đăng nhập và mật khẩu được cấp cho người quản trị.
+              </li>
+              <li>
+                Sau khi đăng nhập thành công, chọn module cần sử dụng từ Admin
+                Hub.
+              </li>
             </ol>
-            <p class="callout">Nếu quên mật khẩu, không thử nhiều lần liên tục. Hãy liên hệ người quản trị kỹ thuật để cấp lại.</p>
+            <p class="callout">
+              Nếu quên mật khẩu, không thử nhiều lần liên tục. Hãy liên hệ người
+              quản trị kỹ thuật để cấp lại.
+            </p>
           </section>
 
           <section class="guide-section" id="content-cms">
             <h2>3. Sửa nội dung trang bằng Sửa trang</h2>
             <ol>
               <li>Vào <code>/admin/content.html</code>.</li>
-              <li>Chọn trang ở cột bên trái hoặc dùng ô tìm kiếm để lọc nhanh.</li>
-              <li>Trong khung preview, click trực tiếp vào phần nội dung có viền xanh.</li>
+              <li>
+                Chọn trang ở cột bên trái hoặc dùng ô tìm kiếm để lọc nhanh.
+              </li>
+              <li>
+                Trong khung preview, click trực tiếp vào phần nội dung có viền
+                xanh.
+              </li>
               <li>Sửa chữ, đường dẫn ảnh hoặc mô tả ảnh ở khung bên phải.</li>
-              <li>Dùng bộ lọc <strong>Đã đổi</strong> để chỉ xem các trang có thay đổi.</li>
-              <li>Kiểm tra cả <strong>Desktop</strong> và <strong>Mobile</strong> trước khi đăng.</li>
+              <li>
+                Dùng bộ lọc <strong>Đã đổi</strong> để chỉ xem các trang có thay
+                đổi.
+              </li>
+              <li>
+                Kiểm tra cả <strong>Desktop</strong> và
+                <strong>Mobile</strong> trước khi đăng.
+              </li>
               <li>Khi đã chắc chắn, bấm <strong>Đăng lên website</strong>.</li>
             </ol>
             <h3>Khi nào nên dùng Sửa trang?</h3>
-            <p>Dùng khi cần sửa nội dung đang hiển thị trên các trang như Home, About, Services, Contact, Projects hoặc các trang tiếng Việt.</p>
+            <p>
+              Dùng khi cần sửa nội dung đang hiển thị trên các trang như Home,
+              About, Services, Contact, Projects hoặc các trang tiếng Việt.
+            </p>
           </section>
 
           <section class="guide-section" id="blog-manager">
@@ -263,14 +310,30 @@
               <li>Vào <code>/admin/blog.html</code>.</li>
               <li>Chọn ngôn ngữ bài viết: English hoặc Tiếng Việt.</li>
               <li>Nhập tiêu đề, mô tả ngắn, slug và nội dung chính.</li>
-              <li>Thêm ảnh, trích dẫn, danh sách hoặc CTA nếu bài cần cấu trúc phong phú.</li>
-              <li>Xem khung preview để kiểm tra tiêu đề, mô tả, ảnh và nội dung.</li>
-              <li>Hoàn tất kiểm tra hiển thị: tiêu đề 20-70 ký tự, mô tả 70-170 ký tự, ảnh có mô tả.</li>
+              <li>
+                Thêm ảnh, trích dẫn, danh sách hoặc CTA nếu bài cần cấu trúc
+                phong phú.
+              </li>
+              <li>
+                Xem khung preview để kiểm tra tiêu đề, mô tả, ảnh và nội dung.
+              </li>
+              <li>
+                Hoàn tất kiểm tra hiển thị: tiêu đề 20-70 ký tự, mô tả 70-170 ký
+                tự, ảnh có mô tả.
+              </li>
               <li>Bấm <strong>Lưu nháp</strong> nếu chưa muốn đăng ngay.</li>
-              <li>Bấm <strong>Gửi review</strong> nếu cần người khác duyệt trước khi publish.</li>
-              <li>Khi bảng kiểm đã đủ, bấm <strong>Đăng bài lên website</strong>.</li>
+              <li>
+                Bấm <strong>Gửi review</strong> nếu cần người khác duyệt trước
+                khi publish.
+              </li>
+              <li>
+                Khi bảng kiểm đã đủ, bấm <strong>Đăng bài lên website</strong>.
+              </li>
             </ol>
-            <p class="callout">Slug nên dùng chữ thường, số và dấu gạch ngang. Không đổi slug sau khi bài đã được chia sẻ nếu không thật cần thiết.</p>
+            <p class="callout">
+              Slug nên dùng chữ thường, số và dấu gạch ngang. Không đổi slug sau
+              khi bài đã được chia sẻ nếu không thật cần thiết.
+            </p>
           </section>
 
           <section class="guide-section" id="text-manager">
@@ -278,50 +341,98 @@
             <ol>
               <li>Vào <code>/admin/text.html</code>.</li>
               <li>Chọn trang và mục nội dung cần sửa trong danh sách.</li>
-              <li>Dùng <strong>Search & replace có kiểm tra</strong> khi cần đổi một cụm từ trên nhiều trang.</li>
-              <li>Sửa các trường chữ trong form, sau đó xem phần preview dữ liệu.</li>
+              <li>
+                Dùng <strong>Search & replace có kiểm tra</strong> khi cần đổi
+                một cụm từ trên nhiều trang.
+              </li>
+              <li>
+                Sửa các trường chữ trong form, sau đó xem phần preview dữ liệu.
+              </li>
               <li>Có thể lưu trên máy này nếu cần tạm dừng trước khi đăng.</li>
-              <li>Bấm <strong>Đăng nội dung</strong> khi muốn đưa toàn bộ thay đổi lên website.</li>
+              <li>
+                Bấm <strong>Đăng nội dung</strong> khi muốn đưa toàn bộ thay đổi
+                lên website.
+              </li>
             </ol>
             <h3>Khi nào nên dùng Sửa chữ hàng loạt?</h3>
-            <p>Dùng khi muốn rà soát nội dung dạng danh sách, xuất JSON hoặc sửa nhiều mục liên tiếp mà không cần preview trực quan.</p>
+            <p>
+              Dùng khi muốn rà soát nội dung dạng danh sách, xuất JSON hoặc sửa
+              nhiều mục liên tiếp mà không cần preview trực quan.
+            </p>
           </section>
 
           <section class="guide-section" id="publish">
             <h2>6. Đăng lên website</h2>
             <ol>
-              <li>Trước khi đăng, đọc lại nội dung trong preview và kiểm tra đúng ngôn ngữ/trang.</li>
+              <li>
+                Trước khi đăng, đọc lại nội dung trong preview và kiểm tra đúng
+                ngôn ngữ/trang.
+              </li>
               <li>Bấm nút đăng trong module đang dùng.</li>
               <li>Xác nhận trong hộp thoại nếu hệ thống yêu cầu.</li>
-              <li>Giữ tab admin mở qua các trạng thái: đang lưu, đang deploy, đang kiểm tra live.</li>
-              <li>Khi CMS báo <strong>đã live</strong>, mở link trang live ở tab mới để kiểm tra lại.</li>
+              <li>
+                Giữ tab admin mở qua các trạng thái: đang lưu, đang deploy, đang
+                kiểm tra live.
+              </li>
+              <li>
+                Khi CMS báo <strong>đã live</strong>, mở link trang live ở tab
+                mới để kiểm tra lại.
+              </li>
             </ol>
             <p>
-              Khi đăng, CMS lưu thay đổi vào GitHub và website sẽ tự deploy lại qua Vercel.
-              Nếu trạng thái deploy chưa kiểm tra được, nội dung vẫn có thể đã được lưu; hãy mở trang live để xác nhận sau ít phút.
+              Khi đăng, CMS lưu thay đổi vào GitHub và website sẽ tự deploy lại
+              qua Vercel. Nếu trạng thái deploy chưa kiểm tra được, nội dung vẫn
+              có thể đã được lưu; hãy mở trang live để xác nhận sau ít phút.
             </p>
           </section>
 
           <section class="guide-section" id="roles">
             <h2>7. Phân quyền và review</h2>
             <ul>
-              <li><strong>Viewer</strong>: xem dữ liệu admin, không chỉnh sửa.</li>
+              <li>
+                <strong>Viewer</strong>: xem dữ liệu admin, không chỉnh sửa.
+              </li>
               <li><strong>Editor</strong>: sửa nội dung và lưu nháp/review.</li>
-              <li><strong>Publisher</strong>: được đăng nội dung lên website live.</li>
-              <li><strong>Admin</strong>: được xử lý cấu hình, rollback, xóa và thao tác kỹ thuật.</li>
-              <li>Luồng chuẩn nên là <strong>Nháp -> Duyệt -> Đã duyệt -> Đăng</strong>. Theo dõi hàng chờ trong Vận hành.</li>
+              <li>
+                <strong>Publisher</strong>: được đăng nội dung lên website live.
+              </li>
+              <li>
+                <strong>Admin</strong>: được xử lý cấu hình, rollback, xóa và
+                thao tác kỹ thuật.
+              </li>
+              <li>
+                Luồng chuẩn nên là
+                <strong>Nháp -> Duyệt -> Đã duyệt -> Đăng</strong>. Theo dõi
+                hàng chờ trong Vận hành.
+              </li>
             </ul>
           </section>
 
           <section class="guide-section" id="luu-y">
             <h2>8. Lưu ý vận hành</h2>
             <ul>
-              <li>Luôn lưu nháp khi bài hoặc nội dung chưa sẵn sàng công khai.</li>
-              <li>Dùng Vận hành để kiểm tra lead mới, nội dung cần sửa, hàng chờ duyệt và lịch sử mỗi ngày.</li>
-              <li>Không dán nội dung từ Word/Google Docs quá dài mà chưa đọc lại định dạng.</li>
-              <li>Ảnh nên có mô tả rõ ràng để tốt cho Google và khả năng truy cập.</li>
-              <li>Nếu gặp lỗi xung đột dữ liệu, tải lại nội dung online rồi kiểm tra lại thay đổi trước khi đăng lần nữa.</li>
-              <li>Sau khi đăng, kiểm tra phiên bản desktop và mobile của trang quan trọng.</li>
+              <li>
+                Luôn lưu nháp khi bài hoặc nội dung chưa sẵn sàng công khai.
+              </li>
+              <li>
+                Dùng Vận hành để kiểm tra lead mới, nội dung cần sửa, hàng chờ
+                duyệt và lịch sử mỗi ngày.
+              </li>
+              <li>
+                Không dán nội dung từ Word/Google Docs quá dài mà chưa đọc lại
+                định dạng.
+              </li>
+              <li>
+                Ảnh nên có mô tả rõ ràng để tốt cho Google và khả năng truy cập.
+              </li>
+              <li>
+                Nếu gặp lỗi xung đột dữ liệu, tải lại nội dung online rồi kiểm
+                tra lại thay đổi trước khi đăng lần nữa.
+              </li>
+              <li>
+                Sau khi đăng, kiểm tra phiên bản desktop và mobile của trang
+                quan trọng.
+              </li>
             </ul>
           </section>
         </div>
