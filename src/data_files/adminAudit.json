@@ -1,6 +1,13 @@
 {
-  "updatedAt": "2026-05-07T05:28:56.619Z",
+  "updatedAt": "2026-05-07T05:29:03.070Z",
   "events": [
+    {
+      "id": "audit-1778131743070-mwexf0",
+      "createdAt": "2026-05-07T05:29:03.070Z",
+      "type": "media-delete",
+      "actor": "admin",
+      "target": "src/images/before-after.avif"
+    },
     {
       "id": "audit-1778131736619-8z4efc",
       "createdAt": "2026-05-07T05:28:56.619Z",
