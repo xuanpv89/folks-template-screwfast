@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
     <style>
       .shell {
-        max-width: 1120px;
+        max-width: 1180px;
         margin: 0 auto;
-        padding: 18px 16px 40px;
+        padding: 18px 16px 44px;
       }
 
       .topbar {
@@ -24,7 +24,7 @@
         justify-content: space-between;
         gap: 14px;
         padding: 12px;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
 
       .brand {
@@ -48,167 +48,159 @@
         flex-wrap: wrap;
       }
 
-      .main-actions {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
-        margin-bottom: 14px;
-      }
-
-      .action-card {
-        min-height: 96px;
-        display: grid;
-        align-content: space-between;
-        gap: 14px;
+      .intro {
+        margin-bottom: 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fff;
-        padding: 14px;
+        background: #ffffff;
+        padding: 18px;
         box-shadow: var(--shadow);
       }
 
-      .action-card strong {
-        font-size: 18px;
+      .intro h2 {
+        max-width: 760px;
+        margin: 0;
+        font-size: clamp(28px, 4vw, 46px) !important;
+        line-height: 1.08 !important;
       }
 
-      .action-card span:not(.button) {
+      .intro p {
+        max-width: 820px;
+        margin: 10px 0 0;
         color: var(--muted);
-        font-size: 13px;
-        font-weight: 800;
+        font-size: 15px;
       }
 
-      .action-card.primary {
-        border-color: #bde8cb;
-        background: var(--brand-soft);
-      }
-
-      .workspace {
-        display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-        gap: 14px;
-      }
-
-      .panel {
+      .table-section {
+        margin-top: 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fff;
-        padding: 14px;
+        background: #ffffff;
         box-shadow: var(--shadow);
+        overflow: hidden;
       }
 
-      .panel-head {
+      .section-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
-        margin-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+        padding: 14px 16px;
       }
 
-      .panel-head h2 {
+      .section-head h2 {
         margin: 0;
         font-size: 20px;
       }
 
-      .stack {
-        display: grid;
-        gap: 10px;
-      }
-
-      .todo-item,
-      .notification,
-      .search-result {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fafafa;
-        padding: 11px 12px;
-      }
-
-      .todo-item > div,
-      .search-result > div {
-        min-width: 0;
-      }
-
-      .todo-item strong,
-      .search-result strong {
-        display: block;
-        font-size: 14px;
-      }
-
-      .todo-item p,
-      .search-result p {
-        margin: 3px 0 0;
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .urgent {
-        border-color: #fecaca;
-        background: #fff7f7;
-      }
-
-      .warn {
-        border-color: #fde68a;
-        background: #fffbeb;
-      }
-
-      .metric-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .metric-card {
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fafafa;
-        padding: 12px;
-      }
-
-      .metric-card span {
-        display: block;
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 900;
-      }
-
-      .metric-card strong {
-        display: block;
-        margin-top: 7px;
-        font-size: 28px;
-        line-height: 1;
-      }
-
-      .status-line {
-        margin-bottom: 10px;
+      .section-head p {
+        margin: 4px 0 0;
         color: var(--muted);
         font-size: 13px;
       }
 
-      .search-panel input {
+      .table-wrap {
         width: 100%;
-        margin-bottom: 10px;
-        border: 1px solid #d4d4d4;
-        border-radius: 8px;
-        padding: 12px;
-        font: inherit;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid #eeeeee;
+        padding: 13px 16px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f8faf7;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      tbody tr:hover td {
+        background: #fbfdfb;
+      }
+
+      td strong {
+        display: block;
+        color: var(--ink);
+        font-size: 15px;
+      }
+
+      .value {
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+
+      .note {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .status {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        border: 1px solid #d8eadf;
+        border-radius: 999px !important;
+        background: var(--brand-soft);
+        color: var(--brand-dark);
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .status.warn {
+        border-color: #fde68a !important;
+        background: #fffbeb !important;
+        color: #854d0e !important;
+      }
+
+      .status.danger {
+        border-color: #fecaca !important;
+        background: #fef2f2 !important;
+        color: #991b1b !important;
+      }
+
+      .feature-link {
+        min-width: 92px;
+      }
+
+      .empty-row td {
+        color: var(--muted);
+        font-weight: 700;
       }
 
       @media (max-width: 860px) {
-        .main-actions,
-        .workspace {
-          grid-template-columns: 1fr;
-        }
-
-        .topbar {
+        .topbar,
+        .section-head {
           align-items: stretch;
           flex-direction: column;
         }
 
         .nav {
+          width: 100%;
+        }
+
+        .section-head .button {
           width: 100%;
         }
       }
@@ -225,62 +217,77 @@
           </div>
         </div>
         <nav class="nav" aria-label="Admin">
-          <a href="/">Website</a>
+          <a aria-current="page" href="/admin/">Trang chính</a>
+          <a class="secondary" href="/admin/content.html">Sửa trang</a>
+          <a class="secondary" href="/admin/blog.html">Viết blog</a>
+          <a class="secondary" href="/admin/leads.html">Lead</a>
           <a class="secondary" href="/admin/operations.html">Vận hành</a>
-          <a class="secondary" href="/admin/console.html">Kỹ thuật</a>
+          <a class="secondary" href="/">Xem website</a>
           <button type="button" class="button secondary" data-admin-logout>
             Đăng xuất
           </button>
         </nav>
       </header>
 
-      <section class="main-actions" aria-label="Thao tác chính">
-        <a class="action-card primary" href="/admin/leads.html">
-          <strong>Lead</strong>
-          <span id="lead-action-status">Đang tải</span>
-        </a>
-        <a class="action-card primary" href="/admin/content.html">
-          <strong>Sửa website</strong>
-          <span>Live editor</span>
-        </a>
-        <a class="action-card" href="/admin/blog.html">
-          <strong>Blog</strong>
-          <span id="blog-action-status">Draft / review</span>
-        </a>
-        <a class="action-card" href="/admin/text.html">
-          <strong>Sửa chữ</strong>
-          <span>Bulk edit</span>
-        </a>
+      <section class="intro" aria-labelledby="admin-title">
+        <p class="eyebrow">Bảng điều khiển</p>
+        <h2 id="admin-title">Nhìn một lần là biết website đang cần làm gì.</h2>
+        <p>
+          Trang này gom dữ liệu quan trọng thành hai bảng: tình hình hiện tại và
+          nơi mở từng tính năng. Ngôn ngữ được viết cho người vận hành, không cần
+          hiểu kỹ thuật.
+        </p>
       </section>
 
-      <section class="workspace" aria-label="Tổng quan">
-        <section class="panel">
-          <div class="panel-head">
-            <h2>Cần xử lý</h2>
-            <button type="button" class="button secondary" id="refresh-dashboard">
-              Làm mới
-            </button>
+      <section class="table-section" aria-labelledby="dashboard-title">
+        <div class="section-head">
+          <div>
+            <h2 id="dashboard-title">Dashboard dữ liệu</h2>
+            <p id="dashboard-status">Đang tải dữ liệu mới nhất...</p>
           </div>
-          <div class="stack" id="notification-list"></div>
-          <div class="stack" id="daily-todos"></div>
-        </section>
+          <button type="button" class="button secondary" id="refresh-dashboard">
+            Làm mới
+          </button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Dữ liệu</th>
+                <th>Giá trị</th>
+                <th>Ý nghĩa dễ hiểu</th>
+                <th>Trạng thái</th>
+                <th>Mở</th>
+              </tr>
+            </thead>
+            <tbody id="dashboard-rows">
+              <tr class="empty-row">
+                <td colspan="5">Đang tải...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-        <div class="stack">
-          <section class="panel" aria-label="Số liệu">
-            <div class="panel-head">
-              <h2>Số liệu</h2>
-            </div>
-            <div class="status-line" id="dashboard-status">Đang tải số liệu...</div>
-            <div class="metric-grid" id="dashboard-metrics"></div>
-          </section>
-
-          <section class="panel search-panel" aria-label="Tìm nhanh">
-            <div class="panel-head">
-              <h2>Tìm nhanh</h2>
-            </div>
-            <input id="global-search" placeholder="lead, blog, ảnh, SEO..." />
-            <div class="stack" id="global-search-results"></div>
-          </section>
+      <section class="table-section" aria-labelledby="features-title">
+        <div class="section-head">
+          <div>
+            <h2 id="features-title">Tính năng admin</h2>
+            <p>Mỗi dòng là một việc chính, mô tả ngắn và đường dẫn mở ngay.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tính năng</th>
+                <th>Mô tả rất ngắn</th>
+                <th>Dùng khi</th>
+                <th>Mở</th>
+              </tr>
+            </thead>
+            <tbody id="feature-rows"></tbody>
+          </table>
         </div>
       </section>
     </main>
@@ -288,24 +295,82 @@
     <script src="/admin/admin-session.js"></script>
     <script>
       const dashboardStatus = document.getElementById('dashboard-status');
-      const dashboardMetrics = document.getElementById('dashboard-metrics');
-      const notificationList = document.getElementById('notification-list');
-      const dailyTodos = document.getElementById('daily-todos');
-      const globalSearch = document.getElementById('global-search');
-      const globalSearchResults = document.getElementById('global-search-results');
-      const leadActionStatus = document.getElementById('lead-action-status');
-      const blogActionStatus = document.getElementById('blog-action-status');
+      const dashboardRows = document.getElementById('dashboard-rows');
+      const featureRows = document.getElementById('feature-rows');
 
-      const adminSearchItems = [
-        ['Lead', 'lead khach contact email tag', '/admin/leads.html'],
-        ['Sửa website', 'content cms sua trang anh preview publish', '/admin/content.html'],
-        ['Blog', 'blog draft review seo image publish', '/admin/blog.html'],
-        ['Sửa chữ', 'text bulk search replace', '/admin/text.html'],
-        ['Duyệt', 'review approve queue', '/admin/operations.html#review'],
-        ['SEO', 'seo title description alt', '/admin/operations.html#seo'],
-        ['Ảnh', 'image media upload url', '/admin/operations.html#media'],
-        ['Audit', 'audit history restore', '/admin/operations.html#audit'],
-        ['Kỹ thuật', 'console config deploy security', '/admin/console.html'],
+      const features = [
+        {
+          name: 'Lead',
+          description: 'Xem và xử lý khách liên hệ.',
+          when: 'Có người gửi form hoặc cần phân loại khách.',
+          href: '/admin/leads.html',
+        },
+        {
+          name: 'Sửa trang',
+          description: 'Sửa nội dung các trang chính.',
+          when: 'Cần đổi chữ, ảnh, tiêu đề hoặc phần giới thiệu.',
+          href: '/admin/content.html',
+        },
+        {
+          name: 'Viết blog',
+          description: 'Tạo nháp và đăng bài.',
+          when: 'Cần viết, kiểm tra, duyệt hoặc publish bài mới.',
+          href: '/admin/blog.html',
+        },
+        {
+          name: 'Sửa chữ hàng loạt',
+          description: 'Tìm và thay nhiều chữ.',
+          when: 'Một cụm từ cần đổi ở nhiều nơi.',
+          href: '/admin/text.html',
+        },
+        {
+          name: 'Vận hành',
+          description: 'Theo dõi việc cần duyệt.',
+          when: 'Cần kiểm tra review, ảnh, SEO hoặc lịch sử thao tác.',
+          href: '/admin/operations.html',
+        },
+        {
+          name: 'Thư viện ảnh',
+          description: 'Quản lý ảnh dùng trên site.',
+          when: 'Cần tải ảnh lên hoặc lấy đường dẫn ảnh.',
+          href: '/admin/operations.html#media',
+        },
+        {
+          name: 'Duyệt nội dung',
+          description: 'Xem hàng chờ duyệt.',
+          when: 'Có nội dung chưa nên đăng ngay.',
+          href: '/admin/operations.html#review',
+        },
+        {
+          name: 'Hiển thị Google',
+          description: 'Kiểm tra tiêu đề và mô tả.',
+          when: 'Trước khi đăng hoặc sau khi sửa trang quan trọng.',
+          href: '/admin/operations.html#seo',
+        },
+        {
+          name: 'Lịch sử thao tác',
+          description: 'Xem ai đã đổi gì.',
+          when: 'Cần kiểm tra hoặc khôi phục một thay đổi.',
+          href: '/admin/operations.html#audit',
+        },
+        {
+          name: 'Kỹ thuật',
+          description: 'Kiểm tra cấu hình khó.',
+          when: 'Website lỗi, đăng nhập lỗi hoặc cần kiểm tra hệ thống.',
+          href: '/admin/console.html',
+        },
+        {
+          name: 'Hướng dẫn',
+          description: 'Đọc cách dùng admin.',
+          when: 'Người mới cần biết nên bấm ở đâu.',
+          href: '/admin/guide.html',
+        },
+        {
+          name: 'Xem website',
+          description: 'Mở trang đang public.',
+          when: 'Cần kiểm tra kết quả người xem thấy.',
+          href: '/',
+        },
       ];
 
       function escapeHtml(value) {
@@ -318,7 +383,7 @@
       }
 
       function compactDate(value) {
-        if (!value) return '-';
+        if (!value) return 'Chưa có';
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) return String(value);
         return date.toLocaleString('vi-VN', {
@@ -327,148 +392,200 @@
         });
       }
 
-      function metricCard(label, value) {
-        return `<article class="metric-card"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value ?? 0)}</strong></article>`;
+      function numberText(value) {
+        const number = Number(value || 0);
+        return Number.isFinite(number) ? number.toLocaleString('vi-VN') : '-';
       }
 
-      function todoItem(title, note, href, type = '') {
+      function statusClass(level) {
+        if (level === 'danger') return 'status danger';
+        if (level === 'warn') return 'status warn';
+        return 'status';
+      }
+
+      function dashboardRow(item) {
         return `
-          <article class="todo-item ${type}">
-            <div>
-              <strong>${escapeHtml(title)}</strong>
-              <p>${escapeHtml(note)}</p>
-            </div>
-            <a class="button secondary" href="${escapeHtml(href)}">Mở</a>
-          </article>
+          <tr>
+            <td><strong>${escapeHtml(item.name)}</strong></td>
+            <td class="value">${escapeHtml(item.value)}</td>
+            <td class="note">${escapeHtml(item.meaning)}</td>
+            <td><span class="${statusClass(item.level)}">${escapeHtml(item.status)}</span></td>
+            <td><a class="button secondary feature-link" href="${escapeHtml(item.href)}">Mở</a></td>
+          </tr>
         `;
       }
 
-      function renderGlobalSearch() {
-        const keyword = globalSearch.value.trim().toLowerCase();
-        const items = adminSearchItems
-          .filter(item => !keyword || `${item[0]} ${item[1]}`.toLowerCase().includes(keyword))
-          .slice(0, 6);
-
-        globalSearchResults.innerHTML = items
-          .map(
-            item =>
-              `<a class="search-result" href="${escapeHtml(item[2])}"><div><strong>${escapeHtml(item[0])}</strong><p>${escapeHtml(item[1])}</p></div></a>`
-          )
-          .join('');
+      function featureRow(item) {
+        return `
+          <tr>
+            <td><strong>${escapeHtml(item.name)}</strong></td>
+            <td class="note">${escapeHtml(item.description)}</td>
+            <td class="note">${escapeHtml(item.when)}</td>
+            <td><a class="button secondary feature-link" href="${escapeHtml(item.href)}">Mở</a></td>
+          </tr>
+        `;
       }
 
-      function renderNotifications(metrics = {}) {
-        const items = [
-          metrics.staleNewLeads
-            ? ['urgent', `${metrics.staleNewLeads} lead quá 24h`, '/admin/leads.html']
-            : null,
-          metrics.newLeads
-            ? ['warn', `${metrics.newLeads} lead mới`, '/admin/leads.html']
-            : null,
-          metrics.pendingReviews
-            ? ['warn', `${metrics.pendingReviews} mục chờ duyệt`, '/admin/operations.html#review']
-            : null,
-        ].filter(Boolean);
-
-        notificationList.innerHTML = items.length
-          ? items
-              .map(
-                item =>
-                  `<a class="notification ${item[0]}" href="${escapeHtml(item[2])}">${escapeHtml(item[1])}</a>`
-              )
-              .join('')
-          : '<div class="notification">Không có cảnh báo</div>';
-      }
-
-      function renderTodos(data = {}) {
+      function buildDashboardRows(data) {
         const metrics = data.metrics || {};
-        const todos = [
-          metrics.staleNewLeads
-            ? [
-                'urgent',
-                `Trả lời ${metrics.staleNewLeads} lead quá hạn`,
-                'Ưu tiên trước khi publish.',
-                '/admin/leads.html',
-              ]
-            : null,
-          metrics.newLeads
-            ? [
-                'warn',
-                `Phân loại ${metrics.newLeads} lead mới`,
-                'Gắn trạng thái hoặc người phụ trách.',
-                '/admin/leads.html',
-              ]
-            : null,
-          metrics.pendingReviews
-            ? [
-                'warn',
-                `Duyệt ${metrics.pendingReviews} mục`,
-                data.latest?.reviewAt ? `Mới nhất: ${compactDate(data.latest.reviewAt)}` : 'Review queue',
-                '/admin/operations.html#review',
-              ]
-            : null,
-        ].filter(Boolean);
+        const contentCounts = data.contentCounts || {};
+        const latest = data.latest || {};
+        const rows = [
+          {
+            name: 'Lead mới',
+            value: numberText(metrics.newLeads),
+            meaning: 'Khách đã liên hệ nhưng chưa được xử lý.',
+            status: metrics.newLeads ? 'Cần xem' : 'Ổn',
+            level: metrics.newLeads ? 'warn' : 'ok',
+            href: '/admin/leads.html',
+          },
+          {
+            name: 'Lead quá 24 giờ',
+            value: numberText(metrics.staleNewLeads),
+            meaning: 'Khách mới bị chờ lâu, nên ưu tiên trả lời.',
+            status: metrics.staleNewLeads ? 'Ưu tiên' : 'Ổn',
+            level: metrics.staleNewLeads ? 'danger' : 'ok',
+            href: '/admin/leads.html',
+          },
+          {
+            name: 'Lead đang xử lý',
+            value: numberText(metrics.workingLeads),
+            meaning: 'Khách đã có người theo dõi.',
+            status: metrics.workingLeads ? 'Đang làm' : 'Không có',
+            level: 'ok',
+            href: '/admin/leads.html',
+          },
+          {
+            name: 'Tổng lead',
+            value: numberText(metrics.leads),
+            meaning: 'Tổng số khách từng gửi thông tin.',
+            status: 'Theo dõi',
+            level: 'ok',
+            href: '/admin/leads.html',
+          },
+          {
+            name: 'Người đăng ký email',
+            value: numberText(metrics.subscribers),
+            meaning: 'Danh sách người muốn nhận tin.',
+            status: 'Theo dõi',
+            level: 'ok',
+            href: '/admin/operations.html#subscribers',
+          },
+          {
+            name: 'Việc chờ duyệt',
+            value: numberText(metrics.pendingReviews),
+            meaning: 'Nội dung hoặc việc cần kiểm tra trước khi đăng.',
+            status: metrics.pendingReviews ? 'Cần duyệt' : 'Ổn',
+            level: metrics.pendingReviews ? 'warn' : 'ok',
+            href: '/admin/operations.html#review',
+          },
+          {
+            name: 'Bài blog',
+            value: numberText(contentCounts.blog),
+            meaning: 'Số bài viết đang có trong website.',
+            status: 'Nội dung',
+            level: 'ok',
+            href: '/admin/blog.html',
+          },
+          {
+            name: 'Sản phẩm',
+            value: numberText(contentCounts.products),
+            meaning: 'Số mục sản phẩm hoặc chương trình đang có.',
+            status: 'Nội dung',
+            level: 'ok',
+            href: '/admin/content.html',
+          },
+          {
+            name: 'Insight',
+            value: numberText(contentCounts.insights),
+            meaning: 'Số nội dung insight đang có.',
+            status: 'Nội dung',
+            level: 'ok',
+            href: '/admin/content.html',
+          },
+          {
+            name: 'Tài liệu',
+            value: numberText(contentCounts.docs),
+            meaning: 'Số trang tài liệu hoặc hướng dẫn.',
+            status: 'Nội dung',
+            level: 'ok',
+            href: '/admin/operations.html#seo',
+          },
+          {
+            name: 'Ảnh trong website',
+            value: numberText(metrics.mediaItems),
+            meaning: 'Số ảnh đang lưu để dùng cho trang và bài viết.',
+            status: 'Thư viện',
+            level: 'ok',
+            href: '/admin/operations.html#media',
+          },
+          {
+            name: 'Lần thay đổi đã ghi',
+            value: numberText(metrics.auditEvents),
+            meaning: 'Nhật ký giúp biết các thay đổi đã diễn ra.',
+            status: 'Lịch sử',
+            level: 'ok',
+            href: '/admin/operations.html#audit',
+          },
+          {
+            name: 'Lead mới nhất',
+            value: compactDate(latest.leadAt),
+            meaning: 'Thời điểm gần nhất có khách gửi thông tin.',
+            status: latest.leadAt ? 'Có dữ liệu' : 'Chưa có',
+            level: 'ok',
+            href: '/admin/leads.html',
+          },
+          {
+            name: 'Lần duyệt gần nhất',
+            value: compactDate(latest.reviewAt),
+            meaning: 'Thời điểm gần nhất hàng chờ duyệt được cập nhật.',
+            status: latest.reviewAt ? 'Có dữ liệu' : 'Chưa có',
+            level: 'ok',
+            href: '/admin/operations.html#review',
+          },
+          {
+            name: 'Lịch sử mới nhất',
+            value: compactDate(latest.auditAt),
+            meaning: 'Thời điểm gần nhất admin ghi nhận một thao tác.',
+            status: latest.auditAt ? 'Có dữ liệu' : 'Chưa có',
+            level: 'ok',
+            href: '/admin/operations.html#audit',
+          },
+        ];
 
-        dailyTodos.innerHTML = todos.length
-          ? todos.map(item => todoItem(item[1], item[2], item[3], item[0])).join('')
-          : todoItem('Kiểm tra website', 'Health, SEO, audit.', '/admin/operations.html#health');
+        return rows.map(dashboardRow).join('');
       }
 
       async function loadDashboard() {
-        dashboardStatus.textContent = 'Đang tải số liệu...';
-        dashboardMetrics.innerHTML = '';
-        dailyTodos.innerHTML = '';
+        dashboardStatus.textContent = 'Đang tải dữ liệu mới nhất...';
+        dashboardRows.innerHTML =
+          '<tr class="empty-row"><td colspan="5">Đang tải...</td></tr>';
 
         try {
           const response = await fetch('/api/admin-operations?module=dashboard', {
             credentials: 'same-origin',
+            cache: 'no-store',
           });
           const data = await response.json().catch(() => ({}));
           if (!response.ok || data.ok === false) {
             throw new Error(data.message || `Không tải được dashboard (${response.status}).`);
           }
 
-          const metrics = data.metrics || {};
           dashboardStatus.textContent = `Cập nhật: ${compactDate(data.updatedAt)}`;
-          leadActionStatus.textContent = metrics.newLeads
-            ? `${metrics.newLeads} mới`
-            : 'Không có lead mới';
-          blogActionStatus.textContent = metrics.pendingReviews
-            ? `${metrics.pendingReviews} chờ duyệt`
-            : 'Draft / review';
-
-          renderNotifications(metrics);
-          renderTodos(data);
-          dashboardMetrics.innerHTML = [
-            metricCard('Lead mới', metrics.newLeads || 0),
-            metricCard('Đang xử lý', metrics.workingLeads || 0),
-            metricCard('Chờ duyệt', metrics.pendingReviews || 0),
-            metricCard('Audit', metrics.auditEvents || 0),
-          ].join('');
+          dashboardRows.innerHTML = buildDashboardRows(data);
         } catch (error) {
           dashboardStatus.textContent =
             error instanceof Error ? error.message : 'Không tải được dashboard.';
-          leadActionStatus.textContent = 'Mở';
-          blogActionStatus.textContent = 'Draft / review';
-          notificationList.innerHTML = '<div class="notification urgent">Không tải được dữ liệu.</div>';
-          dailyTodos.innerHTML = todoItem(
-            'Mở vận hành',
-            'Kiểm tra đăng nhập hoặc API.',
-            '/admin/operations.html#health',
-            'urgent'
-          );
-          dashboardMetrics.innerHTML = [
-            metricCard('Lead mới', '-'),
-            metricCard('Đang xử lý', '-'),
-            metricCard('Chờ duyệt', '-'),
-            metricCard('Audit', '-'),
-          ].join('');
+          dashboardRows.innerHTML = `
+            <tr class="empty-row">
+              <td colspan="5">Không tải được dữ liệu. Hãy đăng nhập lại hoặc mở Vận hành để kiểm tra.</td>
+            </tr>
+          `;
         }
       }
 
+      featureRows.innerHTML = features.map(featureRow).join('');
       document.getElementById('refresh-dashboard').addEventListener('click', loadDashboard);
-      globalSearch.addEventListener('input', renderGlobalSearch);
-      renderGlobalSearch();
       loadDashboard();
     </script>
   </body>
