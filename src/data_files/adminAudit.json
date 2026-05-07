@@ -1,6 +1,13 @@
 {
-  "updatedAt": "2026-05-07T05:26:16.981Z",
+  "updatedAt": "2026-05-07T05:26:23.187Z",
   "events": [
+    {
+      "id": "audit-1778131583187-s4s7um",
+      "createdAt": "2026-05-07T05:26:23.187Z",
+      "type": "media-delete",
+      "actor": "admin",
+      "target": "src/images/under-construction.avif"
+    },
     {
       "id": "audit-1778131576980-kst12g",
       "createdAt": "2026-05-07T05:26:16.980Z",
