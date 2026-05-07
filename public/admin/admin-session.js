@@ -110,19 +110,26 @@
   }
 
   function makeBrandGoHome() {
+    if (!document.getElementById('top') && !document.body.id) {
+      document.body.id = 'top';
+    }
     document.querySelectorAll('.brand').forEach(function (brand) {
-      if (brand.closest('a')) return;
+      if (brand.tagName === 'A') {
+        brand.href = '#top';
+        brand.setAttribute('aria-label', 'Về đầu trang');
+        return;
+      }
       brand.setAttribute('role', 'link');
       brand.setAttribute('tabindex', '0');
-      brand.setAttribute('aria-label', 'Về Admin Hub');
+      brand.setAttribute('aria-label', 'Về đầu trang');
       brand.style.cursor = 'pointer';
       brand.addEventListener('click', function () {
-        window.location.assign('/admin/');
+        window.location.hash = 'top';
       });
       brand.addEventListener('keydown', function (event) {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          window.location.assign('/admin/');
+          window.location.hash = 'top';
         }
       });
     });
@@ -150,7 +157,7 @@
         return path.endsWith(href);
       };
       var items = [
-        { label: 'Xem website', href: '/' },
+        { label: 'Trang Chủ Admin', href: '/admin/' },
         { label: 'Sửa trang', href: '/admin/content.html' },
         { label: 'Viết blog', href: '/admin/blog.html' },
         { label: 'Lead', href: '/admin/leads.html' },
@@ -165,7 +172,7 @@
       }
       if (path.endsWith('/admin/console.html')) {
         items = [
-          { label: 'Xem website', href: '/' },
+          { label: 'Trang Chủ Admin', href: '/admin/' },
           { label: 'Vận hành', href: '/admin/operations.html' },
           { label: 'Kỹ thuật', href: '/admin/console.html' },
         ];
@@ -185,7 +192,7 @@
         }
         if (isCurrent(item.href)) {
           link.setAttribute('aria-current', 'page');
-        } else if (item.href !== '/') {
+        } else {
           link.className = 'secondary';
         }
         nav.appendChild(link);
@@ -202,7 +209,8 @@
 
   function normalizeMenuLabels() {
     var labels = {
-      'Admin Hub': 'Trang chính',
+      'Admin Hub': 'Trang Chủ Admin',
+      'Trang chính': 'Trang Chủ Admin',
       'Control Center': 'Vận hành',
       'Console kỹ thuật': 'Kỹ thuật',
       'Visual Content Editor': 'Sửa trang',
@@ -212,9 +220,9 @@
       'Bulk Text Editor': 'Sửa chữ',
       'Blog EN': 'Blog EN',
       'Blog VI': 'Blog VI',
-      Home: 'Xem website',
-      'Trang live': 'Xem website',
-      'Xem website': 'Xem website',
+      Home: 'Trang Chủ Admin',
+      'Trang live': 'Trang Chủ Admin',
+      'Xem website': 'Trang Chủ Admin',
       'Hướng dẫn': 'Hướng dẫn',
       'Đăng xuất': 'Đăng xuất',
       'Mở form': 'Mở form',
@@ -229,7 +237,7 @@
 
   function normalizeVisibleCopy(root) {
     var replacements = [
-      ['Admin Hub', 'Trang chính'],
+      ['Admin Hub', 'Trang Chủ Admin'],
       ['Control Center', 'Vận hành'],
       ['Console kỹ thuật', 'Kỹ thuật'],
       ['Visual Content Editor', 'Sửa trang'],
@@ -261,7 +269,6 @@
       ['Rollback', 'Khôi phục'],
       ['rollback', 'khôi phục'],
       ['SEO manager', 'Kiểm tra nội dung'],
-      ['SEO', 'Hiển thị Google'],
       ['production', 'website live'],
       ['publish', 'đăng'],
       ['Publish', 'Đăng'],

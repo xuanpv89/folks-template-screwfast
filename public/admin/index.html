@@ -25,9 +25,9 @@
       }
 
       .shell {
-        max-width: 1220px;
+        max-width: 1160px;
         margin: 0 auto;
-        padding: 16px 16px 38px;
+        padding: 10px 12px 34px;
       }
 
       .topbar {
@@ -37,6 +37,9 @@
         gap: 14px;
         padding: 10px;
         margin-bottom: 12px;
+        position: sticky;
+        top: 8px;
+        z-index: 60;
       }
 
       .brand {
@@ -44,6 +47,8 @@
         align-items: center;
         gap: 10px;
         min-width: 0;
+        color: inherit;
+        text-decoration: none;
       }
 
       .brand h1 {
@@ -57,14 +62,37 @@
 
       .nav {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        max-width: none;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a,
+      .nav button {
+        flex: 0 0 auto;
       }
 
       .layout {
-        display: grid;
-        grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1.5fr);
-        gap: 12px;
-        align-items: start;
+        display: block;
+        min-width: 0;
+        padding-left: 302px;
+        position: relative;
+      }
+
+      .layout > aside.stack {
+        position: fixed;
+        top: 88px;
+        left: max(12px, calc((100vw - 1160px) / 2 + 12px));
+        width: 292px;
+        max-height: calc(100vh - 102px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        z-index: 20;
       }
 
       .stack {
@@ -78,6 +106,7 @@
         background: var(--admin-surface);
         box-shadow: var(--shadow);
         overflow: hidden;
+        animation: adminFadeUp 0.44s ease both;
       }
 
       .surface-head {
@@ -92,6 +121,9 @@
       .surface-head h3 {
         margin: 0;
         font-size: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .surface-head p {
@@ -216,18 +248,30 @@
         border-radius: 8px;
         background: #ffffff;
         overflow: hidden;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
       }
 
       .metric-panel.wide {
-        grid-column: span 6;
+        grid-column: span 3;
         background: var(--admin-subtle);
+      }
+
+      .metric-panel:hover {
+        transform: translateY(-2px);
+        border-color: #bde8cb;
+        box-shadow: 0 16px 32px rgb(38 38 38 / 10%);
       }
 
       .metric-main {
         display: grid;
         gap: 8px;
-        border-bottom: 1px solid #edf0ea;
+        border-bottom: 0;
+        background: linear-gradient(135deg, #4fb16f, #327849);
         padding: 12px;
+        color: #ffffff;
       }
 
       .metric-title {
@@ -239,12 +283,15 @@
 
       .metric-title h4 {
         margin: 0;
-        color: var(--admin-ink);
+        color: #ffffff;
         font-size: 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .metric-value {
-        color: var(--admin-ink);
+        color: #ffffff;
         font-size: 31px;
         font-weight: 950;
         line-height: 1;
@@ -252,7 +299,7 @@
       }
 
       .metric-caption {
-        color: var(--admin-muted);
+        color: rgba(255, 255, 255, 0.86);
         font-size: 12px;
         line-height: 1.32;
       }
@@ -269,6 +316,12 @@
         font-size: 12px;
         font-weight: 900;
         white-space: nowrap;
+      }
+
+      .metric-main .pill {
+        border-color: rgba(255, 255, 255, 0.36);
+        background: rgba(255, 255, 255, 0.16);
+        color: #ffffff;
       }
 
       .pill.warn {
@@ -327,8 +380,8 @@
 
       .tool-map {
         display: grid;
-        gap: 9px;
-        padding: 12px;
+        gap: 8px;
+        padding: 10px;
       }
 
       .tool-group {
@@ -336,32 +389,32 @@
         border-radius: 8px;
         background: #f8faf7;
         overflow: hidden;
+        animation: adminFadeUp 0.42s ease both;
       }
 
       .tool-head {
         display: grid;
-        gap: 4px;
         background: linear-gradient(135deg, #4fb16f, #327849);
         color: #ffffff;
-        padding: 12px;
+        padding: 10px 11px;
         text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease;
       }
 
       .tool-head:hover {
         background: linear-gradient(135deg, #3f965c, #2a603d);
+        transform: translateY(-1px);
       }
 
       .tool-head h4 {
         margin: 0;
         color: #ffffff;
-        font-size: 17px;
-      }
-
-      .tool-head p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.86);
-        font-size: 12px;
-        line-height: 1.28;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .tool-list {
@@ -372,8 +425,11 @@
         display: grid;
         gap: 3px;
         border-bottom: 1px solid #edf0ea;
-        padding: 9px 11px;
+        padding: 8px 10px;
         text-decoration: none;
+        transition:
+          background 0.18s ease,
+          transform 0.18s ease;
       }
 
       .tool-link:last-child {
@@ -382,6 +438,7 @@
 
       .tool-link:hover {
         background: #fbfdfb;
+        transform: translateX(2px);
       }
 
       .tool-link strong {
@@ -406,15 +463,59 @@
         font-weight: 850;
       }
 
+      .heading-icon {
+        display: inline-grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgb(255 255 255 / 18%);
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .surface-head .heading-icon {
+        background: var(--admin-subtle-2);
+      }
+
+      .mini-action {
+        min-height: 34px !important;
+        padding: 7px 10px !important;
+        font-size: 12px !important;
+      }
+
+      @keyframes adminFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       @media (max-width: 980px) {
         .layout,
         .priority-board {
           grid-template-columns: 1fr;
         }
+
+        .layout {
+          display: grid;
+          padding-left: 0;
+        }
+
+        .layout > aside.stack {
+          position: static;
+          width: auto;
+          max-height: none;
+          overflow: visible;
+        }
       }
 
       @media (max-width: 720px) {
-        .topbar,
         .surface-head {
           align-items: stretch;
           flex-direction: column;
@@ -442,20 +543,29 @@
           grid-template-columns: 1fr;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </head>
   <body class="admin-page admin-home">
-    <main class="shell">
+    <main class="shell" id="top">
       <header class="topbar">
-        <div class="brand">
+        <a class="brand" href="#top" aria-label="Về đầu trang Admin">
           <img class="mark" src="/folks-brand-mark.jpg" alt="Folks Team logo" />
           <div>
             <p class="eyebrow">Folks Team</p>
             <h1>Admin</h1>
           </div>
-        </div>
+        </a>
         <nav class="nav" aria-label="Admin">
-          <a href="/">Xem website</a>
+          <a href="/admin/" aria-current="page">Trang Chủ Admin</a>
           <a class="secondary" href="/admin/content.html">Sửa trang</a>
           <a class="secondary" href="/admin/blog.html">Viết blog</a>
           <a class="secondary" href="/admin/leads.html">Lead</a>
@@ -469,12 +579,6 @@
       <div class="layout">
         <aside class="stack" aria-label="Công cụ Admin">
           <section class="surface">
-            <div class="surface-head">
-              <div>
-                <h3>Bản đồ công cụ</h3>
-                <p>Chọn theo việc cần làm, không cần nhớ trang nằm ở đâu.</p>
-              </div>
-            </div>
             <div id="tool-map" class="tool-map"></div>
           </section>
         </aside>
@@ -483,9 +587,12 @@
           <section class="surface" aria-labelledby="priority-title">
             <div class="surface-head">
               <div>
-                <h3 id="priority-title">Folks Team Chú Ý!</h3>
+                <h3 id="priority-title"><span class="heading-icon" aria-hidden="true">✨</span>Cập nhật đáng chú ý</h3>
                 <p id="dashboard-status">Đang tải dữ liệu mới nhất...</p>
               </div>
+              <button type="button" class="button secondary mini-action" id="refresh-dashboard">
+                Tải lại dữ liệu
+              </button>
             </div>
             <div id="priority-board" class="priority-board" aria-live="polite">
               <div class="empty-state">Đang tải việc cần chú ý...</div>
@@ -495,7 +602,7 @@
           <section class="surface" aria-labelledby="dashboard-title">
             <div class="surface-head">
               <div>
-                <h3 id="dashboard-title">Dashboard vận hành</h3>
+                <h3 id="dashboard-title"><span class="heading-icon" aria-hidden="true">📊</span>Dashboard vận hành</h3>
               </div>
             </div>
             <div id="dashboard-grid" class="dashboard-grid">
@@ -516,16 +623,16 @@
       const toolGroups = [
         {
           group: 'Khách hàng',
-          purpose: 'Theo dõi người đã để lại thông tin.',
+          icon: '👥',
           primaryHref: '/admin/leads.html',
           items: [
-            ['Lead', 'Xử lý khách liên hệ.', '/admin/leads.html'],
-            ['Email đăng ký', 'Danh sách người muốn nhận tin.', '/admin/operations.html#subscribers'],
+            ['Lead', 'Xử lý khách liên hệ qua form.', '/admin/leads.html'],
+            ['Email đăng ký', 'Danh sách người muốn nhận tin (newsletter).', '/admin/operations.html#subscribers'],
           ],
         },
         {
           group: 'Nội dung website',
-          purpose: 'Sửa những gì người xem nhìn thấy.',
+          icon: '📝',
           primaryHref: '/admin/content.html',
           items: [
             ['Sửa trang', 'Cập nhật chữ, ảnh, khối nội dung.', '/admin/content.html'],
@@ -534,23 +641,23 @@
           ],
         },
         {
-          group: 'Vận hành & chất lượng',
-          purpose: 'Kiểm tra trước khi public.',
+          group: 'Vận hành & Quản Trị',
+          icon: '🛠️',
           primaryHref: '/admin/operations.html',
           items: [
             ['Duyệt nội dung', 'Các mục đang chờ kiểm tra.', '/admin/operations.html#review'],
-            ['Hiển thị Google', 'Tiêu đề, mô tả và alt ảnh.', '/admin/operations.html#seo'],
+            ['Hiển thị Google (SEO)', 'Tiêu đề, mô tả và alt ảnh.', '/admin/operations.html#seo'],
             ['Thư viện ảnh', 'Tải ảnh và lấy đường dẫn.', '/admin/operations.html#media'],
             ['Lịch sử thao tác', 'Ai đã đổi gì và khi nào.', '/admin/operations.html#audit'],
           ],
         },
         {
           group: 'Kỹ thuật & hỗ trợ',
-          purpose: 'Dành cho cấu hình và hướng dẫn.',
+          icon: '⚙️',
           primaryHref: '/admin/console.html',
           items: [
             ['Kỹ thuật', 'Kiểm tra cấu hình và deploy.', '/admin/console.html'],
-            ['Hướng dẫn', 'Cách dùng Admin cho người mới.', '/admin/guide.html'],
+            ['Hướng dẫn', 'Cách dùng hệ thống admin.', '/admin/guide.html'],
           ],
         },
       ];
@@ -602,7 +709,7 @@
           <article class="metric-panel ${escapeHtml(item.wide ? 'wide' : '')}">
             <div class="metric-main">
               <div class="metric-title">
-                <h4>${escapeHtml(item.title)}</h4>
+                <h4><span class="heading-icon" aria-hidden="true">${escapeHtml(item.icon)}</span>${escapeHtml(item.title)}</h4>
                 <span class="pill ${levelClass(item.level)}">${escapeHtml(item.status)}</span>
               </div>
               <div>
@@ -699,6 +806,7 @@
         return [
           {
             title: 'Khách hàng',
+            icon: '👥',
             value: numberText(metrics.newLeads),
             caption: 'lead mới cần nhìn trước',
             status: metrics.staleNewLeads ? 'Ưu tiên' : metrics.newLeads ? 'Cần xem' : 'Ổn',
@@ -719,7 +827,8 @@
             ],
           },
           {
-            title: 'Nội dung & chất lượng',
+            title: 'Nội dung & Quản Trị',
+            icon: '📝',
             value: numberText(metrics.contentItems),
             caption: 'mục nội dung chính trên website',
             status: metrics.pendingReviews ? 'Có review' : 'Theo dõi',
@@ -734,6 +843,7 @@
           },
           {
             title: 'Cộng đồng',
+            icon: '💬',
             value: numberText(metrics.subscribers),
             caption: 'người đăng ký nhận tin',
             status: 'Theo dõi',
@@ -752,14 +862,14 @@
             ],
           },
           {
-            title: 'Hệ thống & lịch sử',
+            title: 'Dashboard Hệ Thống',
+            icon: '🧭',
             value: numberText(metrics.auditEvents),
-            caption: 'lần thay đổi đã được ghi lại',
+            caption: 'số lần cập nhật website đã được ghi nhận',
             status: 'Có lịch sử',
             level: '',
-            wide: true,
             details: [
-              { label: 'Lịch sử mới nhất', value: compactDate(latest.auditAt), note: 'Mốc gần nhất có thao tác admin.' },
+              { label: 'Lịch sử mới nhất', value: compactDate(latest.auditAt), note: 'Lần chỉnh sửa website gần nhất' },
               { label: 'Trang admin', value: numberText(contentCounts.adminPages), note: 'Số file công cụ trong khu Admin.' },
               { label: 'Nơi lưu dữ liệu', value: data.repo || 'Chưa rõ', note: 'Repository đang dùng.' },
               { label: 'Nhánh', value: data.branch || 'Chưa rõ', note: 'Nhánh đang đọc và ghi dữ liệu.' },
@@ -772,8 +882,7 @@
         return `
           <article class="tool-group">
             <a class="tool-head" href="${escapeHtml(group.primaryHref)}">
-              <h4>${escapeHtml(group.group)}</h4>
-              <p>${escapeHtml(group.purpose)}</p>
+              <h4><span class="heading-icon" aria-hidden="true">${escapeHtml(group.icon)}</span>${escapeHtml(group.group)}</h4>
             </a>
             <div class="tool-list">
               ${group.items
@@ -822,6 +931,7 @@
       }
 
       toolMap.innerHTML = toolGroups.map(toolGroupMarkup).join('');
+      document.getElementById('refresh-dashboard')?.addEventListener('click', loadDashboard);
       loadDashboard();
     </script>
   </body>
