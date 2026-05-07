@@ -1,6 +1,13 @@
 {
-  "updatedAt": "2026-05-07T11:40:43.580Z",
+  "updatedAt": "2026-05-07T11:48:44.309Z",
   "events": [
+    {
+      "id": "audit-1778154524309-wpd9wz",
+      "createdAt": "2026-05-07T11:48:44.309Z",
+      "type": "subscriber-update",
+      "actor": "admin",
+      "target": "xuanpv89@gmail.com"
+    },
     {
       "id": "audit-1778154043580-r4cuwk",
       "createdAt": "2026-05-07T11:40:43.580Z",
