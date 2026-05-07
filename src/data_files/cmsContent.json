@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-07T11:36:06.814Z",
+  "updatedAt": "2026-05-07T11:40:40.330Z",
   "pages": [
     {
       "id": "home",
@@ -1497,7 +1497,7 @@
               "key": "text-2",
               "label": "We build growth systems with a human center.",
               "type": "text",
-              "value": "tes 4 We build growth systems with a human center.",
+              "value": "1 tes 4 We build growth systems with a human center.",
               "match": "We build growth systems with a human center.",
               "elementType": "text"
             },
@@ -1505,7 +1505,7 @@
               "key": "text-3",
               "label": "Folks Team helps teams, communities, educators, and bu...",
               "type": "textarea",
-              "value": "Folk Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
+              "value": "2 Folk Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
               "match": "Folks Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
               "elementType": "text"
             },
@@ -1543,7 +1543,7 @@
               "key": "text-5",
               "label": "From growth tactics to systems people can actually use...",
               "type": "text",
-              "value": "From growth tactics to systems people can actually use.",
+              "value": "3 From growth tactics to systems people can actually use.",
               "match": "From growth tactics to systems people can actually use.",
               "elementType": "text"
             },
@@ -3079,7 +3079,7 @@
               "key": "text-2",
               "label": "The C.H.E.S.S Model for Modern Marketing and Community...",
               "type": "text",
-              "value": "test The C.H.E.S.S Model for Modern Marketing and Community Building",
+              "value": "4 test The C.H.E.S.S Model for Modern Marketing and Community Building",
               "match": "The C.H.E.S.S Model for Modern Marketing and Community Building",
               "elementType": "text"
             },
@@ -3087,7 +3087,7 @@
               "key": "text-3",
               "label": "Marketing is no longer just about attracting attention...",
               "type": "textarea",
-              "value": "Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
+              "value": "5 Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
               "match": "Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
               "elementType": "text"
             },
@@ -4374,7 +4374,7 @@
               "key": "text-2",
               "label": "Practical systems built from the C.H.E.S.S model",
               "type": "text",
-              "value": "Practical systems built from the C.H.E.S.S model",
+              "value": "6 Practical systems built from the C.H.E.S.S model",
               "match": "Practical systems built from the C.H.E.S.S model",
               "elementType": "text"
             },
