@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/admin/admin-ui.css?v=folks-admin-1" />
     <style>
       .shell {
-        max-width: 1180px;
+        max-width: 1240px;
         margin: 0 auto;
-        padding: 18px 16px 44px;
+        padding: 18px 16px 48px;
       }
 
       .topbar {
@@ -53,25 +53,25 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         background: #ffffff;
-        padding: 18px;
+        padding: 20px;
         box-shadow: var(--shadow);
       }
 
       .intro h2 {
-        max-width: 760px;
+        max-width: 840px;
         margin: 0;
         font-size: clamp(28px, 4vw, 46px) !important;
         line-height: 1.08 !important;
       }
 
       .intro p {
-        max-width: 820px;
+        max-width: 880px;
         margin: 10px 0 0;
         color: var(--muted);
         font-size: 15px;
       }
 
-      .table-section {
+      .section {
         margin-top: 16px;
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -86,7 +86,7 @@
         justify-content: space-between;
         gap: 12px;
         border-bottom: 1px solid var(--line);
-        padding: 14px 16px;
+        padding: 15px 16px;
       }
 
       .section-head h2 {
@@ -100,58 +100,83 @@
         font-size: 13px;
       }
 
-      .table-wrap {
-        width: 100%;
-        overflow-x: auto;
+      .overview-grid,
+      .feature-grid {
+        display: grid;
+        gap: 12px;
+        padding: 14px;
       }
 
-      table {
-        width: 100%;
-        min-width: 760px;
-        border-collapse: collapse;
+      .overview-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
 
-      th,
-      td {
-        border-bottom: 1px solid #eeeeee;
-        padding: 13px 16px;
-        text-align: left;
-        vertical-align: top;
+      .feature-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      th {
-        background: #f8faf7;
-        color: var(--muted);
-        font-size: 12px;
+      .data-group,
+      .feature-group {
+        min-width: 0;
+        border: 1px solid #e6e8e3;
+        border-radius: 8px;
+        background: #fbfcfa;
+        overflow: hidden;
+      }
+
+      .data-group {
+        display: grid;
+        align-content: start;
+      }
+
+      .group-head {
+        display: grid;
+        gap: 10px;
+        min-height: 150px;
+        border-bottom: 1px solid #eef0eb;
+        padding: 14px;
+      }
+
+      .group-kicker,
+      .feature-kicker {
+        color: var(--brand-dark);
+        font-size: 11px;
         font-weight: 900;
+        letter-spacing: 0;
         text-transform: uppercase;
       }
 
-      tbody tr:last-child td {
-        border-bottom: 0;
+      .group-title {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
       }
 
-      tbody tr:hover td {
-        background: #fbfdfb;
-      }
-
-      td strong {
-        display: block;
+      .group-title h3,
+      .feature-group h3 {
+        margin: 0;
         color: var(--ink);
-        font-size: 15px;
+        font-size: 17px;
+        line-height: 1.25;
       }
 
-      .value {
-        font-size: 24px;
-        font-weight: 900;
-        line-height: 1.1;
-        white-space: nowrap;
+      .group-main {
+        display: grid;
+        gap: 5px;
       }
 
-      .note {
+      .group-value {
+        font-size: 34px;
+        font-weight: 950;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .group-caption {
         color: var(--muted);
-        font-size: 13px;
-        line-height: 1.55;
+        font-size: 12px;
+        line-height: 1.45;
       }
 
       .status {
@@ -180,16 +205,146 @@
         color: #991b1b !important;
       }
 
-      .feature-link {
-        min-width: 92px;
+      .detail-list,
+      .feature-list {
+        display: grid;
       }
 
-      .empty-row td {
+      .detail-item,
+      .feature-item {
+        display: grid;
+        gap: 5px;
+        border-bottom: 1px solid #eef0eb;
+        padding: 11px 14px;
+      }
+
+      .detail-item:last-child,
+      .feature-item:last-child {
+        border-bottom: 0;
+      }
+
+      .detail-line,
+      .feature-line {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .detail-label,
+      .feature-name {
+        min-width: 0;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
+      .detail-value {
+        max-width: 48%;
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 950;
+        line-height: 1.2;
+        text-align: right;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .detail-note,
+      .feature-note {
+        margin: 0;
         color: var(--muted);
-        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.5;
       }
 
-      @media (max-width: 860px) {
+      .feature-group {
+        display: grid;
+        align-content: start;
+        background: #ffffff;
+      }
+
+      .feature-head {
+        min-height: 118px;
+        border-bottom: 1px solid #eef0eb;
+        padding: 14px;
+      }
+
+      .feature-head p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .feature-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .feature-copy {
+        min-width: 0;
+      }
+
+      .feature-action {
+        min-width: 74px;
+      }
+
+      .quick-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        padding: 0 14px 14px;
+      }
+
+      .quick-card {
+        min-height: 86px;
+        display: grid;
+        align-content: space-between;
+        gap: 10px;
+        border: 1px solid #e6e8e3;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 12px;
+      }
+
+      .quick-card strong {
+        font-size: 15px;
+      }
+
+      .quick-card span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        margin: 14px;
+        border: 1px solid #fde68a;
+        border-radius: 8px;
+        background: #fffbeb;
+        color: #854d0e;
+        padding: 13px 14px;
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      @media (max-width: 1120px) {
+        .overview-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .feature-grid,
+        .quick-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 700px) {
         .topbar,
         .section-head {
           align-items: stretch;
@@ -198,6 +353,17 @@
 
         .nav {
           width: 100%;
+        }
+
+        .overview-grid,
+        .feature-grid,
+        .quick-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .group-head,
+        .feature-head {
+          min-height: 0;
         }
 
         .section-head .button {
@@ -231,145 +397,137 @@
 
       <section class="intro" aria-labelledby="admin-title">
         <p class="eyebrow">Bảng điều khiển</p>
-        <h2 id="admin-title">Nhìn một lần là biết website đang cần làm gì.</h2>
+        <h2 id="admin-title">Tổng quan gọn, dữ liệu có nhóm, hành động rõ.</h2>
         <p>
-          Trang này gom dữ liệu quan trọng thành hai bảng: tình hình hiện tại và
-          nơi mở từng tính năng. Ngôn ngữ được viết cho người vận hành, không cần
-          hiểu kỹ thuật.
+          Dashboard chia dữ liệu theo luồng vận hành: khách hàng, nội dung, duyệt,
+          cộng đồng và hệ thống. Mỗi nhóm có số chính để nhìn nhanh, bên dưới là
+          chi tiết đủ để quyết định nên mở mục nào tiếp theo.
         </p>
       </section>
 
-      <section class="table-section" aria-labelledby="dashboard-title">
+      <section class="section" aria-labelledby="dashboard-title">
         <div class="section-head">
           <div>
-            <h2 id="dashboard-title">Dashboard dữ liệu</h2>
+            <h2 id="dashboard-title">Dashboard theo nhóm dữ liệu</h2>
             <p id="dashboard-status">Đang tải dữ liệu mới nhất...</p>
           </div>
           <button type="button" class="button secondary" id="refresh-dashboard">
             Làm mới
           </button>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Dữ liệu</th>
-                <th>Giá trị</th>
-                <th>Ý nghĩa dễ hiểu</th>
-                <th>Trạng thái</th>
-                <th>Mở</th>
-              </tr>
-            </thead>
-            <tbody id="dashboard-rows">
-              <tr class="empty-row">
-                <td colspan="5">Đang tải...</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="dashboard-groups" class="overview-grid" aria-live="polite">
+          <div class="empty-state">Đang tải dữ liệu...</div>
         </div>
+        <div id="quick-actions" class="quick-strip"></div>
       </section>
 
-      <section class="table-section" aria-labelledby="features-title">
+      <section class="section" aria-labelledby="features-title">
         <div class="section-head">
           <div>
-            <h2 id="features-title">Tính năng admin</h2>
-            <p>Mỗi dòng là một việc chính, mô tả ngắn và đường dẫn mở ngay.</p>
+            <h2 id="features-title">Tính năng theo mục chính</h2>
+            <p>Mỗi nhóm là một khu làm việc trong Admin, có mô tả ngắn và nút mở đúng tính năng.</p>
           </div>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Tính năng</th>
-                <th>Mô tả rất ngắn</th>
-                <th>Dùng khi</th>
-                <th>Mở</th>
-              </tr>
-            </thead>
-            <tbody id="feature-rows"></tbody>
-          </table>
-        </div>
+        <div id="feature-groups" class="feature-grid"></div>
       </section>
     </main>
 
     <script src="/admin/admin-session.js"></script>
     <script>
       const dashboardStatus = document.getElementById('dashboard-status');
-      const dashboardRows = document.getElementById('dashboard-rows');
-      const featureRows = document.getElementById('feature-rows');
+      const dashboardGroups = document.getElementById('dashboard-groups');
+      const quickActions = document.getElementById('quick-actions');
+      const featureGroups = document.getElementById('feature-groups');
 
-      const features = [
+      const featureMap = [
         {
-          name: 'Lead',
-          description: 'Xem và xử lý khách liên hệ.',
-          when: 'Có người gửi form hoặc cần phân loại khách.',
-          href: '/admin/leads.html',
+          group: 'Khách hàng',
+          purpose: 'Nhận, phân loại và theo dõi người đã để lại thông tin.',
+          items: [
+            {
+              name: 'Lead',
+              description: 'Xem và xử lý khách liên hệ.',
+              href: '/admin/leads.html',
+            },
+            {
+              name: 'Email đăng ký',
+              description: 'Theo dõi người muốn nhận tin.',
+              href: '/admin/operations.html#subscribers',
+            },
+          ],
         },
         {
-          name: 'Sửa trang',
-          description: 'Sửa nội dung các trang chính.',
-          when: 'Cần đổi chữ, ảnh, tiêu đề hoặc phần giới thiệu.',
-          href: '/admin/content.html',
+          group: 'Nội dung website',
+          purpose: 'Sửa những gì người xem nhìn thấy trên website.',
+          items: [
+            {
+              name: 'Sửa trang',
+              description: 'Sửa chữ, ảnh và các khối nội dung chính.',
+              href: '/admin/content.html',
+            },
+            {
+              name: 'Viết blog',
+              description: 'Tạo nháp, kiểm tra và đăng bài viết.',
+              href: '/admin/blog.html',
+            },
+            {
+              name: 'Sửa chữ hàng loạt',
+              description: 'Tìm và thay một cụm từ ở nhiều nơi.',
+              href: '/admin/text.html',
+            },
+            {
+              name: 'Xem website',
+              description: 'Mở trang public để kiểm tra kết quả.',
+              href: '/',
+            },
+          ],
         },
         {
-          name: 'Viết blog',
-          description: 'Tạo nháp và đăng bài.',
-          when: 'Cần viết, kiểm tra, duyệt hoặc publish bài mới.',
-          href: '/admin/blog.html',
+          group: 'Vận hành & chất lượng',
+          purpose: 'Kiểm soát nội dung trước khi public và theo dõi thay đổi.',
+          items: [
+            {
+              name: 'Vận hành',
+              description: 'Mở trung tâm review, ảnh, SEO và lịch sử.',
+              href: '/admin/operations.html',
+            },
+            {
+              name: 'Duyệt nội dung',
+              description: 'Xem các mục đang chờ kiểm tra.',
+              href: '/admin/operations.html#review',
+            },
+            {
+              name: 'Hiển thị Google',
+              description: 'Kiểm tra tiêu đề, mô tả và alt ảnh.',
+              href: '/admin/operations.html#seo',
+            },
+            {
+              name: 'Thư viện ảnh',
+              description: 'Tải ảnh lên và lấy đường dẫn dùng lại.',
+              href: '/admin/operations.html#media',
+            },
+            {
+              name: 'Lịch sử thao tác',
+              description: 'Xem ai đã đổi gì và khi nào.',
+              href: '/admin/operations.html#audit',
+            },
+          ],
         },
         {
-          name: 'Sửa chữ hàng loạt',
-          description: 'Tìm và thay nhiều chữ.',
-          when: 'Một cụm từ cần đổi ở nhiều nơi.',
-          href: '/admin/text.html',
-        },
-        {
-          name: 'Vận hành',
-          description: 'Theo dõi việc cần duyệt.',
-          when: 'Cần kiểm tra review, ảnh, SEO hoặc lịch sử thao tác.',
-          href: '/admin/operations.html',
-        },
-        {
-          name: 'Thư viện ảnh',
-          description: 'Quản lý ảnh dùng trên site.',
-          when: 'Cần tải ảnh lên hoặc lấy đường dẫn ảnh.',
-          href: '/admin/operations.html#media',
-        },
-        {
-          name: 'Duyệt nội dung',
-          description: 'Xem hàng chờ duyệt.',
-          when: 'Có nội dung chưa nên đăng ngay.',
-          href: '/admin/operations.html#review',
-        },
-        {
-          name: 'Hiển thị Google',
-          description: 'Kiểm tra tiêu đề và mô tả.',
-          when: 'Trước khi đăng hoặc sau khi sửa trang quan trọng.',
-          href: '/admin/operations.html#seo',
-        },
-        {
-          name: 'Lịch sử thao tác',
-          description: 'Xem ai đã đổi gì.',
-          when: 'Cần kiểm tra hoặc khôi phục một thay đổi.',
-          href: '/admin/operations.html#audit',
-        },
-        {
-          name: 'Kỹ thuật',
-          description: 'Kiểm tra cấu hình khó.',
-          when: 'Website lỗi, đăng nhập lỗi hoặc cần kiểm tra hệ thống.',
-          href: '/admin/console.html',
-        },
-        {
-          name: 'Hướng dẫn',
-          description: 'Đọc cách dùng admin.',
-          when: 'Người mới cần biết nên bấm ở đâu.',
-          href: '/admin/guide.html',
-        },
-        {
-          name: 'Xem website',
-          description: 'Mở trang đang public.',
-          when: 'Cần kiểm tra kết quả người xem thấy.',
-          href: '/',
+          group: 'Kỹ thuật & hỗ trợ',
+          purpose: 'Dành cho kiểm tra hệ thống, cấu hình và hướng dẫn sử dụng.',
+          items: [
+            {
+              name: 'Kỹ thuật',
+              description: 'Kiểm tra cấu hình, deploy và kết nối.',
+              href: '/admin/console.html',
+            },
+            {
+              name: 'Hướng dẫn',
+              description: 'Đọc cách dùng Admin cho người mới.',
+              href: '/admin/guide.html',
+            },
+          ],
         },
       ];
 
@@ -403,163 +561,286 @@
         return 'status';
       }
 
-      function dashboardRow(item) {
+      function detailItem(item) {
         return `
-          <tr>
-            <td><strong>${escapeHtml(item.name)}</strong></td>
-            <td class="value">${escapeHtml(item.value)}</td>
-            <td class="note">${escapeHtml(item.meaning)}</td>
-            <td><span class="${statusClass(item.level)}">${escapeHtml(item.status)}</span></td>
-            <td><a class="button secondary feature-link" href="${escapeHtml(item.href)}">Mở</a></td>
-          </tr>
+          <div class="detail-item">
+            <div class="detail-line">
+              <span class="detail-label">${escapeHtml(item.label)}</span>
+              <span class="detail-value">${escapeHtml(item.value)}</span>
+            </div>
+            <p class="detail-note">${escapeHtml(item.note)}</p>
+          </div>
         `;
       }
 
-      function featureRow(item) {
+      function dataGroupCard(group) {
         return `
-          <tr>
-            <td><strong>${escapeHtml(item.name)}</strong></td>
-            <td class="note">${escapeHtml(item.description)}</td>
-            <td class="note">${escapeHtml(item.when)}</td>
-            <td><a class="button secondary feature-link" href="${escapeHtml(item.href)}">Mở</a></td>
-          </tr>
+          <article class="data-group">
+            <div class="group-head">
+              <div class="group-title">
+                <div>
+                  <div class="group-kicker">${escapeHtml(group.kicker)}</div>
+                  <h3>${escapeHtml(group.title)}</h3>
+                </div>
+                <span class="${statusClass(group.level)}">${escapeHtml(group.status)}</span>
+              </div>
+              <div class="group-main">
+                <span class="group-value">${escapeHtml(group.value)}</span>
+                <span class="group-caption">${escapeHtml(group.caption)}</span>
+              </div>
+            </div>
+            <div class="detail-list">
+              ${group.details.map(detailItem).join('')}
+            </div>
+          </article>
         `;
       }
 
-      function buildDashboardRows(data) {
+      function quickCard(item) {
+        return `
+          <a class="quick-card" href="${escapeHtml(item.href)}">
+            <strong>${escapeHtml(item.title)}</strong>
+            <span>${escapeHtml(item.note)}</span>
+          </a>
+        `;
+      }
+
+      function featureItem(item) {
+        return `
+          <div class="feature-item">
+            <div class="feature-copy">
+              <div class="feature-line">
+                <span class="feature-name">${escapeHtml(item.name)}</span>
+              </div>
+              <p class="feature-note">${escapeHtml(item.description)}</p>
+            </div>
+            <a class="button secondary feature-action" href="${escapeHtml(item.href)}">Mở</a>
+          </div>
+        `;
+      }
+
+      function featureGroupCard(group) {
+        return `
+          <article class="feature-group">
+            <div class="feature-head">
+              <div class="feature-kicker">Mục chính</div>
+              <h3>${escapeHtml(group.group)}</h3>
+              <p>${escapeHtml(group.purpose)}</p>
+            </div>
+            <div class="feature-list">
+              ${group.items.map(featureItem).join('')}
+            </div>
+          </article>
+        `;
+      }
+
+      function buildDashboardGroups(data) {
         const metrics = data.metrics || {};
         const contentCounts = data.contentCounts || {};
         const latest = data.latest || {};
-        const rows = [
+        const leadStatus = data.leadStatus || {};
+        const subscriberStatus = data.subscriberStatus || {};
+
+        return [
           {
-            name: 'Lead mới',
+            kicker: 'Nhóm 1',
+            title: 'Khách hàng',
             value: numberText(metrics.newLeads),
-            meaning: 'Khách đã liên hệ nhưng chưa được xử lý.',
-            status: metrics.newLeads ? 'Cần xem' : 'Ổn',
-            level: metrics.newLeads ? 'warn' : 'ok',
-            href: '/admin/leads.html',
+            caption: 'lead mới cần nhìn trước',
+            status: metrics.staleNewLeads
+              ? 'Ưu tiên'
+              : metrics.newLeads
+                ? 'Cần xem'
+                : 'Ổn',
+            level: metrics.staleNewLeads ? 'danger' : metrics.newLeads ? 'warn' : 'ok',
+            details: [
+              {
+                label: 'Quá 24 giờ',
+                value: numberText(metrics.staleNewLeads),
+                note: 'Nên trả lời trước để không bỏ lỡ khách.',
+              },
+              {
+                label: 'Đang xử lý',
+                value: numberText(metrics.workingLeads),
+                note: 'Lead đã có người theo dõi.',
+              },
+              {
+                label: 'Tổng lead',
+                value: numberText(metrics.leads),
+                note: `Mới nhất: ${compactDate(latest.leadAt)}.`,
+              },
+              {
+                label: 'Trạng thái khác',
+                value: numberText(
+                  Object.values(leadStatus).reduce((sum, value) => sum + Number(value || 0), 0) -
+                    Number(metrics.newLeads || 0) -
+                    Number(metrics.workingLeads || 0)
+                ),
+                note: 'Các lead đã đóng, đã phân loại hoặc trạng thái riêng.',
+              },
+            ],
           },
           {
-            name: 'Lead quá 24 giờ',
-            value: numberText(metrics.staleNewLeads),
-            meaning: 'Khách mới bị chờ lâu, nên ưu tiên trả lời.',
-            status: metrics.staleNewLeads ? 'Ưu tiên' : 'Ổn',
-            level: metrics.staleNewLeads ? 'danger' : 'ok',
-            href: '/admin/leads.html',
-          },
-          {
-            name: 'Lead đang xử lý',
-            value: numberText(metrics.workingLeads),
-            meaning: 'Khách đã có người theo dõi.',
-            status: metrics.workingLeads ? 'Đang làm' : 'Không có',
-            level: 'ok',
-            href: '/admin/leads.html',
-          },
-          {
-            name: 'Tổng lead',
-            value: numberText(metrics.leads),
-            meaning: 'Tổng số khách từng gửi thông tin.',
+            kicker: 'Nhóm 2',
+            title: 'Nội dung',
+            value: numberText(metrics.contentItems),
+            caption: 'mục nội dung chính trên website',
             status: 'Theo dõi',
             level: 'ok',
-            href: '/admin/leads.html',
+            details: [
+              {
+                label: 'Blog',
+                value: numberText(contentCounts.blog),
+                note: 'Bài viết đang có trên website.',
+              },
+              {
+                label: 'Sản phẩm',
+                value: numberText(contentCounts.products),
+                note: 'Sản phẩm hoặc chương trình đang giới thiệu.',
+              },
+              {
+                label: 'Insight',
+                value: numberText(contentCounts.insights),
+                note: 'Nội dung phân tích hoặc chia sẻ chuyên môn.',
+              },
+              {
+                label: 'Tài liệu',
+                value: numberText(contentCounts.docs),
+                note: 'Trang hướng dẫn, docs hoặc tài liệu hỗ trợ.',
+              },
+            ],
           },
           {
-            name: 'Người đăng ký email',
-            value: numberText(metrics.subscribers),
-            meaning: 'Danh sách người muốn nhận tin.',
-            status: 'Theo dõi',
-            level: 'ok',
-            href: '/admin/operations.html#subscribers',
-          },
-          {
-            name: 'Việc chờ duyệt',
+            kicker: 'Nhóm 3',
+            title: 'Duyệt & chất lượng',
             value: numberText(metrics.pendingReviews),
-            meaning: 'Nội dung hoặc việc cần kiểm tra trước khi đăng.',
+            caption: 'mục đang chờ kiểm tra trước khi đăng',
             status: metrics.pendingReviews ? 'Cần duyệt' : 'Ổn',
             level: metrics.pendingReviews ? 'warn' : 'ok',
-            href: '/admin/operations.html#review',
+            details: [
+              {
+                label: 'Tổng mục review',
+                value: numberText(metrics.reviewItems),
+                note: 'Bao gồm nháp, review và các mục đã xử lý.',
+              },
+              {
+                label: 'Chờ duyệt',
+                value: numberText(metrics.pendingReviews),
+                note: 'Nên kiểm tra trước khi public.',
+              },
+              {
+                label: 'Lần duyệt gần nhất',
+                value: compactDate(latest.reviewAt),
+                note: 'Mốc gần nhất có cập nhật trong hàng chờ.',
+              },
+              {
+                label: 'Ảnh website',
+                value: numberText(metrics.mediaItems),
+                note: 'Tài nguyên ảnh đang có trong thư viện.',
+              },
+            ],
           },
           {
-            name: 'Bài blog',
-            value: numberText(contentCounts.blog),
-            meaning: 'Số bài viết đang có trong website.',
-            status: 'Nội dung',
+            kicker: 'Nhóm 4',
+            title: 'Cộng đồng',
+            value: numberText(metrics.subscribers),
+            caption: 'người đăng ký nhận tin',
+            status: 'Theo dõi',
             level: 'ok',
-            href: '/admin/blog.html',
+            details: [
+              {
+                label: 'Tổng đăng ký',
+                value: numberText(metrics.subscribers),
+                note: 'Danh sách người muốn nhận cập nhật.',
+              },
+              {
+                label: 'Đang hoạt động',
+                value: numberText(subscriberStatus.active || metrics.subscribers),
+                note: 'Người đăng ký có trạng thái active hoặc chưa phân loại.',
+              },
+              {
+                label: 'Trạng thái khác',
+                value: numberText(
+                  Object.entries(subscriberStatus)
+                    .filter(([key]) => key !== 'active')
+                    .reduce((sum, [, value]) => sum + Number(value || 0), 0)
+                ),
+                note: 'Các trạng thái phụ nếu có.',
+              },
+              {
+                label: 'Nguồn dữ liệu',
+                value: 'Email',
+                note: 'Mở Vận hành để xem danh sách chi tiết.',
+              },
+            ],
           },
           {
-            name: 'Sản phẩm',
-            value: numberText(contentCounts.products),
-            meaning: 'Số mục sản phẩm hoặc chương trình đang có.',
-            status: 'Nội dung',
-            level: 'ok',
-            href: '/admin/content.html',
-          },
-          {
-            name: 'Insight',
-            value: numberText(contentCounts.insights),
-            meaning: 'Số nội dung insight đang có.',
-            status: 'Nội dung',
-            level: 'ok',
-            href: '/admin/content.html',
-          },
-          {
-            name: 'Tài liệu',
-            value: numberText(contentCounts.docs),
-            meaning: 'Số trang tài liệu hoặc hướng dẫn.',
-            status: 'Nội dung',
-            level: 'ok',
-            href: '/admin/operations.html#seo',
-          },
-          {
-            name: 'Ảnh trong website',
-            value: numberText(metrics.mediaItems),
-            meaning: 'Số ảnh đang lưu để dùng cho trang và bài viết.',
-            status: 'Thư viện',
-            level: 'ok',
-            href: '/admin/operations.html#media',
-          },
-          {
-            name: 'Lần thay đổi đã ghi',
+            kicker: 'Nhóm 5',
+            title: 'Hệ thống',
             value: numberText(metrics.auditEvents),
-            meaning: 'Nhật ký giúp biết các thay đổi đã diễn ra.',
-            status: 'Lịch sử',
+            caption: 'lần thay đổi đã được ghi lại',
+            status: 'Có lịch sử',
             level: 'ok',
-            href: '/admin/operations.html#audit',
+            details: [
+              {
+                label: 'Lịch sử mới nhất',
+                value: compactDate(latest.auditAt),
+                note: 'Mốc gần nhất có thao tác admin.',
+              },
+              {
+                label: 'Trang admin',
+                value: numberText(contentCounts.adminPages),
+                note: 'Số file công cụ trong khu Admin.',
+              },
+              {
+                label: 'Repo',
+                value: data.repo || 'Chưa rõ',
+                note: 'Nơi lưu dữ liệu website.',
+              },
+              {
+                label: 'Nhánh',
+                value: data.branch || 'Chưa rõ',
+                note: 'Nhánh đang dùng để đọc và ghi dữ liệu.',
+              },
+            ],
           },
+        ];
+      }
+
+      function buildQuickActions(data) {
+        const metrics = data.metrics || {};
+        return [
           {
-            name: 'Lead mới nhất',
-            value: compactDate(latest.leadAt),
-            meaning: 'Thời điểm gần nhất có khách gửi thông tin.',
-            status: latest.leadAt ? 'Có dữ liệu' : 'Chưa có',
-            level: 'ok',
+            title: metrics.staleNewLeads ? 'Trả lời lead quá hạn' : 'Mở Lead',
+            note: metrics.staleNewLeads
+              ? `${numberText(metrics.staleNewLeads)} lead đã quá 24 giờ.`
+              : `${numberText(metrics.newLeads)} lead mới.`,
             href: '/admin/leads.html',
           },
           {
-            name: 'Lần duyệt gần nhất',
-            value: compactDate(latest.reviewAt),
-            meaning: 'Thời điểm gần nhất hàng chờ duyệt được cập nhật.',
-            status: latest.reviewAt ? 'Có dữ liệu' : 'Chưa có',
-            level: 'ok',
+            title: 'Sửa nội dung',
+            note: 'Mở editor để cập nhật trang chính.',
+            href: '/admin/content.html',
+          },
+          {
+            title: metrics.pendingReviews ? 'Duyệt nội dung' : 'Kiểm tra vận hành',
+            note: metrics.pendingReviews
+              ? `${numberText(metrics.pendingReviews)} mục đang chờ duyệt.`
+              : 'Review, ảnh, SEO và audit.',
             href: '/admin/operations.html#review',
           },
           {
-            name: 'Lịch sử mới nhất',
-            value: compactDate(latest.auditAt),
-            meaning: 'Thời điểm gần nhất admin ghi nhận một thao tác.',
-            status: latest.auditAt ? 'Có dữ liệu' : 'Chưa có',
-            level: 'ok',
-            href: '/admin/operations.html#audit',
+            title: 'Viết blog',
+            note: 'Tạo nháp hoặc đăng bài mới.',
+            href: '/admin/blog.html',
           },
         ];
-
-        return rows.map(dashboardRow).join('');
       }
 
       async function loadDashboard() {
         dashboardStatus.textContent = 'Đang tải dữ liệu mới nhất...';
-        dashboardRows.innerHTML =
-          '<tr class="empty-row"><td colspan="5">Đang tải...</td></tr>';
+        dashboardGroups.innerHTML = '<div class="empty-state">Đang tải dữ liệu...</div>';
+        quickActions.innerHTML = '';
 
         try {
           const response = await fetch('/api/admin-operations?module=dashboard', {
@@ -572,19 +853,20 @@
           }
 
           dashboardStatus.textContent = `Cập nhật: ${compactDate(data.updatedAt)}`;
-          dashboardRows.innerHTML = buildDashboardRows(data);
+          dashboardGroups.innerHTML = buildDashboardGroups(data).map(dataGroupCard).join('');
+          quickActions.innerHTML = buildQuickActions(data).map(quickCard).join('');
         } catch (error) {
           dashboardStatus.textContent =
             error instanceof Error ? error.message : 'Không tải được dashboard.';
-          dashboardRows.innerHTML = `
-            <tr class="empty-row">
-              <td colspan="5">Không tải được dữ liệu. Hãy đăng nhập lại hoặc mở Vận hành để kiểm tra.</td>
-            </tr>
+          dashboardGroups.innerHTML = `
+            <div class="empty-state">
+              Không tải được dữ liệu. Hãy đăng nhập lại hoặc mở Vận hành để kiểm tra.
+            </div>
           `;
         }
       }
 
-      featureRows.innerHTML = features.map(featureRow).join('');
+      featureGroups.innerHTML = featureMap.map(featureGroupCard).join('');
       document.getElementById('refresh-dashboard').addEventListener('click', loadDashboard);
       loadDashboard();
     </script>
