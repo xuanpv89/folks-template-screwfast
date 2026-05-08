@@ -1,6 +1,17 @@
 {
-  "updatedAt": "2026-05-08T16:42:23.421Z",
+  "updatedAt": "2026-05-08T16:42:25.978Z",
   "events": [
+    {
+      "id": "audit-1778258545978-wv8zht",
+      "createdAt": "2026-05-08T16:42:25.978Z",
+      "type": "lead-update",
+      "actor": "admin",
+      "target": "lead-1778086047898-1morpw",
+      "status": "done",
+      "priority": "urgent",
+      "commitSha": "ee5ecd92a4104d33a90a51cff7cd7eb042c3b702",
+      "commitUrl": "https://github.com/xuanpv89/folksteam.com/commit/ee5ecd92a4104d33a90a51cff7cd7eb042c3b702"
+    },
     {
       "id": "audit-1778258543421-k62v6z",
       "createdAt": "2026-05-08T16:42:23.421Z",
