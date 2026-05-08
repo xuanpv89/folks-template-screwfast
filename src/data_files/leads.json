@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-05-08T16:41:18.677Z",
+  "updatedAt": "2026-05-08T16:42:22.652Z",
   "leads": [
     {
       "id": "lead-1778086047898-1morpw",
       "createdAt": "2026-05-06T16:47:27.896Z",
-      "updatedAt": "2026-05-08T16:41:18.677Z",
+      "updatedAt": "2026-05-08T16:42:22.652Z",
       "status": "done",
-      "priority": "normal",
+      "priority": "urgent",
       "source": "contact-form",
       "locale": "en",
       "page": "https://www.folksteam.com/contact",
@@ -25,6 +25,13 @@
         }
       ],
       "events": [
+        {
+          "type": "admin-update",
+          "status": "done",
+          "priority": "urgent",
+          "note": "",
+          "createdAt": "2026-05-08T16:42:22.652Z"
+        },
         {
           "type": "admin-update",
           "status": "done",
