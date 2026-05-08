@@ -624,6 +624,178 @@
         padding-top: 12px;
         backdrop-filter: blur(12px);
       }
+
+      body.admin-content {
+        background: #fff;
+      }
+
+      body.admin-content .shell {
+        max-width: none;
+        padding: 0;
+      }
+
+      body.admin-content .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        margin: 0;
+        border-width: 0 0 1px;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 12px 18px;
+      }
+
+      body.admin-content .deploy-banner {
+        margin: 12px 18px 0;
+      }
+
+      body.admin-content .layout {
+        grid-template-columns: 320px minmax(0, 1fr) !important;
+        gap: 0;
+        min-height: calc(100vh - 68px);
+      }
+
+      body.admin-content .sidebar,
+      body.admin-content .editor {
+        position: sticky;
+        top: 68px;
+        max-height: calc(100vh - 68px);
+        overflow: auto;
+        border-width: 0 1px 0 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      body.admin-content .editor {
+        position: static;
+        max-height: none;
+        min-height: calc(100vh - 68px);
+        border: 0;
+        padding: 34px clamp(18px, 5vw, 72px);
+      }
+
+      body.admin-content .preview-panel,
+      body.admin-content .filter-panel,
+      body.admin-content .tools,
+      body.admin-content #undo-field,
+      body.admin-content .field-diff,
+      body.admin-content .change-pill {
+        display: none !important;
+      }
+
+      body.admin-content .source-status {
+        margin-bottom: 12px;
+      }
+
+      body.admin-content #editor-title {
+        max-width: 760px;
+        margin-bottom: 8px;
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.05;
+      }
+
+      body.admin-content #editor-hint {
+        max-width: 720px;
+        margin-bottom: 24px;
+        font-size: 15px;
+      }
+
+      .simple-editor {
+        display: grid;
+        gap: 18px;
+        max-width: 860px;
+      }
+
+      .simple-section {
+        display: grid;
+        gap: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+      }
+
+      .simple-section:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .simple-section h3 {
+        margin: 0;
+        color: var(--brand-dark);
+        font-size: 13px;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .simple-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .simple-field label {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: #344054;
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .simple-field textarea,
+      .simple-field input {
+        border: 1px solid #d0d5dd;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .simple-field textarea {
+        min-height: 112px;
+      }
+
+      .simple-field.changed textarea,
+      .simple-field.changed input {
+        border-color: #f59e0b;
+        background: #fffbeb;
+      }
+
+      .simple-meta {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      body.admin-content .sticky-actions {
+        justify-content: flex-start;
+        max-width: 860px;
+        margin-top: 28px !important;
+      }
+
+      body.admin-content #publish-github {
+        min-width: 180px;
+      }
+
+      body.admin-content .publish-log {
+        max-width: 860px;
+      }
+
+      @media (max-width: 860px) {
+        body.admin-content .layout {
+          grid-template-columns: 1fr !important;
+        }
+
+        body.admin-content .sidebar {
+          position: static;
+          max-height: none;
+          border-width: 0 0 1px;
+        }
+
+        body.admin-content .editor {
+          min-height: auto;
+          padding: 22px 16px;
+        }
+      }
     </style>
     <link
       rel="icon"
@@ -661,15 +833,14 @@
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
-          <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/operations.html">Vận hành</a>
-          <a class="secondary" href="/admin/console.html">Console kỹ thuật</a>
-          <a class="secondary" href="/admin/blog.html">Viết blog</a>
-          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
-          <a class="secondary" href="/">Xem website</a>
-          <a class="secondary" href="/admin/guide.html">Hướng dẫn</a>
+          <a href="/admin/">Trang Ch? Admin</a>
+          <a class="secondary" href="/admin/content.html">S?a trang</a>
+          <a class="secondary" href="/admin/blog.html">Vi?t blog</a>
+          <a class="secondary" href="/admin/leads.html">Lead</a>
+          <a class="secondary" href="/admin/operations.html">V?n h?nh</a>
+          <a class="secondary" href="/admin/guide.html">H??ng d?n</a>
           <button type="button" class="secondary" data-admin-logout>
-            Đăng xuất
+            ??ng xu?t
           </button>
         </nav>
       </header>
@@ -759,11 +930,11 @@
         </section>
 
         <aside class="panel editor">
-          <p class="eyebrow">Nội dung đang chọn</p>
-          <h2 id="editor-title">Click vào chữ trong khung xem trước</h2>
+          <p class="eyebrow">Soạn thảo văn bản</p>
+          <h2 id="editor-title">Chọn trang để sửa nội dung</h2>
           <p class="hint" id="editor-hint">
-            Những vùng có thể sửa sẽ được viền xanh. Click trực tiếp vào chữ để
-            sửa.
+            Chọn một trang ở cột bên trái, rồi sửa các đoạn chữ trong một màn
+            hình gọn.
           </p>
           <div id="field-editor" class="empty">Chưa chọn nội dung.</div>
           <div class="actions sticky-actions" style="margin-top: 14px">
@@ -1957,87 +2128,107 @@
       function loadCurrentPage() {
         const page = currentPage();
         if (!page) return;
-        previewTitle.textContent = page.title || page.path;
-        pageFrame.src = `${page.path}?cms_preview=${Date.now()}`;
-        pageFrame.onload = injectPreviewEditor;
+        if (previewTitle) previewTitle.textContent = page.title || page.path;
+        if (pageFrame) pageFrame.removeAttribute('src');
+        selectedField = null;
         renderFieldEditor();
         updateActionStates();
       }
 
       function renderFieldEditor() {
-        if (!selectedField?.field) {
-          editorTitle.textContent = 'Click vào chữ trong preview';
-          editorHint.textContent =
-            'Những vùng có thể sửa sẽ được viền xanh trong preview.';
+        const page = currentPage();
+        if (!page) {
+          editorTitle.textContent = 'Chọn trang để sửa';
+          editorHint.textContent = 'Danh sách trang nằm ở cột bên trái.';
           fieldEditor.className = 'empty';
-          fieldEditor.innerHTML = 'Chưa chọn nội dung.';
+          fieldEditor.innerHTML = 'Chưa có trang nào được chọn.';
           updateActionStates();
           return;
         }
 
-        const field = selectedField.field;
-        editorTitle.textContent = field.label || 'Nội dung đang chọn';
-        editorHint.textContent = currentPage()?.path || '';
-        fieldEditor.className = '';
-        const inputType =
-          field.type === 'url' || field.type === 'image' ? 'url' : 'text';
-        const control =
-          field.type === 'textarea'
-            ? `<textarea id="field-value">${escapeHtml(field.value || '')}</textarea>`
-            : `<input id="field-value" type="${inputType}" value="${escapeHtml(field.value || '')}" />`;
-        const preview =
-          field.elementType === 'image' && field.value
-            ? `<img class="mini-preview" src="${escapeHtml(field.value)}" alt="" />`
-            : '';
-        const original = originalValueForField(
-          currentPage(),
-          selectedField.section,
-          field
-        );
-        const changed = fieldHasChanges(field);
-        const changeState =
-          original === undefined
-            ? '<span class="change-pill" id="field-change-state">Không có bản gốc để so sánh</span>'
-            : `<span class="change-pill ${changed ? 'changed' : ''}" id="field-change-state">${changed ? 'Đã thay đổi' : 'Chưa thay đổi'}</span>`;
-        const diff = `
-            <div class="field-diff ${changed ? '' : 'empty'}" id="field-diff">
-              <code class="diff-before">Trước: ${escapeHtml(original || '(trống)')}</code>
-              <code class="diff-after">Sau: ${escapeHtml(field.value || '(trống)')}</code>
-            </div>`;
-        fieldEditor.innerHTML = `
-          <span class="type-pill">${escapeHtml(fieldTypeLabel(field))}</span>
-          ${changeState}
-          <label>
-            Nội dung
-            ${control}
-          </label>
-          ${preview}
-          ${diff}
-          <div class="field-meta">
-            <span>Mục: ${escapeHtml(selectedField.section?.title || 'Nội dung trang')}</span>
-          </div>
-        `;
-        document
-          .getElementById('field-value')
-          .addEventListener('input', event => {
+        const editableSections = (page.sections || [])
+          .map(section => ({
+            section,
+            fields: (section.fields || []).filter(
+              field =>
+                !['link', 'image'].includes(field.elementType) &&
+                field.type !== 'image' &&
+                field.type !== 'url'
+            ),
+          }))
+          .filter(section => section.fields.length);
+
+        editorTitle.textContent = page.title || page.path || 'Sửa nội dung';
+        editorHint.textContent = `${page.path || '/'} - chỉ hiển thị các phần văn bản thường dùng.`;
+        fieldEditor.className = 'simple-editor';
+
+        if (!editableSections.length) {
+          fieldEditor.className = 'empty';
+          fieldEditor.innerHTML =
+            'Trang này chưa có đoạn văn bản đơn giản để sửa trong chế độ gọn.';
+          updateActionStates();
+          return;
+        }
+
+        fieldEditor.innerHTML = editableSections
+          .map(
+            ({ section, fields }) => `
+              <section class="simple-section">
+                <h3>${escapeHtml(section.title || 'Nội dung trang')}</h3>
+                ${fields
+                  .map(field => {
+                    const original = originalValueForField(page, section, field);
+                    const changed =
+                      original !== undefined &&
+                      String(original) !== String(field.value ?? '');
+                    const identity = `${section.id || ''}::${field.key || ''}`;
+                    const input =
+                      field.type === 'textarea' ||
+                      String(field.value || '').length > 90
+                        ? `<textarea data-simple-field="${escapeHtml(identity)}">${escapeHtml(field.value || '')}</textarea>`
+                        : `<input data-simple-field="${escapeHtml(identity)}" value="${escapeHtml(field.value || '')}" />`;
+                    return `
+                      <div class="simple-field ${changed ? 'changed' : ''}">
+                        <label>
+                          <span>${escapeHtml(field.label || field.key || 'Nội dung')}</span>
+                          <span class="simple-meta">${changed ? 'Đã sửa' : fieldTypeLabel(field)}</span>
+                        </label>
+                        ${input}
+                      </div>
+                    `;
+                  })
+                  .join('')}
+              </section>
+            `
+          )
+          .join('');
+
+        fieldEditor.querySelectorAll('[data-simple-field]').forEach(control => {
+          control.addEventListener('input', event => {
+            const [sectionId, fieldKey] =
+              event.target.dataset.simpleField.split('::');
+            const section = (page.sections || []).find(
+              candidate => String(candidate.id || '') === sectionId
+            );
+            const field = (section?.fields || []).find(
+              candidate => String(candidate.key || '') === fieldKey
+            );
+            if (!field) return;
             field.value = event.target.value;
-            const target = selectedField.target;
-            if (target) {
-              if (field.elementType === 'link')
-                target.setAttribute('href', field.value || '#');
-              else if (field.elementType === 'image') {
-                target.setAttribute('src', field.value || '');
-                target.removeAttribute('srcset');
-              } else if (field.elementType === 'alt')
-                target.setAttribute('alt', field.value || '');
-              else target.textContent = field.value;
-            }
             hasUnsavedChanges = true;
             scheduleAutosave();
             updateChangeStatus();
-            renderInlineFieldChangeState();
+            const original = originalValueForField(page, section, field);
+            const changed =
+              original !== undefined &&
+              String(original) !== String(field.value ?? '');
+            const wrapper = event.target.closest('.simple-field');
+            wrapper?.classList.toggle('changed', changed);
+            const meta = wrapper?.querySelector('.simple-meta');
+            if (meta) meta.textContent = changed ? 'Đã sửa' : fieldTypeLabel(field);
             updateActionStates();
           });
+        });
         updateActionStates();
       }
 
@@ -2088,7 +2279,7 @@
 
       function updateActionStates() {
         const field = selectedField?.field;
-        saveFieldButton.disabled = !field;
+        saveFieldButton.disabled = !currentPage();
         undoFieldButton.disabled = !field || !fieldHasChanges(field);
         undoPageButton.disabled = !currentPageHasChanges();
         publishButton.disabled =
@@ -2336,7 +2527,7 @@
           } else {
             setSourceStatus(
               'Đã tải nội dung CMS',
-              'Click vào chữ trong preview để sửa.'
+              'Chọn trang bên trái rồi sửa văn bản ở khung soạn thảo.'
             );
           }
 

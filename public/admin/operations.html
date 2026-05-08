@@ -39,7 +39,7 @@
       }
       .topbar {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
         gap: 14px;
@@ -141,6 +141,10 @@
       .metric {
         min-width: 0;
         padding: 14px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 10px;
+        align-items: start;
       }
       .metric span {
         color: var(--muted);
@@ -149,9 +153,23 @@
         text-transform: uppercase;
       }
       .metric strong {
-        display: block;
-        margin-top: 4px;
-        font-size: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: end;
+        min-width: 46px;
+        min-height: 34px;
+        max-width: 190px;
+        margin: 0;
+        border: 1px solid #d7eadc;
+        border-radius: 10px;
+        background: #f8fcf9;
+        padding: 0 9px;
+        font-size: 16px;
+        line-height: 1;
+        text-align: right;
+        overflow-wrap: anywhere;
+        box-shadow: inset 0 0 0 3px rgb(79 177 111 / 4%);
       }
       .grid {
         display: grid;
@@ -306,9 +324,13 @@
         margin-top: 12px;
       }
       .status-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 10px;
+        align-items: start;
         border: 1px solid #bde8cb;
         border-radius: 8px;
-        background: var(--brand-soft);
+        background: rgb(255 255 255 / 92%);
         padding: 10px 12px;
       }
       .status-item span {
@@ -319,8 +341,21 @@
         text-transform: uppercase;
       }
       .status-item strong {
-        display: block;
-        margin-top: 2px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: end;
+        min-width: 46px;
+        min-height: 34px;
+        max-width: 190px;
+        margin: 0;
+        border: 1px solid #d7eadc;
+        border-radius: 10px;
+        background: #f8fcf9;
+        padding: 0 9px;
+        font-size: 16px;
+        line-height: 1;
+        text-align: right;
         overflow-wrap: anywhere;
       }
       .quick-actions {
@@ -347,22 +382,38 @@
         }
       }
       .attention-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 10px;
+        align-items: start;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fafafa;
+        background: rgb(255 255 255 / 92%);
         padding: 12px;
       }
       .attention-card.urgent {
-        border-color: #fecaca;
-        background: #fff7f7;
+        border-color: var(--line);
+        background: rgb(255 255 255 / 92%);
       }
       .attention-card.warn {
-        border-color: #fde68a;
-        background: #fffbeb;
+        border-color: var(--line);
+        background: rgb(255 255 255 / 92%);
       }
       .attention-card strong {
-        display: block;
-        font-size: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: end;
+        min-width: 46px;
+        min-height: 34px;
+        border: 1px solid #d7eadc;
+        border-radius: 10px;
+        background: #f8fcf9;
+        color: var(--ink);
+        padding: 0 9px;
+        font-size: 16px;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
       }
       .attention-card span {
         display: block;
@@ -370,6 +421,10 @@
         font-size: 12px;
         font-weight: 850;
         text-transform: uppercase;
+      }
+      .attention-card p,
+      .attention-card .actions {
+        grid-column: 1 / -1;
       }
       .editor-helper {
         border: 1px solid #fde68a;
@@ -418,7 +473,7 @@
           font-size: clamp(28px, 10vw, 38px);
         }
         .metric strong {
-          font-size: 26px;
+          font-size: 16px;
         }
         .topbar {
           align-items: stretch;
@@ -440,14 +495,14 @@
           </div>
         </div>
         <nav class="nav" aria-label="Admin links">
-          <a href="/admin/">Admin Hub</a>
-          <a class="secondary" href="/admin/content.html">Sửa trang</a>
-          <a class="secondary" href="/admin/blog.html">Viết blog</a>
+          <a href="/admin/">Trang Ch? Admin</a>
+          <a class="secondary" href="/admin/content.html">S?a trang</a>
+          <a class="secondary" href="/admin/blog.html">Vi?t blog</a>
           <a class="secondary" href="/admin/leads.html">Lead</a>
-          <a class="secondary" href="/admin/text.html">Sửa chữ</a>
-          <a class="secondary" href="/">Xem website</a>
+          <a class="secondary" href="/admin/operations.html">V?n h?nh</a>
+          <a class="secondary" href="/admin/guide.html">H??ng d?n</a>
           <button type="button" class="secondary" data-admin-logout>
-            Đăng xuất
+            ??ng xu?t
           </button>
         </nav>
       </header>
@@ -1062,7 +1117,7 @@
         const labels = {
           leads: 'Lead',
           newLeads: 'Lead mới',
-          subscribers: 'Người đăng ký',
+          subscribers: 'Email đăng ký',
           contentItems: 'Mục nội dung',
           mediaItems: 'Media',
           pendingReviews: 'Chờ review',
@@ -1124,12 +1179,12 @@
               '<button class="secondary" type="button" data-view-shortcut="review">Mở</button>',
           },
           {
-            label: 'Người đăng ký',
+            label: 'Email đăng ký',
             value: metrics.subscribers || 0,
             className: metrics.subscribers ? '' : 'warn',
             note: metrics.subscribers
               ? 'Danh sách newsletter đang hoạt động'
-              : 'Chưa có người đăng ký',
+              : 'Chưa có email đăng ký',
             action:
               '<button class="secondary" type="button" data-view-shortcut="subscribers">Mở</button>',
           },

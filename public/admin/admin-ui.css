@@ -652,3 +652,360 @@ body.admin-console .task-grid {
 body.admin-console .task-card {
   min-height: 210px !important;
 }
+
+/* Shared admin composition system */
+body.admin-page {
+  background:
+    radial-gradient(circle at 12% 8%, rgb(79 177 111 / 10%), transparent 28%),
+    radial-gradient(circle at 88% 14%, rgb(247 181 0 / 8%), transparent 24%),
+    var(--paper) !important;
+}
+
+body.admin-page .shell {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 8px !important;
+}
+
+body.admin-page .topbar {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  min-height: auto !important;
+  margin: 0 0 12px !important;
+  padding: 10px !important;
+  border: 1px solid rgb(220 244 228 / 82%) !important;
+  border-radius: 14px !important;
+  background: rgb(255 255 255 / 92%) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+body.admin-page .brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex: 0 0 auto !important;
+  min-width: 0;
+  max-width: 280px;
+}
+
+body.admin-page .nav {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  white-space: nowrap;
+}
+
+body.admin-page .topbar .eyebrow {
+  margin: 0 0 2px !important;
+  color: var(--brand-dark) !important;
+  font-size: 11px !important;
+  line-height: 1.05 !important;
+  white-space: nowrap;
+}
+
+body.admin-page .topbar h1 {
+  margin: 0 !important;
+  color: var(--ink) !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+}
+
+body.admin-page .topbar .mark {
+  width: 42px !important;
+  height: 42px !important;
+  box-shadow: 0 12px 24px rgb(79 177 111 / 18%) !important;
+}
+
+body.admin-page .topbar .nav a,
+body.admin-page .topbar .nav button {
+  flex: 0 0 auto !important;
+  min-height: 38px !important;
+  padding: 9px 13px !important;
+  font-size: 13px !important;
+}
+
+body.admin-page .hero,
+body.admin-page .hero-panel,
+body.admin-page .guide-hero,
+body.admin-page .guide-section,
+body.admin-page .guide-card,
+body.admin-page .surface,
+body.admin-page .panel,
+body.admin-page .card,
+body.admin-page .metric,
+body.admin-page .status-card,
+body.admin-page .status-item,
+body.admin-page .attention-card,
+body.admin-page .row-card,
+body.admin-page .review-card {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  background: rgb(255 255 255 / 92%) !important;
+  box-shadow: 0 12px 30px rgb(38 38 38 / 6%) !important;
+}
+
+body.admin-page .hero,
+body.admin-page .hero-panel,
+body.admin-page .guide-hero {
+  padding: 18px !important;
+  overflow: hidden;
+}
+
+body.admin-page .hero h2,
+body.admin-page .hero-panel h2,
+body.admin-page .guide-hero h2 {
+  max-width: 960px;
+  font-size: clamp(26px, 3.2vw, 42px) !important;
+  line-height: 1.08 !important;
+}
+
+body.admin-page .status-grid,
+body.admin-page .metrics,
+body.admin-page .metric-grid,
+body.admin-page .attention-grid,
+body.admin-page .quick-grid {
+  gap: 10px !important;
+}
+
+body.admin-page .status-card,
+body.admin-page .metric,
+body.admin-page .status-item,
+body.admin-page .attention-card {
+  min-height: 0 !important;
+  padding: 12px !important;
+}
+
+body.admin-page .metric,
+body.admin-page .status-item,
+body.admin-page .attention-card {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 10px;
+  align-items: start;
+}
+
+body.admin-page .metric span,
+body.admin-page .status-item span,
+body.admin-page .attention-card span,
+body.admin-page .status-card .eyebrow {
+  min-width: 0;
+  color: var(--muted) !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase;
+}
+
+body.admin-page .metric strong,
+body.admin-page .status-item strong,
+body.admin-page .attention-card strong,
+body.admin-page .admin-stat-value {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  min-width: 44px;
+  min-height: 32px;
+  max-width: 190px;
+  margin: 0 !important;
+  border: 1px solid #d7eadc;
+  border-radius: 10px;
+  background: #f8fcf9;
+  color: var(--ink);
+  padding: 0 9px;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  line-height: 1;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+  box-shadow: inset 0 0 0 3px rgb(79 177 111 / 4%);
+  animation: adminStatBreath 3.6s ease-in-out infinite;
+}
+
+body.admin-page .metric p,
+body.admin-page .status-item p,
+body.admin-page .attention-card p {
+  grid-column: 1 / -1;
+  margin: 7px 0 0 !important;
+}
+
+body.admin-page .attention-card.urgent,
+body.admin-page .attention-card.warn,
+body.admin-page .metric.warn,
+body.admin-page .metric.danger,
+body.admin-page .status.warning,
+body.admin-page .status.error {
+  border-color: var(--line) !important;
+  background: rgb(255 255 255 / 92%) !important;
+  color: var(--ink) !important;
+}
+
+body.admin-page .attention-card.urgent strong,
+body.admin-page .attention-card.warn strong,
+body.admin-page .metric.warn strong,
+body.admin-page .metric.danger strong {
+  border-color: #d7eadc;
+  background: #f8fcf9;
+  color: var(--ink);
+}
+
+body.admin-page .status-card strong {
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+body.admin-page .status-card p,
+body.admin-page .guide-card p {
+  margin: 0 !important;
+  color: var(--muted) !important;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+body.admin-page .guide-toc,
+body.admin-page .editor-rail {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  background: rgb(255 255 255 / 92%) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+body.admin-blog .intro {
+  display: grid !important;
+}
+
+body.admin-blog .editor-rail {
+  position: static !important;
+  width: auto !important;
+  margin-bottom: 12px;
+  padding: 10px !important;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+}
+
+body.admin-blog .rail-button span {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 17px !important;
+}
+
+body.admin-blog .post-manager,
+body.admin-blog .grid {
+  padding-left: 0 !important;
+}
+
+body.admin-page[data-theme='dark'],
+body[data-theme='dark'].admin-page {
+  color-scheme: dark;
+  --ink: #f5f7f2;
+  --muted: #c9d1c8;
+  --soft: #a5afa4;
+  --line: #314136;
+  --paper: #111611;
+  --panel: #1b231d;
+  --brand-soft: #253b2b;
+}
+
+body.admin-page[data-theme='dark'] .topbar,
+body[data-theme='dark'].admin-page .topbar,
+body.admin-page[data-theme='dark'] .hero,
+body[data-theme='dark'].admin-page .hero,
+body.admin-page[data-theme='dark'] .hero-panel,
+body[data-theme='dark'].admin-page .hero-panel,
+body.admin-page[data-theme='dark'] .guide-hero,
+body[data-theme='dark'].admin-page .guide-hero,
+body.admin-page[data-theme='dark'] .guide-section,
+body[data-theme='dark'].admin-page .guide-section,
+body.admin-page[data-theme='dark'] .guide-card,
+body[data-theme='dark'].admin-page .guide-card,
+body.admin-page[data-theme='dark'] .surface,
+body[data-theme='dark'].admin-page .surface,
+body.admin-page[data-theme='dark'] .panel,
+body[data-theme='dark'].admin-page .panel,
+body.admin-page[data-theme='dark'] .card,
+body[data-theme='dark'].admin-page .card,
+body.admin-page[data-theme='dark'] .metric,
+body[data-theme='dark'].admin-page .metric,
+body.admin-page[data-theme='dark'] .status-card,
+body[data-theme='dark'].admin-page .status-card,
+body.admin-page[data-theme='dark'] .status-item,
+body[data-theme='dark'].admin-page .status-item,
+body.admin-page[data-theme='dark'] .attention-card,
+body[data-theme='dark'].admin-page .attention-card,
+body.admin-page[data-theme='dark'] .row-card,
+body[data-theme='dark'].admin-page .row-card,
+body.admin-page[data-theme='dark'] .review-card,
+body[data-theme='dark'].admin-page .review-card,
+body.admin-page[data-theme='dark'] .guide-toc,
+body[data-theme='dark'].admin-page .guide-toc,
+body.admin-page[data-theme='dark'] .editor-rail,
+body[data-theme='dark'].admin-page .editor-rail {
+  border-color: var(--line) !important;
+  background: rgb(27 35 29 / 94%) !important;
+  color: var(--ink) !important;
+}
+
+body.admin-page[data-theme='dark'] .metric strong,
+body[data-theme='dark'].admin-page .metric strong,
+body.admin-page[data-theme='dark'] .status-item strong,
+body[data-theme='dark'].admin-page .status-item strong,
+body.admin-page[data-theme='dark'] .attention-card strong,
+body[data-theme='dark'].admin-page .attention-card strong,
+body.admin-page[data-theme='dark'] .admin-stat-value,
+body[data-theme='dark'].admin-page .admin-stat-value {
+  border-color: #45664d;
+  background: #141b16;
+  color: var(--ink);
+}
+
+@keyframes adminStatBreath {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: inset 0 0 0 3px rgb(79 177 111 / 4%);
+  }
+
+  50% {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 0 0 3px rgb(79 177 111 / 7%),
+      0 5px 14px rgb(38 38 38 / 5%);
+  }
+}
+
+@media (max-width: 720px) {
+  body.admin-page .shell {
+    padding: 4px !important;
+  }
+
+  body.admin-page .topbar {
+    top: 4px !important;
+    align-items: center !important;
+  }
+
+  body.admin-page .brand {
+    width: auto !important;
+    max-width: 210px;
+  }
+
+  body.admin-page .topbar h1 {
+    font-size: 21px !important;
+  }
+
+  body.admin-page .metric,
+  body.admin-page .status-item,
+  body.admin-page .attention-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
