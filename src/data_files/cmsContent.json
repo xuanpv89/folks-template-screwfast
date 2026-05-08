@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-07T11:40:40.330Z",
+  "updatedAt": "2026-05-08T14:40:19.080Z",
   "pages": [
     {
       "id": "home",
@@ -1497,7 +1497,7 @@
               "key": "text-2",
               "label": "We build growth systems with a human center.",
               "type": "text",
-              "value": "1 tes 4 We build growth systems with a human center.",
+              "value": "tes 4 We build growth systems with a human center.",
               "match": "We build growth systems with a human center.",
               "elementType": "text"
             },
@@ -1505,7 +1505,7 @@
               "key": "text-3",
               "label": "Folks Team helps teams, communities, educators, and bu...",
               "type": "textarea",
-              "value": "2 Folk Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
+              "value": "Folks Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
               "match": "Folks Team helps teams, communities, educators, and builders turn scattered ideas into sustainable systems. Our work is grounded in C.H.E.S.S: Content, Hub, Event, Store, and Session.",
               "elementType": "text"
             },
@@ -1543,7 +1543,7 @@
               "key": "text-5",
               "label": "From growth tactics to systems people can actually use...",
               "type": "text",
-              "value": "3 From growth tactics to systems people can actually use.",
+              "value": "From growth tactics to systems people can actually use.",
               "match": "From growth tactics to systems people can actually use.",
               "elementType": "text"
             },
@@ -3079,7 +3079,7 @@
               "key": "text-2",
               "label": "The C.H.E.S.S Model for Modern Marketing and Community...",
               "type": "text",
-              "value": "4 test The C.H.E.S.S Model for Modern Marketing and Community Building",
+              "value": "test The C.H.E.S.S Model for Modern Marketing and Community Building",
               "match": "The C.H.E.S.S Model for Modern Marketing and Community Building",
               "elementType": "text"
             },
@@ -3087,7 +3087,7 @@
               "key": "text-3",
               "label": "Marketing is no longer just about attracting attention...",
               "type": "textarea",
-              "value": "5 Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
+              "value": "Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
               "match": "Marketing is no longer just about attracting attention or closing a sale. The real challenge is building a sustainable system that brings people in, keeps them engaged, nurtures relationships and creates long-term value.",
               "elementType": "text"
             },
@@ -7379,7 +7379,7 @@
               "key": "text-4",
               "label": "Một hệ thống tăng trưởng hiện đại xây trên",
               "type": "text",
-              "value": "Test1*& - Một hệ thống tăng trưởng hiện đại xây trên",
+              "value": "Một hệ thống tăng trưởng hiện đại xây trên",
               "match": "Một hệ thống tăng trưởng hiện đại xây trên",
               "elementType": "text"
             },
@@ -10073,7 +10073,7 @@
               "key": "text-2",
               "label": "Xây hệ thống tăng trưởng với cấu trúc, hỗ trợ và thực ...",
               "type": "text",
-              "value": "test 2 - Xây hệ thống tăng trưởng với cấu trúc, hỗ trợ và thực hành.",
+              "value": "Xây hệ thống tăng trưởng với cấu trúc, hỗ trợ và thực hành.",
               "match": "Xây hệ thống tăng trưởng với cấu trúc, hỗ trợ và thực hành.",
               "elementType": "text"
             },
@@ -11711,7 +11711,7 @@
               "key": "text-2",
               "label": "Project: Compassio cho wellbeing, công việc, quan hệ, ...",
               "type": "text",
-              "value": "17 Project: Compassio cho wellbeing, công việc, quan hệ, hạnh phúc và hiểu biết cảm xúc",
+              "value": "Project: Compassio cho wellbeing, công việc, quan hệ, hạnh phúc và hiểu biết cảm xúc",
               "match": "Project: Compassio cho wellbeing, công việc, quan hệ, hạnh phúc và hiểu biết cảm xúc",
               "elementType": "text"
             },
