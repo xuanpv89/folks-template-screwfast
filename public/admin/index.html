@@ -174,7 +174,7 @@
 
       .priority-board {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.78fr);
+        grid-template-columns: minmax(360px, 0.82fr) minmax(520px, 1.18fr);
         gap: 10px;
         padding: 12px;
       }
@@ -293,6 +293,8 @@
       }
 
       .kpi-label {
+        grid-column: 1;
+        grid-row: 1;
         color: var(--admin-muted);
         font-size: 11px;
         font-weight: 900;
@@ -307,7 +309,8 @@
         min-width: 44px;
         min-height: 32px;
         justify-self: end;
-        grid-row: span 2;
+        grid-column: 2;
+        grid-row: 1 / span 2;
         border: 1px solid #bde8cb;
         border-radius: 10px;
         background: #f8fcf9;
@@ -326,8 +329,14 @@
         grid-template-columns: minmax(0, 1fr) auto;
       }
 
+      .kpi.date-kpi .kpi-label {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
       .kpi.date-kpi .kpi-value {
-        min-width: 112px;
+        grid-column: 2;
+        min-width: 130px;
         font-size: 14px;
         grid-row: 1;
         white-space: nowrap;
@@ -339,6 +348,8 @@
       }
 
       .kpi-note {
+        grid-column: 1;
+        grid-row: 2;
         margin: 5px 0 0;
         color: var(--admin-muted);
         font-size: 12px;
@@ -735,6 +746,7 @@
       }
 
       .sidebar-footer p {
+        order: 2;
         margin: 0;
         color: var(--admin-muted);
         font-size: 12px;
@@ -748,6 +760,7 @@
       }
 
       .sidebar-tools {
+        order: 1;
         display: flex;
         gap: 8px;
         align-items: center;
@@ -894,9 +907,8 @@
         }
 
         .sidebar-footer {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          display: grid;
+          justify-items: start;
           margin-top: auto;
         }
       }
