@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-05-08T16:36:24.283Z",
+  "updatedAt": "2026-05-08T16:41:11.874Z",
   "leads": [
     {
       "id": "lead-1778086047898-1morpw",
       "createdAt": "2026-05-06T16:47:27.896Z",
-      "updatedAt": "2026-05-07T05:40:15.149Z",
+      "updatedAt": "2026-05-08T16:41:11.874Z",
       "status": "done",
       "priority": "normal",
       "source": "contact-form",
@@ -17,8 +17,21 @@
       "phone": "7532833829",
       "message": "Hello http://folksteam.com,\r\n \r\nIf you’re looking to boost your website’s visibility, I can help you achieve top Google rankings.\r\n \r\nI’ll prepare a complete SEO plan with actionable steps and potential growth insights for your products or services.\r\n \r\nOnce you share your target keywords and target market, I’ll send a full proposal.\r\n \r\nBest Regards,\r\nAshwani",
       "owner": "",
-      "notes": [],
+      "notes": [
+        {
+          "id": "note-1778258471874",
+          "body": "Spam vớ vẩn",
+          "createdAt": "2026-05-08T16:41:11.874Z"
+        }
+      ],
       "events": [
+        {
+          "type": "admin-update",
+          "status": "done",
+          "priority": "normal",
+          "note": "added",
+          "createdAt": "2026-05-08T16:41:11.874Z"
+        },
         {
           "type": "admin-update",
           "status": "done",
