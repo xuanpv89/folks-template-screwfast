@@ -322,11 +322,24 @@
         animation: adminCountPulse 3s ease-in-out infinite;
       }
 
+      .kpi.date-kpi {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
+      .kpi.date-kpi .kpi-value {
+        min-width: 112px;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
       .kpi-note {
         margin: 5px 0 0;
         color: var(--admin-muted);
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0;
         line-height: 1.32;
+        text-transform: uppercase;
       }
 
       .dashboard-grid {
@@ -380,7 +393,7 @@
       .metric-title {
         display: flex;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: flex-start;
         gap: 10px;
       }
 
@@ -416,8 +429,11 @@
       .metric-caption {
         order: 1;
         color: rgba(255, 255, 255, 0.86);
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0;
         line-height: 1.32;
+        text-transform: uppercase;
       }
 
       .pill {
@@ -485,8 +501,11 @@
       .detail-row p {
         margin: 3px 0 0;
         color: var(--admin-muted);
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 780;
+        letter-spacing: 0;
         line-height: 1.3;
+        text-transform: uppercase;
       }
 
       .detail-value {
@@ -497,6 +516,14 @@
         text-align: right;
         overflow-wrap: anywhere;
         font-variant-numeric: tabular-nums;
+      }
+
+      .detail-row.repo-row .detail-value {
+        max-width: 260px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow-wrap: normal;
+        white-space: nowrap;
       }
 
       .metric-panel.wide .detail-value {
@@ -708,6 +735,12 @@
         line-height: 1.35;
       }
 
+      .sidebar-footer a {
+        color: inherit;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
       .sidebar-tools {
         display: flex;
         gap: 8px;
@@ -719,10 +752,10 @@
         align-items: center;
         gap: 7px;
         min-height: 34px;
-        border: 1px solid var(--admin-line);
+        border: 1px solid #5bc982;
         border-radius: 8px;
-        background: #ffffff;
-        color: var(--admin-ink);
+        background: var(--admin-green);
+        color: #ffffff;
         padding: 7px 9px;
         font-size: 12px;
         font-weight: 850;
@@ -764,11 +797,16 @@
       body[data-theme='dark'] .nav a,
       body[data-theme='dark'] .nav button,
       body[data-theme='dark'] .button.secondary,
-      body[data-theme='dark'] .mini-action,
-      body[data-theme='dark'] .sidebar-chip {
+      body[data-theme='dark'] .mini-action {
         background: #172018 !important;
         border-color: var(--admin-line) !important;
         color: var(--admin-ink) !important;
+      }
+
+      body[data-theme='dark'] .sidebar-chip {
+        background: #4fb16f !important;
+        border-color: #5bc982 !important;
+        color: #ffffff !important;
       }
 
       body[data-theme='dark'] .nav a[aria-current='page'],
@@ -840,8 +878,11 @@
         }
 
         .layout > aside.stack {
+          display: flex;
+          flex-direction: column;
           position: static;
           width: auto;
+          min-height: calc(100vh - 92px);
           max-height: none;
           overflow: visible;
         }
@@ -850,10 +891,33 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: auto;
         }
       }
 
       @media (max-width: 720px) {
+        .layout {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .layout > aside.stack {
+          display: contents;
+        }
+
+        .layout > aside.stack .surface {
+          order: 1;
+        }
+
+        .layout > div.stack {
+          order: 2;
+        }
+
+        .sidebar-footer {
+          order: 3;
+          margin-top: 0;
+        }
+
         .surface-head {
           align-items: stretch;
           flex-direction: column;
@@ -928,7 +992,11 @@
             <div id="tool-map" class="tool-map"></div>
           </section>
           <footer class="sidebar-footer" aria-label="Thông tin Admin">
-            <p>© Folks Team 2026</p>
+            <p>
+              <a href="https://www.folksteam.com/">© Folks Team 2026</a>
+              <br />
+              <a href="https://www.folksteam.com/">Folksteam.com</a>
+            </p>
             <div class="sidebar-tools">
               <span class="sidebar-chip" aria-label="Ngôn ngữ hiện tại">
                 <span class="heading-icon" aria-hidden="true" data-icon="language"></span>VI
@@ -1064,8 +1132,9 @@
       }
 
       function detailRow(item) {
+        const isRepo = item.kind === 'repo';
         return `
-          <a class="detail-row" href="${escapeHtml(item.href)}">
+          <a class="detail-row ${isRepo ? 'repo-row' : ''}" href="${escapeHtml(item.href)}">
             <div>
               <strong>${escapeHtml(item.label)}</strong>
               <p>${escapeHtml(item.note)}</p>
@@ -1081,7 +1150,6 @@
             <a class="metric-main" href="${escapeHtml(item.href)}">
               <div class="metric-title">
                 <h4><span class="heading-icon" aria-hidden="true">${iconSvg(item.icon)}</span>${escapeHtml(item.title)}</h4>
-                <span class="pill ${levelClass(item.level)}">${escapeHtml(item.status)}</span>
               </div>
               <div class="metric-stat">
                 <div class="metric-value">${escapeHtml(item.value)}</div>
@@ -1097,7 +1165,7 @@
 
       function kpiCard(item) {
         return `
-          <a class="kpi ${levelClass(item.level)}" href="${escapeHtml(item.href)}">
+          <a class="kpi ${levelClass(item.level)} ${item.className || ''}" href="${escapeHtml(item.href)}">
             <span class="kpi-label">${escapeHtml(item.label)}</span>
             <strong class="kpi-value">${escapeHtml(item.value)}</strong>
             <p class="kpi-note">${escapeHtml(item.note)}</p>
@@ -1136,29 +1204,30 @@
               {
                 label: 'Lead mới',
                 value: numberText(metrics.newLeads),
-                note: 'khách mới cần phân loại.',
+                note: 'Khách mới cần phân loại.',
                 level: metrics.newLeads ? 'warn' : '',
                 href: '/admin/leads.html',
               },
               {
                 label: 'Chờ duyệt',
                 value: numberText(metrics.pendingReviews),
-                note: 'mục cần kiểm tra trước khi đăng.',
+                note: 'Mục cần kiểm tra trước khi đăng.',
                 level: metrics.pendingReviews ? 'warn' : '',
                 href: '/admin/operations.html#review',
               },
               {
                 label: 'Email đăng ký',
                 value: numberText(metrics.subscribers),
-                note: 'tổng email đăng ký.',
+                note: 'Tổng email đăng ký.',
                 level: '',
                 href: '/admin/operations.html#subscribers',
               },
               {
                 label: 'Cập nhật',
                 value: compactDate(latest.auditAt || data.updatedAt),
-                note: 'lần ghi nhận gần nhất.',
+                note: 'Lần ghi nhận sửa website gần nhất.',
                 level: '',
+                className: 'date-kpi',
                 href: '/admin/operations.html#audit',
               },
             ]
@@ -1180,7 +1249,7 @@
             icon: 'users',
             href: '/admin/leads.html',
             value: numberText(metrics.newLeads),
-            caption: 'lead mới cần nhìn trước',
+            caption: 'Lead mới cần kiểm tra',
             status: metrics.staleNewLeads ? 'Ưu tiên' : metrics.newLeads ? 'Cần xem' : 'Ổn',
             level: metrics.staleNewLeads ? 'danger' : metrics.newLeads ? 'warn' : '',
             details: [
@@ -1204,7 +1273,7 @@
             icon: 'file-edit',
             href: '/admin/content.html',
             value: numberText(metrics.contentItems),
-            caption: 'mục nội dung chính trên website',
+            caption: 'Mục nội dung chính trên website',
             status: metrics.pendingReviews ? 'Có review' : 'Theo dõi',
             level: metrics.pendingReviews ? 'warn' : '',
             details: [
@@ -1220,7 +1289,7 @@
             icon: 'users',
             href: '/admin/operations.html#subscribers',
             value: numberText(metrics.subscribers),
-            caption: 'email đăng ký nhận tin',
+            caption: 'Email đăng ký nhận tin',
             status: 'Theo dõi',
             level: '',
             details: [
@@ -1242,13 +1311,13 @@
             icon: 'shield-check',
             href: '/admin/operations.html#audit',
             value: numberText(metrics.auditEvents),
-            caption: 'số lần cập nhật website đã được ghi nhận',
+            caption: 'Số lần cập nhật website đã được ghi nhận',
             status: 'Có lịch sử',
             level: '',
             details: [
-              { label: 'Lịch sử mới nhất', value: compactDate(latest.auditAt), note: 'Lần chỉnh sửa website gần nhất', href: '/admin/operations.html#audit' },
+              { label: 'Lịch sử mới nhất', value: compactDate(latest.auditAt), note: 'Lần ghi nhận sửa website gần nhất.', href: '/admin/operations.html#audit' },
               { label: 'Trang admin', value: numberText(contentCounts.adminPages), note: 'Số file công cụ trong khu Admin.', href: '/admin/' },
-              { label: 'Nơi lưu dữ liệu', value: data.repo || 'Chưa rõ', note: 'Repository đang dùng.', href: '/admin/console.html' },
+              { label: 'Nơi lưu dữ liệu', value: data.repo || 'Chưa rõ', note: 'Kho lưu dữ liệu đang dùng.', href: data.repo ? `https://github.com/${data.repo}` : '/admin/console.html', kind: 'repo' },
               { label: 'Nhánh', value: data.branch || 'Chưa rõ', note: 'Nhánh đang đọc và ghi dữ liệu.', href: '/admin/console.html' },
             ],
           },
