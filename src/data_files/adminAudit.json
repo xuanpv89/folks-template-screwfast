@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-05-08T12:09:21.336Z",
+  "updatedAt": "2026-05-08T12:10:46.658Z",
   "events": [
+    {
+      "id": "audit-1778242246658-03xnkz",
+      "createdAt": "2026-05-08T12:10:46.658Z",
+      "type": "blog-publish",
+      "actor": "admin",
+      "target": "src/content/blog/en/nhung-nguoi-ban-o-nhung-noi-ay.md",
+      "commitSha": "c8c7df6855bb9d983128ee9c0bf5fe2d56e64606",
+      "commitUrl": "https://github.com/xuanpv89/folksteam.com/commit/c8c7df6855bb9d983128ee9c0bf5fe2d56e64606"
+    },
     {
       "id": "audit-1778242161336-bczy9i",
       "createdAt": "2026-05-08T12:09:21.336Z",
