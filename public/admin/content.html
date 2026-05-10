@@ -907,12 +907,9 @@
       body.admin-content .collection-path {
         display: block;
         overflow-wrap: anywhere;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fafafa;
-        padding: 8px;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 11px;
+        font-weight: 700;
       }
 
       body.admin-content .collection-editor textarea {
@@ -980,6 +977,38 @@
         border-radius: 8px;
         background: #fbfffc;
         padding: 18px;
+      }
+
+      body.admin-content .collection-context {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid #bde8cb;
+        border-radius: 8px;
+        background: #fbfffc;
+        padding: 10px 12px;
+      }
+
+      body.admin-content .collection-context.hidden {
+        display: none;
+      }
+
+      body.admin-content .collection-context .hidden {
+        display: none !important;
+      }
+
+      body.admin-content .collection-context strong,
+      body.admin-content .collection-context span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      body.admin-content .collection-context span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 750;
       }
 
       body.admin-content .collection-dirty {
@@ -1073,7 +1102,7 @@
           Sửa nội dung trang
         </button>
         <button type="button" class="secondary" data-content-view="collections">
-          Sửa nhóm trang
+          Sửa Nhóm Trang
         </button>
       </div>
 
@@ -1191,7 +1220,7 @@
       <section class="panel collections-workspace content-view" id="collections">
         <div class="collection-toolbar collection-head">
           <div>
-            <p class="eyebrow">Sửa nhóm trang</p>
+            <p class="eyebrow">Sửa Nhóm Trang</p>
             <h2>Sửa các nhóm trang như sản phẩm, insight, tài liệu</h2>
             <p class="hint">
               Chọn nhóm, chọn trang con, rồi sửa bằng các ô nội dung dễ đọc.
@@ -1249,6 +1278,21 @@
                   Lưu thay đổi
                 </button>
               </div>
+            </div>
+            <div class="collection-context hidden" id="collection-context">
+              <div>
+                <strong id="collection-context-title">Đang sửa trang con</strong>
+                <span id="collection-context-path"></span>
+              </div>
+              <a
+                class="button secondary"
+                href="/"
+                target="_blank"
+                rel="noreferrer"
+                id="collection-preview-link"
+              >
+                Mở trang
+              </a>
             </div>
             <div class="collection-empty" id="collection-empty">
               <strong>Chưa chọn trang con.</strong>
@@ -1428,6 +1472,16 @@
       const collectionTarget = document.getElementById('collection-target');
       const collectionContent = document.getElementById('collection-content');
       const collectionEmpty = document.getElementById('collection-empty');
+      const collectionContext = document.getElementById('collection-context');
+      const collectionContextTitle = document.getElementById(
+        'collection-context-title'
+      );
+      const collectionContextPath = document.getElementById(
+        'collection-context-path'
+      );
+      const collectionPreviewLink = document.getElementById(
+        'collection-preview-link'
+      );
       const collectionFriendlyEditor = document.getElementById(
         'collection-friendly-editor'
       );
@@ -1590,6 +1644,41 @@
         collectionTarget.value = suggestedCollectionPath();
       }
 
+      function publicCollectionUrl(target) {
+        const path = String(target || '');
+        const contentMatch = path.match(
+          /^src\/content\/(products|insights)\/([^/]+)\/(.+?)\.(md|mdx)$/i
+        );
+        if (contentMatch) {
+          const [, group, lang, slug] = contentMatch;
+          const prefix = lang === 'en' ? '' : `/${lang}`;
+          return `${prefix}/${group}/${slug}/`;
+        }
+
+        const pageMatch = path.match(
+          /^src\/pages\/(.+?)\.(astro|md|mdx)$/i
+        );
+        if (pageMatch) return `/${pageMatch[1]}/`;
+
+        const docMatch = path.match(
+          /^src\/content\/docs\/(.+?)\.(md|mdx)$/i
+        );
+        if (docMatch) return `/${docMatch[1].replace(/^en\//, '')}/`;
+
+        return '';
+      }
+
+      function updateCollectionContext(title, target) {
+        const publicUrl = publicCollectionUrl(target);
+        collectionContext.classList.remove('hidden');
+        collectionContextTitle.textContent = title || 'Đang sửa trang con';
+        collectionContextPath.textContent = target
+          ? `Nơi lưu: ${target}`
+          : 'Chưa có đường dẫn lưu. Hệ thống sẽ gợi ý sau khi nhập tiêu đề.';
+        collectionPreviewLink.classList.toggle('hidden', !publicUrl);
+        if (publicUrl) collectionPreviewLink.href = publicUrl;
+      }
+
       function showFriendlyEditor(data) {
         const parsed = parseFriendlyContent(data.content, data.target);
         collectionState.friendly = parsed;
@@ -1599,14 +1688,17 @@
 
         if (!parsed) {
           collectionTitle.textContent = data.summary?.title || data.target;
+          updateCollectionContext(data.summary?.title || data.target, data.target);
           return;
         }
 
         collectionTitleField.value = parsed.fields.title || '';
         collectionDescriptionField.value = parsed.fields.description || '';
         collectionBodyField.value = parsed.body.trim();
-        collectionTitle.textContent =
+        const title =
           parsed.fields.title || friendlyFileName({ path: data.target });
+        collectionTitle.textContent = title;
+        updateCollectionContext(title, data.target);
       }
 
       async function collectionApi(url, options = {}) {
@@ -1694,8 +1786,10 @@
 
       function updateFriendlyCollectionDirty() {
         friendlyContentToRaw();
-        collectionTitle.textContent =
-          collectionTitleField.value.trim() || 'Trang con mới';
+        const title = collectionTitleField.value.trim() || 'Trang con mới';
+        updateSuggestedPath();
+        collectionTitle.textContent = title;
+        updateCollectionContext(title, collectionTarget.value.trim());
         updateCollectionDirty();
       }
 
@@ -1747,6 +1841,7 @@
         collectionTarget.value = '';
         collectionContent.value = '---\ntitle: \"\"\ndescription: \"\"\n---\n\n';
         collectionEmpty.classList.add('hidden');
+        updateCollectionContext('Trang con mới', '');
         collectionFriendlyEditor.classList.remove('hidden');
         collectionAdvanced.open = false;
         collectionTitleField.value = '';
@@ -1768,6 +1863,7 @@
         collectionDescriptionField.value = '';
         collectionBodyField.value = '';
         collectionEmpty.classList.remove('hidden');
+        collectionContext.classList.add('hidden');
         collectionFriendlyEditor.classList.add('hidden');
         collectionAdvanced.open = false;
         saveCollectionButton.disabled = true;
