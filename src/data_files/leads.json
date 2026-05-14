@@ -1,6 +1,30 @@
 {
-  "updatedAt": "2026-05-08T16:42:25.156Z",
+  "updatedAt": "2026-05-14T16:56:31.218Z",
   "leads": [
+    {
+      "id": "lead-1778777790977-wyokot",
+      "createdAt": "2026-05-14T16:56:30.975Z",
+      "updatedAt": "2026-05-14T16:56:30.975Z",
+      "status": "new",
+      "priority": "normal",
+      "source": "contact-form",
+      "locale": "en",
+      "page": "https://www.folksteam.com/contact",
+      "name": "Branden de Largie",
+      "firstName": "Branden",
+      "lastName": "de Largie",
+      "email": "domains@search-folksteam.com",
+      "phone": "",
+      "message": "Greetings\r\n\r\nRegister folksteam.com in GoogleSearchIndex to be visible in google search results!\r\n\r\nList folksteam.com now: https://searchregister.live",
+      "owner": "",
+      "notes": [],
+      "events": [
+        {
+          "type": "submitted",
+          "createdAt": "2026-05-14T16:56:30.975Z"
+        }
+      ]
+    },
     {
       "id": "lead-1778086047898-1morpw",
       "createdAt": "2026-05-06T16:47:27.896Z",
